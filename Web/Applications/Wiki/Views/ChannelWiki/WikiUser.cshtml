@@ -1,0 +1,67 @@
+﻿@model User
+@{
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+    Layout = "app-list-2cols";
+    var allCategories = ViewData.Get<IEnumerable<Category>>("allCategories", null);
+    var currentUser = UserContext.CurrentUser;
+    string ta = "我";
+    if (currentUser == null || currentUser.UserId != Model.UserId)
+    {
+        ta = Model.Profile.ThirdPerson();
+    }     
+}
+
+@section Aside{
+    @if (allCategories != null && allCategories.Count() > 0)
+    {
+        <div class="tn-box tn-widget tn-widget-content tn-corner-all ">
+            <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+                <h3 class="tn-helper-reset">类别</h3>
+            </div>
+            <div class="tn-box-content tn-widget-content tn-corner-bottom">
+                <ul class="tn-list hr-list-son tn-helper-clearfix">
+                    @foreach (Category category in allCategories)
+                    {
+                        <li><a href="@SiteUrls.Instance().Pages(category.CategoryId)">@category.CategoryName</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">热门百科标签</h3>
+        </div>
+        @Html.AjaxAction("_TagCloud", "Channel", new { tenantTypeId = TenantTypeIds.Instance().WikiPage(), Area = "Common" })
+    </div>
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all hr-entry-list">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="tn-profile tn-helper-clearfix">
+            @Html.ShowUserAvatar(Model, AvatarSizeType.Small, true, HyperLinkTarget._self, enableCachingInClient: false)
+            <div class="tn-info">
+                <div class="tn-title tn-border-gray tn-border-bottom">
+                    <div class="tn-option">
+                        @if (currentUser != null && currentUser.UserId != Model.UserId)
+                        {
+                            @Html.FollowUser(Model.UserId, "关注")
+                        }
+                        <a class="tn-button tn-corner-all tn-button-default tn-button-hollow tn-button-text-icon-primary" href="@SiteUrls.Instance().SpaceHome(Model.UserName)"><span class="tn-icon tn-smallicon-add"></span><span class="tn-button-text">查看@(ta)的空间</span></a>
+                    </div>
+                    <p class="tn-name"><a class="tn-user-name" href="@SiteUrls.Instance().SpaceHome(Model.UserName)">@Model.DisplayName</a>@Html.IdentificationType(Model.UserId)</p>
+                </div>
+            </div>
+          </div>
+        @{
+            submenu subm = Request.QueryString.Get("submenu", submenu.perfect);
+
+            var tabControl = new TabControl()
+            .SetIsSimple(true)
+            .AddTabItem(new TabItem("待完善的词条") { Url = SiteUrls.Instance()._ListWikiPages(submenu.perfect,10), Selected = (subm == submenu.perfect ? true : false) })
+            .AddTabItem(new TabItem(""+ta+"新建的词条") { Url = SiteUrls.Instance()._ListWikiPages(submenu.mycreated, 10), Selected = (subm == submenu.mycreated ? true : false) })
+            .AddTabItem(new TabItem("" + ta + "完善过的词条") { Url = SiteUrls.Instance()._ListWikiPages(submenu.myperfected, 10), Selected = (subm == submenu.myperfected ? true : false) });
+
+        }
+        @Html.Tabs(tabControl)
+    </div>
+</div>

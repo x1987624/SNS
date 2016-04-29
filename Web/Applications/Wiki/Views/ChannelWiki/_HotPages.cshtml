@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WikiPage>
+@{
+    ViewBag.Title = "_HotPages";
+    int i = 0;
+}
+
+<div class="tn-box tn-widget tn-widget-content tn-corner-all">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+      <h3 class="tn-helper-reset">热门词条</h3>
+    </div>
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+      <ul class="tn-list hr-list-hot">
+          @foreach(WikiPage wikiPage in Model)
+          {
+              i=i+1;
+              <li><span>@i</span><a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)" title="@wikiPage.Title">@HtmlUtility.TrimHtml(wikiPage.Title,10)</a></li>
+          }
+        </ul>
+    </div>
+</div>

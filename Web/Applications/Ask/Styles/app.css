@@ -1,0 +1,141 @@
+/* 
+Offical Style for Spacebuilder
+(c) Tunynet Inc.
+*/
+
+.spb-ask-page .tn-shortcut .tn-button { float: right; margin-left: 10px; }
+.spb-ask-page .tn-shortcut .tn-search-box { float: right; }
+
+.spb-ask-interest .tn-box-header .tn-icon,
+.spb-ask-being .tn-box-header .tn-icon,
+.spb-ask-fine .tn-box-header .tn-icon,
+.spb-ask-fine .tn-box-header .tn-icon-colorful { float: left; margin: 2px 10px 0 0; }
+
+.spb-ask-interest li,
+.spb-ask-show-list li { overflow: hidden; zoom:1; }
+.spb-ask-interest .tn-count { float: right; padding-left: 10px; }
+.spb-ask-interest li .tn-title,
+.spb-ask-show-list .tn-title { float: left; max-width: 320px; _width: 320px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.spb-ask-show-list .tn-avatar-mini { float: right; }
+.spb-ask-show-list .tn-user-name { float: right; padding: 0 0 0 10px; width: 95px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.spb-ask-show-list .tn-count { padding-left: 5px; }
+
+.tn-icon-list li { line-height: 16px; height: 16px; overflow: hidden; padding: 0; margin-bottom: 8px; }
+.tn-icon-list li .tn-icon { float: left; margin-right: 10px; }
+.tn-icon-list li .tn-count { padding-right: 5px; }
+
+.tn-count-box { width: 40px; }
+.tn-count-box .tn-count { padding:3px 0; }
+.tn-count-box .tn-nums,
+.tn-count-box .tn-label { display: block; text-align: center; line-height: 16px; white-space: nowrap; }
+
+.spb-ask-list .tn-list .tn-list-item-heading { padding-bottom: 8px; }
+.spb-ask-list .tn-list h5 { font-size: 14px; font-weight: normal; line-height: 16px; height: 16px; overflow: hidden; }
+.spb-ask-list .tn-list-info .tn-last { float: right; }
+.spb-ask-list .tn-list-info .tn-explain-icon { margin-right: 10px; }
+.spb-ask-list .tn-list-item{ padding-top:15px;}
+.spb-ask-list .tn-tags span { line-height: 26px; margin-right: 5px; }
+
+.spb-ask-list .tn-list-item-area-main{ padding-left:5px;}
+
+.spb-ask-create .tn-publish-btn { padding-left: 113px;}
+
+.spb-ask-detail{ margin-bottom:1px; overflow:hidden; _display:inline-block;}
+.spb-ask-detail .tn-detail { margin: 10px 0; }
+.spb-ask-detail .tn-detail h1{ margin: 0 5px 0 0; font-size: 18px; display: inline; }
+.spb-ask-detail .tn-detail .tn-icon { display: inline-block; }
+.spb-ask-detail .tn-detail .tn-state,
+.spb-ask-detail .tn-detail .tn-reward { margin: 0 3px; }
+.spb-ask-detail .tn-explain { margin-bottom: 10px; }
+.spb-ask-detail .tn-info .tn-feedback { float: right; }
+.spb-ask-detail .tn-info .tn-action { margin: 0 0 0 10px;  }
+.spb-ask-detail .tn-info .tn-action-text { padding: 0; line-height: 25px; }
+.spb-ask-detail .tn-info .tn-avatar-mini { float: left; margin-right: 5px; }
+.spb-ask-detail .tn-info .tn-user-name { margin-right: 5px; line-height: 25px; }
+.spb-ask-detail .tn-info .tn-date { line-height: 25px; }
+.spb-ask-comment { margin-bottom: 10px; /*display: none;*/ }
+.spb-answer-form { margin: 10px 0; }
+.spb-answer-list { margin: 10px 0 0; }
+.spb-answer-list .tn-list-header .tn-count { font-size: 14px; font-weight: normal; }
+.spb-answer-list .tn-list-header .tn-filter { float: right; }
+.spb-answer-list .tn-list-item{ padding:15px 0;}
+.spb-answer-list .spb-best-answer { position: relative; padding-top: 36px; margin-top: 20px; border-width: 1px 0; }
+.spb-answer-list .spb-best-title { position: absolute; left: 28px; top: -3px; }
+.spb-answer-list .spb-best-answer .tn-special-icon-best { float: left; margin-right: 3px; }
+.spb-answer-list .spb-best-answer strong { font-size: 14px; font-weight: bold; line-height: 30px; }
+.spb-answer-list .tn-list-item-area-main { padding-left: 30px; }
+.spb-answer-list .tn-list-info { margin-left: -30px; padding-left: 30px; }
+.spb-answer-list .tn-show-opinion { position: relative; float: left; }
+.spb-answer-list .tn-show-opinion a { position: absolute; left: -25px; }
+.spb-answer-list .tn-opinion-pro { top: -33px; }
+.spb-answer-list .tn-opinion-con { top: -12px; }
+.spb-answer-list .tn-opinion-con-count { display: none; }
+.spb-answer-list .tn-list-item-heading { margin-bottom: 5px; }
+.spb-answer-list .tn-list-item-heading .tn-avatar-mini { float: left; margin-right: 5px; }
+.spb-answer-list .tn-list-item-heading .tn-user-name,
+.spb-answer-list .tn-list-item-heading .tn-date { line-height: 25px; margin-right: 10px; }
+.spb-answer-list .tn-list-info,
+.spb-answer-list .tn-list-item-summary{ padding-top:3px;}
+.spb-answer-list .tn-feedback{ padding:5px 0 0 0;}
+.spb-answer-list .tn-list-info .tn-count { margin-right: 10px; }
+.spb-answer-list .tn-feedback .tn-action { margin: 0 10px 0 0; }
+.spb-ask-show-list .tn-more{ margin-top:5px; padding-right:5px;}
+.spb-answer-list .tn-list-header .tn-list-header-row, 
+.spb-answer-list .tn-list-header .tn-toolbar-area{ padding-left:0; padding-right:0;}
+
+.spb-ask-follower .tnc-person-list{ padding-top:10px;}
+
+.spb-ask-list-wrap .tn-list-info{ padding-top:5px;}
+
+/* Related Ask */
+.spb-ask-related .tn-list li { overflow: hidden; zoom: 1; }
+.spb-ask-related .tn-list a { float: left; }
+.spb-ask-related .tn-list em { float: right; }
+
+/* My Ask */
+.spb-my-ask .tn-profile { margin-bottom: 10px; }
+.spb-my-ask .tn-profile .tn-avatar { float: left; }
+.spb-my-ask .tn-profile .tn-info { margin-left: 60px; }
+.spb-my-ask .tn-profile .tn-title { padding-bottom: 10px; }
+.spb-my-ask .tn-profile .tn-title .tn-option { float: right; }
+.spb-my-ask .tn-profile .tn-user-name { font-size: 18px; line-height: 24px; margin-right: 10px; }
+.spb-my-ask .tn-introduction { padding: 8px 0; line-height: 20px;}
+.spb-my-ask .tn-introduction .tn-txt { display: inline; }
+
+.spb-myask-list .tn-list-item-area-left{ padding-top:5px;}
+.spb-myask-list .tn-list-figure{ width:27px;}
+.spb-myask-list .tn-list-figure-count{ height:25px; line-height:25px; }
+.spb-myask-list .tn-list-item{ padding:10px 0;}
+
+.spb-ask-tag-detail .tn-details { margin-bottom: 10px; }
+.spb-ask-tag-detail .tn-figure { width: 100px; height: 100px; float: left; margin: 0 10px 0 0; }
+.spb-ask-tag-detail .tn-title { margin-bottom: 10px; }
+.spb-ask-tag-detail .tn-title .tn-icon-area { float: left; margin: 5px 5px 0 0;  }
+.spb-ask-tag-detail .tn-title .tn-actions { float: right; }
+.spb-ask-tag-detail .tn-title .tn-actions .tn-button { margin: 0; }
+.spb-ask-tag-detail .tn-title h4 { font-size: 16px; font-weight: normal; line-height: 24px; }
+.spb-ask-tag-detail .tn-descrip { line-height: 20px; }
+.spb-ask-tag-detail .tn-list-info em { margin-right: 10px; }
+
+.spb-ask-tags-sort .spb-ask-tags-sort-box{ padding-top:5px;}
+.spb-ask-tags-sort .spb-ask-tags-sort-box span{ margin:0 5px 8px 0; display:inline-block;}
+
+.spb-ask-tags-sort .spb-ask-tags-sort-box .tn-pagination-btn{ margin:5px 0;}
+.spb-ask-tags-sort .tn-nums{ float:right;}
+.spb-ask-tags-sort .tn-nums span{ float:left; margin-left:2px;display:inline-block;}
+
+.spb-ask-user-rank h4{ font-size:14px;}
+.spb-ask-user-rank .spb-ask-rank-box{ width:31.929%; float:left; margin-right:2.1%;}
+.spb-ask-user-rank .tn-last { margin-right: 0; }
+.spb-ask-user-rank .spb-ask-rank-box .tn-content-heading{ padding:10px 0 0px 5px; _padding:10px 0 1px 5px; border-radius: 3px 3px 0 0;}
+.spb-ask-user-rank .spb-ask-rank-box .tn-content-heading h4{border-radius: 3px 3px 0 0; border-bottom:none; padding:3px 30px 0; }
+.spb-ask-user-rank .spb-ask-rank-box .tn-person-rank{ padding-top:10px;}
+
+.spb-ask-list .tn-tags,
+.spb-ask-detail-box .tn-tags,
+.spb-ask-tags .tn-tags { line-height: 30px; margin: 5px 0 0; }
+
+.spb-ask-state .tn-info-part .tn-user-name,
+.spb-ask-state .tn-info-part .tn-date{ padding:0 8px; }
+.spb-ask-state .tn-info-part .tn-count{ font-size:14px; padding-right:10px; }
+.spb-ask-state .tn-list li{ float:left; margin: 5px 4px; }

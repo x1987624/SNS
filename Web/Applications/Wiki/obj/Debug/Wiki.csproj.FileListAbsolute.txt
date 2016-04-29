@@ -1,0 +1,9 @@
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Wiki.dll.config
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Wiki.XML
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Wiki.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Wiki.pdb
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Wiki\obj\Debug\Wiki.csprojResolveAssemblyReference.cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.Resources.Resource.resources
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Wiki\obj\Debug\Wiki.csproj.GenerateResource.Cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.pdb

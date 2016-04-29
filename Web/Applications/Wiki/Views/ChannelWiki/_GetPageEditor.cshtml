@@ -1,0 +1,25 @@
+﻿@model PagingDataSet<WikiPageVersion>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">最新编辑用户</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <ul class="tn-person-rank">
+                @foreach (var item in Model)
+                {
+                    <li class="tn-border-dashed tn-border-gray tn-border-bottom">
+                        
+                        <div class="tnc-list-topic">
+                            @Html.ShowUserAvatar(item.UserId, AvatarSizeType.Micro)
+                            <a class="tn-user-name" href="@SiteUrls.Instance().SpaceHome(item.UserId)" title="@item.Author" target="_blank">@StringUtility.Trim(item.Author, 4)</a>
+                        </div>
+                        <p class="tnc-list-number" title="编辑时间">@item.DateCreated.ToUserDateString(false)</p>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+}

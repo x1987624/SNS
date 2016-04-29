@@ -1,0 +1,56 @@
+﻿@{
+    string tagName = ViewData.Get<string>("tagName", string.Empty);
+    string tab = Request.QueryString.Get<string>("tab", "Latest");
+    var tabControl = new TabControl().SetIsSimple(true);
+    var latestTabItem = new TabItem("最新");
+    tab = tab.ToLower();
+    if (tab == "latest")
+    {
+        latestTabItem.SetSelected();
+    }
+    latestTabItem.SetUrl(SiteUrls.Instance()._AskLatestQuestions(tagName));
+    
+    var unresolvedTabItem = new TabItem("待解决");
+    if (tab == "unresolved")
+    {
+        unresolvedTabItem.SetSelected();
+    }
+    unresolvedTabItem.SetUrl(SiteUrls.Instance()._AskUnresolvedQuestions(tagName));
+
+    var noAnswerTabItem = new TabItem("零回答");
+    if (tab == "noanswer")
+    {
+        noAnswerTabItem.SetSelected();
+    }
+    noAnswerTabItem.SetUrl(SiteUrls.Instance()._AskNoAnswerQuestions(tagName));
+    
+    var resolvedTabItem = new TabItem("已解决");
+    if (tab == "resolved")
+    {
+        resolvedTabItem.SetSelected();
+    }
+    resolvedTabItem.SetUrl(SiteUrls.Instance()._AskResolvedQuestions(tagName));
+
+    var essentialTabItem = new TabItem("精华");
+    if (tab == "essential")
+    {
+        essentialTabItem.SetSelected();
+    }
+    essentialTabItem.SetUrl(SiteUrls.Instance()._AskEssentialQuestions(tagName));
+
+    var highRewardTabItem = new TabItem("高分悬赏");
+    if (tab == "highreward")
+    {
+        highRewardTabItem.SetSelected();
+    }
+    highRewardTabItem.SetUrl(SiteUrls.Instance()._AskHighRewardQuestions(tagName));
+
+    tabControl.AddTabItem(latestTabItem).AddTabItem(unresolvedTabItem).AddTabItem(noAnswerTabItem).AddTabItem(resolvedTabItem).AddTabItem(essentialTabItem).AddTabItem(highRewardTabItem);
+}
+
+
+<div class="tn-box tn-widget tn-widget-content tn-corner-all">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        @Html.Tabs(tabControl)
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model PagingDataSet<Photo>
+@{
+    IUser currentUser = UserContext.CurrentUser;
+}
+@if (Model.Count() > 0)
+{
+    int showCount = 0;
+    foreach (var photo in Model)
+    {
+        var album = photo.Album;
+        var user = photo.User;
+        if (album != null && user != null)
+        {
+            if (DIContainer.Resolve<Authorizer>().Photo_Channel(album) && photo.AuditStatus == AuditStatus.Success)
+            {
+                showCount++;
+                string url = SiteUrls.Instance().Ta(user.UserName);
+            <div class="spb-photo-unit masonry-brick tnui-photo-waterfall">
+                <div class="spb-photo-unit-inner tn-border-gray tn-hover" id="ButtonView-@photo.PhotoId" data-photoId="@photo.PhotoId" data-url="@SiteUrls.Instance()._ButtonView()">
+                    <div class="spb-photo-area">
+                        <a class="tn-img" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" plugin="dialog">
+                            <img  class="tnui-image-detail" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P240())" alt="@photo.Description" width="240"/>
+                        </a>
+                        <ul id="PhotoChannelButtonView-@photo.PhotoId"></ul>
+                    </div>
+                    <div class="tn-info">
+                        <div class="tn-descrip">
+                            <p>
+                                @HtmlUtility.TrimHtml(photo.Description, 50)
+                            </p>
+                        </div>
+                        <div class="tn-tags">
+                            @foreach (var tag in photo.Tags)
+                            {
+
+                                if (tag != null)
+                                {
+                                <span><a href="@SiteUrls.Instance().TagNew(tag.TagName)" title="@tag.TagName">@StringUtility.Trim(tag.TagName, 5)</a></span>
+                                }
+                            }
+                        </div>
+                        <div class="tn-author tn-border-gray tn-border-top tn-helper-clearfix">
+                            <div class="tn-avatar-mini">
+                                @Html.ShowUserAvatar(user, url, AvatarSizeType.Micro, navigateTarget: HyperLinkTarget._blank)
+                            </div>
+                            <p>
+                                <a class="tn-user-name" href="@SiteUrls.Instance().Ta(user.UserName)" title="@photo.Author" target="_blank">@photo.Author</a>上传到<a href="@SiteUrls.Instance().AlbumDetailList(user.UserName, photo.AlbumId)" title="@album.AlbumName" target="_blank">@HtmlUtility.TrimHtml(album.AlbumName, 20)</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+    }
+    if (showCount == 0)
+    {
+    <div class="spb-photo-unit masonry-brick tnui-photo-waterfall" style="display: none;">
+    </div>
+    }
+}

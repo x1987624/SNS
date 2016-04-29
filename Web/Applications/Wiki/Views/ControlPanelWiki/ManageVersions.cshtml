@@ -1,0 +1,301 @@
+﻿@model  PagingDataSet<WikiPageVersion>
+@{
+    Layout = "_ControlPanel";
+    
+    AuditStatus? auditStatus = Request.QueryString.Get<AuditStatus?>("auditStatus", null);
+    var userId = ViewData.Get<long?>("userId",null);
+    SelectList categoryList = ViewData.Get<SelectList>("categoryList", null);
+   
+}
+
+<div class="tn-block tnc-ctnborder">
+    <div class="tnc-main">
+        <div class="tnc-rightvar tn-open">
+            <div class="tnc-settings-icon" plugin="ShortcutMenu">
+                <a href="#"></a>
+            </div>
+            <div id="ManageUserRightMenu">
+                <div class="tnc-settings">
+                    @Html.AjaxAction("_ManageableDataDetail", "ControlPanel", new { area = "Common", applicationKey = WikiConfig.Instance().ApplicationKey })
+                    <div class="tn-box tn-widget tn-widget-content tn-corner-all tnc-settings-list">
+                        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+                            <h3 class="tn-helper-reset">便捷操作</h3>
+                        </div>
+                        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+                            <ul class="tn-side-menu tnc-operation">
+                                <li class="tn-border-dashed tn-border-gray tn-border-bottom"><a href="@SiteUrls.Instance().ManageSiteCategories(TenantTypeIds.Instance().WikiPage())">
+                                    <span class="tn-icon tn-smallicon-slide-next" title="百科类别管理"></span>百科类别管理</a>
+                                </li>
+                                <li class="tn-border-dashed tn-border-gray tn-border-bottom"><a href="@SiteUrls.Instance().ManageTags(TenantTypeIds.Instance().WikiPage())">
+                                    <span class="tn-icon tn-smallicon-slide-next" title="百科标签管理"></span>百科标签管理</a>
+                                </li>
+                                 <li class="tn-border-dashed tn-border-gray tn-border-bottom"><a href="@SiteUrls.Instance().ManageVersion()">
+                                    <span class="tn-icon tn-smallicon-slide-next" title="词条版本管理"></span>词条版本管理</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    @Html.AjaxAction("_StatisticDataDetail", "ControlPanel", new { area = "Common", applicationKey =WikiConfig.Instance().ApplicationKey })
+                </div>
+            </div>
+        </div>
+        <div class="tnc-ctn-center">
+            <h1>
+                <span>词条版本管理</span></h1>
+            <div class="tnc-ctnright-list">
+                <div class="tn-manager-search tn-helper-clearfix">
+                    <div class="tnc-search-adminform">
+                        @using (Html.BeginForm("ManageVersions", "ControlPanelWiki", FormMethod.Get))
+                        {
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    标题关键字：</label>
+                                @Html.TextBox("titleKeywords", "", new { @class = "tn-textbox tn-input-medium tn-border-gray" })
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    作者：</label>
+                                 @Html.UserSelector("userId",userId)
+                            </div>
+                            
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    审核状态：</label>
+                                @(Html.EnumDropDownList<AuditStatus?>("auditStatus", auditStatus, "全部", new { @class = "tn-dropdownlist" }))
+                            </div>@*
+                             <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    类别：</label>
+                                @Html.DropDownList("categoryId", categoryList, "全部", new { @class = "tn-dropdownlist" })
+                            </div>*@
+                         
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                </label>
+                                @Html.Button("搜索", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { @class = "tn-button-text", id = "searchBlog" })
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="tnc-content-manage">
+                    <div class="tn-list-header">
+                        <div class="tn-toolbar-area">
+                            @Html.LinkButton("通过审核", SiteUrls.Instance()._ApproveWikiPageVersion(true), iconType: IconTypes.SmallAccept, htmlAttributes: new { id = "audit-success" })
+                            @Html.LinkButton("不通过审核", SiteUrls.Instance()._ApproveWikiPageVersion(false), iconType: IconTypes.SmallStop, htmlAttributes: new { id = "audit-fail" })
+                            @Html.LinkButton("删除", SiteUrls.Instance()._DeleteWikiPageVersions(), iconType: IconTypes.SmallCross, htmlAttributes: new { id = "delete-wikis" })
+                          
+                          @*  @Html.LinkButton("设置分类", SiteUrls.Instance()._SetCategoryWiki(), iconType: IconTypes.SmallSet, htmlAttributes: new { id = "set-category" })*@
+                        </div>
+                    </div>
+                    @if (Model != null && Model.Count() == 0)
+                    { 
+                        <div class="tn-no-data">
+                            没有查询到数据！</div>
+                    }
+                    else if (Model != null)
+                    {
+                       <form action="#" method="post" id="Form-Wiki">
+                        <table class="tn-table-grid">
+                            <tbody>
+                                <tr class="tn-table-grid-header">
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        <input type="checkbox" class="tn-checkbox" id="select-all" name="checkbox" />
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        标题
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                       审核状态
+                                    </th>
+                                    @*<th class="tn-border-gray tn-border-bottom tn-text-note">
+                                       类别
+                                    </th>*@
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        作者
+                                    </th>
+                                     <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                       发布时间
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        操作
+                                    </th>
+                                </tr>
+                                @foreach (WikiPageVersion pageVersiong in Model)
+                                {
+                                    <tr class="tn-table-grid-row">
+                                        <td class="tn-border-gray tn-border-bottom tn-width-check">
+                                            @Html.SipmleCheckBox("versionIds",pageVersiong.VersionId, htmlAttributes: new { @class = "tnui-wiki-id" })
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                                            <a href="@SiteUrls.Instance().HistoryVersion(pageVersiong.PageId)" target="_blank">@pageVersiong.Title</a>
+                                           
+                                        </td>
+                                          <td class="tn-border-gray tn-border-bottom tn-width-icon1 tn-nowrap">
+                                            @Html.AuditStatusIcon(pageVersiong.AuditStatus)
+                                        </td>
+                                      @*  <td class="tn-border-gray tn-border-bottom tn-width-category  tn-nowrap">
+                                           
+                                        </td>*@
+                                          <td class="tn-border-gray tn-border-bottom tn-width-user-name tn-nowrap">
+                                            @Html.Link(StringUtility.Trim(pageVersiong.Author, 8), SiteUrls.Instance().SpaceHome(pageVersiong.UserId), pageVersiong.Author, htmlAttributes: new { @class = "tn-user-name" }, navigateTarget: HyperLinkTarget._blank)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-datetime tn-nowrap">
+                                            @pageVersiong.DateCreated.ToUserDateString(true)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-action2 tn-nowrap">
+                                            @* @Html.Link("设置分类", SiteUrls.Instance()._SetCategoryWiki(pageVersiong.PageId.ToString()), "设置分类", new { @class = "tn-item-link tnui-set-category" })*@
+                                             @Html.Link("删除", SiteUrls.Instance()._DeleteWikiPageVersions(pageVersiong.VersionId), "删除", new { @class = "tn-item-link tnui-delete-wikiid" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        </form>
+                        <div class="tn-pagination">
+                            @Html.PageSizeDropdownList("PageSize")
+                            @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                            @Html.PagingResults(Model)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+
+        //处理火狐下浏览器刷新后复选框仍然选中
+        removeChecked();
+        function removeChecked() {
+            $(".tnui-wiki-id").each(function () {
+                if ($(this).attr("checked")) {
+                    $(this).removeAttr("checked");
+                }
+            });
+            $("#select-all").removeAttr("checked");
+        }
+
+        $(".tn-more-options ul a.tn-item-link").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+
+        //给当前行添加样式
+        $(".tn-table-grid-row").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+
+        // 全选 全不选
+        $("#select-all").click(function () {
+            //设置下面复选框的状态
+            if ($(this).attr("checked")) {
+                $(".tnui-wiki-id").each(function () {
+                    $(this).attr("checked", true);
+                });
+            } else {
+                $(".tnui-wiki-id").each(function () {
+                    $(this).removeAttr("checked");
+                });
+            }
+        });
+
+        //点通过审核
+        $("a[id^='audit-']").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='versionIds']:checked").length) {
+                alert("请至少选择一条日志进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            $.post(url, $("form#Form-Wiki").serialize(), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload(true);
+                });
+            })
+        });
+
+
+        //点批量删除
+        $("#delete-wikis").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='versionIds']:checked").length) {
+                alert("请至少选择一条词条进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            art.dialog.confirm('您确认要删除吗？', function () {
+                $.post(url, $("form#Form-Wiki").serialize(), function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                        window.location.reload(true);
+                    });
+                });
+                removeChecked();
+            });
+        });
+
+        //单个删除
+        $('.tnui-delete-wikiid').click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            art.dialog.confirm('您确认要删除吗？', function () {
+                $.post(url, function (data) {
+                    art.dialog.tips("删除成功！", 1.5, 1, function () {
+                        window.location.reload(true);
+                    });
+
+                });
+            });
+        });
+       
+
+        //点设置分类
+        $("#set-category").click(function (e) {
+            e.preventDefault();
+            var blogIds = getCheckedIds();
+            if (blogIds == null || blogIds == "") {
+                $(this).removeAttr("plugin");
+                alert("请至少选择一条词条进行操作！");
+                return;
+            }
+            else {
+                $(this).attr("href", '@SiteUrls.Instance()._SetCategoryWiki()' + "?pageIds=" + blogIds);
+                $(this).attr("plugin", "dialog")
+            }
+        });
+
+        //单个设置分组
+        $('.tnui-set-category').click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            $(this).attr("plugin", "dialog");
+            $.get(url, function (data) {
+
+            });
+        });
+
+        function getCheckedIds() {
+            var blogIds = "";
+            $(".tnui-wiki-id").each(function () {
+                if ($(this).attr("checked")) {
+                    blogIds += $(this).val() + ",";
+                }
+            });
+            return blogIds;
+        }
+
+    });
+</script>)

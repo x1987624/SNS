@@ -1,0 +1,31 @@
+﻿@model PhotoEditModel
+@{ long coverId = ViewData.Get<long>("CoverId", 0);}
+@Html.PointMessage()
+@if (Model != null)
+{
+  <li class="spb-photo-edit-list-item tn-helper-clearfix">
+      <span class="spb-photo-edit-pic">
+        <span class="tn-set" id="@Model.PhotoId" url="@SiteUrls.Instance()._SetAlbumCover(Url.SpaceKey(), Model.PhotoId)">
+             <a title="@if (Model.PhotoId == coverId)
+                                      {<text>取消封面</text>}
+                                      else
+                                      {<text>设为封面</text>}" class="tn-button tn-corner-all @if (Model.PhotoId != coverId)
+                                                                                          {<text>tn-button-secondary</text>} tn-button-icon-only tnui-albumCover @if (Model.PhotoId == coverId)
+                                                                                                                                                                 {<text>tn-button-primary tnui-coverOn</text>}">
+                                <span class="tn-icon tn-smallicon-album"></span><span class="tn-button-text">设为封面</span>
+                            </a>
+        </span>
+              <img class="tnui-image-detail" width="160" height="160" src="@SiteUrls.Instance().ImageUrl(Model.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())">
+       </span>
+	   <div class="spb-photoedit-enter">
+        <textarea id="photoDesctitions@(Model.PhotoId)" name="photoDesctitions" cols="" rows="" maxLength="200" class="tn-textarea tn-input-long tn-border-gray"></textarea>
+        @Html.TagSelector("photoTags" + Model.PhotoId, TenantTypeIds.Instance().Photo(), Model.PhotoId, UserIdToUserNameDictionary.GetUserId(Url.SpaceKey()))
+        <input type="hidden" name="photoIds" value="@Model.PhotoId" />
+	   </div>
+     </li>
+@Html.ScriptBlock(@<script>
+    $(function () {
+        $("#photoDesctitions@(Model.PhotoId)").watermark("添加描述");
+    })
+</script>)
+}          

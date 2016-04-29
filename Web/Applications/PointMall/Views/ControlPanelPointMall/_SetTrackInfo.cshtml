@@ -1,0 +1,53 @@
+﻿@{
+    long recordId = Request.QueryString.Get<long>("recordId",0);
+    string trackInfo = ViewData.Get<string>("trackInfo",string.Empty);
+  }
+    <div class="tnc-dailog-pd">
+        <div class="tn-form-row">
+            @Html.Hidden("recordId",Request.QueryString.Get<long>("recordId"))
+            @Html.TextArea("trackInfo", Formatter.FormatMultiLinePlainTextForEdit(trackInfo, true),5,40,null)
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-border-gray tn-border-top tn-bg-gray">
+        @Html.Button("确认", ButtonTypes.Button, HighlightStyles.Primary, htmlAttributes: new { id = "set-track-info" })
+        @Html.Button("取消", ButtonTypes.Cancel, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close" })
+    </div>
+
+<script type="text/dialog">
+this.title("跟踪信息");
+</script>
+
+@Html.ScriptBlock(@<script type="text/javascript">
+    //点击确认按钮操作
+    $("#set-track-info").click(function (e) {
+        e.preventDefault();
+        var data = $("#trackInfo").val() + "&" + $("#recordId").val();
+        var trackInfo = $("#trackInfo").val();
+        if (trackInfo.length == 0) {
+            alert("必须输入跟踪信息！");
+            return false;
+        }
+        var url = '@SiteUrls.Instance()._SetTrackInfo(recordId)';
+        var data = "trackInfo=" + $("#trackInfo").val();
+        if (trackInfo.length > 256) {
+            art.dialog.confirm("输入字符长度超过256个，超出的部分将被忽略！", function () {
+                $.post(url, data, function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                        window.location.reload();
+                    });
+                });
+            });
+        } else {
+            //未超长度
+            $.post(url, data, function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload();
+                });
+            });
+        }
+        
+    });
+
+    
+
+</script>)

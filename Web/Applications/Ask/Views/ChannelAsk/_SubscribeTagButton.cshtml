@@ -1,0 +1,17 @@
+﻿@Html.Script("~/Applications/Ask/Scripts/jquery.spb.ask.js")
+
+@if (UserContext.CurrentUser != null)
+{
+    bool isSubscribed = ViewData.Get<bool>("isSubscribed", false);
+    long tagId = ViewData.Get<long>("tagId", 0);
+    if (isSubscribed)
+    {
+        @Html.Button("关注", ButtonTypes.Link, HighlightStyles.Default, ButtonSizes.Default, IconTypes.SmallAdd, url: SiteUrls.Instance()._AskSubscribeTag(tagId), htmlAttributes: new { id = "subscribe-" + tagId, objectId = tagId, style = "display:none;" })
+        @Html.Button("取消关注", ButtonTypes.Link, HighlightStyles.Secondary, ButtonSizes.Default, IconTypes.SmallCross, url: SiteUrls.Instance()._AskSubscribeTagCancel(tagId), htmlAttributes: new { id = "subscribe-cancel-" + tagId, objectId = tagId })
+    }
+    else
+    {
+        @Html.Button("关注", ButtonTypes.Link, HighlightStyles.Default, ButtonSizes.Default, IconTypes.SmallAdd, url: SiteUrls.Instance()._AskSubscribeTag(tagId), htmlAttributes: new { id = "subscribe-" + tagId, objectId = tagId, })
+        @Html.Button("取消关注", ButtonTypes.Link, HighlightStyles.Secondary, ButtonSizes.Default, IconTypes.SmallCross, url: SiteUrls.Instance()._AskSubscribeTagCancel(tagId), htmlAttributes: new { id = "subscribe-cancel-" + tagId, objectId = tagId, style = "display:none;" })
+    }
+}

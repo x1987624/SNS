@@ -1,0 +1,37 @@
+﻿<div class="tn-tabs">
+    <ul class="tn-tabs-nav tn-border-gray tn-border-bottom tn-helper-clearfix">
+        <li class="tn-widget-content tn-border-gray tn-border-trl tn-tabs-selected"><a id="Latest" class="tnui-tab" href="@SiteUrls.Instance()._WikiIndex(10, 1, SortBy_WikiPage.StageHitTimes)">热点词条</a></li>
+        <li class="tn-widget-content tn-border-gray tn-border-trl"><a id="Unresolved" class="tnui-tab" href="@SiteUrls.Instance()._WikiIndex(10, 1, SortBy_WikiPage.DateCreated_Desc)">最新更新</a></li>
+    </ul>
+</div>
+<div id="Wiki-Index" class="tn-tabs-panel">
+</div>
+@Html.ScriptBlock(@<script>
+    $(function () {
+        var url = "@Html.Raw(SiteUrls.Instance()._WikiIndex(10, 1, SortBy_WikiPage.StageHitTimes))";
+        //加载页面列表
+        function loadData() {
+            $.get(url, function (data) {
+                $('#Wiki-Index').replaceWith(data);
+            });
+        }
+
+        //页面加载时加载“最新问题”的第一页
+        loadData();
+
+        //切换标签页
+        $(".tnui-tab").click(function (e) {
+            e.preventDefault();
+            $(this).parent("li").addClass("tn-tabs-selected");
+            $(this).parent("li").siblings().removeClass("tn-tabs-selected");
+            var _url = $(this).attr("href");
+            if (url == _url) {
+                return false;
+            }
+
+            url = _url;
+            loadData();
+        });
+    });
+    
+</script>)

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<User>
+@if (Model != null && Model.Count() > 0)
+{
+    string[] ranks = { "tnc-num-topone", "tnc-num-toptwo", "tnc-num-topthree", "tnc-num-topfore" };
+    Dictionary<long, long> userAnswerCount = ViewData.Get<Dictionary<long, long>>("userAnswerCount", new Dictionary<long, long>());
+
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all spb-pop-attention">
+        <div class="tn-box-header tn-widget-header tn-border-gray tn-border-bottom ">
+            <div class="tn-option"><a href="@SiteUrls.Instance().AskRank()">更多</a></div>
+            <h3 class="tn-helper-reset">解答排行</h3>
+        </div>        
+        <div class="tn-box-content tn-widget-content tn-corner-bottom ">
+            <ul class="tn-person-rank">
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    var user = Model.ElementAt(i);
+                    <li class="tn-border-dashed tn-border-gray tn-border-bottom">
+                        <div class="tnc-list-ranking">
+                            @if (i < 3)
+                            {
+                                <p class="tnc-blog-num @ranks[i]">
+                                    <span class="tnc-charts-num">@(i + 1)</span></p>
+                            }
+                            else
+                            {
+                                <p class="tnc-blog-num @ranks[3]">
+                                    <span class="tnc-charts-num">@(i + 1)</span></p>
+                            }
+                        </div>
+                        <div class="tnc-list-topic">
+                            <div class="tn-avatar-mini">
+                                @Html.ShowUserAvatar(user, SiteUrls.Instance().AskUser(user.UserName),AvatarSizeType.Small,  HyperLinkTarget._blank)
+                            </div>
+                            <a class="tn-user-name" href="@SiteUrls.Instance().AskUser(user.UserName)" title="@user.DisplayName"  target="_blank">@StringUtility.Trim(user.DisplayName, 4)</a>
+                        </div>
+                        <p class="tnc-list-number" title = "回答数">@userAnswerCount[user.UserId]</p>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

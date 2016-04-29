@@ -1,0 +1,18 @@
+﻿@model Tag
+@{
+    Layout = "app-1col";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    Html.Script("~/Applications/Photo/Scripts/jquery.spb.photo.waterfall.js");
+    Html.Script("~/Scripts/jquery/masonry/jquery.masonry.js");
+    Html.Script("~/Scripts/jquery/masonry/jquery.infinitescroll.js");
+    IEnumerable<Tag> tags = ViewData.Get<IEnumerable<Tag>>("tags", null);
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-photo-tag">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-photo-tag-wrap">
+            @Html.Partial("_HotTags",tags)
+            @Html.Partial("_RecommendTag", Model)
+            @Html.Partial("_TagTabs", Model, new ViewDataDictionary { { "isEssential", true }, { "sortBy", SortBy_Photo.DateCreated_Desc } })
+        </div>
+    </div>
+</div>

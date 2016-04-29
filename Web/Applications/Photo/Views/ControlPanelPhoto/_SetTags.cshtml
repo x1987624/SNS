@@ -1,0 +1,31 @@
+﻿@{
+    string photoIds=ViewData.Get<string>("photoIds",null);
+}
+@using (Html.BeginAjaxForm("_SetTags", "ControlPanelPhoto", FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "OnSuccessCallBack" }))
+{
+    <div>
+        <div class="tn-form-box">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.TagSelector("tagNames", TenantTypeIds.Instance().Photo(), null)
+                            <input type="hidden" name="photoIds" value="@photoIds" />                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-bg-gray tn-border-gray tn-border-top">
+        @Html.Button("确认", ButtonTypes.Submit, HighlightStyles.Primary)
+    </div>
+}
+<script type="text/dialog">
+    this.title("贴标签");
+</script>
+@Html.ScriptBlock(@<script language="javascript" type="text/javascript">
+    function OnSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true); });
+    }
+</script>)

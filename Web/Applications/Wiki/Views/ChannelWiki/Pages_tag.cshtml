@@ -1,0 +1,69 @@
+﻿@model PagingDataSet<WikiPage>
+@{
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+    ViewBag.Title = "Pages_tag";
+    Layout = "app-list-2cols";
+    string tagName = ViewData.Get<string>("tagName", string.Empty);
+  
+}
+@section Aside{
+    @Html.Action("_SideNavigation","ChannelWiki")
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">热门百科标签</h3>
+        </div>
+        @Html.AjaxAction("_TagCloud", "Channel", new { tenantTypeId = TenantTypeIds.Instance().WikiPage(), Area = "Common" })
+    </div>
+    @Html.Action("_HotPages_tag", "ChannelWiki", new { tagName = tagName })
+}
+
+<div class="tn-box tn-widget tn-widget-content tn-corner-all hr-entry-list">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="tn-breadcrumb tn-bg-gray tn-border-gray">
+            <h2 class="tn-breadcrumb-item">当前标签:<a href="@SiteUrls.Instance().WikiTagDetail(tagName)">@tagName</a></h2>
+        </div>
+        <ul class="tn-list">
+            @foreach (WikiPage wikiPage in Model)
+            {
+                <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed ">
+                    <div class="tn-list-item-area-main hr-fontsize-b">
+                        <div class="tn-list-item-row tn-list-item-heading">
+                            <h5 class="tn-helper-reset"><a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)" title="@wikiPage.Title">@HtmlUtility.TrimHtml(wikiPage.Title, 20)</a></h5>
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-summary">
+                            @if (wikiPage.FeaturedImageAttachmentId > 0)
+                            {
+                                <div class="tn-list-item-area-left">
+                                    <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)">
+                                        <img src="@SiteUrls.Instance().ImageUrl(wikiPage.FeaturedImage, TenantTypeIds.Instance().WikiPage(), ImageSizeTypeKeys.Instance().Small())" />
+                                    </a>
+                                </div>
+                            }
+                            <p>
+                                @HtmlUtility.TrimHtml(wikiPage.Body, 150)
+                            </p>
+                        </div>
+                        <div class="tn-list-item-row">
+                            <em class="tn-date tn-text-note">更新时间：@wikiPage.LastModified.ToUserDateString()</em>
+                            <em class="tn-date tn-text-note">发布时间：@wikiPage.DateCreated.ToUserDateString()</em>
+                            <em class="tn-date tn-text-note">
+                                发布者：<a href="@SiteUrls.Instance().SpaceHome(wikiPage.UserId)" class="tn-action-text">@wikiPage.Author</a>
+                            </em>
+                            <span class="tn-action tn-view-count">
+                                <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)" class="tn-action-text">查看全文(@wikiPage.HitTimes)</a>
+                            </span>
+                            <span class="tn-action tn-comment-count">
+                                <a href="@SiteUrls.Instance().PageEdit(wikiPage.PageId)" class="tn-action-text">编辑(@wikiPage.EditionCount)</a>
+                            </span>
+
+                        </div>
+                    </div>
+                </li>   
+            }
+        </ul>
+        <div class="tn-pagination tn-helper-align-center">
+            @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+            @Html.PagingResults(Model)
+        </div>
+    </div>
+</div>

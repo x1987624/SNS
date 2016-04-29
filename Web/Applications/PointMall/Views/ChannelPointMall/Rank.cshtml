@@ -1,0 +1,184 @@
+﻿@model PagingDataSet<PointGift>
+@{
+    Layout = "app-detail-2cols";
+    Html.Style("~/Applications/PointMall/Styles/app.css");
+
+    SortBy_PointGift sortBy = Request.QueryString.Get<SortBy_PointGift>("sortBy", SortBy_PointGift.Sales_Desc);
+    long? categoryId = Request.QueryString.Get<long?>("categoryId", null);
+    int maxPrice = Request.QueryString.Get<int>("maxPrice",0);
+    int minPrice = Request.QueryString.Get<int>("minPrice",0);
+    string nameKeyword = Request.QueryString.Get<string>("nameKeyword",null);
+
+    var allParentCategories = ViewData.Get<List<Category>>("allParentCategories", new List<Category>());
+    var childCategories = ViewData.Get<IEnumerable<Category>>("childCategories", new List<Category>());
+    var currentCategory = ViewData.Get<Category>("currentCategory", null);
+    long? currentCategoryId =null;
+
+    long childCount = 0;
+    long parentId = 0;
+    if(currentCategory==null){
+        currentCategoryId = null;
+    }else{
+        childCount = currentCategory.ChildCount;
+        parentId = currentCategory.ParentId;
+        currentCategoryId = currentCategory.CategoryId;
+    }
+
+    Dictionary<int, int> price = ViewData.Get<Dictionary<int, int>>("price",null);
+
+     
+}
+@section ContentHeader{
+    @Html.Partial("_Submenu")
+}
+@section Aside{
+    @Html.Action("_RecommendGiftsSide", "ChannelPointMall")
+    @Html.Action("_LastViewedGifts", "ChannelPointMall")
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-gift-ranking">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="tn-directory tn-border-gray">
+            <h5 class="tn-directory-path tn-bg-gray">
+               <p><a href="@SiteUrls.Instance().Rank(nameKeyword:nameKeyword,sortBy:sortBy,maxPrice:maxPrice,minPrice:minPrice)">所有类别</a>
+                @foreach (var category in allParentCategories)
+                { 
+                    <text> &gt;</text>
+                    <a href="@SiteUrls.Instance().Rank(nameKeyword,category.CategoryId,sortBy,maxPrice,minPrice)">@category.CategoryName</a>
+                }</p>
+            </h5>
+            @if (childCategories.Count() > 0)
+            {
+                <div id="category" class="tn-directory-level spb-gift-list tn-border-gray tn-border-bottom tn-border-dashed">
+                    <span class="tn-directory-item">类别:</span>
+                    @if(currentCategory==null||childCount>0)
+                    {
+                        <span class="tn-directory-item tn-selected"><a href="@SiteUrls.Instance().Rank(nameKeyword,categoryId,sortBy,maxPrice,minPrice)">不限</a></span>
+                    }
+                    else if (parentId > 0)
+                    {
+                        <span class="tn-directory-item"><a href="@SiteUrls.Instance().Rank(nameKeyword,parentId,sortBy,maxPrice,minPrice)">不限</a></span>
+                    }
+                    @foreach (var category in childCategories)
+                        {
+                            string selectedClass = string.Empty;
+                            if (currentCategory != null && childCount == 0 && category.CategoryId == currentCategory.CategoryId)
+                            {
+                                selectedClass = "tn-text-note tn-selected";
+                            }
+                            <span class="tn-directory-item @selectedClass"><a href="@SiteUrls.Instance().Rank(nameKeyword,category.CategoryId,sortBy,maxPrice,minPrice)">@category.CategoryName</a></span>
+                        }
+                        @if (childCategories.Count() > 15)
+                        {<span class="tn-directory-item" id="moreCategoryButton"><span class="tn-action tn-action-text-icon-right">@Html.Icon(IconTypes.SmallTriangleDown)
+                            <a class="tn-action-text" href="javascript:void(0)">更多</a> </span></span>
+                        }
+                </div>
+            }
+            <div class="tn-directory-level tn-border-gray tn-border-bottom tn-border-dashed" id="price">
+                <span class="tn-directory-item">价格:</span>
+                <span class="tn-directory-item"><a max="0" min="0" href="@SiteUrls.Instance().Rank(nameKeyword,currentCategoryId,sortBy,0,0)">不限</a></span>
+                @foreach (var item in price)
+                {
+                     <span class="tn-directory-item"><a max="@item.Value" min="@item.Key" href="@SiteUrls.Instance().Rank(nameKeyword,currentCategoryId,sortBy,item.Value,item.Key)">@(item.Value==0? (item.Key+"以上"):(item.Key.ToString()+"-"+item.Value.ToString()))</a></span>
+                }
+            </div>
+            <div class="tn-directory-level tn-border-gray tn-border-bottom tn-border-dashed">
+                <span class="tn-directory-item">排序:</span>
+				
+				<a href="@SiteUrls.Instance().Rank(nameKeyword,categoryId,SortBy_PointGift.Sales_Desc,maxPrice,minPrice)" class="tn-button tn-corner-all tn-button-default tn-button-text-icon-secondary @(sortBy==SortBy_PointGift.Sales_Desc?"tn-selected":"")" title="销量从高到低"><span class="tn-icon tn-icon-download"></span><span class="tn-button-text">销量</span></a>
+                <a href="@SiteUrls.Instance().Rank(nameKeyword, categoryId, SortBy_PointGift.Price_Desc, maxPrice, minPrice)" class="tn-button tn-corner-all tn-button-default tn-button-text-icon-secondary @(sortBy==SortBy_PointGift.Price_Desc?"tn-selected":"")" title="价格从高到低"><span class="tn-icon tn-icon-download"></span><span class="tn-button-text">价格</span></a>
+                <a href="@SiteUrls.Instance().Rank(nameKeyword, categoryId, SortBy_PointGift.Price_Asc, maxPrice, minPrice)" class="tn-button tn-corner-all tn-button-default tn-button-text-icon-secondary @(sortBy==SortBy_PointGift.Price_Asc?"tn-selected":"")" title="价格从低到高"><span class="tn-icon tn-icon-upload"></span><span class="tn-button-text">价格</span></a>
+                <a href="@SiteUrls.Instance().Rank(nameKeyword, categoryId, SortBy_PointGift.DateCreated_Desc, maxPrice, minPrice)" class="tn-button tn-corner-all tn-button-default tn-button-text-icon-secondary @(sortBy==SortBy_PointGift.DateCreated_Desc?"tn-selected":"")" title="按上架时间排序"><span class="tn-icon tn-icon-download"></span><span class="tn-button-text">上架时间</span></a>
+				
+				
+            </div>
+            <div class="tn-directory-search tn-helper-clearfix">
+                <div class="tn-search-box tn-helper-clearfix">
+                    <form action="@SiteUrls.Instance().Rank()" method="get">
+                        @if (currentCategory != null)
+                        {
+                            @Html.Hidden("categoryId", currentCategory.CategoryId)
+                        }
+                        @Html.Hidden("sortBy",sortBy)
+                        @Html.Hidden("maxPrice",maxPrice)
+                        @Html.Hidden("minPrice",minPrice)
+                        <input type="text" class="tn-search-input tn-input-medium tn-border-gray tn-border-tbl" watermark="请输入商品名称" name="nameKeyword" value="@nameKeyword" />
+                        <span class="tn-search-button tn-search-ico-button tn-border-gray tn-bg-gray">
+                            <button type="submit">
+                                <span class="tn-icon tn-smallicon-find"></span>
+                            </button>
+                        </span>
+                    </form>
+                </div>
+                <div class="tn-directory-selected">
+                @if (currentCategory != null)
+                {
+                    <span class="tn-directory-selected-item tn-border-gray tn-bg-gray"><a href="@SiteUrls.Instance().Rank(nameKeyword,parentId,sortBy,maxPrice,minPrice)" class="tn-icon tn-smallicon-cross"></a>@currentCategory.CategoryName</span>
+                }
+                @if (minPrice > 0||maxPrice>0)
+                {
+                    <span class="tn-directory-selected-item tn-border-gray tn-bg-gray"><a href="@SiteUrls.Instance().Rank(nameKeyword, currentCategoryId, sortBy, 0, 0)" class="tn-icon tn-smallicon-cross"></a>@(maxPrice == 0 ? minPrice + "以上" : minPrice + "-" + maxPrice)</span>
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all spb-gift-photo">
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">        
+            <ul class="tn-photo-list tn-widget tn-helper-clearfix">
+            @foreach (var gift in Model)
+            {
+                <li class="tn-photo-item">
+                    <p class="tn-photo-wrap tn-widget-content tn-border-gray"> <a href="@SiteUrls.Instance().GiftDetail(gift.GiftId)" title="@gift.Name" target="_blank"> <img src="@SiteUrls.Instance().ImageUrl(gift.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Medium())" alt="@gift.Name" width="140" /><span></span></a></p>
+                    <p class="tn-text-heading"><a target="_blank" title="@gift.Name" href="@SiteUrls.Instance().GiftDetail(gift.GiftId)">@gift.Name</a></p>
+                    <p class="tn-text-note"><span class="tn-explain-icon"><span class="tn-icon-colorful tn-icon-colorful-coins"></span><span class="tn-icon-text">@gift.Price</span></span></p>
+                </li>
+            }            
+            </ul>            
+        </div>
+    </div>
+    <div class="tn-pagination">                               
+        @Html.PagingButton(Model, PaginationMode.NumericNextPrevious, 7)
+        @Html.PagingResults(Model) 
+    </div>
+}
+else
+{
+    <div class="tn-no-data">
+         该条件下没有商品!</div>
+}
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(document).ready(function () {
+        $('#price a[max="'+@(maxPrice)+'"]'+'[min="'+@(minPrice)+'"]').addClass('tn-selected');
+
+        $("#moreCategoryButton").click(function () {
+            if ($(this).find(".tn-smallicon-triangle-down").length > 0)//更多
+            {
+                $.cookie('GiftsMoreCategoryButtonIsOpen', true);
+                $(this).find(".tn-smallicon-triangle-down").addClass("tn-smallicon-triangle-up").removeClass("tn-smallicon-triangle-down");
+                $(this).find("a").attr("title", "收起").text("收起");
+                $("#category").find("span.tn-directory-item:gt(15)").show();
+            }
+            else {
+                $.cookie('GiftsMoreCategoryButtonIsOpen', false);
+                $(this).find(".tn-smallicon-triangle-up").addClass("tn-smallicon-triangle-down").removeClass("tn-smallicon-triangle-up");
+                $(this).find("a").attr("title", "更多").text("更多");
+                $("#category").find("span.tn-directory-item:gt(15):not(:last)").hide();
+            }
+        });
+        if ($.cookie('GiftsMoreCategoryButtonIsOpen') == "true") {
+            $("#moreCategoryButton").find(".tn-smallicon-triangle-down").addClass("tn-smallicon-triangle-up").removeClass("tn-smallicon-triangle-down");
+            $("#moreCategoryButton").find("a").attr("title", "收起").text("收起");
+            $("#category").find("span.tn-directory-item:gt(15)").show();
+        }
+        else {
+            $("#moreCategoryButton").find(".tn-smallicon-triangle-up").addClass("tn-smallicon-triangle-down").removeClass("tn-smallicon-triangle-up");
+            $("#moreCategoryButton").find("a").attr("title", "更多").text("更多");
+            $("#category").find("span.tn-directory-item:gt(15):not(:last)").hide();
+        }
+
+    });
+
+</script>)

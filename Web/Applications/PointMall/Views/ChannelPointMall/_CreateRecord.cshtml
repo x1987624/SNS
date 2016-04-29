@@ -1,0 +1,344 @@
+﻿@model MailAddressEditModel
+@{
+    RecordEditModel recordEditModel = ViewData.Get<RecordEditModel>("recordEditModel", null);
+    PointGiftExchangeRecord record = recordEditModel.AsPointGiftExchangeRecord();
+    long giftId = record.GiftId;
+    PointGift gift = new PointMallService().GetGift(giftId);
+    IUser currentUser = UserContext.CurrentUser;
+    var tradePointCategory = new PointService().GetPointCategory("TradePoints");
+}
+<div class="tnui-create-record">
+    <div class="tnc-dailog-pd">
+        <div class="tn-form-box">
+            <table>
+                <tr>
+                    <th>
+                        单价：
+                    </th>
+                    <td>
+                        @record.PointGift.Price
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        数量：
+                    </th>
+                    <td>
+                        @Html.TextBox("inputNumber", record.Number)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        我的@(tradePointCategory.CategoryName)：
+                    </th>
+                    <td>
+                        @UserContext.CurrentUser.TradePoints
+                    </td>
+                    @Html.Hidden("myPoints", UserContext.CurrentUser.TradePoints)
+                    @Html.Hidden("userId", UserContext.CurrentUser.UserId)
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <label id="ErrorMsg"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-border-gray tn-border-top tn-bg-gray">
+        @Html.Button("提交", ButtonTypes.Button, HighlightStyles.Primary, htmlAttributes: new { id = "goto-set-address" })
+        @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close" })
+    </div>
+</div>
+<div class="tnui-set-address">
+    @using (Html.BeginAjaxForm("_SetMailAddress", "ChannelPointMall", null, FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "OnSuccessCallBack", CloseDialog = false }, htmlAttributes: new { id = "tnui-form-set-address" }))
+    {
+        <div class="tnc-dailog-pd">
+            <div class="tn-form-box">
+                @Html.HiddenFor(model => model.AddressId)
+                <div class="tnui-address-show">
+                    <table>
+                        <tr>
+                            <th>
+                                扣除@(tradePointCategory.CategoryName)：
+                            </th>
+                            <td class="tnui-td-cost-point">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.FormLabelFor(model => model.Addressee)
+                            </th>
+                            <td>
+                                <label id="show-addressee">@Model.Addressee</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.FormLabelFor(model => model.Tel)
+                            </th>
+                            <td>
+                                <label id="show-Tel">@Model.Tel</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.FormLabelFor(model => model.Address)
+                            </th>
+                            <td>
+                                <label id="show-address">@Model.Address</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.FormLabelFor(model => model.PostCode)
+                            </th>
+                            <td>
+                                <label id="show-postCode">@Model.PostCode</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                &nbsp;
+                            </th>
+                            <td>
+                                <a id="change-address" class="tn-action" href="#"><span class="tn-action-text">修改收件地址</span></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tnui-address-edit">
+                    <table>
+                        <tr>
+                            <th>
+                                扣除@(tradePointCategory.CategoryName)：
+                            </th>
+                            <td class="tnui-td-cost-point">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.FormLabelFor(model => model.Addressee)
+                            </th>
+                            <td>
+                                @Html.TextBoxFor(model => model.Addressee)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                            </th>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Addressee)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.FormLabelFor(model => model.Tel)
+                            </th>
+                            <td>
+                                @Html.TextBoxFor(model => model.Tel)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                            </th>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Tel)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.FormLabelFor(model => model.Address)
+                            </th>
+                            <td>
+                                @Html.TextBoxFor(model => model.Address)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                            </th>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.FormLabelFor(model => model.PostCode)
+                            </th>
+                            <td>
+                                @Html.TextBoxFor(model => model.PostCode)<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                            </th>
+                            <td>
+                                @Html.ValidationMessageFor(mdoel => mdoel.PostCode)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                            </th>
+                            <td>
+                                <a id="save-address" class="tn-action" href="@SiteUrls.Instance()._SetMailAddress()">
+                                    <span class="tn-action-text">存为默认地址</span></a><a id="return-address" class="tn-action"
+                                        href="javascript:void(0)"><span class="tn-action-text">返回</span></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tnc-artdilog-btn tn-border-gray tn-border-top tn-bg-gray">
+            @Html.Button("确认", ButtonTypes.Button, HighlightStyles.Primary, htmlAttributes: new { id = "submit-record" })
+            @Html.Button("返回", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { id = "cancel-to-create" })
+        </div>
+    }
+</div>
+<script type="text/dialog">
+  this.title("商品兑换");
+  this.size(280,0);
+</script>
+@Html.ScriptBlock(@<script type="text/javascript">
+
+    //设置邮寄地址成功的回调函数
+    function OnSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+            if (data.MessageType == 1) {    //成功,切换到展示层，同步数据
+                $("div.tnui-address-edit").hide();
+                $("div.tnui-address-show").show();
+                $("label#show-addressee").text($("input[name='Addressee']").val());
+                $("label#show-Tel").text($("input[name='Tel']").val());
+                $("label#show-address").text($("input[name='Address']").val());
+                $("label#show-postCode").text($("input[name='PostCode']").val());
+                $("#AddressId").attr("value","@Model.AddressId");
+            }
+        })
+    }
+
+    $("document").ready(function () {
+        //页面初始化时显示tnui-create-record层
+        $("div.tnui-create-record").show();
+        $("div.tnui-set-address").hide();
+        //错误信息显示函数
+        function showErrorMsg(number) {
+            if (number == '') {
+                $("#ErrorMsg").html("<span class='tnui-error-msg field-validation-error'>必须输入数量！</span>");
+            } else if (number <= 0) {
+                $("#ErrorMsg").children().remove();
+                $("#ErrorMsg").append("<span class='tnui-error-msg field-validation-error'>兑换数量必须大于0！</span>");
+            } else if (number.indexOf(".") >= 0 || !$.isNumeric(number)) {
+                $("#ErrorMsg").children().remove();
+                $("#ErrorMsg").append("<span class='tnui-error-msg field-validation-error'>必须输入整数！</span>");
+            }
+            var costPoint = number * @(record.PointGift.Price);
+            if (costPoint > $("#myPoints").val()) {
+                $("#ErrorMsg").children().remove();
+                $("#ErrorMsg").html("<span class='tnui-error-msg field-validation-error'>你没有这么多@(tradePointCategory.CategoryName)！</span>");
+            }
+        }
+
+        //失去焦点
+        $('#inputNumber').blur(function () {
+            var number = $('#inputNumber').val();
+            showErrorMsg(number);
+        });
+
+        //获得焦点
+        $('#inputNumber').focus(function () {
+            $("label#ErrorMsg").children().remove();
+        });
+
+
+        //点击兑换按钮切换到邮寄地址设置
+        $("#goto-set-address").click(function (e) {
+            e.preventDefault();
+            var number = $('#inputNumber').val();
+            showErrorMsg(number);
+            //如果存在错误信息，阻止动作。
+            var a  =$("#ErrorMsg").text();
+            if ($("#ErrorMsg").text().length>0) {
+                return false;
+            }
+
+            $("div.tnui-create-record").hide();
+            $("div.tnui-set-address").show();
+            $("div.aui_title").text("设置收件地址");
+            var costPoints = @(record.PointGift.Price) * $("#inputNumber").val();
+            $(".tnui-td-cost-point").append("<span>" + costPoints + "</span>");
+            $("#Price").val(costPoints);
+            var id = $("#AddressId").attr("value");
+            if (id == 0) {           //新建地址，显示编辑层
+                $("div.tnui-address-edit").show();
+                $("div.tnui-address-show").hide();
+            }
+            else {                //已有地址，显示展示层
+                $("div.tnui-address-edit").hide();
+                $("div.tnui-address-show").show();
+            }
+        });
+
+        //点击取消切换回创建记录
+        $("#cancel-to-create").click(function (e) {
+            e.preventDefault();
+            $("div.tnui-create-record").show();
+            $("div.tnui-set-address").hide();
+            $(".tnui-td-cost-point").children().remove();
+            $("div.aui_title").text("商品兑换");
+        });
+
+        //点击修改邮寄地址切换到编辑层
+        $("#change-address").click(function (e) {
+            e.preventDefault();
+            $("div.tnui-address-edit").show();
+            $("div.tnui-address-show").hide();
+        });
+
+        //点击保存地址，Ajax提交表单，切换回展示层并同步数据
+        $("#save-address").click(function (e) {
+            e.preventDefault();
+            $("#tnui-form-set-address").submit();
+        });
+
+        //点击返回按钮，回到现显示层
+        $("#return-address").click(function (e) {
+            e.preventDefault();
+            $("div.tnui-address-edit").hide();
+            $("div.tnui-address-show").show();
+        });
+
+        //点击确定，创建兑换记录
+        $("#submit-record").click(function (e) {
+            e.preventDefault();
+            //验证邮寄地址信息
+            if (!$("#tnui-form-set-address").valid()) {
+                return false;
+            }
+            //post请求发送
+            var url = "@SiteUrls.Instance()._CreateRecord()";
+            var data = {
+                Number: $("#inputNumber").val(),
+                Addressee: $("#Addressee").val(),
+                Address: $("#Address").val(),
+                Tel: $("#Tel").val(),
+                PostCode: $("#PostCode").val(),
+                GiftId: '@giftId',
+                GiftName: '@gift.Name',
+                Payer: '@currentUser.DisplayName',
+                PayerUserId: '@currentUser.UserId'
+
+            };
+            $.post(url, data, function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload();
+                });
+            });
+        });
+
+    });
+
+    
+</script>)

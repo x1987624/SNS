@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "_SideNavigation";
+    IUser user = UserContext.CurrentUser;
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        @{
+            var homeUrl = user != null ? Url.Action("_UserFocusCategory", "HaierSnsChannel", new { TenantTypeId = TenantTypeIds.Instance().WikiPage(), area = "HaierSnsCommon" }) : SiteUrls.Instance().Login(true, SiteUrls.LoginModal._LoginInModal);
+        }
+    </div>
+</div>

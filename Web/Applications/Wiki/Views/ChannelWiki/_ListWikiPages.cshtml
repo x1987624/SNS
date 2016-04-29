@@ -1,0 +1,69 @@
+﻿@model PagingDataSet<WikiPage>
+@{
+    submenu menu = Request.QueryString.Get<submenu>("menu", submenu.all);
+}
+<div id="_ListWikiPages_@menu">
+    @if (Model != null && Model.Count() > 0)
+    {
+        <ul class="tn-list">
+            @foreach (WikiPage wikiPage in Model)
+            {
+                <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed ">
+                    <div class="tn-list-item-area-main hr-fontsize-b">
+                        <div class="tn-list-item-row tn-list-item-heading">
+                            <h5 class="tn-helper-reset">
+                                <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)" title="@wikiPage.Title">@HtmlUtility.TrimHtml(wikiPage.Title, 20)</a>
+
+                            </h5>
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-summary">
+                            @if (wikiPage.FeaturedImageAttachmentId > 0)
+                            {
+                                <div class="tn-list-item-area-right">
+                                    <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)">
+                                        <img src="@SiteUrls.Instance().ImageUrl(wikiPage.FeaturedImage, TenantTypeIds.Instance().WikiPage(), ImageSizeTypeKeys.Instance().Small())" />
+                                    </a>
+                                </div>
+                            }
+                            <p>
+                                @Html.Raw( HtmlUtility.TrimHtml(wikiPage.Body, 180).WikiExtractEntry(wikiPage.Title))
+                                <span class="tn-text-note">更新时间：@wikiPage.LastModified.ToUserDateString()</span>
+                                <span class="tn-text-note">发布时间：@wikiPage.DateCreated.ToUserDateString()</span>
+                                <span class="tn-text-note">发布者：<a href ="@SiteUrls.Instance().SpaceHome(wikiPage.UserId)">@wikiPage.Author</a></span>
+                            </p>
+
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+
+        <div class="tn-pagination tn-helper-align-center">
+            @Html.AjaxPagingButton(Model, "_ListWikiPages_" + menu, PaginationMode.NumericNextPrevious)
+            @if (Model.PageCount > 1)
+            {
+                @Html.PagingResults(Model)
+            }
+        </div>
+    }
+    else
+    {
+        if (menu == submenu.perfect)
+        {
+        <div class="tn-no-data">暂无词条，可以去 <a href="@SiteUrls.Instance().WikiPageSearch()"><strong>搜索词条</strong></a>，或者去 <a href="@SiteUrls.Instance().EditUserTags(UserContext.CurrentUser.UserName)" target="_blank" ><strong>完善个人标签</strong></a></div>
+        }
+        else if (menu == submenu.mycreated)
+        {
+        <div class="tn-no-data">暂无词条，可以去 <a href="@SiteUrls.Instance().PageEdit(null)"><strong>创建词条</strong></a></div>
+        }
+        else if (menu == submenu.myperfected)
+        {
+        <div class="tn-no-data">暂无完善过的词条</div>
+        }
+        else
+        {
+        <div class="tn-no-data">暂无词条</div>
+
+        }
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@model PagingDataSet<WikiPage>
+@{
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+    Layout = "app-list-2cols";
+    var allCategories = ViewData.Get<IEnumerable<Category>>("allCategories", null);
+    var currentUser = UserContext.CurrentUser;
+}
+
+@section Aside{
+    @if (allCategories != null && allCategories.Count() > 0)
+    {
+        <div class="tn-box tn-widget tn-widget-content tn-corner-all ">
+            <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+                <h3 class="tn-helper-reset">类别</h3>@*<a style="float:right" href="@Url.Action("_UserFocusCategory", "HaierSnsChannel", new  { TenantTypeId=TenantTypeIds.Instance().WikiPage() , area = "HaierSnsCommon"})"  plugin="dialog">+选择栏目</a>*@</div>
+            <div class="tn-box-content tn-widget-content tn-corner-bottom">
+                <ul id="category" class="tn-list hr-list-son tn-helper-clearfix">
+                    @foreach (Category category in allCategories)
+                    {
+                        <li><a href="@SiteUrls.Instance().Pages(category.CategoryId)">@category.CategoryName</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">热门百科标签</h3>
+        </div>
+        @Html.AjaxAction("_TagCloud", "Channel", new { tenantTypeId = TenantTypeIds.Instance().WikiPage(), Area = "Common" })
+    </div>
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all hr-entry-list">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        @Html.AjaxAction("_ListWikiPages", "ChannelWiki", new RouteValueDictionary { { "pageSize", 10 } })
+    </div>
+</div>

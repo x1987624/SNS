@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+  <members>
+    <member name="T:Tunynet.Caching.ICacheService">
+      <example>
+        <para>使用缓存功能时，建议通过DI容器参照以下代码进行注册：</para>
+        <code language="c#">
+          <![CDATA[
+            //注册缓存
+            containerBuilder.Register(c => new DefaultCacheService(new RuntimeMemoryCache(), new RuntimeMemoryCache(), 1.0F, true))
+                .As<ICacheService>().SingleInstance();
+          ]]>
+        </code>
+      </example>
+    </member>
+    <member name="T:Tunynet.Caching.IListCacheSetting">
+      <example>
+        <para>为了更方便的使用列表缓存过期策略，可以在定义查询对象时实现IListCacheSetting，例如：</para>
+        <code language="c#">
+          <![CDATA[
+    public class DiscussQuestionQuery : IListCacheSetting
+    {
+        public DiscussQuestionQuery(CacheVersionTypes cacheVersionType)
+        {
+            this.cacheVersionType = cacheVersionType;
+        }
+
+        public long? UserId = null;
+
+        //实体以外的查询条件的缓存分区需要自行处理
+        //public string TagName = null;
+
+        public SortBy_SocialDiscuss SortBy = SortBy_SocialDiscuss.DateCreated;
+
+
+        #region IListCacheSetting 成员
+
+        private CacheVersionTypes cacheVersionType = CacheVersionTypes.None;
+        /// <summary>
+        /// 列表缓存版本设置
+        /// </summary>
+        CacheVersionTypes IListCacheSetting.CacheVersionType
+        {
+            get { return cacheVersionType; }
+        }
+
+        private string areaCachePropertyName = null;
+        /// <summary>
+        /// 缓存分区字段名称
+        /// </summary>
+        public string AreaCachePropertyName
+        {
+            get { return areaCachePropertyName; }
+            set { areaCachePropertyName = value; }
+        }
+
+        private object areaCachePropertyValue = null;
+        /// <summary>
+        /// 缓存分区字段值
+        /// </summary>
+        public object AreaCachePropertyValue
+        {
+            get { return areaCachePropertyValue; }
+            set { areaCachePropertyValue = value; }
+        }
+
+        #endregion
+        
+        ......
+        
+    }
+          ]]>
+        </code>
+      </example>
+    </member>
+  </members>
+</doc>

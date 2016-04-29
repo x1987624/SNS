@@ -1,0 +1,60 @@
+﻿@model int
+@{
+    ViewBag.Title = "_FeedBack";
+}
+
+@using (Html.BeginAjaxForm("_FeedBack", "ChannelWiki", FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "OnSuccessCallBack", OnErrorCallBack = "OnErrorCallBack" }))
+{
+    <div class="tnc-dailog-pd">
+        <div class="tn-form tn-label-top">
+            <div class="tn-form-row">
+                <input type="hidden" name="applyId" value="@Model" />
+                <label class="tn-form-label">声明:请认真填写</label>
+                <textarea id="FeedBack" class="tn-textarea tn-input-long tn-border-gray" name="FeedBack"></textarea>
+            </div>
+            <div class="tn-form-row tn-form-row-button">
+                @Html.Button("确定", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { id = "insertcategory" })
+                @Html.Button("关闭", ButtonTypes.Cancel, HighlightStyles.Secondary, htmlAttributes: new { id = "cancelEdit", dialogOperation = "close" })
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@Html.ScriptBlock(@<script type="text/javascript">
+    function OnSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType)
+        window.location.reload();
+    }
+    function OnErrorCallBack(data) {
+        //todo:
+    }
+
+    $(function () {
+        $("#FeedBack").change(function () {
+            if ($(this).val().length > 500) {
+                $("#FeedBack").css("border", "1px dotted red");
+            }
+            else {
+                $("#FeedBack").css("border", "1px solid black");
+            }
+        })
+
+        $("#insertcategory").click(function () {
+            if ($("#FeedBack").val().length > 500)
+            {
+                alert("最多可以输入500个字");
+                return false;
+            }
+            if ($("#FeedBack").val().length <=0) {
+                alert("请输入反馈内容");
+                return false;
+            }
+        });
+    })
+</script>)
+
+<script type="text/dialog">
+    this.title("详细内容");
+</script>

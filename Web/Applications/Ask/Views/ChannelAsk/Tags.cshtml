@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TagGroup>
+@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Ask/Styles/app.css");
+    Dictionary<Tag, int> allTags = ViewData.Get<Dictionary<Tag, int>>("allTags", null);
+}
+@section Aside{
+    @Html.Action("_HotTags", "ChannelAsk")
+}
+@foreach (TagGroup tagGroup in Model)
+{   
+    <a name="@tagGroup.GroupId"></a>
+    @Html.Action("_TagList", "ChannelAsk", new { groupId = tagGroup.GroupId })    
+}
+@if (allTags != null)
+{
+    <div id="tag-page-list" class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-tags-sort">  
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+    <h3 class="tn-helper-reset">
+               前100个标签
+            </h3>
+    </div>      
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <div class="spb-ask-tags-sort-box">
+                <p class="tn-tags-cloud">
+                    @foreach (var tag in allTags)
+                    { 
+                        <span class="tn-bg-light tn-border-light"><a href="@SiteUrls.Instance().AskTagDetail(tag.Key.TagName)" outerclass = "tn-tag-card" plugin="tipsyHoverCard" data-url="@SiteUrls.Instance()._AskTagContents(tag.Key.TagName)" target="_blank">@StringUtility.Trim(tag.Key.DisplayName, 5)</a></span>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+}
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(document).ready(function () {
+        $(".tnui-page").live('click', function (e) {
+            e.preventDefault();
+
+            var url = $(this).attr("href");
+            var tagPage = $(this).closest("#tag-page-list");
+            var pageIndex = tagPage.attr("pageindex");
+            if ($(this).attr("id") == "prev") {
+                pageIndex--;
+            } else {
+                pageIndex++;
+            }
+            if (pageIndex < 1) {
+                return false;
+            }
+            if (pageIndex > tagPage.attr("pagecount")) {
+                return false;
+            }
+
+            $.get(url, { pageIndex: pageIndex }, function (html) {
+                tagPage.replaceWith(html);
+            });
+        });
+    });
+</script>)

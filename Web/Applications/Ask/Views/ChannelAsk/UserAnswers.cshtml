@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "app-detail-2cols";
+}
+@section ContentHeader{
+    @Html.Action("_Header", "ChannelAsk", new { menu = "Home" })
+}
+@section Aside{
+    @Html.Partial("_UserAchievement")
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-personal">
+  <div class="tn-box-content tn-widget-content tn-corner-all">
+   <ul class="tn-list spb-myask-box">
+                    <li class="tn-list-item tn-helper-clearfix">
+                      <div class="tn-list-item-area-left"> <a href="#"> <img src="../Images/avatar_100.jpg"> </a> </div>
+                      <div class="tn-list-item-area-main">
+                       <div class="spb-ask-seespace"><a class="tn-button tn-corner-all tn-button-default tn-button-lite tn-button-text-icon-primary" href="#"><span class="tn-icon tn-smallicon-add"></span><span class="tn-button-text">查看他的空间</span></a></div>
+                        <div class="tn-list-item-row tn-list-item-heading tn-border-bottom tn-border-gray">
+                          <h5 class="tn-helper-reset"> <a href="#">刘晓明</a> </h5>
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-summary">
+                          <p>用户在问答中的简介，可以填写专长、兴趣...</p>
+                        </div>
+                        <div class="tn-action"><a class="tn-button tn-corner-all tn-button-primary tn-button-text-icon-primary" href="#"><span class="tn-icon tn-smallicon-add"></span><span class="tn-button-text">关注</span></a><a class="tn-button tn-corner-all tn-button-text-only tn-button-secondary" href="#"><span class="tn-button-text">向他提问</span></a></div>
+                        <div class="tn-list-item-row"><a class="tn-button tn-corner-all tn-button-default tn-button-hollow tn-button-text-icon-primary" href="#"><span class="tn-icon tn-smallicon-set"></span><span class="tn-button-text">我的设置</span></a></div>
+                      </div>
+                    </li>
+                    
+                </ul>
+                
+                <div class="tn-tabs">
+                <ul class="tn-tabs-nav tn-border-gray tn-border-bottom tn-helper-clearfix tn-bg-gray">
+                  <li class="tn-widget-content tn-border-gray tn-border-trl tn-tabs-selected"><a href="http://localhost/spb4/ask/UserAnswers.aspx">他的回答</a></li>
+                  <li class="tn-widget-content tn-border-gray tn-border-trl"><a href="http://localhost/spb4/ask/UserQuestions.aspx">他的问题</a></li>
+                  <li class="tn-widget-content tn-border-gray tn-border-trl"><a href="http://localhost/spb4/ask/UserFollowedQuestions.aspx">他关注的问题</a></li>
+                  <li class="tn-widget-content tn-border-gray tn-border-trl"><a href="http://localhost/spb4/ask/UserFollowedTags.aspx">他关注的标签</a></li>
+                </ul>
+                <div class="tn-tabs-panel">
+                  <ul class="tn-list spb-myask-list">
+                   <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed">
+                      <div class="tn-list-item-area-left">
+                        <div class="tn-list-figure tn-widget">
+                          <div class="tn-list-figure-count tn-widget-content tn-corner-all tn-bg-light"> 59</div></div>
+                      </div>
+                      <div class="tn-list-item-area-main">
+                        <div class="tn-list-item-row tn-list-item-heading">
+                          <h5 class="tn-helper-reset"> <a href="#">为什么在国内电商业口碑不错的唯品会，股票始终维持在低位？它的股票值得长期持有吗？</a> </h5>
+                        </div>
+                        
+                        <div class="tn-list-item-row tn-list-item-summary">
+                          
+                          <p>首先要表明一下立场，唯品会是过去这几年电子商务新模式的探索中最成功的公司，如果把闪购和团购视为同一模式的话，唯品会应该是佼佼者。今年上市了，股价稳定应该是一种褒奖</p>
+                        </div>
+                        <div class="tn-list-item-row"><em class="tn-date tn-text-note">2012-1-1 10:00</em></div>
+                      </div>
+                    </li>
+                    <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed">
+                      <div class="tn-list-item-area-left">
+                        <div class="tn-list-figure tn-widget">
+                          <div class="tn-list-figure-count tn-widget-content tn-corner-all tn-bg-light"> 59</div></div>
+                      </div>
+                      <div class="tn-list-item-area-main">
+                        <div class="tn-list-item-row tn-list-item-heading">
+                          <h5 class="tn-helper-reset"> <a href="#">为什么在国内电商业口碑不错的唯品会，股票始终维持在低位？它的股票值得长期持有吗？</a> </h5>
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-summary">
+                          <p>首先要表明一下立场，唯品会是过去这几年电子商务新模式的探索中最成功的公司，如果把闪购和团购视为同一模式的话，唯品会应该是佼佼者。今年上市了，股价稳定应该是一种褒奖</p>
+                        </div>
+                        <div class="tn-list-item-row"><em class="tn-date tn-text-note">2012-1-1 10:00</em></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+                
+                
+  </div>
+</div>

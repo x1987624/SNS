@@ -1,0 +1,39 @@
+﻿@{
+    string callback = Request.QueryString.Get<string>("callBack", "OnSuccessCallBack");    
+}
+@using (Html.BeginAjaxForm("_MovePhoto", "UserSpacePhoto", FormMethod.Post, new AjaxFormOptions { OnErrorCallBack = "OnErrorCallBack", OnSuccessCallBack = callback }))
+{
+    @Html.Hidden("photoIds")
+    <div class="tnc-dailog-pd">
+        <div class="tn-form-box">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>
+                            目标相册：
+                        </th>
+                        <td>
+                            @Html.DropDownList("albumId", null, "请选择", new { @class = "tn-dropdownlist" })
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-bg-gray tn-border-gray tn-border-top">
+        @Html.Button("确定", ButtonTypes.Submit, HighlightStyles.Primary)
+    </div>
+}
+<script type="text/dialog">
+this.title("移动到目标相册");
+</script>
+@Html.ScriptBlock(@<script language="javascript" type="text/javascript">
+    function OnSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true); });
+    }
+    function OnErrorCallBack(data) {
+        alert(data.MessageContent, function () {
+            window.location.reload();
+        })
+    }
+</script>)

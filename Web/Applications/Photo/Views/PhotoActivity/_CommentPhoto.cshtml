@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Comment>
+@{
+    Photo photo = ViewData.Get<Photo>("Photo", null);
+    IUser user = photo.User;
+    Activity activity = ViewData.Get<Activity>("activity", null);
+    int commentCount = ViewData.Get<int>("CommentCount", 0);
+}
+<li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom">
+    <div class="tn-list-item-area-left">
+        <div class="tn-avatar">
+            @{
+                HyperLinkTarget hyperLinkTarget;
+                if (UserContext.CurrentUser != null && user.UserId == UserContext.CurrentUser.UserId)
+                {
+                    hyperLinkTarget = HyperLinkTarget._self;
+                }
+                else
+                {
+                    hyperLinkTarget = HyperLinkTarget._blank;
+                }
+            }
+            @Html.ShowUserAvatar(user, AvatarSizeType.Small, true, hyperLinkTarget)
+        </div>
+    </div>
+    <div class="tn-list-item-area-main">
+        <div class="tnc-down-blkarrow tn-helper-right">
+            @Html.ActivityOperation(activity.ActivityId)
+        </div>
+        <div class="tnc-dynamic-title">
+            <a href="@SiteUrls.Instance().SpaceHome(user.UserId)" class="tn-user-name" @(user == UserContext.CurrentUser ? "target=_self" : "target=_blank")>@photo.Author</a>
+            @Html.IdentificationType(user.UserId)
+            的照片<a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" class="tnc-mlrf">@HtmlUtility.TrimHtml(photo.Description,10)</a>被
+            @foreach(Comment comment in Model)
+            { 
+                <a href="@SiteUrls.Instance().Ta(UserIdToUserNameDictionary.GetUserName(comment.UserId))" class="tnc-mlrf">@comment.Author </a>
+                @Html.IdentificationType(comment.UserId) <span>&nbsp;</span>
+            }
+            @if (Model.Count()>3)
+	        {
+		        @:等
+	        }
+            评论了！           
+        </div>
+        <div class="tnc-dynamic-imgbox"> 
+            <a href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" plugin="dialog" class="tnc-imgbox-bigshow"><img class="tnui-image-detail" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath,TenantTypeIds.Instance().Photo(),ImageSizeTypeKeys.Instance().P320())"></a>
+        </div>
+        <div class="tn-feedback">
+        @Html.SupportOppose(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)
+        <a href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" plugin="dialog" class="tnc-mrf">
+        评论(@commentCount)</a>-
+        <a href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享# " + "@" + photo.User.NickName + " 的照片\"" + photo.Description + "\"不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" plugin="dialog" class="tnc-mlrf">
+        分享</a>
+        <em class="tn-date tn-text-note">@photo.DateCreated.ToFriendlyDate()</em>
+        </div>
+    </div>
+</li>

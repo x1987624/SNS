@@ -1,0 +1,228 @@
+﻿@model PagingDataSet<Album>
+@{
+    Layout = "_ControlPanel";
+    var userId = ViewData.Get<long?>("userId", null);
+    AuditStatus? auditStatus = Request.QueryString.Get<AuditStatus?>("auditStatus", null);    
+}
+
+<div class="tn-block">
+    <div class="tnc-main">
+        @Html.Partial("_ManageRightMenu")
+        <div class="tnc-ctn-center">
+            <h1>
+                <span>相册管理</span></h1>
+            <div class="tnc-ctnright-list">
+                <div class="tn-manager-search tn-helper-clearfix">
+                    <div class="tnc-search-adminform">
+                        @using (Html.BeginForm("ManageAlbums", "ControlPanelPhoto", FormMethod.Get))
+                        {                            
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    名称关键词：</label>
+                                @Html.TextBox("nameKeyword", string.Empty)
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    创建人：</label>
+                                @Html.UserSelector("userId", userId)
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    审核状态：</label>
+                                @(Html.EnumDropDownList<AuditStatus?>("auditStatus", auditStatus, "全部", new { @class = "tn-dropdownlist" }))
+                            </div>
+                           
+                            <div class="tn-form-row tn-form-row-button">
+                                <label class="tn-form-label">
+                                    &nbsp;
+                                </label>
+                                @Html.Button("搜索", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { @class = "tn-button-text", id = "search" })
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="tnc-content-manage">
+                    <div class="tn-list-header">
+                        <div class="tn-toolbar-area">
+                            @Html.LinkButton("通过审核", SiteUrls.Instance()._UpdateAlbumAuditStatus(true), iconType: IconTypes.SmallAccept, htmlAttributes: new { id = "batch-audit-success" })
+                            @Html.LinkButton("不通过审核", SiteUrls.Instance()._UpdateAlbumAuditStatus(false), iconType: IconTypes.SmallStop, htmlAttributes: new { id = "batch-audit-fail" })
+                            @Html.LinkButton("删除", SiteUrls.Instance()._PhotoControlPanelDeleteAlbum(null), iconType: IconTypes.SmallCross, htmlAttributes: new { id = "delete-albums" })
+                        </div>
+                    </div>
+                </div>
+                @if (Model == null || Model.Count == 0)
+                {
+                    <div class="tn-no-data">
+                        没有查询到数据！</div> 
+                }
+                else
+                { 
+                    <form action="#" method="post" id="Form-BatchSet">
+                    <table class="tn-table-grid">
+                        <tbody>
+                            <tr class="tn-table-grid-header">
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    <input type="checkbox" class="tn-checkbox" id="select-all" name="checkbox" />
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    相册名称
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    相册描述
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    状态
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    创建人
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    创建时间
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    操作
+                                </th>
+                            </tr>
+                            @foreach (Album album in Model)
+                            {
+                                <tr class="tn-table-grid-row">
+                                    <td class="tn-border-gray tn-border-bottom tn-width-check">
+                                        @Html.SipmleCheckBox("albumIds", album.AlbumId, isChecked: false, htmlAttributes: new { @class = "tnui-album-id" })
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-category tn-nowrap">
+                                    @if (album.User == null)
+                                    {
+                                        @album.AlbumName
+                                    }
+                                    else { 
+                                        @Html.Link(StringUtility.Trim(album.AlbumName, 20), SiteUrls.Instance().AlbumDetailList(album.User.UserName, album.AlbumId), album.AlbumName, navigateTarget: HyperLinkTarget._blank)
+                                    }
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                                        @if (string.IsNullOrEmpty(album.Description))
+                                        {
+                                            <text>&nbsp;</text>
+                                        }
+                                        else
+                                        { 
+                                            <label title="@album.Description">@StringUtility.Trim(album.Description, 20)</label>
+                                        }
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-auto tn-nowrap">
+                                        @Html.AuditStatusIcon(album.AuditStatus)
+                                        @Html.PrivacyStatusIcon(album.PrivacyStatus)
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-user-name tn-nowrap">
+                                        @Html.Link(album.Author, SiteUrls.Instance().SpaceHome(album.UserId), album.Author, navigateTarget: HyperLinkTarget._blank)
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-datetime tn-nowrap">
+                                        @album.DateCreated.ToUserDateString(true)
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-action2 tn-nowrap">
+                                    @if (album.User == null)
+                                    {
+                                        @:编辑
+                                    }
+                                    else { 
+                                        @Html.Link("编辑", SiteUrls.Instance()._EditAlbum(album.User.UserName, album.AlbumId, callBack: "CreateAlbumCallBack"), "编辑该相册", new { @class = "tn-action-text tnui-edit-album", id = "edit-album", plugin = "dialog" })
+                                    }
+                                        <span class="tn-action tn-action-text-icon-right tn-action-has-drop-menu tn-border-trl" menu="#moreOptions@(album.AlbumId)"><span class="tn-icon tn-smallicon-triangle-down"></span><a href="javascript:;" class="tn-action-text">更多</a> </span>
+                                        <div id="moreOptions@(album.AlbumId)" class="tn-more-options tn-widget-content tn-border-gray" style="display:none">
+                                            <ul class="tn-more-list">
+                                                @if (album.PrivacyStatus == PrivacyStatus.Public)
+                                                { 
+                                                    <li>@Html.Link("推荐", SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Album(), album.AlbumId, album.AlbumName,userId:album.UserId), "推荐相册", new { @class = "tn-item-link tnui-set-category", plugin = "dialog" })</li>
+                                                }
+                                                <li>@Html.Link("删除", SiteUrls.Instance()._PhotoControlPanelDeleteAlbum(album.AlbumId), "删除相册", new { @class = "tn-item-link tnui-delete-album" })</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr> 
+                            }
+                        </tbody>
+                    </table>
+                    </form>
+                    <div class="tn-pagination">
+                        @Html.PageSizeDropdownList("pageSize")
+                        @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                        @Html.PagingResults(Model)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+        if ($.browser.mozilla) {
+            $("input[type='checkbox']").attr("autocomplete", "off");
+        }
+
+        //给当前行添加样式
+        $(".tn-table-grid-row").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+
+        //全选按钮
+        $("input#select-all").click(function () {
+            checkAll(this, "albumIds");
+        });
+
+        //批量更改审核状态
+        $("a[id^='batch-']").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='albumIds']:checked").length) {
+                alert("至少选择一个相册操作");
+                return false;
+            }
+            var url = $(this).attr("href");
+            $.post(url, $("form#Form-BatchSet").serialize(), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType);
+                setTimeout(function () { window.location.reload(true); }, 500);
+            });
+        });
+
+        //点批量删除
+        $("#delete-albums").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='albumIds']:checked").length) {
+                alert("至少选择一个相册操作");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            art.dialog.confirm('删除相册会删除该相册下所有相片，您确认要删除吗？', function () {
+                $.post(url, $("form#Form-BatchSet").serialize(), function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true); });
+                });
+                //                removechecked();
+            });
+        });
+
+        //单个删除
+        $('.tnui-delete-album').click(function (e) {
+            e.preventDefault();     //阻止删除操作进行，添加删除提示
+
+            var url = $(this).attr("href");
+            art.dialog.confirm('删除相册会删除该相册下所有相片，您确认要删除吗？', function () {
+                $.post(url, function (data) {
+                    if (data) {
+                        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true); });
+                    }
+                });
+            });
+        });
+    });
+
+    //编辑相册的回调函数
+    function CreateAlbumCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true); });
+    }
+</script>)

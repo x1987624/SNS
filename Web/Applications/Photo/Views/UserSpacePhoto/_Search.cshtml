@@ -1,0 +1,54 @@
+﻿@{
+    IUser currentUser = UserContext.CurrentUser;
+    long spaceUserId = UserIdToUserNameDictionary.GetUserId(Url.SpaceKey());
+
+
+    var userId = "";
+    var num = "0";
+
+    if(currentUser==null){
+        userId = spaceUserId.ToString();
+        num = "2";
+    }else{
+        if(currentUser.UserId==spaceUserId){
+            num = "1";
+            userId = currentUser.UserId.ToString();
+        }else{
+            userId = spaceUserId.ToString();
+            num = "2";
+        }
+    }
+    
+    
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-content-search">
+  <div class="tn-box-content tn-widget-content tn-corner-all">
+    <div class="tn-search-box">
+      <input type="text" id="photo-keyword" class="tn-search-input tn-input-medium tn-border-gray tn-border-tbl" watermark="照片搜索" />
+      <span id="search" class="tn-search-button tn-search-ico-button tn-border-gray tn-bg-gray">
+      <button><span class="tn-icon tn-smallicon-find"></span></button>
+      </span></div>
+  </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").click(function () {
+            searchPhoto();
+
+        })
+        $("#photo-keyword").keydown(function (e) {
+            if (e.keyCode == 13) {
+                searchPhoto();
+            }
+        })
+        function searchPhoto() {
+            var keyword = $("#photo-keyword").val();
+            if (keyword == "") {
+                return;
+            }
+            window.location = '@(SiteUrls.Instance().PhotoPageSearch())?keyword=' + keyword + "&userId=@(userId)&rangeNum=@(num)&filter=0";
+        }
+    })
+
+
+</script>)

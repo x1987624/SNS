@@ -1,0 +1,60 @@
+﻿@model IEnumerable<PointGiftExchangeRecord>
+@{
+    
+    IUser user=null;
+    if(Model.Count()>0){
+        user= Model.ElementAt(0).PayerUser;
+    }
+    Activity activity = ViewData.Get<Activity>("activity", null);
+    var tradePointCategory = new PointService().GetPointCategory("TradePoints");
+}
+
+@if (user != null)
+{ 
+    <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom spb-pointmall-item">
+        <div class="tn-list-item-area-left">
+            <div class="tn-avatar">
+            @{
+                    HyperLinkTarget hyperLinkTarget;
+                    if (UserContext.CurrentUser != null && user.UserId == UserContext.CurrentUser.UserId)
+                    {
+                        hyperLinkTarget = HyperLinkTarget._self;
+                    }
+                    else
+                    {
+                        hyperLinkTarget = HyperLinkTarget._blank;
+                    }
+                }
+                @Html.ShowUserAvatar(user, AvatarSizeType.Small, true, hyperLinkTarget)
+                @Html.IdentificationType(user.UserId)
+            </div>
+        </div>
+        <div class="tn-list-item-area-main">
+            <div class="tnc-down-blkarrow">
+                @Html.ActivityOperation(activity.ActivityId)
+            </div>  
+            <div class="tnc-dynamic-title">              
+                <a href="@SiteUrls.Instance().SpaceHome(user.UserId)" class="tn-user-name" @(user == UserContext.CurrentUser ? "target=_self" : "target=_blank") >@user.DisplayName</a>&nbsp;兑换了商品 
+            </div>
+            <ul class="tnc-dynamic-mayknow">
+                @foreach (var record in Model)
+                { 
+                    <li class="tnc-mayknow-single"> 
+                        <a href="@SiteUrls.Instance().GiftDetail(record.GiftId)" class="tnc-mayknow-img tn-helper-left" target="_blank">
+                            <img src="@SiteUrls.Instance().ImageUrl(record.PointGift.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Small())" width="60" alt="">
+                        </a>
+                                            <div class="tnc-mayknow-main"> 
+                        <a href="@SiteUrls.Instance().GiftDetail(record.GiftId)" class="tnc-mayknow-tit" target="_blank" >@StringUtility.Trim(record.GiftName, 10)</a>
+                        <p class="tnc-mayknow-tit">花费：@record.Price </p>
+                        
+                        @Html.LinkButton("我要兑换", SiteUrls.Instance()._CreateRecord(record.GiftId), HighlightStyles.Default, htmlAttributes: new { plugin = "dialog" })
+                    </div>
+                    </li>
+                }
+            </ul>
+            <div class="tnc-dynamic-info">
+                <em class="tn-date tn-text-note">@Model.FirstOrDefault().DateCreated.ToFriendlyDate(true)</em>
+            </div>
+        </div>
+    </li>
+}

@@ -1,0 +1,25 @@
+﻿@model PagingDataSet<Photo>
+@foreach (var photo in Model)
+{
+    <li class="tn-list-item tn-border-gray tn-border-bottom">
+        <div class="tn-media-wrap">
+            <a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)">
+                <img width="720" class="tnui-image-detail" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P800())"></a></div>
+        <div class="tn-info tn-helper-clearfix">
+            <em class="tn-date tn-text-note">@photo.DateCreated.ToFriendlyDate(true)</em>
+            <ul class="tn-feedback">
+                <li><a class="tn-icon tn-icon-share" href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享#" + photo.User != null ? ("@" + photo.User.NickName) : "" + " 的照片\"" + photo.Description + "\"不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" plugin="dialog" title="分享"></a></li>
+                <li><a class="tn-icon tn-icon-bubble" plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" title="评论"></a></li>
+                <li>                    
+                   @Html.SupportOppose(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)                    
+                </li>
+            </ul>
+        </div>
+        <div class="tn-descrip" id ="photo-description-@photo.PhotoId" title="@photo.Description">
+            <p>
+                @photo.Description
+            </p>
+        </div>
+    </li>                
+}
+

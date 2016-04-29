@@ -1,0 +1,55 @@
+﻿@model string
+@{
+    Layout = "app-1col";
+    Html.Style("~/Applications/Wiki/Styles/styles.css");
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+    Html.ViewContext.RouteData.Values["CurrentNavigationId"] = 10101602;
+    //ViewBag.Title = "ShowPageVersionDifferent";
+    string diffString = ViewData.Get<string>("diffString", "至少选中两个词条比较");
+    WikiPageVersion WikiPageVersion1 = ViewData.Get<WikiPageVersion>("WikiPageVersion1", new WikiPageVersion());
+    WikiPageVersion WikiPageVersion2 = ViewData.Get<WikiPageVersion>("WikiPageVersion2", new WikiPageVersion());
+    bool IsSp = ViewData.Get<bool>("IsSpeech", false);
+}
+<div class="tnc-main">
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all hr-version-compare">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            @if (IsSp)
+            {
+                <h3 class="tn-helper-reset">“@Html.Link(WikiPageVersion1.Title, SiteUrls.Instance().HistoryVersion(WikiPageVersion1.PageId,true), "点击查看历史版本")” 的历史版本版本比较</h3>
+            }
+            else { 
+                <h3 class="tn-helper-reset">“@Html.Link(WikiPageVersion1.Title, SiteUrls.Instance().HistoryVersion(WikiPageVersion1.PageId), "点击查看历史版本")” 的历史版本版本比较</h3>
+            }
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-all">
+            <div class="hr-version-box tn-helper-clearfix">
+                <div class="hr-list-compare">
+                    <div class="hr-test hr-list-one">
+                        <span class="tn-name">ver.@WikiPageVersion1.VersionNum</span><br/>
+                        <div>@WikiPageVersion1.Author<br/>
+                            <span class="tn-text-note">@WikiPageVersion1.DateCreated.ToUserDateString(true)</span>
+                        </div>
+                    </div>
+                    <div class="hr-list-vs tn-text-note">Vs.</div>
+                    <div class=" hr-test hr-list-one">
+                        <span class="tn-name">ver.@WikiPageVersion2.VersionNum</span><br/>
+
+                        <div>@WikiPageVersion2.Author<br/>
+                            <span class="tn-text-note">@WikiPageVersion2.DateCreated.ToUserDateString(true)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-list-action">
+                    <p class="tn-title"><strong>比较差异说明</strong></p>
+                    <p class="tn-add">添加的内容</p>
+                    <p class="tn-delete">删除的内容</p>
+                    <p class="tn-mod">格式修改的内容</p>
+                </div>
+
+            </div>
+            <div class="hr-compare-text">
+                @Html.Raw(diffString)
+            </div>
+        </div>
+    </div>
+</div>

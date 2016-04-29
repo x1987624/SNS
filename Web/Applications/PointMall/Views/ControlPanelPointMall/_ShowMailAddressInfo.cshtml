@@ -1,0 +1,45 @@
+﻿@model PointGiftExchangeRecord
+<div class="tnc-dailog-pd">
+    <div class="tn-form-box">
+        <table class="tn-table-grid tn-form-box tn-table-grid-td">
+            <tbody>
+                <tr class="tn-table-grid-row">
+                    <th>
+                        <label class="tn-form-label">收件人：</label>
+                    </th>
+                    <td class="tn-table-grid-td">
+                        <label class="tn-form-label" id="show-addressee">@Model.Addressee</label>
+                    </td>
+                </tr>
+                <tr class="tn-table-grid-row">
+                    <th>
+                        <label class="tn-form-label">联系电话：</label>
+                    </th>
+                    <td class="tn-table-grid-td">
+                        <label class="tn-form-label" id="show-Tel">@Model.Tel</label>
+                    </td>
+                </tr>
+                <tr class="tn-table-grid-row">
+                    <th>
+                        <label class="tn-form-label">邮寄地址：</label>
+                    </th>
+                    <td class="tn-table-grid-td">
+                        <label class="tn-form-label" id="show-address">@Model.Address</label>
+                    </td>
+                </tr>
+                <tr class="tn-table-grid-row">
+                    <th>
+                        <label class="tn-form-label">邮政编码：</label>
+                    </th>
+                    <td class="tn-table-grid-td">
+                        <label class="tn-form-label" id="show-postCode">@Model.PostCode</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/dialog">
+this.title("收件地址");
+</script>

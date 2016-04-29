@@ -1,0 +1,124 @@
+﻿@{
+    Layout = "app-1col";
+    Html.Style("~/Applications/Ask/Styles/app.css");
+
+    string[] ranks = { "tnc-num-topone", "tnc-num-toptwo", "tnc-num-topthree", "tnc-num-topfore" };
+
+    IEnumerable<User> reputationUsers = ViewData.Get<IEnumerable<User>>("reputationUsers", null);
+    IEnumerable<User> answerUsers = ViewData.Get<IEnumerable<User>>("answerUsers", null);
+    IEnumerable<User> questionUsers = ViewData.Get<IEnumerable<User>>("questionUsers", null);
+
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-user-rank">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-ask-user-rank-wrap tn-helper-clearfix">        
+        @if (reputationUsers != null && reputationUsers.Count() > 0)
+        {
+            Dictionary<long, long> userReputationCount = ViewData.Get<Dictionary<long, long>>("userReputationCount", null);
+
+            <div class="spb-ask-rank-box">
+                <div class="tn-content-heading tn-border-gray tn-border-bottom tn-bg-gray">
+                    <h4 class="tn-widget-content">贡献榜</h4>
+                </div>                
+                <ul class="tn-person-rank">
+                @for (int i = 0; i < reputationUsers.Count(); i++)
+                {
+                    var user = reputationUsers.ElementAt(i);
+
+                    <li class="tn-border-dashed tn-border-gray tn-border-bottom">
+                        <div class="tnc-list-ranking">
+                            @if (i < 3)
+                            {
+                                <p class="tnc-blog-num @ranks[i]">
+                                    <span class="tnc-charts-num">@(i + 1)</span></p>
+                            }
+                            else
+                            {
+                                <p class="tnc-blog-num @ranks[3]">
+                                    <span class="tnc-charts-num">@(i + 1)</span></p>
+                            }
+                        </div>
+                        <div class="tnc-list-topic">
+                            <div class="tn-avatar-mini">
+                                @Html.ShowUserAvatar( user,SiteUrls.Instance().AskUser(user.UserName),AvatarSizeType.Micro,HyperLinkTarget._blank)
+                            </div>
+                            <a href="@SiteUrls.Instance().AskUser(user.UserName)" class="tn-user-name" title="@user.DisplayName"  target="_blank">@StringUtility.Trim(user.DisplayName, 7)</a></div>
+                        <p class="tnc-list-number">威望：@userReputationCount[user.UserId]</p>
+                    </li>
+                }
+                </ul>
+            </div>
+        }
+        @if (answerUsers != null && answerUsers.Count() > 0)
+        {
+            Dictionary<long, long> userAnswerCount = ViewData.Get<Dictionary<long, long>>("userAnswerCount", null);
+            <div class="spb-ask-rank-box">
+                <div class="tn-content-heading tn-border-gray tn-border-bottom tn-bg-gray">
+                    <h4 class=" tn-widget-content">解答榜</h4>
+                </div>                
+                <ul class="tn-person-rank">
+                    @for (int i = 0; i < answerUsers.Count(); i++)
+                    {
+                        var user = answerUsers.ElementAt(i);
+                        <li class="tn-border-dashed tn-border-gray tn-border-bottom">
+                            <div class="tnc-list-ranking">
+                                @if (i < 3)
+                                {
+                                    <p class="tnc-blog-num @ranks[i]">
+                                        <span class="tnc-charts-num">@(i + 1)</span></p>
+                                }
+                                else
+                                {
+                                    <p class="tnc-blog-num @ranks[3]">
+                                        <span class="tnc-charts-num">@(i + 1)</span></p>
+                                }
+                            </div>
+                            <div class="tnc-list-topic">
+                                <div class="tn-avatar-mini">
+                                    @Html.ShowUserAvatar(user, SiteUrls.Instance().AskUser(user.UserName), AvatarSizeType.Micro, HyperLinkTarget._blank)
+                                </div>
+                                <a href="@SiteUrls.Instance().AskUser(user.UserName)" class="tn-user-name" title="@user.DisplayName"  target="_blank">@StringUtility.Trim(user.DisplayName, 7)</a></div>
+                            <p class="tnc-list-number">回答数：@userAnswerCount[user.UserId]</p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        @if (questionUsers != null && questionUsers.Count() > 0)
+        {
+            Dictionary<long, long> userQuestionCount = ViewData.Get<Dictionary<long, long>>("userQuestionCount", null);
+            <div class="spb-ask-rank-box tn-last">
+                <div class="tn-content-heading tn-border-gray tn-border-bottom tn-bg-gray">
+                    <h4 class="tn-widget-content">提问榜</h4>
+                </div>               
+                <ul class="tn-person-rank">
+                    @for (int i = 0; i < questionUsers.Count(); i++)
+                    {
+                        var user = questionUsers.ElementAt(i);
+                        <li class="tn-border-dashed tn-border-gray tn-border-bottom">
+                            <div class="tnc-list-ranking">
+                                @if (i < 3)
+                                {
+                                    <p class="tnc-blog-num @ranks[i]">
+                                        <span class="tnc-charts-num">@(i + 1)</span></p>
+                                }
+                                else
+                                {
+                                    <p class="tnc-blog-num @ranks[3]">
+                                        <span class="tnc-charts-num">@(i + 1)</span></p>
+                                }
+                            </div>
+                            <div class="tnc-list-topic">
+                                <div class="tn-avatar-mini">
+                                    @Html.ShowUserAvatar(user, SiteUrls.Instance().AskUser(user.UserName), AvatarSizeType.Micro, HyperLinkTarget._blank)
+                                </div>
+                                <a href="@SiteUrls.Instance().AskUser(user.UserName)" class="tn-user-name" title="@user.DisplayName"  target="_blank">@StringUtility.Trim(user.DisplayName, 7)</a></div>
+                            <p class="tnc-list-number">问题数：@userQuestionCount[user.UserId]</p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        </div>
+    </div>
+</div>

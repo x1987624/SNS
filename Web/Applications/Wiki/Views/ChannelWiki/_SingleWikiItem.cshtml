@@ -1,0 +1,28 @@
+﻿@model WikiPage
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+@*<li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom" createtime="@Model.DateCreated.ToShortDateString()" name="0">
+        <div class="tn-list-item-area-main">
+            <div class="tn-list-item-row tn-list-item-heading">
+                <h5><a href="@SiteUrls.Instance().PageDetail(Model.PageId)" target="_blank">@HtmlUtility.TrimHtml(Model.Title, 20)</a></h5>
+            </div>
+
+            <div class="tn-list-item-row tn-list-info">
+                <em class="tn-date tn-text-note">@Model.DateCreated.ToFriendlyDate()</em>
+                <a class="tn-user-name" href="@SiteUrls.Instance().WikiUser(Model.Author)" target="_blank">@Model.Author</a>
+            </div>
+        </div>
+    </li>*@
+
+    
+    
+    <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom hr-single-list-item" createtime="@Model.DateCreated.ToShortDateString()" name="0">
+        <span class="tn-icon tn-icon-wiki"></span>
+        <div class="tn-title"><a href="@SiteUrls.Instance().PageDetail(Model.PageId)" target="_blank">@HtmlUtility.TrimHtml(Model.Title, 20)</a></div>
+        <em class="tn-date tn-text-note">@Model.DateCreated.ToUserDateString(false)</em>
+        <span class="tn-user-name"><a href="@SiteUrls.Instance().WikiUser(Model.Author)" target="_blank">@Model.Author</a></span>
+    </li>
+}

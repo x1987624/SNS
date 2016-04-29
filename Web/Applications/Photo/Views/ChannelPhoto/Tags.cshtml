@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    Html.ViewContext.RouteData.Values["CurrentNavigationId"] = 10100301;
+}
+@section Aside{
+    @Html.Action("_LatestPhotos", "ChannelPhoto", new { topNumber = 8 })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        <h3 class="tn-helper-reset">标签云图</h3>
+    </div>
+    @Html.Action("_TagCloud", "Channel", new { area = "Common", num = 100, tenantTypeId = TenantTypeIds.Instance().Photo() })
+</div>

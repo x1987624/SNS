@@ -1,0 +1,32 @@
+﻿@model PagingDataSet<AskQuestion>
+@{
+    bool resolvedQuestions = ViewData.Get<bool>("resolvedQuestions", false);
+    string actionName = Html.ViewContext.RouteData.Values.Get<string>("action", string.Empty);
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="spb-ask-list-wrap" id="question-page-list-@actionName">
+        <ul class="tn-list">
+            @foreach (var question in Model)
+            {
+                if (resolvedQuestions)
+                {
+                    if (question.Status == QuestionStatus.Resolved)
+                    {
+                        continue;
+                    }
+                }
+                @Html.Partial("_QuestionItem", question)
+            }
+        </ul>
+        <div class="tn-pagination">
+            @Html.AjaxPagingButton(Model, "question-page-list-" + actionName)
+        </div>
+    </div>
+}
+else
+{ 
+    <div class="tn-no-data">
+        暂无数据
+    </div>
+}

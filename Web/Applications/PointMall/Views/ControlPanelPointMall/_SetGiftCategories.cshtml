@@ -1,0 +1,41 @@
+﻿@{
+    IEnumerable<long> giftIds = ViewData.Get<IEnumerable<long>>("giftIds",null);
+}
+
+
+@using (Html.BeginAjaxForm("_SetGiftCategories", "ControlPanelPointMall", FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "success" ,BeforeSubmitCallBack = "beforeSubmit"}))
+{ 
+    foreach (var id in giftIds)
+    { 
+        <input type="hidden" name="giftIds" id="giftIds" value="@id" />
+    }
+    
+    <div class="tnc-dailog-pd">
+        <div class="tn-form-row">
+            @Html.CategoryDropDownListFor("categoryId", 0, TenantTypeIds.Instance().PointGift(), 0, 2)
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-border-gray tn-border-top tn-bg-gray">
+        @Html.Button("确认", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { id = "change-category" })
+        @Html.Button("取消", ButtonTypes.Cancel, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close" })
+    </div>
+}
+<script type="text/dialog">
+    this.title("设置类别");
+</script>
+@Html.ScriptBlock(@<script type="text/javascript">
+
+    function success(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+            window.location.reload();
+        });
+    }
+
+    function beforeSubmit() {
+        if ($("#categoryId").val() == 0) {
+            alert("请选择类别！");
+            return false;
+        }
+    }
+
+</script>)

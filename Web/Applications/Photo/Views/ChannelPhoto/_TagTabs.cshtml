@@ -1,0 +1,19 @@
+﻿@model Tag
+@{
+    bool? isEssential = ViewData.Get<bool?>("isEssential", null);
+    SortBy_Photo? sortBy = ViewData.Get<SortBy_Photo?>("sortBy", null);
+}
+<div class="tn-tabs">
+    <ul class="tn-tabs-nav tn-border-gray tn-border-bottom tn-helper-clearfix">
+        <li class="tn-widget-content tn-border-gray tn-border-trl @(isEssential == null && sortBy == SortBy_Photo.DateCreated_Desc ? "tn-tabs-selected" : "")"><a href="@SiteUrls.Instance().TagNew(Model.TagName)" title="最新">最新</a> </li>
+        <li class="tn-widget-content tn-border-gray tn-border-trl @(isEssential == null && sortBy == SortBy_Photo.HitTimes_Desc ? "tn-tabs-selected" : "")"><a href="@SiteUrls.Instance().TagHot(Model.TagName)" title="热点">热点</a> </li>
+        <li class="tn-widget-content tn-border-gray tn-border-trl @(isEssential == true && sortBy == SortBy_Photo.DateCreated_Desc ? "tn-tabs-selected" : "")"><a href="@SiteUrls.Instance().TagEssential(Model.TagName)" title="精选">精选</a> </li>
+    </ul>
+    <div class="tn-tabs-panel">
+        <div id="spbThumbnailFalls" class="spb-photo-waterfall masonry">
+        </div>
+    </div>
+</div>
+<nav id="page-nav">
+    <a href="@SiteUrls.Instance()._Photos(Model.TagName, isEssential, sortBy, 2)"></a>
+</nav>

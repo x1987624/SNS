@@ -1,0 +1,173 @@
+﻿@model PagingDataSet<PointGiftExchangeRecord>
+@{
+    Layout = "app-list-2cols";
+
+    string date = Request.QueryString.Get<string>("date", null);
+    ApproveStatus? approveStatus = Request.QueryString.Get<ApproveStatus?>("approveStatus", null);
+    SelectList selectList = ViewData.Get<SelectList>("selectList", null);
+    IUser user = UserContext.CurrentUser;
+    var tradePointCategory = new PointService().GetPointCategory("TradePoints");
+}
+@section aside{
+    @Html.Partial("_MyPoint")
+    @Html.AdvertisingPosition("11000000003")
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-my-mall">
+    <div class="tn-box-content tn-widget-content tn-corner-all"> 
+    @using (Html.BeginForm("Home", "UserSpacePointMall", FormMethod.Get, new { id = "Form-Condition" }))
+    {
+        @Html.Hidden("approveStatus", approveStatus)
+        <div class="tn-tabs">
+            <ul class="tn-tabs-nav tn-border-gray tn-border-bottom tn-helper-clearfix">
+                <li class="tn-widget-content tn-border-gray tn-border-trl @(!approveStatus.HasValue ? "tn-tabs-selected" : "")" >
+                    <a href="@SiteUrls.Instance().PointMallHome(user.UserName, date, null)">全部</a>
+                </li>
+                <li class="tn-widget-content tn-border-gray tn-border-trl @(approveStatus == ApproveStatus.Approved ? "tn-tabs-selected" : "")" >
+                    <a href="@SiteUrls.Instance().PointMallHome(user.UserName, date, ApproveStatus.Approved)" >已批准</a> 
+                </li>
+                <li class="tn-widget-content tn-border-gray tn-border-trl @(approveStatus == ApproveStatus.Rejected ? "tn-tabs-selected" : "")" >
+                    <a href="@SiteUrls.Instance().PointMallHome(user.UserName, date, ApproveStatus.Rejected)" >已拒绝</a> 
+                </li>
+                <li class="tn-widget-content tn-border-gray tn-border-trl @(approveStatus == ApproveStatus.Pending ? "tn-tabs-selected" : "")" >
+                    <a href="@SiteUrls.Instance().PointMallHome(user.UserName, date, ApproveStatus.Pending)" >待批准</a> 
+                </li>
+                <li class="tn-option">
+                    @Html.DropDownList("date", selectList, "全部", new { @class = "tn-dropdownlist tn-input-medium", id = "dateList" })
+                </li>
+            </ul>
+            <div class="tn-tabs-panel">
+                @if (Model == null || Model.Count() == 0)
+                { 
+                    <div class="tn-no-data">暂无兑换申请！</div>
+                }
+                else
+                {
+                    <table class="tn-table-grid">
+                        <tbody>
+                            <tr class="tn-table-grid-header">
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    商品名称
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    花费@(tradePointCategory.CategoryName)
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    批准状态
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    跟踪信息
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    兑换时间
+                                </th>
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    操作
+                                </th>
+                            </tr>
+                            @foreach (var pointGiftExchangeRecord in Model)
+                            {
+                                <tr class="tn-table-grid-row">
+                                    <td class="tn-border-gray tn-border-bottom tn-width-user-name">
+                                        @if (pointGiftExchangeRecord.GiftId > 0)
+                                        {
+                                            @Html.Link(Tunynet.Utilities.HtmlUtility.TrimHtml(pointGiftExchangeRecord.GiftName,10), SiteUrls.Instance().GiftDetail(pointGiftExchangeRecord.GiftId), pointGiftExchangeRecord.GiftName,new { target = "_blank" })
+                                        }
+                                        else
+                                        {
+                                            @:无 
+                                        }
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-nowrap">
+                                        @pointGiftExchangeRecord.Price 
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-status tn-nowrap">
+                                        @switch (pointGiftExchangeRecord.Status)
+                                        {
+                                            case ApproveStatus.Approved:
+                                                <span class="tn-icon-colorful tn-icon-colorful-pass tn-icon-inline" title="已批准"></span>
+                                                break;
+                                            case ApproveStatus.Pending:
+                                                <span class="tn-icon-colorful tn-icon-colorful-wait tn-icon-inline" title="待批准"></span>
+                                                break;
+                                            case ApproveStatus.Rejected:
+                                                <span class="tn-icon-colorful tn-icon-colorful-stop tn-icon-inline" title="已拒绝"></span>
+                                                break;
+                                        }
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-location tn-width-auto">
+                                        @if (string.IsNullOrEmpty(pointGiftExchangeRecord.TrackInfo))
+                                        {
+                                            @:暂无
+                                        }
+                                        else
+                                        {
+                                            @Html.Link(Tunynet.Utilities.HtmlUtility.TrimHtml(pointGiftExchangeRecord.TrackInfo, 15), "", "跟踪信息", new { @class = "tuni-track-info", trackInfo = Formatter.FormatMultiLinePlainTextForStorage(pointGiftExchangeRecord.TrackInfo, true) })    
+                                        }
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-date tn-nowrap">
+                                        @pointGiftExchangeRecord.DateCreated.ToFriendlyDate(true)
+                                    </td>
+                                    <td class="tn-border-gray tn-border-bottom tn-width-action2 tn-nowrap">
+                                        @if (pointGiftExchangeRecord.Status == ApproveStatus.Approved)
+                                        {
+                                            if (string.IsNullOrEmpty(pointGiftExchangeRecord.Appraise))
+                                            {
+                                                @Html.Link("评价", SiteUrls.Instance()._Appraise(user.UserName, pointGiftExchangeRecord.RecordId), "评价", new { @class = "tn-corner-all tn-button-text-only tn-button-lite", plugin = "dialog" })    
+                                            }
+                                            else
+                                            {
+                                                @:已评价
+                                            }
+                                        }
+                                        else if (pointGiftExchangeRecord.Status == ApproveStatus.Pending)
+                                        { 
+                                            @Html.Link("取消兑换", SiteUrls.Instance()._CancelExchange(user.UserName, pointGiftExchangeRecord.RecordId), "取消兑换", new { @class = "tn-corner-all tn-button-text-only tn-button-lite tnui-cancelexchange" })
+                                        }
+                                        else
+                                        {
+                                              @:已拒绝
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="tn-pagination">
+                        @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                        @Html.PagingResults(Model)
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+        //时间选择改变时提交
+        $("#dateList").change(function () {
+            $("#Form-Condition").trigger("submit");
+        });
+
+        //取消兑换
+        $(".tnui-cancelexchange").click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            art.dialog.confirm('确定要取消兑换吗？', function () {
+                $.post(url, function (data) {
+                    if (data) {
+                        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(); });
+                    }
+                });
+            });
+        });
+
+        //点击跟踪信息弹出模式框
+        $(".tuni-track-info").click(function (e) {
+            e.preventDefault();
+            var trackInfo = $(this).attr('trackInfo');
+            art.dialog({ width: 460 ,title: '跟踪信息', content: '<div class="tnc-dailog-pd tn-simple-text tnc-report-detail">' + trackInfo + '</div>' });
+        });
+
+    });
+</script>)

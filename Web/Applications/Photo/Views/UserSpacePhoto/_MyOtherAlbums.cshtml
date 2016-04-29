@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Album>
+@{string title = ViewData.Get<string>("title", null);}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-other-albums">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom ">
+        <div class="tn-option">
+                <a href="@SiteUrls.Instance().Albums(Url.SpaceKey())">全部</a>
+        </div>
+        <h3 class="tn-helper-reset">
+            @(title)的其他相册
+        </h3>
+    </div>
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">        
+        @if (Model.Count() <= 0)
+        {
+            <div class="tn-no-data">
+                搜索不到数据!</div> 
+        }
+        else
+        {
+            <ul class="tn-album-list tn-widget tn-helper-clearfix">
+                @foreach (var album in Model)
+                {
+                    <li class="tn-album-item">
+                        <div class="tn-album-cover tn-widget-content tn-border-gray">
+                            <div class="tn-photo-wrap tn-widget-content tn-border-gray">
+                                <a href="@SiteUrls.Instance().AlbumDetailList(Url.SpaceKey(), album.AlbumId)" title="@album.AlbumName">
+                                    @if (DIContainer.Resolve<Authorizer>().Album_View(album))
+                                    {
+                                        var cover = album.Cover;
+                                        if (album.CoverId > 0 && cover != null)
+                                        {                                         
+                                        <img alt="@cover.Description" src="@SiteUrls.Instance().ImageUrl(cover.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" class="tnui-image-detail" height="75"/>
+                                        }
+                                        else
+                                        {                                                                                             
+                                            <img src="@SiteUrls.Instance().ImageUrl(string.Empty, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" height="75"/>                                            
+                                        }
+                                    }
+                                    else
+                                    {                                         
+                                        <img src="@SiteUrls.Instance().ImageUrl(string.Empty, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" height="75"/>                                           
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                        <p class="tn-text-heading"> <a href="@SiteUrls.Instance().AlbumDetailList(Url.SpaceKey(), album.AlbumId)" title="@album.AlbumName">@StringUtility.Trim(album.AlbumName,20)</a> </p>
+                        <p class="tn-text-note"> @(album.PhotoCount)张照片</p>                        
+                    </li>
+                }
+            </ul>
+            }
+    </div>
+</div>

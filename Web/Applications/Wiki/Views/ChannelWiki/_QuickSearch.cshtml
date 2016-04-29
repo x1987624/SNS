@@ -1,0 +1,36 @@
+﻿@model PagingDataSet<WikiPage>
+@{
+    WikiSearcher wikiSearcher = (WikiSearcher)SearcherFactory.GetSearcher(WikiSearcher.CODE);
+    string keyword = Request.QueryString.GetString("keyword", string.Empty);
+    }
+@if (Model.TotalRecords > 0)
+{
+  <input type="hidden" class="app-count" />
+  <div class="tn-section tn-border-gray tn-border-bottom">
+  <div class="tn-title tn-border-bottom tn-border-gray tnui-option" data-appname="Blog" data-search-url="@wikiSearcher.PageSearchActionUrl(keyword)">
+  <a href="@wikiSearcher.PageSearchActionUrl(keyword)">搜“<span class="tn-text-bright">@keyword</span>”相关词条（@Model.TotalRecords）</a>
+  </div>
+  <ul class="tn-list" >
+  @foreach (WikiPage wikiPage in Model)
+  {
+      string barUrl = SiteUrls.Instance().PageDetail(wikiPage.PageId);
+  <li class="tn-list-item tnui-option" data-search-url="@barUrl" data-search-key="@wikiPage.Title">
+    <div class="tn-list-item-area-main ">
+        <div class="tn-list-item-row">
+              <a title="@wikiPage.Title" href="@barUrl">
+             @if (wikiPage.Title.Length > 13)
+             {
+                 @Html.Raw(SearchEngine.Highlight(keyword, HtmlUtility.TrimHtml(wikiPage.Title,13), 100))
+             }
+             else
+             {
+                 @Html.Raw(SearchEngine.Highlight(keyword, wikiPage.Title, 100))
+             }
+             </a>
+        </div>
+    </div>
+    </li>
+  }
+  </ul>
+  </div>
+}

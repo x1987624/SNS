@@ -1,0 +1,79 @@
+﻿@model IEnumerable<RecommendItem>
+@if (Model != null && Model.Count() > 0)
+{
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-gift-home">
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        <div class="spb-slider spb-photo-slider spb-gift-slider-rec">
+            <div class="spb-slider-nav">
+                <div class="spb-slider-nav-clip">
+                    <ul>
+                    @for (int count = 1; count <= Model.Count(); count++)
+                    {
+                        <li><a href="#">@count</a></li>
+                    }
+                    </ul>
+                </div>
+            </div>
+            <div class="spb-slider-panels">
+            @foreach (var item in Model)
+            {
+                PointGift gift = item.GetPointGifts();
+                  <div class="spb-slider-panel">
+                      @if (!item.IsLink)
+                      {
+                          if (string.IsNullOrEmpty(item.FeaturedImage))
+                          {
+                                <a href="@SiteUrls.Instance().GiftDetail(gift.GiftId)" target="_blank" title="@item.ItemName">
+                                    <img alt="@item.ItemName" src="@SiteUrls.Instance().ImageUrl(gift.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Original())" />
+                                </a>
+                          }
+                          else
+                          {
+                                <a href="@SiteUrls.Instance().GiftDetail(gift.GiftId)" target="_blank" title="@item.ItemName">
+                                    <img alt="@item.ItemName" src="@SiteUrls.Instance().ImageUrl(item.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Original())" />
+                                </a>
+                          }
+
+                      }
+                      else
+                      {
+                            <a href="@item.LinkAddress" target="_blank" title="@item.ItemName">
+                                <img alt="@item.ItemName" src="@SiteUrls.Instance().LogoUrl(item.FeaturedImage, TenantTypeIds.Instance().Recommend(), ImageSizeTypeKeys.Instance().Original())" />
+                            </a>
+                      }
+                        <div class="spb-slider-panel-textbox">
+                            <div class="spb-slider-panel-text">
+                                <p>@Html.Raw(item.ItemName)</p>
+                            </div>
+                            <div class="spb-slider-panel-overlay"></div>
+                        </div>
+                 </div>
+            }  
+            </div>
+             @if (DIContainer.Resolve<Authorizer>().RecommendItem_Manage(TenantTypeIds.Instance().PointGift()))
+             {
+                <div class="spb-rec-btn">
+                    <a href="@SiteUrls.Instance()._ManageRecommendItems(new PointMallSettings().RecommendGiftTypeIdHome)" class="tn-button tn-corner-all tn-button-default tn-button-icon-only" title="推荐管理" plugin="dialog"><span class="tn-icon tn-icon tn-icon-set"></span>
+                    <span class="tn-button-text"> 推荐管理</span> </a>
+                </div>
+             }
+        </div>
+    </div>
+</div>
+}
+@Scripts.Render("~/Bundle/Scripts/SliderKit")
+<script type="text/javascript">
+    //幻灯片配置脚本
+    $(window).load(function () {
+        $(".spb-gift-slider-rec").sliderkit({
+            cssprefix: "spb-slider",
+            auto: true,
+            autospeed: 3000,
+            circular: true,
+            shownavitems: 5,
+            panelfx: "sliding",
+            panelfxspeed: 1000,
+            panelfxeasing: "easeInOutExpo"
+        });
+    });	
+</script>

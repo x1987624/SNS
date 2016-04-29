@@ -1,0 +1,72 @@
+﻿@model Photo
+@{
+    Layout = "app-1col";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    Album album = ViewData.Get<Album>("album", null);
+    IEnumerable<Photo> photos = ViewData.Get<IEnumerable<Photo>>("photos", null);
+
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-album-detail">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-album-detail-wrap">
+            <div class="tn-main-heading tn-border-gray tn-border-bottom tn-helper-clearfix">
+                <h2>
+                    @(album.Author)的@(album.AlbumName)</h2>
+                <ul class="tn-feedback">
+                    <li><a class="tn-icon tn-icon-share" title="分享" href="@SiteUrls.Instance()._ShareToMicroblog("#相册分享#" + "@" + album.User.NickName + " 的相册\"" + album.AlbumName + "\" " + SiteUrls.FullUrl(SiteUrls.Instance().AlbumDetailList(album.User.UserName, album.AlbumId)) + " 很不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(album.Cover == null ? string.Empty : album.Cover.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200()))" plugin="dialog"></a></li>
+                    @if (album.PrivacyStatus == PrivacyStatus.Public && DIContainer.Resolve<Authorizer>().RecommendItem_Manage(TenantTypeIds.Instance().Album()))
+                    {
+                        <li><a title="推荐" class="tn-icon tn-icon-flag" href="@SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Album(), album.AlbumId, album.AlbumName, userId: album.UserId)" plugin="dialog"></a></li>
+                    }
+                </ul>
+            </div>           
+            <div class="spb-photo-list">
+                <ul class="tn-photo-list tn-widget tn-helper-clearfix">
+                    @foreach (var photo in photos)
+                    { 
+                        <li class="tn-photo-item tn-hover">
+                            <div class="tn-photo-wrap tn-widget-content tn-border-gray">
+                                <a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)">
+                                    <img src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" class="tnui-image-detail" width="100" height="100"/><span></span></a>
+                            </div>
+                            <div class="tn-date tn-state-hidden">
+                                <em>@photo.DateCreated.ToFriendlyDate(false)</em>
+                            </div>
+                            <ul class="tn-feedback tn-helper-clearfix">
+                                <li><a title="分享" href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享#" + photo.User != null ? ("@" + photo.User.NickName) : "" + " 的照片\"" + photo.Description + "\"不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" plugin="dialog" class="tn-icon tn-icon-share"></a></li>
+                                <li><a title="评论" plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" target="_blank" class="tn-icon tn-icon-bubble"></a><em class="tn-count tn-text-note">@photo.CommentCount</em></li>
+                                <li>
+                                    @if (!((UserContext.CurrentUser == null ? 0 : UserContext.CurrentUser.UserId) == photo.UserId))
+                                    {                           
+                                        @Html.SupportOppose(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)                            
+                                    }
+                                </li>
+                            </ul>
+                            <p class="tn-descrip" id ="photo-description-@photo.PhotoId" title="@photo.Description">
+                                @photo.Description
+                            </p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(document).ready(function () {
+        var dialog = art.dialog({
+            id: "PhotoDialog", title: false
+        });
+        $.get("@SiteUrls.Instance().PhotoDetail(Model.PhotoId)", function (html) {
+            if (typeof html == "object" && html.MessageContent) {
+                dialog.close();
+                art.dialog.tips(html.MessageContent, 1.5, html.MessageType);
+
+            }
+            else
+                dialog.content(html);
+          
+        });
+    });
+</script>)

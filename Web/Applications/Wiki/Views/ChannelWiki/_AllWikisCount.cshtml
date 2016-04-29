@@ -1,0 +1,107 @@
+﻿@model long
+@{
+    string count = Model.ToString();
+    char[] _count = count.ToArray();
+    int i = 1;
+    int surplusCharCount = _count.Length;
+    long l = ViewData.Get<long>("myEditCount", 0);
+    IUser user = UserContext.CurrentUser;
+}
+<dl>
+    <dt>贡献：</dt>
+    <dd>
+        @foreach (char item in _count)
+        {
+            <span><em style="position:relative" name="wikimunber@(i)">@item</em></span>
+            surplusCharCount--;
+            if (surplusCharCount == 3 || surplusCharCount == 6 || surplusCharCount == 9)
+            { 
+            <em>,</em>
+            }
+            i++;
+        }
+        <em>词条</em>
+    </dd>
+</dl>
+
+@if (UserContext.CurrentUser != null)
+{
+    <dl>
+        <dt>创建：</dt>
+        <dd>
+            @foreach (char item in l.ToString())
+            {
+                <span><em style="position:relative" name="wikimunberC@(i)">@item</em></span>
+                surplusCharCount--;
+                if (surplusCharCount == 3 || surplusCharCount == 6 || surplusCharCount == 9)
+                { 
+                <em>,</em>
+                }
+                i++;
+            }
+            <em>条 <a href="@SiteUrls.Instance().WikiUser(user.UserName)">查看</a></em>
+        </dd>
+    </dl>
+}
+
+@Html.ScriptBlock(@<script type="text/javascript">
+
+    $(document).ready(function () {
+        function ChanageWikiNumber(spanW,sp) {
+            var span = spanW;//$("[name='wikimunber1']");
+            var wikimunber = parseInt(span.html());
+            if (wikimunber == 0)
+                wikimunber = 10;
+            var speed = sp / (wikimunber);
+            span.html(0);
+            for (var i = 1; i <= wikimunber ; i++) {
+                span.animate({
+                    top: 30,
+                    opacity: 0
+                }, speed, function () {
+                    span.css({ top: -20, opacity: 1 });
+                    var htmlwikimunber = parseInt(span.html()) + 1;
+                    if (htmlwikimunber == 10)
+                        htmlwikimunber = 0;
+                    span.html(htmlwikimunber);
+                    if (span.html() == wikimunber) {
+                        span.animate({
+                            top: 0,
+                            opacity: 1
+                        }, 570)
+                    }
+                    if (span.html() == 0) {
+                        span.animate({
+                            top: 0,
+                            opacity: 1
+                        }, 570)
+                    }
+                });
+            }
+        }
+
+        //setTimeout(function () {
+
+            @for (int k = 1; k < 10; k++)
+            {
+		        <text>
+                if ($("[name='wikimunber@(k)']"))
+                { ChanageWikiNumber($("[name='wikimunber@(k)']"),1000); }
+                </text>
+            }
+        //}, 3000);
+
+        //setTimeout(function () {
+
+            @for (int k = 1; k < 10; k++)
+            {
+		        <text>
+                if ($("[name='wikimunberC@(k)']"))
+                { ChanageWikiNumber($("[name='wikimunberC@(k)']"),1000); }
+                </text>
+            }
+        //}, 1200);
+
+    });
+
+</script>)

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<AskQuestion>
+<div id="similarQuestion" class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">相似问题</h3>
+        </div>
+@if (Model != null && Model.Count() > 0)
+{
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <ul class="tn-list">
+                @foreach (var askQuestion in Model)
+                {
+                  <li><a title="@askQuestion.Subject" href="@SiteUrls.Instance().AskQuestionDetail(askQuestion.QuestionId)">@Tunynet.Utilities.StringUtility.Trim(askQuestion.Subject,6)</a>
+                 @* <span class="tn-date">@askQuestion.LastModified.ToFriendlyDate(true)</span>*@
+                    @if (!string.IsNullOrEmpty(askQuestion.Body))
+                    {
+                     <div class="tn-widget tn-bubble tn-bubble-arrow-top">
+                        <div class="tn-bubble-arrow">
+                            <b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble">
+                            </b>
+                        </div>
+                        <div class="tn-bubble-content tn-widget-content tn-border-gray tn-corner-all">
+                            <p>@HtmlUtility.TrimHtml(askQuestion.Body, 30)</p>
+                        </div>
+                    </div>   
+                    }
+                </li>   
+                }
+            </ul>
+        </div>
+}
+else
+{ 
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+     无相似问题
+    </div>
+}
+</div>

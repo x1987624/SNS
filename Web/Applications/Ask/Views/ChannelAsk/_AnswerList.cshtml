@@ -1,0 +1,241 @@
+﻿@model PagingDataSet<AskAnswer>
+@{
+    //Html.Script("~/Scripts/tunynet/plugins/jquery.spb.collapsibleBox.js"); 
+    AskQuestion askQuestion = ViewData.Get<AskQuestion>("question", null);
+    SortBy_AskAnswer sortBy = (SortBy_AskAnswer)ViewData["sortBy"];
+    long answerId = ViewData.Get<long>("answerId", 0);
+    Authorizer authorizer = DIContainer.Resolve<Authorizer>();
+
+    Dictionary<long, IEnumerable<Attachment>> attachmentsDic = ViewData.Get<Dictionary<long, IEnumerable<Attachment>>>("attachmentsDic", null);
+}
+@Html.PointMessage()
+<div class="spb-answer-list" id="answer-list">
+    <div class="tn-list-header tn-border-gray tn-border-bottom">
+        <div class="tn-list-header-row">
+            <div class="tn-filter">
+                <a id="sortByTime" class="tn-action @if (sortBy == SortBy_AskAnswer.DateCreated_Desc)
+                                                    {<text> tn-selected </text>}" href="javascript:;"><span class="tn-action-text">按时间排序</span></a>
+                <span class="tn-spacer tn-text-note">|</span> <a id="sortByVote" class="tn-action @if (sortBy == SortBy_AskAnswer.SupportCount)
+                                                                                                  {<text> tn-selected </text>}" href="#">
+                    <span class="tn-action-text">按投票排序</span></a>
+            </div>
+            <strong class="tn-count">@(Model.TotalRecords)个回答</strong>
+        </div>
+    </div>
+    @if (Model.Count > 0)
+    {
+        <ul class="tn-list">
+            @foreach (var askAnswer in Model)
+            {
+                if (askAnswer.User == null || askAnswer.User.UserName == null)
+                {
+                    continue;
+                }
+                <a id="answer-@askAnswer.AnswerId" name="answer-@askAnswer.AnswerId"></a>
+                <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-hover @if (askAnswer.IsBest)
+                                                                                                    {<text>spb-best-answer tn-cue-highlight</text>}">
+                    @if (askAnswer.IsBest)
+                    {<div class="spb-best-title">
+                        <span class="tn-icon-special tn-special-icon-best"></span><strong>最佳答案</strong>
+                    </div>}
+                    <div class="tn-list-item-area-main">
+                        <div class="tn-list-item-row tn-list-item-heading tn-helper-clearfix">
+                            @Html.ShowUserAvatar(askAnswer.User, SiteUrls.Instance().AskUser(askAnswer.User.UserName), AvatarSizeType.Micro, HyperLinkTarget._self)
+                            <a class="tn-user-name" href="@SiteUrls.Instance().AskUser(askAnswer.User.UserName)">@askAnswer.Author</a>
+                            <em class="tn-date tn-text-note">于 @askAnswer.DateCreated.ToFriendlyDate(true) 回答</em>
+                        </div>
+                        <div class="tn-list-item-row tn-list-info tn-text-note tn-helper-clearfix">
+                            @Html.SupportOppose(TenantTypeIds.Instance().AskAnswer(), askAnswer.AnswerId, askAnswer.UserId, AttitudeMode.Bidirection, AttitudeStyle.UpDown)
+                            @* <em class="tn-count">@(askAnswer.VoteCount)票</em> *@
+                            @if (askAnswer.VoteUsers != null)
+                            {
+                                @:来自：
+                          int count = 0;
+                          foreach (var user in askAnswer.VoteUsers)
+                          {
+                              var display = "display:inline";
+                              var displayClass = "";
+                              if (count > 2)
+                              {
+                                  displayClass = "tnui-a-" + askAnswer.AnswerId.ToString();
+                                  display = "display:none";
+                              }
+                                <a href="@SiteUrls.Instance().AskUser(user.UserName)" style='@(display)' class="tn-secondary-text tn-user-name @displayClass">@user.DisplayName</a>
+                              count++;
+                          }
+                          if (askAnswer.SupportCount > 3)
+                          {
+                                <a style="cursor:pointer" id="@askAnswer.AnswerId" class="tn-secondary-text tnui-more-Supporter">更多</a>   
+                          }
+                            }
+                        </div>
+                        <div id="askAnswer-body-@askAnswer.AnswerId" class="tn-list-item-row tn-list-item-summary tn-detail-text">
+                            @Html.DisplayHtmlEditorContent(TenantTypeIds.Instance().AskAnswer(), askAnswer.GetResolvedBody(), 650)
+
+                        </div>
+                        @Html.Action("_ListAttachement", "Channel", new { area = "common", teantTypeId = TenantTypeIds.Instance().AskAnswer(), threadId = askAnswer.AnswerId })
+                        <div class="tn-list-item-row tn-feedback">
+                            <span class="tn-action"><a id="@askAnswer.AnswerId" href="#" class="tn-action-text tnui-answerComment">评论(@askAnswer.CommentCount)</a></span>
+                            @if (!askAnswer.IsBest)
+                            {
+                                if (authorizer.Question_Edit(askQuestion))
+                                {
+                                    if (askQuestion.Status != QuestionStatus.Resolved)
+                                    {
+                                <span class="tn-action"><a href="@SiteUrls.Instance()._AskSetBestAnswer(askAnswer.AnswerId)" class="tn-action-text tnui-bestAnswer">设为满意回答</a></span>    
+                                    }
+                                }
+                                <span class="tn-state-hidden">
+                                    @if (authorizer.Answer_Edit(askQuestion, askAnswer))
+                                    {
+                                        <span class="tn-action"><a id="@askAnswer.AnswerId" href="javascript:;" class="tn-action-text tnui-editMyAnswer">编辑</a></span>
+                                    }
+                                    @if (authorizer.Answer_Delete())
+                                    {
+                                        <span class="tn-action"><a href="@SiteUrls.Instance()._AskDeleteAnswer(askAnswer.AnswerId)" class="tn-action-text tnui-deleteAnswer">删除</a></span>  
+                                    }
+                                    <span class="tn-action"><a href="@Html.Raw(SiteUrls.Instance()._ImpeachReport(askAnswer.UserId, SiteUrls.Instance().AskQuestionDetail(askAnswer.QuestionId), StringUtility.Trim(askAnswer.Author + "对问题“" + askAnswer.Question.Subject, 46) + "”的回答"))" plugin="dialog" rel="nofollow" class="tn-action-text">举报</a></span> </span>                           
+                                    if (authorizer.Answer_Edit(askQuestion, askAnswer))
+                                    {
+                                <div id="editAnswer-@askAnswer.AnswerId" style="display:none;" class="tn-collapsible-content">
+                                    @Html.Partial("_AnswerEdit", askAnswer.AsEditModel())
+                                </div>
+                                    }
+                            }
+                            else
+                            {
+                                <span class="tn-state-hidden">
+                                    @if (authorizer.Answer_Edit(askQuestion, askAnswer))
+                                    {
+                                        <span class="tn-action"><a id="@askAnswer.AnswerId" href="javascript:;" class="tn-action-text tnui-editMyAnswer">编辑</a></span>
+                                    }
+                                    @if (authorizer.Answer_Delete())
+                                    {
+                                        <span class="tn-action"><a href="@SiteUrls.Instance()._AskDeleteAnswer(askAnswer.AnswerId)" class="tn-action-text tnui-deleteAnswer">删除</a></span>  
+                                    }
+                                    <span class="tn-action"><a href="@SiteUrls.Instance()._ImpeachReport(askAnswer.UserId, SiteUrls.Instance().AskQuestionDetail(askAnswer.QuestionId), StringUtility.Trim(askAnswer.Author + "对问题“" + askAnswer.Question.Subject, 46) + "”的回答")" plugin="dialog" class="tn-action-text">举报</a></span> </span>  
+                                    if (authorizer.Answer_Edit(askQuestion, askAnswer))
+                                    {
+                                <div id="editAnswer-@askAnswer.AnswerId" style="display:none;" class="tn-collapsible-content">
+                                    @Html.Partial("_AnswerEdit", askAnswer.AsEditModel())
+                                </div>
+                                    }
+                            }
+                            <div id="answerComment-@askAnswer.AnswerId" class="spb-ask-comment" style="display: none">
+                                <div class="tn-widget tn-bubble tn-bubble-arrow-top tn-bubble-top-left">
+                                    <div class="tn-bubble-arrow">
+                                        <b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble"></b>
+                                    </div>
+                                    <div class="tn-bubble-content tn-widget-content tn-border-gray tn-corner-all">
+                                        @Html.Action("_Comment", "Channel", new { area = "Common", commentedObjectId = askAnswer.AnswerId, ownerId = askAnswer.UserId, tenantTypeId = TenantTypeIds.Instance().AskAnswer(), toUserId = askAnswer.UserId })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>             
+            }
+        </ul>
+        <div class="tn-pagination">
+            @Html.AjaxPagingButton(Model, "answer-list")
+        </div>   
+    }
+    else
+    {
+        <div class="tn-no-data">
+            还没有回答。
+        </div>
+    }
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+        //按投票排序
+        $("#sortByVote").click(function (e) {
+            e.preventDefault();
+            var self = $(this);
+            answerListUrl = "@Html.Raw(SiteUrls.Instance()._AskAnswerList(askQuestion.QuestionId, SortBy_AskAnswer.SupportCount))";
+            $.get(answerListUrl, function (data) {
+                $("#answer-list").replaceWith(data);
+            });
+        });
+
+        //按时间排序
+        $("#sortByTime").click(function (e) {
+            e.preventDefault();
+            var self = $(this);
+            answerListUrl = "@Html.Raw(SiteUrls.Instance()._AskAnswerList(askQuestion.QuestionId, null))";
+            $.get(answerListUrl, function (data) {
+                $("#answer-list").replaceWith(data);
+            });
+        });
+
+        //删除回答
+        $(".tnui-deleteAnswer").click(function (e) {
+            e.preventDefault();
+            var self = $(this);
+            art.dialog.confirm('您确认要删除这个回答吗？', function () {
+                var url = self.attr("href");
+                $.post(url, function (data) {
+                    if (data.MessageType == "1") {
+                        self.closest("li").remove();
+                    }
+                    $.PointMessage("@SiteUrls.Instance().UserLastestRecord()");
+                });
+            });
+        });
+
+        //采纳满意答案
+        $(".tnui-bestAnswer").click(function (e) {
+            e.preventDefault();
+            var self = $(this);
+            art.dialog.confirm('您确认要将此回答设为满意答案吗？', function () {
+                var url = self.attr("href");
+                $.post(url, function (data) {
+                    if (data.MessageType == "1") {
+                        $.get(answerListUrl, function (data) {
+                            $("#answer-list").replaceWith(data);
+                        });
+                    }
+                });
+            });
+        });
+
+        //更多支持者
+        $(".tnui-more-Supporter").click(function () {
+            var id = $(this).attr("id");
+            $(".tnui-a-" + id).attr("style", "display:inline");
+            $(this).hide();
+        });
+
+        //编辑我的回答
+        $(".tnui-editMyAnswer").click(function (e) {
+            e.preventDefault();
+            var id = $(this).attr("id");
+            $("#editAnswer-" + id).slideToggle(300);
+            $("#askAnswer-body-" + id).toggle();
+        });
+
+        //取消编辑回答
+        $(".tnui-cancelEditAnswer").click(function (e) {
+            e.preventDefault();
+            var id = $(this).attr("answerId");
+            $("#askAnswer-body-" + id).show();
+            $("#editAnswer-" + id).slideUp(300);
+        });
+
+        //回答评论
+        $(".tnui-answerComment").click(function (e) {
+            e.preventDefault();
+            var id = $(this).attr("id");
+            $("#answerComment-" + id).toggle();
+        });
+
+        //滚动到某个回答
+        $("#answer-@answerId").ScrollTo(400);
+
+        //设置顶踩控件反对项的title
+        $("a[id^='attitude-oppose-']").prop({ "title": "反对，不会显示您的姓名" });
+        $("a[id^='attitude-oppose-']").children("span.tn-text").text("反对，不会显示您的姓名");
+    });
+
+</script>)

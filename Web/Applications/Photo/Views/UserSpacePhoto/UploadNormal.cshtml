@@ -1,0 +1,166 @@
+﻿@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    SelectList albumList = ViewData.Get<SelectList>("albumList", null);
+    string spaceKey = Url.SpaceKey();
+    bool isContinue = TempData.Get<bool>("isContinue", false);
+    string photoIds = ViewData.Get<string>("photoIds", null);
+    string errorMessage = TempData.Get<string>("errorMessage", "null");
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.AjaxAction("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-photo-upload">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-basic-upload-wrap">
+            <div class="tn-main-heading tn-border-gray tn-border-bottom">
+                <h2>
+                    上传照片</h2>
+            </div>
+            <form id="normalUploadForm" action="" method="post" enctype="MULTIPART/FORM-DATA" >
+            <div class="tn-form">
+                <div class="tn-form-row tnui-waitUpload">
+                    @if (albumList.Count() > 0)
+                    {
+                        @Html.DropDownList("albumId", albumList, new { id = "AlbumList", @class = "tn-dropdownlist tn-input-medium" })
+                    }
+                    else
+                    {
+                        @Html.DropDownList("albumId", albumList, "请先新建相册", new { id = "AlbumList", @class = "tn-dropdownlist tn-input-medium" })
+                    }
+                    <span class="tn-action">
+                        @Html.Link("创建相册", SiteUrls.Instance()._EditAlbum(spaceKey, callBack: "OnSuccessCallBack"), "创建相册", new { id = "createAlbum", plugin = "dialog" })
+                    </span>
+                </div>
+                <div id="aaa"></div>
+                <div class="tnui-normalUpload">
+                <div class="tn-form-row tnui-waitUpload">
+                    <input  class="photoFile  tnui-haveFile" name="photoFile" type="file" accept="image/gif,image/jpeg,image/bmp,image/jpg,image/png"/>
+                </div>
+                </div>
+                <div style="display:none; margin-bottom:10px;" class="tn-loading tn-border-gray tn-corner-all"></div>
+                <div class="tn-form-row  tn-form-row-button">
+                   @Html.LinkButton("上传", "###", HighlightStyles.Primary, ButtonSizes.Large, htmlAttributes: new { @class = "normalUpload" })   
+                </div>
+            </div>
+            <input id="isContinue" type="hidden" name="isContinue" value="false" />
+            <input id="photoIds" type="hidden" name="photoIds" value="@photoIds" />
+            </form>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script>
+
+    function OnSuccessCallBack(data) {
+        art.dialog.tips("创建相册成功！", 1.5, 1);
+        var albumId = data.MessageContent.split('&')[0];
+        var albumName = data.MessageContent.split('&')[1];
+        $("#AlbumList").append("<option value='" + albumId + "'>" + albumName + "</option>")
+        $("#AlbumList option[value='']").remove();
+        $("#AlbumList").get(0).selectedIndex = $("#AlbumList option").length - 1;
+    }
+
+    function validfileExtense(fileVal) {
+        var val = fileVal.val();
+        var extense = val.substr(val.indexOf(".")); 
+        if (extense == ".jpg" || extense == ".JPG" || extense == ".bmp" || extense == ".BMP" || extense == ".gif" || extense == ".GIF" || extense == ".jpeg" || extense == ".JPEG" || extense == ".png" || extense == ".PNG") {
+            return false;
+        }
+        return true;
+    }
+
+    $(function () {
+        var i = 0;
+        $(".photoFile").livequery("change", function () {
+            if (validfileExtense($(this))) {
+                $(this).val("");
+                art.dialog.tips("文件的后缀名不正确！", 1.5, 1);
+                return false;
+            }
+            if ($(this).hasClass("tnui-haveFile") && i != 0) {
+                return false;
+            }
+            $(this).addClass("tnui-haveFile");
+            $(this).after("<a class='tn-icon tn-smallicon-cross tnui-removeFile' href='#'></a>");
+            if (i < 9) {
+                $(".tnui-normalUpload").append("<div class='tn-form-row tnui-waitUpload'><input class='photoFile' name='photoFile' type='file' accept='image/gif,image/jpeg,image/bmp,image/jpg,image/png'/><a class='tn-icon tn-smallicon-cross tnui-removeFile' href='#'></a></div>");
+                $(" .tnui-removeFile:last").remove();
+            }
+            i++;
+            if (i > 10) {
+                i = 10;
+            }
+        })
+
+        $(".normalUpload").click(function () {
+            if ($(".photoFile").eq(0).val() == "") {
+                art.dialog.tips('请选择图片！', 1.5, 0)
+            }
+            else {
+                var albumId = $("#AlbumList").val();
+                if (albumId) {
+                    $("#isContinue").val("true");
+                    $(".tnui-waitUpload").hide();
+                    $(".tn-loading").show();
+                    $("#normalUploadForm").submit();
+                } else {
+                    art.dialog.tips("请新建一个相册！", 2, 0);
+                }
+            }
+        })
+
+        $(".tnui-removeFile").livequery("click", function () {
+            if ($(".tnui-removeFile").length >= 1 && $(this).prev().hasClass("tnui-haveFile")) {
+                $(this).parent().remove();
+                i--;
+                if (i < 0) {
+                    i = 0;
+                }
+                if (i == 0) {
+                    $(".tnui-removeFile").remove();
+                }
+                if (i == 9) {
+                    $(".tnui-normalUpload").append("<div class='tn-form-row tnui-waitUpload'><input class='photoFile' name='photoFile' type='file' accept='image/gif,image/jpeg,image/bmp,image/jpg,image/png'/></div>");
+                }
+            }
+        })
+
+        if ('@(errorMessage)' != 'null' && '@(errorMessage)' != 'success') {
+            art.dialog.tips('@(errorMessage)', 1.5, 0);
+        }
+        if ('@(errorMessage)' == 'success') {
+            art.dialog.tips('上传成功！', 1.5, 1);
+        }
+
+        $("#completeUpload").click(function () {
+            var photoIds = $("#photoIds").val();
+            if (photoIds == "") {
+                art.dialog.tips('请上传图片！', 1.5, 0)
+            } else {
+                var url = '@(SiteUrls.Instance().UploadEdit(spaceKey))';
+                window.location.href = url + "?photoIds=" + photoIds;
+            }
+        })
+
+        $(document).keyup(function (e) {
+            if (e.keyCode == 13) {
+                if ($(".photoFile").eq(0).val() == "") {
+                    art.dialog.tips('请选择图片！', 1.5, 0)
+                } else {
+                    var albumId = $("#AlbumList").val();
+                    if (albumId) {
+                        $("#isContinue").val("true");
+                        $(".tnui-waitUpload").hide();
+                        $(".tn-loading").show();
+                        $("#normalUploadForm").submit();
+                    } else {
+                        art.dialog.tips("请新建一个相册！", 2, 0);
+                    }
+                }
+            }
+        })
+
+    })
+
+</script>)

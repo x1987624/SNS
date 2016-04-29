@@ -1,0 +1,263 @@
+﻿@model PagingDataSet<AskAnswer>
+@{
+    Layout = "_ControlPanel";
+    
+    var userId = ViewData.Get<long?>("userId", null);
+    AuditStatus? auditStatus = Request.QueryString.Get<AuditStatus?>("auditStatus", null);
+}
+
+<div class="tn-block tnc-ctnborder">
+    <div class="tnc-main">
+        <div class="tnc-rightvar tn-open">
+            <div class="tnc-settings-icon" plugin="ShortcutMenu">
+                <a href="#"></a>
+            </div>
+            <div id="ManageUserRightMenu">
+                <div class="tnc-settings">
+                    @Html.AjaxAction("_ManageableDataDetail", "ControlPanel", new { area = "Common", applicationKey = AskConfig.Instance().ApplicationKey })
+                    @Html.Partial("_ManageRightMenuShortcut")                    
+                    @Html.AjaxAction("_StatisticDataDetail", "ControlPanel", new { area = "Common", applicationKey = AskConfig.Instance().ApplicationKey })
+                </div>
+            </div>
+        </div>
+        <div class="tnc-ctn-center">
+            <h1>
+                <span>回答管理</span></h1>
+            <div class="tnc-ctnright-list">
+                <div class="tn-manager-search tn-helper-clearfix">
+                    <div class="tnc-search-adminform">
+                        @using (Html.BeginForm("ManageAnswers", "ControlPanelAsk", FormMethod.Get))
+                        {
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">审核状态：</label>
+                                @(Html.EnumDropDownList<AuditStatus?>("auditStatus", auditStatus, "全部", new { @class = "tn-dropdownlist" }))
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">回答关键字：</label>
+                                @Html.TextBox("subjectKeyword", "", new { @class = "tn-textbox tn-input-medium tn-border-gray" })
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">作者：</label>
+                                 @Html.UserSelector("userId", userId)
+                            </div>              
+                            <div class="tn-form-row">
+                                <label class="tn-form-label"></label>
+                                @Html.Button("搜索", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { @class = "tn-button-text", id = "searchAnswer" })
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="tnc-content-manage">
+                    <div class="tn-list-header">
+                        <div class="tn-toolbar-area">
+                            @Html.LinkButton("通过审核", SiteUrls.Instance()._ApproveAnswer(true), iconType: IconTypes.SmallAccept, htmlAttributes: new { id = "audit-success" })
+                            @Html.LinkButton("不通过审核", SiteUrls.Instance()._ApproveAnswer(false), iconType: IconTypes.SmallStop, htmlAttributes: new { id = "audit-fail" })
+                            @Html.LinkButton("删除", SiteUrls.Instance()._DeleteAnswer(), iconType: IconTypes.SmallCross, htmlAttributes: new { id = "delete-Answers" })
+                        </div>
+                    </div>
+                    @if (Model == null || Model.Count() == 0)
+                    { 
+                        <div class="tn-no-data">
+                            没有查询到数据！</div>
+                    }
+                    else if (Model != null)
+                    {
+                       <form action="#" method="post" id="Form-Answer">
+                        <table class="tn-table-grid">
+                            <tbody>
+                                <tr class="tn-table-grid-header">
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        <input type="checkbox" class="tn-checkbox" id="select-all" name="checkbox" />
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">回答标题</th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">审核状态</th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">作者</th>
+                                     <th class="tn-border-gray tn-border-bottom tn-text-note">创建时间</th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">操作</th>
+                                </tr>
+                                @foreach (AskAnswer askAnswer in Model)
+                                {
+                                    if (askAnswer.Question == null)
+                                    {
+                                        continue;
+                                    }
+                                    <tr class="tn-table-grid-row">
+                                    
+                                        <td class="tn-border-gray tn-border-bottom tn-width-check">
+                                        @if (askAnswer.IsBest)
+                                        {
+                                            @Html.SipmleCheckBox("answerIds", askAnswer.AnswerId, htmlAttributes: new { @class = "tnui-answer-id", disabled = "disabled" })
+                                        }
+                                        else
+                                        { 
+                                            @Html.SipmleCheckBox("answerIds", askAnswer.AnswerId, htmlAttributes: new { @class = "tnui-answer-id" })
+                                        }                                            
+                                        </td>                                        
+                                                                               
+                                        <td class="tn-border-gray tn-border-bottom tn-width-auto">                                             
+                                            <p><a href="@SiteUrls.Instance().AskQuestionDetail(askAnswer.QuestionId)" target="_blank">@askAnswer.Question.Subject</a></p>
+                                        <p> @{
+                                                string Showstring = HtmlUtility.TrimHtml(askAnswer.Body, 80);
+                                                if (Showstring == "")
+                                                {
+                                                    Showstring="[图片]";                                                    
+                                                }
+                                                else
+                                                {
+                                                    Showstring = HtmlUtility.TrimHtml(askAnswer.Body, 80);
+                                                }
+                                                @Showstring;                                                                 
+                                              }   </p>                                                                     
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-auto tn-nowrap">
+                                            @Html.AuditStatusIcon(askAnswer.AuditStatus)
+                                            @if (askAnswer.IsBest)
+                                            {
+                                                <span class="tn-icon-colorful tn-icon-colorful-privilege tn-icon-inline" title="满意回答"></span>
+                                            } 
+                                        </td>                                        
+                                        <td class="tn-border-gray tn-border-bottom tn-width-user-name tn-nowrap">
+                                            @Html.Link(StringUtility.Trim(askAnswer.Author, 8), SiteUrls.Instance().AskUser(UserIdToUserNameDictionary.GetUserName(askAnswer.UserId)), askAnswer.Author, htmlAttributes: new { @class = "tn-user-name" }, navigateTarget: HyperLinkTarget._blank)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-datetime tn-nowrap">
+                                            @askAnswer.DateCreated.ToUserDateString(true)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-action2 tn-nowrap">
+                                            @Html.Link("编辑", SiteUrls.Instance()._EditAnswer(askAnswer.AnswerId), "编辑回答", htmlAttributes: new { id = "edit-site-category", plugin = "dialog", @class = "tn-item-link" })
+                                            @if (askAnswer.IsBest)
+                                            {
+                                                <span class="tn-border-gray tn-border-bottom tn-text-note">删除</span>
+                                            }
+                                            else
+                                            { 
+                                                @Html.Link("删除", SiteUrls.Instance()._DeleteAnswer(askAnswer.AnswerId), "删除回答", new { @class = "tn-item-link tnui-delete-answerid" })
+                                            }                                            
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        </form>
+                        <div class="tn-pagination">
+                            @Html.PageSizeDropdownList("PageSize")
+                            @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                            @Html.PagingResults(Model)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+
+        //处理火狐下浏览器刷新后复选框仍然选中
+        removeChecked();
+        function removeChecked() {
+            $(".tnui-answer-id").each(function () {
+                if ($(this).attr("checked")) {
+                    $(this).removeAttr("checked");
+                }
+            });
+            $("#select-all").removeAttr("checked");
+        }
+
+        $(".tn-more-options ul a.tn-item-link").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+
+        //给当前行添加样式
+        $(".tn-table-grid-row").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+
+        // 全选 全不选
+        $("#select-all").click(function () {
+            //设置下面复选框的状态
+            if ($(this).attr("checked")) {
+                $(".tnui-answer-id").each(function () {
+                    $(this).attr("checked", true);
+                });
+            } else {
+                $(".tnui-answer-id").each(function () {
+                    $(this).removeAttr("checked");
+                });
+            }
+        });
+
+        //点通过审核
+        $("a[id^='audit-']").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='answerIds']:checked").length) {
+                alert("请至少选择一条回答进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            $.post(url, $("form#Form-Answer").serialize(), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload();
+
+                });
+            });
+        });
+
+
+        //点批量删除
+        $("#delete-Answers").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='answerIds']:checked").length) {
+                alert("请至少选择一条回答进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            art.dialog.confirm('您确认要删除吗？', function () {
+                $.post(url, $("form#Form-Answer").serialize(), function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                        window.location.reload();
+                    });
+                });
+                removeChecked();
+            });
+        });
+
+        //单个删除
+        $('.tnui-delete-answerid').click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            art.dialog.confirm('您确认要删除吗？', function () {
+                $.post
+                (url, function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                        window.location.reload();
+                    }
+                    );
+                });
+            });
+        });
+
+        function getCheckedIds() {
+            var AnswerIds = "";
+            $(".tnui-answer-id").each(function () {
+                if ($(this).attr("checked")) {
+                    AnswerIds += $(this).val() + ",";
+                }
+            });
+            return AnswerIds;
+        }
+    });
+</script>)

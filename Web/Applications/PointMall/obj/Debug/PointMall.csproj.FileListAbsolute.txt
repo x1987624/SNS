@@ -1,0 +1,9 @@
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\PointMall\obj\Debug\PointMall.csprojResolveAssemblyReference.cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\PointMall\obj\Debug\Spacebuilder.PointMall.Resources.Resource.resources
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\PointMall\obj\Debug\PointMall.csproj.GenerateResource.Cache
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.PointMall.dll.config
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.PointMall.XML
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.PointMall.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.PointMall.pdb
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\PointMall\obj\Debug\Spacebuilder.PointMall.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\PointMall\obj\Debug\Spacebuilder.PointMall.pdb

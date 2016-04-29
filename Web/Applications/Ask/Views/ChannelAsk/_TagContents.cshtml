@@ -1,0 +1,35 @@
+﻿@model Tag
+@{
+    var followerCount = ViewData.Get<long>("followerCount", 0);
+    var answerCount = ViewData.Get<long>("answerCount", 0);
+}
+
+  <div class="tn-widget tn-bubble tn-bubble-arrow-top">
+    <div class="tn-bubble-arrow"><b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble"></b></div>
+    <div class="tn-bubble-content tn-widget-content tn-border-gray tn-corner-all">
+      <div class="tn-details tn-helper-clearfix">
+        @if(!string.IsNullOrEmpty(Model.FeaturedImage))
+        {
+            <div class="tn-figure"> 
+                <a href="###"><img alt="@Model.TagName" title="@Model.TagName" height="50" width="50" src="@SiteUrls.Instance().LogoUrl(Model.FeaturedImage, TenantTypeIds.Instance().Tag(), ImageSizeTypeKeys.Instance().Small())" /></a> 
+            </div>
+        }
+        <div class="tn-info">
+          <div class="tn-title">
+              <h4>@StringUtility.Trim(Model.TagName, 5)</h4>
+          </div>
+          <div class="tn-actions" style="height:25px;">
+            @if (UserContext.CurrentUser != null)
+            {
+                @Html.Action("_SubscribeTagButton", "ChannelAsk", new { userId = UserContext.CurrentUser.UserId, tagId = Model.TagId })
+            } 
+          </div>
+          <div class="tn-count"><em>关注：@followerCount</em><em>问题：@Model.ItemCount</em><em>回答：@answerCount</em></div>
+          <div class="tn-descrip">
+              <p>@HtmlUtility.TrimHtml(Model.Description,75)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

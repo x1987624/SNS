@@ -1,0 +1,44 @@
+﻿@model Tag
+@{
+    Layout = "app-detail-2cols";
+    Html.Style("~/Applications/Ask/Styles/app.css");
+    IUser currentUser = UserContext.CurrentUser;
+}
+@section Aside{
+    @Html.Action("_RelatedTags", "ChannelAsk", new { TagId = Model.TagId })
+    @Html.Action("_TagFollowersSide", "ChannelAsk", new { TagId = Model.TagId })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-tag-detail">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-ask-tag-wrap">
+            <div class="tn-details tn-helper-clearfix">
+                @if (!string.IsNullOrEmpty(Model.FeaturedImage))
+                {
+                    <div class="tn-figure">
+                        <a>
+                            <img width="100" height="100" alt="@Model.TagName" title="@Model.TagName" src="@SiteUrls.Instance().LogoUrl(Model.FeaturedImage, TenantTypeIds.Instance().Tag(), ImageSizeTypeKeys.Instance().Medium())" /></a>
+                    </div>
+                }
+                <div class="tn-info">
+                    <div class="tn-title">
+                        <div class="tn-icon-area">@Html.Icon(IconTypes.Label)</div>
+                        <div class="tn-actions">
+                            @if (currentUser != null)
+                            {
+                                @Html.Action("_SubscribeTagButton", "ChannelAsk", new { userId = currentUser.UserId, tagId = Model.TagId })
+                            }
+                        </div>
+                        <h4>@Model.TagName</h4>
+                    </div>
+                    <div class="tn-descrip">
+                        <p>@Html.Raw(Model.Description)</p>
+                    </div>
+                </div>
+            </div>
+            @{
+                ViewData["tagName"] = Model.TagName;
+            }
+            @Html.Partial("_Questions", ViewData)
+        </div>
+    </div>
+</div>

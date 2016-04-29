@@ -1,0 +1,21 @@
+﻿@{
+    var allCategories = ViewData.Get<List<Category>>("allCategories", null);
+}
+@if (allCategories != null && allCategories.Count() > 0)
+{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all ">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">词条分类</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <ul class="tn-list hr-list-son tn-helper-clearfix">
+                @foreach (Category category in allCategories)
+                {
+                        
+                    <li><a href="@SiteUrls.Instance().Pages(category.CategoryId)">@category.CategoryName</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+

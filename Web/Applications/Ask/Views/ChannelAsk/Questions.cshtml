@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "app-detail-2cols";
+    Html.Style("~/Applications/Ask/Styles/app.css");
+}
+@section Aside{
+    @Html.Action("_TagGroups", "ChannelAsk", new { topNum = 4, isShowBubble = false, isShowMore = true })
+}
+
+@Html.Partial("_Questions", ViewData)

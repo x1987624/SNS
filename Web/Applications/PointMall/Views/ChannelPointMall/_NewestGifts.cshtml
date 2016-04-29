@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PointGift>
+
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ass-commodity">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        <div class="tn-option">
+            <a href="@SiteUrls.Instance().Rank(sortBy:SortBy_PointGift.DateCreated_Desc)" >更多</a>
+        </div>
+        <h3 class="tn-helper-reset">
+            最新上架
+        </h3>
+    </div>
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <ul class="tn-photo-list tn-widget tn-helper-clearfix">
+            @foreach (var pointGift in Model)
+            {
+                <li class="tn-photo-item">
+                    <p class="tn-photo-wrap tn-widget-content tn-border-gray">
+                        <a href="@SiteUrls.Instance().GiftDetail(pointGift.GiftId)" target="_blank" title="@pointGift.Name">
+                            <img src="@SiteUrls.Instance().ImageUrl(pointGift.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Small())" alt="@pointGift.Name" width="100" /><span></span>
+                        </a>
+                    </p>
+                    <p class="tn-text-heading">
+                       <a target="_blank" title="@pointGift.Name" href="@SiteUrls.Instance().GiftDetail(pointGift.GiftId)"> @pointGift.Name</a></p>
+                    <p class="tn-text-note">
+                        <span class="tn-explain-icon"><span class="tn-icon-colorful tn-icon-colorful-coins">
+                        </span><span class="tn-icon-text">@pointGift.Price</span> </span>
+                    </p>
+                </li>
+            }
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div class="tn-no-data">
+            还没有最新上架的商品</div>
+    }
+</div>

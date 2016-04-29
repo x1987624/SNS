@@ -1,0 +1,43 @@
+﻿@{
+       Html.Style("~/Applications/Photo/Styles/app.css");
+       SelectList albumList = ViewData.Get<SelectList>("albumList", null);
+       string imgUrls = ViewData.Get<string>("imgUrls", null);
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<form id="captureImgForm">
+<table>
+<tr>
+<td><h3>收藏到相册</h3></td><td></td>
+</tr>
+<tr>
+<td>图片</td>
+<td>
+@Html.DropDownList("albumId", albumList, new { @class = "tn-dropdownlist tn-input-medium" })
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<textarea name="description" rows="3" cols="30"></textarea>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+ @Html.LinkButton("确定", "###", HighlightStyles.Primary, ButtonSizes.Large, htmlAttributes: new { id = "captureImg" })   
+</td>
+</tr>
+</table>
+<input type="hidden" name="imgUrls" value="@imgUrls" />
+</form>
+@Html.ScriptBlock(@<script>
+    $(function () {
+        $("#captureImg").click(function () {
+            var url = '@Url.Action("_CaptureOutSitePhoto")';
+            $.post(url, $("#captureImgForm").serialize(), function () {
+                window.close();
+            })
+        })
+    })
+</script>)
+

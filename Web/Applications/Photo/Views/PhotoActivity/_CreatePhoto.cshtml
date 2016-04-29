@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Photo>
+@{
+    Album album = ViewData.Get<Album>("Album", null);
+    IUser user = album.User;
+    Activity activity = ViewData.Get<Activity>("activity", null);
+    var isValid = ViewData.Get<bool>("isValid", false);
+}
+@if (Model.Count() > 0)
+{
+<li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom">
+    <div class="tn-list-item-area-left">
+        <div class="tn-avatar">
+            @{
+    HyperLinkTarget hyperLinkTarget;
+    if (UserContext.CurrentUser != null && user.UserId == UserContext.CurrentUser.UserId)
+    {
+        hyperLinkTarget = HyperLinkTarget._self;
+    }
+    else
+    {
+        hyperLinkTarget = HyperLinkTarget._blank;
+    }
+            }
+            @Html.ShowUserAvatar(user, AvatarSizeType.Small, true, hyperLinkTarget)
+        </div>
+    </div>
+    <div class="tn-list-item-area-main">
+            @Html.ActivityOperation(activity.ActivityId)       
+        <div class="tnc-dynamic-title">            
+            <a href="@SiteUrls.Instance().SpaceHome(user.UserId)" class="tn-user-name" target="@hyperLinkTarget" >@user.DisplayName</a>
+            @Html.IdentificationType(user.UserId)            
+            &nbsp;在相册<a href="@SiteUrls.Instance().AlbumDetailList(user.UserName, album.AlbumId)" class="tnc-mlrf">@album.AlbumName</a>中&nbsp;上传了照片
+          
+              @if (isValid)
+              {
+
+                  if (Model.Count() > 3)
+                  {
+                      for (int i = 0; i < 3; i++)
+                      {
+                        <a href="@SiteUrls.Instance().PhotoDetail(Model.ElementAt(i).PhotoId)" plugin="dialog" class="tnc-mlrf">@HtmlUtility.TrimHtml(Model.ElementAt(i).Description, 10)</a>
+                      }
+                  }
+                  else
+                  {
+                      foreach (Photo photo in Model)
+                      {
+                        <a href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" plugin="dialog" class="tnc-mlrf">@HtmlUtility.TrimHtml(photo.Description, 10)</a>
+                      }
+                  }
+
+              }
+              else
+              {
+                  <p class="tnc-mlrf">抱歉，您没有查看该照片的权限</p>                                           
+              }
+         
+        </div>    
+        @if (isValid)
+        {
+        <div class="tnc-dynamic-imgbox">
+            <a href="@SiteUrls.Instance().PhotoDetail(Model.ElementAt(0).PhotoId)" plugin="dialog" class="tnc-imgbox-bigshow"><img class="tnui-image-detail" width="450" src="@SiteUrls.Instance().ImageUrl(Model.ElementAt(0).RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P800())" alt=""></a>
+            <div class="tnc-imgbox_preview">
+            @{       
+            if (Model.Count() > 7)
+            {
+                for (int i = 1; i < 7; i++)
+                {
+                    Photo photo = null;
+                    photo = Model.ElementAt(i);
+                        <a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(Model.ElementAt(i).PhotoId)"><img src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" height="60" alt=""></a>
+                }
+            }
+            else
+            {
+                for (int i = 1; i < Model.Count(); i++)
+                {
+                    Photo photo = null;
+                    photo = Model.ElementAt(i);
+                        <a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(Model.ElementAt(i).PhotoId)"><img height="60" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" alt=""></a>      
+                }
+            }
+                  
+             }
+             <a href="@SiteUrls.Instance().AlbumDetailList(user.UserName, album.AlbumId)" class="tnc-imgbox-float tn-bg-light">共 @album.PhotoCount 张</a>  
+            </div>          
+        </div>   
+        }     
+    </div>
+</li>
+}

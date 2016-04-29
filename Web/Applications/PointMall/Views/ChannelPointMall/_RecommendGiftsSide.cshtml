@@ -1,0 +1,80 @@
+﻿@model IEnumerable<RecommendItem>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all spb-recommend-commodity">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <div class="tn-option">
+                @if (DIContainer.Resolve<Authorizer>().RecommendItem_Manage(TenantTypeIds.Instance().PointGift()))
+                {
+                    <a href="@SiteUrls.Instance()._ManageRecommendItems(new PointMallSettings().RecommendGiftTypeId)" plugin="dialog">管理</a>
+                }
+            </div>
+            <h3 class="tn-helper-reset">推荐商品</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <ul class="tn-list tn-trisect tn-helper-clearfix">
+                @foreach (RecommendItem item in Model)
+                {
+                    PointGift gift = item.GetPointGifts();
+                    <li class="tn-list-item tn-helper-clearfix">
+                        <div class="tn-list-item-area-left">
+                            <div class="tn-avatar">
+
+                                @if (!item.IsLink)
+                                {
+                                    if (string.IsNullOrEmpty(item.FeaturedImage))
+                                    {
+                                    <a target="_blank" title="@item.ItemName" href="@SiteUrls.Instance().GiftDetail(item.ItemId)">
+                                        <img width="50" alt="@item.ItemName" src="@SiteUrls.Instance().ImageUrl(gift.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Small())" />
+                                    </a>
+                                    }
+                                    else
+                                    {
+                                    <a target="_blank" title="@item.ItemName" href="@SiteUrls.Instance().GiftDetail(item.ItemId)">
+                                        <img width="50" alt="@item.ItemName" src="@SiteUrls.Instance().LogoUrl(item.FeaturedImage, TenantTypeIds.Instance().Recommend(), ImageSizeTypeKeys.Instance().Medium())" />
+                                    </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a target="_blank" title="@item.ItemName" href="@item.LinkAddress">
+                                        <img width="50" alt="@item.ItemName" src="@SiteUrls.Instance().LogoUrl(item.FeaturedImage, TenantTypeIds.Instance().Recommend(), ImageSizeTypeKeys.Instance().Medium())" />
+                                    </a> 
+                                }
+
+                            </div>
+                        </div>
+                        <div class="tn-list-item-area-main">
+
+                            @if (!item.IsLink)
+                            {
+                                <div class="tn-list-item-row tn-list-item-heading">
+                                    <p class="tn-helper-reset">
+                                        <a target="_blank" title="@item.ItemName" href="@SiteUrls.Instance().GiftDetail(item.ItemId)">@StringUtility.Trim(item.ItemName, 8)</a>
+                                    </p>
+                                </div>
+                                <div class="tn-list-item-row tn-list-item-summary">
+                                    <p class="tn-text-note">
+                                        <span class="tn-explain-icon">
+                                            <span class="tn-icon-colorful tn-icon-colorful-coins"></span>
+                                            <span class="tn-icon-text">@gift.Price</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="tn-list-item-row tn-list-item-heading">
+                                    <p class="tn-helper-reset">
+                                        <a target="_blank" title="@item.ItemName" href="@item.LinkAddress">@StringUtility.Trim(item.ItemName, 8)</a>
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+

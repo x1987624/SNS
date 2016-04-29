@@ -1,0 +1,1683 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.Microblog</name>
+    </assembly>
+    <members>
+        <member name="T:Spacebuilder.Microblog.MicroblogAtUserAssociatedUrlGetter">
+            <summary>
+            At用户关联项Url获取
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogAtUserAssociatedUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogOwnerDataGetter">
+            <summary>
+            微博ownerdatagetter
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogOwnerDataGetter.GetDataUrl(System.String,System.Nullable{System.Int64})">
+            <summary>
+            获取链接地址
+            </summary>
+            <param name="spaceKey">用户名</param>
+            <param name="ownerId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogOwnerDataGetter.DataKey">
+            <summary>
+            datakey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogOwnerDataGetter.DataName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogOwnerDataGetter.ApplicationId">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogTopicRecommendUrlGetter">
+            <summary>
+            微博推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogTopicRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogTopicRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogTenantAuthorizationHandler">
+            <summary>
+            帖吧租户权限验证处理器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogTenantAuthorizationHandler.IsTenantManager(Tunynet.Common.IUser,System.Int64)">
+            <summary>
+            判断是否为租户管理者
+            </summary>
+            <param name="currentUser">当前用户</param>
+            <param name="tenantOwnerId">租户拥有者Id</param>
+            <returns>true-是；false-不是</returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogTenantAuthorizationHandler.IsTenantMember(Tunynet.Common.IUser,System.Int64)">
+            <summary>
+            判断是否为租户普通成员
+            </summary>
+            <param name="currentUser">当前用户</param>
+            <param name="tenantOwnerId">租户拥有者Id</param>
+            <returns>true-是；false-不是</returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogApplicationStatisticDataGetter">
+            <summary>
+            帖吧应用数据Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogApplicationStatisticDataGetter.GetManageableDatas(System.String)">
+            <summary>
+            获取管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogApplicationStatisticDataGetter.GetStatisticDatas(System.String)">
+            <summary>
+            获取统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogTagUrlGetter">
+            <summary>
+            微博Url获取
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogTagUrlGetter.GetUrl(System.String,System.Int64)">
+            <summary>
+            获取链接
+            </summary>
+            <param name="tagName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogCommentUrlGetter">
+            <summary>
+            微博Url获取
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogCommentUrlGetter.GetCommentDetailUrl(System.Int64,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            获取评论详细显示url
+            </summary>
+            <remarks>如果无评论详细显示页面，则定位到评论列表的精确位置（需要考虑分页及性能，仅在真正需要浏览时才进行必要的计算）</remarks>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="id">评论Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogCommentUrlGetter.GetCommentedObjectName(System.Int64,System.String)">
+            <summary>
+            获取被评论对象名称
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogCommentUrlGetter.GetCommentedObject(System.Int64)">
+            <summary>
+            获取被评论对象(部分)
+            </summary>
+            <param name="commentedObjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogCommentUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.ChannelMicroblogController">
+            <summary>
+            频道微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._Header(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="tab"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController.Ranking">
+            <summary>
+            排行榜
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._BindThirdAccount(System.String)">
+            <summary>
+            绑定第三方帐号提示信息
+            </summary>
+            <param name="accountTypeKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController.Microblog(Spacebuilder.Microblog.SortBy_Microblog,System.Int64)">
+            <summary>
+            微博列表模式页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._TagGroups">
+            <summary>
+            获取标签分组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._GetNewerCount(System.Int64)">
+            <summary>
+            最新微博数
+            </summary>
+            <param name="lastMicroblogId">之前最后一条微博ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._GetNewerMicroblogs(System.Int64)">
+            <summary>
+            最新的微博
+            </summary>
+            <param name="lastMicroblogId">之前最后一条微博ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._List(System.Nullable{Spacebuilder.Microblog.SortBy_Microblog},System.Nullable{System.Int64},System.Int32)">
+            <summary>
+            微博排行列表
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="sortBy"></param>
+            <param name="tagGroupId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController.Waterfall">
+            <summary>
+            微博图片模式页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._Waterfall(System.Int32,System.String,System.Nullable{Tunynet.Common.MediaType},System.Nullable{System.Boolean},Spacebuilder.Microblog.SortBy_Microblog)">
+            <summary>
+            微博图片模式数据页
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="tenantTypeId"></param>
+            <param name="mediaType"></param>
+            <param name="isOriginal"></param>
+            <param name="sortBy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._WaterfallGetMicroblogByTagGroup(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            翻页获取微博(图片模式 按标签分组搜时)
+            </summary>
+            <param name="tagGroupId"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController.Search(Spacebuilder.Microblog.MicroblogFullTextQuery)">
+            <summary>
+            微博搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._GlobalSearch(Spacebuilder.Microblog.MicroblogFullTextQuery,System.Int32)">
+            <summary>
+            微博搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._QuickSearch(Spacebuilder.Microblog.MicroblogFullTextQuery,System.Int32)">
+            <summary>
+            微博快捷搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController.SearchAutoComplete(System.String,System.Int32)">
+            <summary>
+            微博搜索自动完成
+            </summary>
+            <param name="keyword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController.RebuildMicroblogIndex">
+            <summary>
+            重建用户索引，为测试用户搜索时的临时功能，待后台相关功能完成需删除
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._Comment(System.Int64,System.Int64,System.String,System.String,System.String)">
+            <summary>
+            评论
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._ChildComment(System.Nullable{System.Int64})">
+            <summary>
+            子级评论（首先加载评论控件。异步添加评论）
+            </summary>
+            <param name="parentId">父级id</param>
+            <returns>子级评论</returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._CommentList(System.String,System.Int64,System.Nullable{System.Int32},Tunynet.Common.SortBy_Comment,System.Nullable{System.Int64},System.Boolean,System.Boolean)">
+            <summary>
+            留言列表
+            </summary>
+            <returns>留言列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._OneComment(System.Int64)">
+            <summary>
+            获取一条评论
+            </summary>
+            <param name="id">评论id</param>
+            <returns>获取一条评论</returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController.Comment(Spacebuilder.Microblog.MicroblogCommentEditModel)">
+            <summary>
+            创建评论
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController.Topic(System.String)">
+            <summary>
+            话题详情页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._TopicMicroblogs(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            话题相关的微博列表
+            </summary>
+            <param name="tagId"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._RecommendTopic(System.Int32,System.String)">
+            <summary>
+            推荐话题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._TopTopics(System.Int32,System.Nullable{System.Boolean},System.Nullable{Tunynet.Common.SortBy_Tag})">
+            <summary>
+            指定数量的话题列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._HotFollower(System.Int32)">
+            <summary>
+            人气关注
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ChannelMicroblogController._RelevantMicroblog(System.Int32,System.String)">
+            <summary>
+            人气微博
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.GroupSpaceMicroblogController">
+            <summary>
+            群组微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupSpaceMicroblogController.Detail(System.String,System.Int64)">
+            <summary>
+            微博详细页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupSpaceMicroblogController._TopGroupTopics(System.String,System.Int32,System.Nullable{Tunynet.Common.SortBy_Tag})">
+            <summary>
+            群组话题
+            </summary>
+            <returns></returns>        
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupSpaceMicroblogController.TopicDetail(System.String,System.String)">
+            <summary>
+            话题详情页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogController">
+            <summary>
+            空间微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Create(System.String,System.String,System.Nullable{System.Int64},System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            创建微博
+            </summary>
+            <param name="spaceKey">空间标识</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <param name="content">微博内容</param>
+            <param name="imageUrl">图片Url</param>
+            <param name="isShare">是否为分享微博</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.Create(System.String,System.String,System.String,System.Int64,System.String)">
+            <summary>
+            创建微博
+            </summary>
+            <param name="spaceKey">当前空间用户</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <param name="imageUrl">图片地址</param>
+            <param name="microblogBody">微博内容</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.DownloadRemoteImage(System.String,System.Int64)">
+            <summary>
+            下载远程图片
+            </summary>
+            <param name="imageUrl">将要下载的图片地址</param>
+            <param name="microblogId">微博Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.StreamToBytes(System.IO.Stream)">
+            <summary> 
+            将 Stream 转成 byte[] 
+            </summary> 
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Create_AddMusic">
+            <summary>
+            添加音乐
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Create_AddTopic">
+            <summary>
+            微博话题列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Create_AddVideo">
+            <summary>
+            添加视频
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Create_ListImages(System.String,System.Int64)">
+            <summary>
+            上传图片 - 列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Create_UploadImages(System.String)">
+            <summary>
+            上传图片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Create_DeleteAttachment(System.String,System.Int64)">
+            <summary>
+            删除附件
+            </summary>
+            <param name="spaceKey">空间所有者Key</param>
+            <param name="attachmentId">附件Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._ForwardMicroblog(System.String,System.Int64)">
+            <summary>
+            转发微博控件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.ForwardMicroblog(System.String)">
+            <summary>
+            转发微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.Delete(System.String,System.Int64)">
+            <summary>
+            删除当前微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.Mine(System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            我的微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._ListMyMicroblogs(System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            我的微博局部页
+            </summary>
+            <param name="spaceKey"></param>
+            <param name="type"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.ListReferred(System.String,System.Nullable{System.Int32})">
+            <summary>
+            提到我的
+            </summary>
+            <param name="spaceKey">空间标识</param>
+            <param name="pageIndex">页码</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.Favorite(System.String,System.Int64,System.Int64)">
+            <summary>
+             添加收藏、取消收藏
+            </summary>
+            <param name="spaceKey">spaceKey</param>
+            <param name="itemId">微博Id</param>
+            <param name="userId">用户Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.ListFavorites(System.String,System.Nullable{System.Int32})">
+            <summary>
+             我的收藏页面
+            </summary>
+            <param name="spaceKey">spaceKey</param>
+            <param name="pageIndex">页数</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.Detail(System.String,System.Int64)">
+            <summary>
+            微博详细页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Detail(System.String,System.Int64)">
+            <summary>
+            微博详细显示局部视图
+            </summary>
+            <param name="spaceKey"></param>
+            <param name="microblogId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._Comment(System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            评论
+            </summary>
+            <param name="commentedObjectId">评论对象Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="originalAuthor">作者</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._FollowTopics(System.String,System.Nullable{System.Int32})">
+            <summary>
+            关注话题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._UserInfo">
+            <summary>
+            用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._UserStatus(System.String)">
+            <summary>
+            用户状态菜单控件
+            </summary>
+            <param name="spaceKey">空间标识</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController._TopFollowedUsers(System.String,System.Int32)">
+            <summary>
+            关注的用户菜单控件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.ValidateContentLength(System.String)">
+            <summary>
+            验证内容的长度
+            </summary>
+            <param name="body">待验证的内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogController.TextFilter(System.String,System.Boolean@)">
+            <summary>
+            内容过滤
+            </summary>
+            <param name="body">待过滤内容</param>
+            <param name="isBanned">是否禁止提交</param>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogActivityController">
+            <summary>
+            微博动态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogActivityController._Microblog_Activity(System.Int64)">
+            <summary>
+            微博列表，单条空间 - 通过动态获取
+            </summary>
+            <param name="activityId">动态Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogActivityController._Microblog(System.Int64)">
+            <summary>
+            微博列表，单条控件
+            </summary>
+            <param name="microblogId">微博Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogActivityController._Microblog_Attachments(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            微博列表，单条控件 - 附件列表
+            </summary>
+            <param name="microblogId">微博Id</param>
+            <param name="forwardMicroblogId">转发微博Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogActivityController._Microblog_Attachments_Images(System.Int64,System.Int32,System.Nullable{System.Int64})">
+            <summary>
+            微博列表，单条控件 - 附件列表 - 图片
+            </summary>
+            <param name="forwardMicroblogId">转发微博Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogActivityController._Microblog_Attachments_Video(System.Int64,System.String,System.Nullable{System.Int64})">
+            <summary>
+            微博列表，单条控件 - 附件列表 - 视频
+            </summary>
+            <param name="forwardMicroblogId">转发微博Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogActivityController._Microblog_Attachments_Music(System.Int64,System.String,System.Nullable{System.Int64})">
+            <summary>
+            微博列表，单条控件 - 附件列表 - 音乐
+            </summary>
+            <param name="forwardMicroblogId">转发微博Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogActivityController._NewActivity">
+            <summary>
+            获取最新的一条微博动态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.ControlPanelMicroblogController">
+            <summary>
+            微博后台控制面板
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.UpdateMicroblogAuditStatus(System.String,System.Boolean)">
+            <summary>
+            批量更新审核状态
+            </summary>
+            <param name="microblogIds">微博ID集合</param>
+            <param name="isApproved">是否审核通过</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.DeleteMicroblogs(System.String)">
+            <summary>
+            删除微博
+            </summary>
+            <param name="microblogIds">微博ID集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.ManageMicroblogs(System.Int32,System.String,System.String,System.Nullable{Tunynet.Common.MediaType},System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.String,System.Nullable{System.Int64})">
+            <summary>
+            管理微博
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.EditTopic(System.Int64)">
+            <summary>
+            添加/编辑话题页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.EditTopic(Spacebuilder.Common.TagEditModel)">
+            <summary>
+            添加/编辑话题
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.DeleteTopics(System.String)">
+            <summary>
+            删除微博话题
+            </summary>
+            <param name="topicIds">话题ID集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController._SetTopicGroup(System.String)">
+            <summary>
+            设置话题分组页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController._SetTopicGroup(System.String,System.Int64)">
+            <summary>
+            设置话题分组
+            </summary>
+            <param name="topicIds">话题ID集合</param>
+            <param name="groupId">分组ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.ManageMicroblogTopics(System.String,System.Nullable{System.Boolean},System.Int32,System.Int32)">
+            <summary>
+            管理微博话题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.GetTagGroupSelectList(System.Int64,System.String)">
+            <summary>
+            维护所属下拉框及分组下拉框的状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController._EditTopicGroup(System.Int64)">
+            <summary>
+            添加/编辑标签分组页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController._EditTopicGroup(Spacebuilder.Common.TagGroupEditModel)">
+            <summary>
+            添加/编辑标签分组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.DeleteTopicGroups(System.String)">
+            <summary>
+            删除话题分组
+            </summary>
+            <param name="topicGroupIds">分组ID集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.ControlPanelMicroblogController.ManageTopicGroups">
+            <summary>
+            管理话题分组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.EventModules.MicroblogOperationLogEventModule">
+            <summary>
+            处理微博操作日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.EventModules.MicroblogOperationLogEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.EventModules.MicroblogOperationLogEventModule.MicroblogOperationLogEventModule_After(Spacebuilder.Microblog.MicroblogEntity,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            微博操作日志事件处理
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.EventModules.MicroblogIndexEventModule">
+            <summary>
+            处理微博索引的EventMoudle
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.EventModules.MicroblogEventModule">
+            <summary>
+            处理微博相关事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.EventModules.MicroblogEventModule.RegisterEventHandler">
+            <summary>
+            注册事件处理程序 
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.EventModules.MicroblogEventModule.MicroblogActivityModule_After(Spacebuilder.Microblog.MicroblogEntity,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            微博动态
+            </summary>
+            <param name="sender">微博实体</param>
+            <param name="eventArgs">事件参数</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.EventModules.MicroblogEventModule.MicroblogPointModule_After(Spacebuilder.Microblog.MicroblogEntity,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            审核状态发生变化时处理积分
+            </summary>
+            <param name="sender">微博实体</param>
+            <param name="eventArgs">时间参数</param>
+        </member>
+        <member name="T:Spacebuilder.Microblog.AuthorizerExtension">
+            <summary>
+            Microblog的权限验证
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.AuthorizerExtension.Microblog_Create(Spacebuilder.Common.Authorizer,System.String,System.Int64)">
+            <summary>
+            是否具有创建Microblog的权限
+            </summary>
+            <param name="authorizer">被扩展对象</param>
+            <param name="tenantTypeId">微博实体</param>
+            <param name="ownerId">拥有者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.AuthorizerExtension.Microblog_Create(Spacebuilder.Common.Authorizer,System.String@,System.String,System.Int64)">
+            <summary>
+            是否具有创建Microblog的权限
+            </summary>
+            <param name="authorizer">被扩展对象</param>
+            <param name="tenantTypeId">微博实体</param>
+            <param name="ownerId">拥有者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.AuthorizerExtension.Microblog_Delete(Spacebuilder.Common.Authorizer,Spacebuilder.Microblog.MicroblogEntity)">
+            <summary>
+            是否具有删除Microblog的权限
+            </summary>        
+            <param name="authorizer">被扩展对象</param>
+            <param name="microblog">微博实体</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.RecommendItemExtensionByMicroblogTopic">
+            <summary>
+            推荐项类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.RecommendItemExtensionByMicroblogTopic.GetMicroblogTopic(Tunynet.Common.RecommendItem)">
+            <summary>
+            获取微博话题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogApplication.UnInstall(System.String,System.Int64)">
+            <summary>
+            卸载应用
+            </summary>
+            <param name="presentAreaKey">呈现区域</param>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogApplication.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户调用方法
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="takeOverUserName">需要转移给的用户</param>
+            <param name="isTakeOver">是否转移</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogConfig.Instance">
+            <summary>
+            获取MicroblogConfig实例
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogConfig.Initialize(Autofac.ContainerBuilder)">
+            <summary>
+            应用初始化
+            </summary>
+            <param name="containerBuilder">容器构建器</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogConfig.Load">
+            <summary>
+            应用加载
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogConfig.ApplicationId">
+            <summary>
+            ApplicationId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogConfig.ApplicationKey">
+            <summary>
+            ApplicationKey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogConfig.ApplicationType">
+            <summary>
+            获取SocialDiscussApplication实例
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.Resources.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.Resources.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.Resources.Resource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.Resources.Resource.ApplicationName_GroupSpace_Microblog">
+            <summary>
+              查找类似 公开发言 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.Resources.Resource.ApplicationName_Microblog">
+            <summary>
+              查找类似 微博 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.Resources.Resource.CountObject_Microblog">
+            <summary>
+              查找类似 微博 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.Resources.Resource.Description_ModeratedUser_CreateMicroblogDenied">
+            <summary>
+              查找类似 您现在处于管制状态，不能发微博 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogFullTextQuery">
+            <summary>
+            微博全文检索条件
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogFullTextQuery.SortBy">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogFullTextQuery.pageIndex">
+            <summary>
+            当前显示页面页码
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogFullTextQuery.PageSize">
+            <summary>
+            每页显示记录数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogFullTextQuery.Keywords">
+            <summary>
+            关键词集合
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogFullTextQuery.Keyword">
+            <summary>
+            关键词
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogFullTextQuery.IsFuzzy">
+            <summary>
+            是否模糊查询(true查Body，false查Topic)
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogFullTextQuery.SearchTerm">
+            <summary>
+            搜索条件：全部 原创 含图 含音乐 含视频
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogFullTextQuery.IsGroup">
+            <summary>
+            不查询群组的
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogFullTextQuery.SearchRange">
+            <summary>
+            搜索范围:微博内容、话题
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogSearchSortBy">
+            <summary>
+            微博搜索排序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchSortBy.Relevance">
+            <summary>
+            按相关度倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchSortBy.ReplyCount_Desc">
+            <summary>
+            按回复数倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchSortBy.ForwardedCount_Desc">
+            <summary>
+            按被转发数倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchSortBy.DateCreated_Desc">
+            <summary>
+            按创建时间倒序
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogSearchTerm">
+            <summary>
+            微博搜索条件
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchTerm.ALL">
+            <summary>
+            全部
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchTerm.ISORIGINALITY">
+            <summary>
+            原创
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchTerm.HASPHOTO">
+            <summary>
+            含图
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchTerm.HASMUSIC">
+            <summary>
+            含音乐
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchTerm.HASVIDEO">
+            <summary>
+            含视频
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogSearchRange">
+            <summary>
+            微博搜索范围
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchRange.BODY">
+            <summary>
+            微博内容
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Microblog.MicroblogSearchRange.TOPIC">
+            <summary>
+            微博话题
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogIndexDocument">
+            <summary>
+            微博索引文档
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogIndexDocument.Convert(Spacebuilder.Microblog.MicroblogEntity)">
+            <summary>
+            MicroblogEntity转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="microblog">微博实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogIndexDocument.Convert(System.Collections.Generic.IEnumerable{Spacebuilder.Microblog.MicroblogEntity})">
+            <summary>
+            MicroblogEntity批量转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="microblogs">微博实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogSearcher">
+            <summary>
+            微博搜索器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.#ctor(System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">Searcher名称</param>
+            <param name="indexPath">索引文件所在路径（支持"~/"及unc路径）</param>
+            <param name="asQuickSearch">是否作为快捷搜索</param>
+            <param name="displayOrder">显示顺序</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.GlobalSearchActionUrl(System.String)">
+            <summary>
+            处理全局搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.QuickSearchActionUrl(System.String)">
+            <summary>
+            处理快捷搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.PageSearchActionUrl(System.String)">
+            <summary>
+            处理当前应用搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.RebuildIndex">
+            <summary>
+            重建索引
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.Insert(Spacebuilder.Microblog.MicroblogEntity)">
+            <summary>
+            添加索引
+            </summary>
+            <param name="microblog">待添加的微博</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.Insert(System.Collections.Generic.IEnumerable{Spacebuilder.Microblog.MicroblogEntity})">
+            <summary>
+            添加索引
+            </summary>
+            <param name="microblogs">待添加的微博</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.Delete(System.Int64)">
+            <summary>
+            删除索引
+            </summary>
+            <param name="microblogId">待删除的微博Id</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.Delete(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除索引
+            </summary>
+            <param name="microblogIds">待删除的微博Id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.Update(Spacebuilder.Microblog.MicroblogEntity)">
+            <summary>
+            更新索引
+            </summary>
+            <param name="microblog">待更新的微博</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.Update(System.Collections.Generic.IEnumerable{Spacebuilder.Microblog.MicroblogEntity})">
+            <summary>
+            更新索引
+            </summary>
+            <param name="microblogs">待更新的微博集合</param>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.Search(Spacebuilder.Microblog.MicroblogFullTextQuery)">
+            <summary>
+            微博分页搜索
+            </summary>
+            <param name="query">搜索条件</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.AutoCompleteSearch(System.String,System.Int32)">
+            <summary>
+            获取匹配的前几条话题(标签)
+            </summary>
+            <param name="tagName">要匹配的话题(标签)</param>
+            <param name="topNumber">前N条</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogSearcher.BuildLuceneSearchBuilder(Spacebuilder.Microblog.MicroblogFullTextQuery)">
+            <summary>
+            根据微博搜索查询条件构建Lucene查询条件
+            </summary>
+            <param name="userQuery"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogSearcher.AsQuickSearch">
+            <summary>
+            是否作为快捷搜索
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogSearcher.SearchEngine">
+            <summary>
+            关联的搜索引擎实例
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogSearcher.Code">
+            <summary>
+            搜索器的唯一标识
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogSearcher.IsDisplay">
+            <summary>
+            是否前台显示
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogSearcher.DisplayOrder">
+            <summary>
+            显示顺序
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogSearcher.IndexPath">
+            <summary>
+            Lucene索引路径（完整物理路径，支持unc）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogSearcher.IsBaseOnLucene">
+            <summary>
+            是否基于Lucene实现
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogSearcher.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.IMicroblogUrlGetter">
+            <summary>
+            贴吧中获取连接的接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.IMicroblogUrlGetter.IsPrivate(System.Int64)">
+            <summary>
+            是否为私有状态
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.IMicroblogUrlGetter.GetOwnerName(System.Int64)">
+            <summary>
+            拥有者名称
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.IMicroblogUrlGetter.TopicDetail(System.String,System.Int64)">
+            <summary>
+            话题详细页
+            </summary>
+            <param name="tagName">标签名</param>
+            <param name="ownerId">拥有者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.IMicroblogUrlGetter.MicroblogDetail(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            微博详细显示页
+            </summary>
+            <param name="spaceKey"></param>
+            <param name="MicroblogId"></param>
+            <param name="commentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.IMicroblogUrlGetter.GetOwnerUrl(System.Int64)">
+            <summary>
+            获取拥有者链接
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.IMicroblogUrlGetter._ManageSubMenu">
+            <summary>
+            后台快捷操局部页面的连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Microblog.IMicroblogUrlGetter.TenantTypeId">
+            <summary>
+            租户类型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.IMicroblogUrlGetter.ActivityOwnerType">
+            <summary>
+            动态拥有者类型
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupUrlGetter.IsPrivate(System.Int64)">
+            <summary>
+            是否为私有动态
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupUrlGetter.GetOwnerName(System.Int64)">
+            <summary>
+            拥有者名称
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupUrlGetter.TopicDetail(System.String,System.Int64)">
+            <summary>
+            群组话题详细页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupUrlGetter.MicroblogDetail(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            微博详细显示页
+            </summary>
+            <param name="spaceKey"></param>
+            <param name="microblogId"></param>
+            <param name="commentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupUrlGetter.GetOwnerUrl(System.Int64)">
+            <summary>
+            获取拥有者链接
+            </summary>
+            <param name="tenantTypeId"></param>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.GroupUrlGetter._ManageSubMenu">
+            <summary>
+            后台导航
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Microblog.GroupUrlGetter.TenantTypeId">
+            <summary>
+            租户类型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.GroupUrlGetter.ActivityOwnerType">
+            <summary>
+            动态拥有者类型
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogBodyProcessor">
+            <summary>
+            微博正文解析器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogBodyProcessor.Process(System.String,System.String,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            内容处理
+            </summary>
+            <param name="body">待处理内容</param>
+            <param name="associateId">待处理相关项Id</param>
+            <param name="userId">相关项作者</param>
+            <param name="ownerId">拥有者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogBodyProcessor.AtUserTagGenerate(System.String,System.String)">
+            <summary>
+            生成AtUserHtml标签
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="displayName">显示名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogBodyProcessor.UrlTagGenerate(System.String,System.Int64,System.Int64,Tunynet.Common.ParsedMedia)">
+            <summary>
+            解析Url
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Common.SiteUrlsExtensions">
+            <summary>
+            微博Url配置
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._BindThirdAccount(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            绑定第三方帐号提示信息
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._UploadImages(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            上传图片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._ListImages_Microblog(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            上传图片列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._ListTopics(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            话题列表（新建话题，热门话题）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._AddMusic(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            添加音乐
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._AddVideo(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            添加视频
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._CreatMicroblog(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            新建微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.ShowMicroblog(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            微博详细显示页面
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.GetMicroblogHotWords(Spacebuilder.Common.SiteUrls,System.Int32)">
+            <summary>
+            获取搜索热词
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.GetMicroblogSearchHistories(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            获取搜索历史
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.MicroblogSearch(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            微博搜索
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.MicroblogGlobalSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            微博全局搜索
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._DeleteAttachment_Microblog(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            删除附件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._AddFollowTopic(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            添加我关注的话题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.ManageMicroblogs(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String)">
+            <summary>
+            根据审核状态搜索微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.DeleteMicroblogs(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            删除微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.UpdateMicroblogAuditStatus(Spacebuilder.Common.SiteUrls,System.Nullable{System.Boolean},System.String)">
+             <summary>
+            更新审核状态
+             </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.ManageMicroblogTopics(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            管理微博话题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.ManageTopicGroups(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            管理话题分组
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.DeleteTopics(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            删除微博话题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.EditTopic(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            添加、编辑话题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._SetTopicGroup(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            设置话题分组页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._SetTopicGroup(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            设置话题分组
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._EditTopicGroup(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            添加、编辑话题分组
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.DeleteTopicGroups(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            删除话题分组
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.Mine(Spacebuilder.Common.SiteUrls,System.String,System.String)">
+            <summary>
+            我的微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._ListMyMicroblogs(Spacebuilder.Common.SiteUrls,System.String,System.String)">
+            <summary>
+            我的微博局部页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.ListReferred(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            我的微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.ListFavorites(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            我的收藏
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.Delete(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            删除当前微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.Favorite(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.Int64)">
+            <summary>
+            收藏微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._ForwardMicroblog(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            转发微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._Microblog(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            微博显示控件（列表）
+            </summary>
+            <param name="siteUrls">被扩展对象</param>
+            <param name="microblogId">微博Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._Microblog_Attachments_Images(Spacebuilder.Common.SiteUrls,System.Int64,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            微博图片列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._Microblog_Attachments_Video(Spacebuilder.Common.SiteUrls,System.Int64,System.Int64,System.String,System.Nullable{System.Int64})">
+            <summary>
+            视频展示
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._Microblog_Attachments_Music(Spacebuilder.Common.SiteUrls,System.Int64,System.Int64,System.String,System.Nullable{System.Int64})">
+            <summary>
+            音乐展示
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._Comment_Microblog(Spacebuilder.Common.SiteUrls,System.Int64,System.Int64,System.String,Tunynet.Common.SortBy_Comment,System.String,System.String)">
+            <summary>
+            评论控件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._GetNewerCount(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            获取最新的微博数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._ListNewerActivities(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            获取最新的微博动态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._ListMoreActivities(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            获取更多最新的动态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.Microblog(Spacebuilder.Common.SiteUrls,Spacebuilder.Microblog.SortBy_Microblog,System.Int64)">
+            <summary>
+            微博广场首页（列表模式）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._List(Spacebuilder.Common.SiteUrls,System.Nullable{Spacebuilder.Microblog.SortBy_Microblog},System.Nullable{System.Int64},System.Int32)">
+            <summary>
+            微博列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._NewerMicroblogList(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            最新微博
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._GetNewerMicroblogCount(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            最新微博数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.MicroblogWaterfall(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            微博广场瀑布流页（图片模式）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._Waterfall(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            微博广场瀑布流数据页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._WaterfallGetMicroblogByTagGroup(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            标签分组微博(图片模式)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.MicroblogRanking(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            微博排行榜
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.MicroblogTopic(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            微博话题详细页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._TopicMicroblogs(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            微博话题详细页中的微博列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.GroupTopic(Spacebuilder.Common.SiteUrls,System.String,System.String)">
+            <summary>
+            群组话题详细页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions.GroupMicroblogDetail(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            微博详细显示页面
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._MicroblogCommentList(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.Int32,Tunynet.Common.SortBy_Comment)">
+            <summary>
+            微博的评论列表
+            </summary>
+            <param name="url"></param>
+            <param name="tenantType">租户类型id</param>
+            <param name="commentedObjectId">被评论对象的id</param>
+            <param name="pageIndex">被评论的页码</param>
+            <param name="sortBy">排序方式</param>
+            <returns>微博的评论列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtensions._MicroblogOneComment(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            微博中获取一条评论
+            </summary>
+            <returns>获取一条评论</returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogUrlGetter.IsPrivate(System.Int64)">
+            <summary>
+            是否为私有动态
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogUrlGetter.TopicDetail(System.String,System.Int64)">
+            <summary>
+            微博话题详细页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogUrlGetter.MicroblogDetail(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            微博详细显示页
+            </summary>
+            <param name="spaceKey"></param>
+            <param name="MicroblogId"></param>
+            <param name="commentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogUrlGetter.GetOwnerName(System.Int64)">
+            <summary>
+            拥有者名称
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogUrlGetter.GetOwnerUrl(System.Int64)">
+            <summary>
+            获取拥有者链接
+            </summary>
+            <param name="tenantTypeId"></param>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogUrlGetter._ManageSubMenu">
+            <summary>
+            微博后台导航
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogUrlGetter.TenantTypeId">
+            <summary>
+            租户类型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogUrlGetter.ActivityOwnerType">
+            <summary>
+            动态拥有者类型
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogUrlGetterFactory">
+            <summary>
+            微薄中获取连接的接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogUrlGetterFactory.Get(System.String)">
+            <summary>
+            获取连接的方法
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <returns>获取连接的实例</returns>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogCommentEditModel">
+            <summary>
+            微博评论的实体
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogCommentEditModel.OriginalAuthor">
+            <summary>
+            原作者名字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogCommentEditModel.Id">
+            <summary>
+            当前评论的id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogCommentEditModel.ForwardMicrobo">
+            <summary>
+            是否转发微博
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Microblog.MicroblogCommentEditModel.CommentOriginalAuthor">
+            <summary>
+            是否评论原作者
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Microblog.MicroblogCommentExtensions">
+            <summary>
+            微博评论的扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Microblog.MicroblogCommentExtensions.AsMicroblogCommentEditModel(Tunynet.Common.Comment)">
+            <summary>
+            转换成MicroblogCommentEditModel
+            </summary>
+            <param name="comment"></param>
+            <returns>转换之后的EditModel</returns>
+        </member>
+    </members>
+</doc>

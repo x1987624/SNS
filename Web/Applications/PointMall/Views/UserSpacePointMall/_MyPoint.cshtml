@@ -1,0 +1,28 @@
+﻿@{
+    IUser user = UserContext.CurrentUser;
+    int tradePoints = user.TradePoints;
+    int experiencePoints = user.ExperiencePoints;
+    int reputationPoints = user.ReputationPoints;
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-my-point">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="tn-info-part">
+            <dl>
+                <dt>综合积分：</dt>
+                <dd> @(tradePoints + experiencePoints + reputationPoints)个</dd>
+            </dl>
+            <dl>
+                <dt>金币：</dt>
+                <dd>@tradePoints 个</dd>
+            </dl>
+            <dl>
+                <dt>经验：</dt>
+                <dd>@experiencePoints 点</dd>
+            </dl>
+            <dl>
+                <dt>威望：</dt>
+                <dd>@reputationPoints 点</dd>
+            </dl>
+        </div>
+    </div>
+</div>

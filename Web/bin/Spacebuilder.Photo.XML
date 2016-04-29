@@ -1,0 +1,3396 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.Photo</name>
+    </assembly>
+    <members>
+        <member name="T:Spacebuilder.Photo.AlbumRecommendUrlGetter">
+            <summary>
+            相册推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoCommentUrlGetter.GetCommentedObjectName(System.Int64,System.String)">
+            <summary>
+            获取被评论对象名称
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoCommentUrlGetter.GetCommentedObject(System.Int64)">
+            <summary>
+            获取被评论对象(部分)
+            </summary>
+            <param name="commentedObjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoCommentUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoOwnerDataGetter">
+            <summary>
+            照片的用户数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoOwnerDataGetter.GetDataUrl(System.String,System.Nullable{System.Int64})">
+            <summary>
+            获取链接地址
+            </summary>
+            <param name="spaceKey">用户名</param>
+            <param name="ownerId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoOwnerDataGetter.DataKey">
+            <summary>
+            datakey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoOwnerDataGetter.DataName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoOwnerDataGetter.ApplicationId">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoRecommendUrlGetter">
+            <summary>
+            照片推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoApplicationStatisticDataGetter">
+            <summary>
+            相册应用数据获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoApplicationStatisticDataGetter.GetManageableDatas(System.String)">
+            <summary>
+            获取相册管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>管理数据列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoApplicationStatisticDataGetter.GetStatisticDatas(System.String)">
+            <summary>
+            获取相册统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>统计数据列表</returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoSettings">
+            <summary>
+            相册设置
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSettings.RecommendAlbumTypeId">
+            <summary>
+            相册推荐类型ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSettings.RecommendPhotoTypeId">
+            <summary>
+            照片推荐类型ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSettings.RecommendTagTypeId">
+            <summary>
+            标签推荐类型ID
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoTagUrlGetter">
+            <summary>
+            相册标签云Url获取
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoTagUrlGetter.GetUrl(System.String,System.Int64)">
+            <summary>
+            获取链接
+            </summary>
+            <param name="tagName"></param>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.Controllers.PhotoActivityController">
+            <summary>
+            相册动态控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.PhotoActivityController._CreatePhoto(System.Int64)">
+            <summary>
+            创建照片动态
+            </summary>
+            <param name="ActivityId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.PhotoActivityController._CommentPhoto(System.Int64)">
+            <summary>
+            评论照片动态
+            </summary>
+            <param name="ActivityId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.PhotoActivityController._CreatePhotoLabel(System.Int64)">
+            <summary>
+            创建圈人动态
+            </summary>
+            <param name="ActivityId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.Controllers.ChannelPhotoController">
+            <summary>
+            相册频道控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.Home">
+            <summary>
+            首页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._Photos(System.String,System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Int32,System.Int32)">
+            <summary>
+            照片排行瀑布流
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.New">
+            <summary>
+            照片排行-最新
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.Essential">
+            <summary>
+            照片排行-精选
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.Hot">
+            <summary>
+            照片排行-热点
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.HotComment">
+            <summary>
+            照片排行-热评
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.Favorite">
+            <summary>
+            照片排行-喜欢
+            </summary>  
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.TagNew(System.String)">
+            <summary>
+            标签下的最新照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.TagHot(System.String)">
+            <summary>
+            标签下的热门照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.TagEssential(System.String)">
+            <summary>
+            标签下的精华照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.Tags">
+            <summary>
+            标签地图
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.Detail(System.Int64)">
+            <summary>
+            照片详细显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._DetailPhotoSide(System.Int64)">
+            <summary>
+            照片详细页面侧边
+            </summary>
+            <param name="photoId">照片id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._SetPhotoDescription(System.Int64,System.String)">
+            <summary>
+            设置照片描述信息
+            </summary>
+            <param name="photoId">被设置的id</param>
+            <param name="description">设置的描述</param>
+            <returns>是否设置成功</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._LatestPhotos(System.Int32)">
+            <summary>
+            标签云图的右边栏的最新照片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._ButtonView(System.Int64)">
+            <summary>
+            相册瀑布流的分享，喜欢，评论按钮
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._ButtonViewForSearch(System.Int64)">
+            <summary>
+            相册搜索瀑布流的分享，喜欢，评论按钮
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._SearchWaterFall(Spacebuilder.Photo.PhotoFullTextQuery,System.Int32,System.Int32)">
+            <summary>
+            全文检索瀑布流
+            </summary>
+            <param name="query"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.Search(Spacebuilder.Photo.PhotoFullTextQuery)">
+            <summary>
+            照片搜索
+            </summary>
+            <param name="query">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._GlobalSearch(Spacebuilder.Photo.PhotoFullTextQuery,System.Int32)">
+            <summary>
+            照片全局搜索
+            </summary>
+            <param name="query">搜索条件</param>
+            <param name="topNumber">显示数目</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._QuickSearch(Spacebuilder.Photo.PhotoFullTextQuery,System.Int32)">
+            <summary>
+            快捷搜索
+            </summary>
+            <param name="query"></param>
+            <param name="topNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.SearchAutoComplete(System.String,System.Int32)">
+            <summary>
+            搜索自动完成
+            </summary>
+            <param name="keyword">关键词</param>
+            <param name="topNumber">数目</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.CreatPhotoLabel(System.String,System.Double,System.Double,System.Double,System.Double,System.Int64)">
+            <summary>
+            创建圈人
+            </summary>
+            <param name="userId">被圈的用户</param>
+            <param name="height">圈的高度</param>
+            <param name="width">圈的宽度</param>
+            <param name="left">左边距</param>
+            <param name="top">上边距</param>
+            <param name="photoId">照片的id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.GetPhotoLabel(System.Int64)">
+            <summary>
+            获取照片圈人
+            </summary>
+            <param name="labelId">圈人</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.GetLabelsOfPhoto(System.Int64,System.String)">
+            <summary>
+            获取照片下的圈人信息
+            </summary>
+            <param name="photoId">照片id</param>
+            <param name="tenantTypeId">租户类型id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.DeletePhotoLabel(System.Int64)">
+            <summary>
+            删除照片圈人信息
+            </summary>
+            <param name="labelId">圈人的id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._SetPhotoTag(System.Int64)">
+            <summary>
+            贴标签
+            </summary>
+            <param name="photoId">照片id</param>
+            <param name="tags">标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._DetailPhotoSideTag(System.Int64)">
+            <summary>
+            照片详细显示页面侧边的标签
+            </summary>
+            <param name="photoId">照片id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController.HotTags(System.Int32)">
+            <summary>
+            热门标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._SetEssential(System.Int64,System.Boolean)">
+            <summary>
+            设置精华
+            </summary>
+            <param name="photoId">照片id</param>
+            <param name="isEssential">是否精华</param>
+            <returns>设置精华</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._SetAlbumCover(System.Int64,System.Boolean)">
+            <summary>
+            设置标题图
+            </summary>
+            <param name="photoId">照片id</param>
+            <param name="isCover">是否是标题图</param>
+            <returns>设置标题图</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._GetOnePhoto(System.Int64)">
+            <summary>
+            获取一张照片
+            </summary>
+            <param name="photoId">照片id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._DeleteInDetail(System.Int64)">
+            <summary>
+            照片详细显示页面的删除
+            </summary>
+            <param name="photoId">照片id</param>
+            <returns>照片详细显示页面的删除</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._CaptureOutSitePhoto(System.String)">
+            <summary>
+            采集站外照片页
+            </summary>
+            <param name="imgUrls">站外照片链接</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ChannelPhotoController._CaptureOutSitePhoto(System.String,System.Int64,System.String)">
+            <summary>
+            采集站外照片
+            </summary>
+            <param name="imgUrls">站外照片链接</param>
+            <param name="albumId">选择的相册</param>
+            <param name="description">照片描述</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.Controllers.ControlPanelPhotoController">
+            <summary>
+            相册后台管理控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController.ManagePhotos(System.String,System.String,System.String,System.Nullable{System.Int64},System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            照片管理
+            </summary>
+            <param name="descriptionKeyword">名称关键字</param>
+            <param name="userId">作者Id</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="isEssential">是否精华</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController._UpdatePhotosAuditStatus(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            更新审核状态
+            </summary>
+            <param name="photoIds">被操作项的Id集合</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController._SetEssential(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            批量加精/取消精华
+            </summary>
+            <param name="photoIds">被操作项的Id集合</param>
+            <param name="isEssential">加精/取消精华</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController._DeletePhotos(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            批量删除
+            </summary>
+            <param name="photoIds">被操作项的Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController._SetTags(System.String)">
+            <summary>
+            贴标签
+            </summary>
+            <param name="photoIds">被操作项的Id集合</param>
+            <returns></returns> 
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController._SetTags(System.String,System.String)">
+            <summary>
+            贴标签
+            </summary>
+            <param name="photoIds">被操作项的Id集合</param>
+            <param name="tagsName">标签名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController.ManageAlbums(System.String,System.String,System.String,System.String,System.Nullable{Tunynet.Common.AuditStatus},System.Int32,System.Int32)">
+            <summary>
+            相册管理
+            </summary>
+            <param name="nameKeyword">名称关键字</param>
+            <param name="userId">作者ID</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController._UpdateAlbumAuditStatus(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            更新相册审核状态
+            </summary>
+            <param name="albumIds">相册ID集合</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns>表示更新成功的JSON</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController._UpdateAlbumAuditStatu(System.Int64,System.Boolean)">
+            <summary>
+            更新相册审核状态
+            </summary>
+            <param name="albumId">相册ID</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns>表示更新成功的JSON</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.ControlPanelPhotoController._DeleteAlbums(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            批量删除相册
+            </summary>
+            <param name="albumIds">相册ID集合</param>
+            <returns>表示删除成功的JSON</returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.Controllers.UserSpacePhotoController">
+            <summary>
+            相册用户控件控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.GetTitle(System.String)">
+            <summary>
+            获取Title前缀
+            </summary>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.Home(System.String)">
+            <summary>
+            相册首页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.Photos(System.String)">
+            <summary>
+            最新照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.Albums(System.String,Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            相册列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.Favorites(System.String)">
+            <summary>
+            我的喜欢
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._MyOtherAlbums(System.String,System.Int64)">
+            <summary>
+            我的其他相册
+            </summary>
+            <param name="spaceKey">用户标识</param>
+            <param name="albumId">相册Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.AlbumDetailList(System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            相册详细显示-列表模式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.AlbumDetailView(System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            相册详细显示-阅读模式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._PhotoList(System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            点击更多时
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.PhotoManage(System.String,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            照片管理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.Tag(System.String,System.String)">
+            <summary>
+            标签下的照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.Ta(System.String,System.Int32)">
+            <summary>
+            他的相册
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._EditAlbum(System.String,System.Int64,System.String)">
+            <summary>
+            编辑/创建相册
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._EditAlbum(System.String,Spacebuilder.Photo.AlbumEditModel)">
+            <summary>
+            编辑/创建相册
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._DeleteAlbum(System.String,System.Int64)">
+            <summary>
+            删除相册
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._SetAlbumCover(System.String,System.Int64,System.Boolean)">
+            <summary>
+            设置相册封面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._EditPhoto(System.String,System.Int64)">
+            <summary>
+            编辑照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._EditPhoto(System.String,Spacebuilder.Photo.PhotoEditModel)">
+            <summary>
+            编辑照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._DeletePhoto(System.String,System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删除照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._MovePhoto(System.String,System.Collections.Generic.List{System.Int64})">
+            <summary>
+            移动照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._MovePhoto(System.String,System.Int64)">
+            <summary>
+            移动照片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._SetPhotoTag(System.String)">
+            <summary>
+            给照片贴标签
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._SetPhotoTag(System.String,System.String)">
+            <summary>
+            给照片贴标签
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.UpdatePrivacySettings(Spacebuilder.Photo.Album,System.String,System.String)">
+            <summary>
+            设置隐私状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.Upload(System.String,System.Int64)">
+            <summary>
+            上传照片(页面)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.UploadPhoto(System.String,System.Int64)">
+            <summary>
+            上传照片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.CompleteUpload(System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            完成上传
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._PhotoItem(System.String,System.Int64)">
+            <summary>
+            相片局部页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.UploadNormal(System.Int64,System.String)">
+            <summary>
+            上传照片-普通上传(页面)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.UploadNormal(System.String,System.Int64)">
+            <summary>
+            上传照片-普通上传
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.UploadEdit(System.String,System.String)">
+            <summary>
+            上传照片-完善照片描述
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._Tags(System.String,System.Int32)">
+            <summary>
+            侧边栏-标签云
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._HomeWaterFall(System.String,System.Int32)">
+            <summary>
+            空间首页瀑布流局部页(相册首页)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController._NewWaterFall(System.String,System.String,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            空间瀑布流局部页(最新相册)
+            </summary>
+            <param name="spaceKey">用户标识</param>
+            <param name="tagName">标签名</param>
+            <param name="isFavorite">是否是“我的喜欢”</param>
+            <param name="showMore">是否显示更多链接</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.Controllers.UserSpacePhotoController.GetAlbumList(System.Int64)">
+            <summary>
+            相册下拉框
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.EventModules.PhotoOperationLogEventModule">
+            <summary>
+            处理照片操作日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoOperationLogEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoOperationLogEventModule.PhotoOperationLogEventModule_After(Spacebuilder.Photo.Photo,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            照片操作日志事件处理
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.EventModules.PhotoIndexEventModule">
+            <summary>
+            处理相册全文检索索引的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoIndexEventModule.RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoIndexEventModule.AddTagsToPhoto_BatchAfter(System.Collections.Generic.IEnumerable{System.String},Tunynet.Common.TagEventArgs)">
+            <summary>
+            为照片添加标签时触发
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.EventModules.PhotoEventModule">
+            <summary>
+            处理相册动态、积分、通知的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.PhotoLabelEventModule_After(Spacebuilder.Photo.PhotoLabel,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            照片圈人积分
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.PhotoLabelNotice_After(Spacebuilder.Photo.PhotoLabel,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            照片圈人通知
+            </summary>
+            <param name="photoLabel"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.PhotoLabeledNotice_After(Spacebuilder.Photo.PhotoLabel,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            照片圈人通知被圈人
+            </summary>
+            <param name="photoLabel"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.PhotoPointModule_After(Spacebuilder.Photo.Photo,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            照片审核触发的事件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.PhotoPointModuleForManagerOperation_After(Spacebuilder.Photo.Photo,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            处理加精操作加积分
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.PhotoAcitivityPrivicyChangeEventModule_After(Spacebuilder.Photo.Album,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            隐私状态发生变化时，同时更新动态的私有状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.PhotoActivityModule_After(Spacebuilder.Photo.Album,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            动态处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.LabelPhotoActivityModule_After(Spacebuilder.Photo.PhotoLabel,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            圈人动态处理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.CommentActivityEventModule_After(Tunynet.Common.Comment,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            评论动态处理
+            </summary>
+            <param name="comment"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.EventModules.PhotoEventModule.PhotoSupportEventModule_After(System.Int64,Tunynet.Common.SupportOpposeEventArgs)">
+            <summary>
+            照片顶踩
+            </summary>
+            <param name="objectId"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="T:Spacebuilder.Photo.ActivityItemKeysExtension">
+            <summary>
+            相册应用动态项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ActivityItemKeysExtension.CreatePhoto(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            发布照片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ActivityItemKeysExtension.LabelPhoto(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            照片圈人
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ActivityItemKeysExtension.CommentPhoto(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            评论照片
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.AuditItemKeysExtension">
+            <summary>
+            相册审核项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuditItemKeysExtension.Album(Tunynet.Common.AuditItemKeys)">
+            <summary>
+            相册审核项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuditItemKeysExtension.Photo(Tunynet.Common.AuditItemKeys)">
+            <summary>
+            图片审核项
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.AuthorizerExtension">
+            <summary>
+            相册权限验证
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Album_Create(Spacebuilder.Common.Authorizer)">
+            <summary>
+            创建相册
+            </summary>
+            <remarks>
+            登录用户可以创建相册
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Album_Edit(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Album)">
+            <summary>
+            编辑相册/删除相册/设置相册封面
+            </summary>
+            <remarks>
+            相册主人或管理员可以操作
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Album_View(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Album)">
+            <summary>
+            查看相册
+            仅自己可见的只能是相册作者或管理员可以查看
+            部分可见的只能是相册作者、指定可见的用户或管理员可以查看
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Search(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Album)">
+            <summary>
+            查看搜索
+            仅自己可见的只能是相册作者或管理员可以查看
+            部分可见的只能是相册作者、指定可见的用户或管理员可以查看
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Channel(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Album)">
+            <summary>
+            相册频道
+            只显示公开的
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Upload(Spacebuilder.Common.Authorizer,System.String)">
+            <summary>
+            上传照片
+            </summary>
+            <param name="authorizer"></param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Upload(Spacebuilder.Common.Authorizer,System.String,System.String@)">
+            <summary>
+            上传照片
+            </summary>
+            <param name="authorizer"></param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Create(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Album,Tunynet.Common.IUser,System.String@)">
+            <summary>
+            上传照片/照片采集(暂时用于移动端)
+            </summary>
+            <remarks>
+            相册主人或管理员可以上传指定相册的图片
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Create(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Album)">
+            <summary>
+            上传照片
+            </summary>
+            <param name="authorizer"></param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Create(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Album,System.String@)">
+            <summary>
+            上传照片/照片采集
+            </summary>
+            <remarks>
+            相册主人或管理员可以上传指定相册的图片
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Edit(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Photo)">
+            <summary>
+            编辑照片/移动照片/删除照片/贴标签
+            </summary>
+            <remarks>
+            照片主人（即所属相册主人）或管理员可以操作
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_View(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Photo)">
+            <summary>
+            查看照片
+            </summary>
+            <remarks>
+            符合照片隐私设置（所属相册的隐私设置）的人或管理员可以查看照片
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.Photo_Manage(Spacebuilder.Common.Authorizer)">
+            <summary>
+            照片加精/取消精华/照片推荐/相册推荐
+            </summary>
+            <remarks>
+            管理员可以操作
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.PhotoLabel_Creat(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.Photo)">
+            <summary>
+            是否有圈人的权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="photo">被圈的照片</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AuthorizerExtension.PhotoLabel_Delete(Spacebuilder.Common.Authorizer,Spacebuilder.Photo.PhotoLabel)">
+            <summary>
+            删除圈人
+            </summary>
+            <param name="authorizer"></param>
+            <param name="label">圈人信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.NoticeTemplateNamesExtension">
+            <summary>
+            扩展NoticeTemplateNames
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.NoticeTemplateNamesExtension.NewPhotoComment(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            照片有新评论
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PermissionItemKeysExtension">
+            <summary>
+            权限项标识扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PermissionItemKeysExtension.Photo_Create(Tunynet.Common.PermissionItemKeys)">
+            <summary>
+            创建Photo的权限项标识
+            </summary>
+            <param name="pik"><see cref="T:Tunynet.Common.PermissionItemKeys"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.PointItemKeysExtension">
+            <summary>
+            相册积分项扩展
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PointItemKeysExtension.Photo_UploadPhoto(Tunynet.Common.PointItemKeys)">
+            <summary>
+            上传照片
+            </summary>
+            <param name="pointItemKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PointItemKeysExtension.Photo_DeletePhoto(Tunynet.Common.PointItemKeys)">
+            <summary>
+            删除照片
+            </summary>
+            <param name="pointItemKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PointItemKeysExtension.Photo_BeLiked(Tunynet.Common.PointItemKeys)">
+            <summary>
+            照片被喜欢
+            </summary>
+            <param name="pointItemKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PointItemKeysExtension.Photo_BeLabelled(Tunynet.Common.PointItemKeys)">
+            <summary>
+            照片被圈
+            </summary>
+            <param name="pointItemKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PointItemKeysExtension.Photo_BeLabelled_Delete(Tunynet.Common.PointItemKeys)">
+            <summary>
+            圈人被删
+            </summary>
+            <param name="pointItemKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.RecommendItems">
+            <summary>
+            推荐项类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.RecommendItems.GetPhoto(Tunynet.Common.RecommendItem)">
+            <summary>
+            获取照片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.RecommendItems.GetAlbum(Tunynet.Common.RecommendItem)">
+            <summary>
+            获取相册
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.RecommendItems.GetTag(Tunynet.Common.RecommendItem)">
+            <summary>
+            获取标签
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Common.SiteUrlsExtension">
+            <summary>
+            相册链接管理扩展
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AlbumControlPanelManage(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus})">
+            <summary>
+            相册管理
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._UpdateAlbumAuditStatus(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            更新评论的审核状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._UpdateAlbumAuditStatu(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean)">
+            <summary>
+            更新评论的审核状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._PhotoControlPanelDeleteAlbum(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            单个/批量删除相册
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="albumId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.PhotoControlPanelManage(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus})">
+            <summary>
+            照片管理
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._PhotoControlPanelDeletePhoto(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            批量/单个删除照片
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="photoId">单个删除时的照片Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._PhotoControlPanelUpdateAuditStatus(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            批量通过/不通过审核照片
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApproved">是否通过审核</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._PhotoControlPanelSetEssential(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            批量/单个设置精华
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isEssential">是否精华</param>
+            <returns>批量设置精华</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetTags(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            照片管理-贴标签
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._EditAlbum(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.String)">
+            <summary>
+            创建编辑相册页
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="spaceKey">用户标识</param>
+            <param name="albumId">相册Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Upload(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            上传图片页面
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.UploadPhoto(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            上传照片
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.CompleteUpload(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            完成上传
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._PhotoItem(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            相片局部页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.UploadNormal(Spacebuilder.Common.SiteUrls,System.Int64,System.String)">
+            <summary>
+            普通上传页面
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.UploadNormal(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            普通上传
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.UploadEdit(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            上传照片-完善照片描述(页面)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Photos(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            最新照片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._DeleteAlbum(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            删除相册
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Albums(Spacebuilder.Common.SiteUrls,System.String,Spacebuilder.Photo.SortBy_Album)">
+            <summary>
+            我的相册列表
+            </summary>
+            <param name="spaceKey">用户标识</param>
+            <param name="sortBy">排序</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Ta(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            他的相册列表
+            </summary>
+            <param name="spaceKey">用户标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Home(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            我的相册首页（空间）
+            </summary>
+            <param name="userId">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AlbumDetailList(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            相册详细显示-列表模式
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AlbumDetailView(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            相册详细显示-阅读模式
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._PhotoList(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            照片列表（用于阅读模式下点击更多的显示）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetAlbumCover(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            设置封面
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._EditPhoto(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.String)">
+            <summary>
+            编辑照片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._DeletePhoto(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            删除照片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._MovePhoto(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.String)">
+            <summary>
+            移动照片
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetPhotoTag(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            给照片贴标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.PhotoManage(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            照片管理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.PhotosInTag(Spacebuilder.Common.SiteUrls,System.String,System.String)">
+            <summary>
+            标签下的照片(用户空间)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._NewWaterFall(Spacebuilder.Common.SiteUrls,System.String,System.String,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            瀑布流（用于最新照片、我的喜欢等）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._HomeWaterFall(Spacebuilder.Common.SiteUrls,System.String,System.Int32)">
+            <summary>
+            瀑布流（用于照片首页）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._Photos(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Boolean},System.Nullable{Spacebuilder.Photo.SortBy_Photo},System.Int32)">
+            <summary>
+            频道列表瀑布流
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.New(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            照片排行-最新
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Essential(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            照片排行-精华
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Hot(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            照片排行-热点
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.HotComment(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            照片排行-热评
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Favorite(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            照片排行-喜欢
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Tags(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            标签云图
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.TagNew(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            标签下的最新照片(频道)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.TagHot(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            标签下的热点照片(频道)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.TagEssential(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            标签下的精华照片(频道)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._ButtonView(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            相册频道瀑布流分享，喜欢，评论按钮
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="photoId">照片ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._ButtonViewForSearch(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            照片搜索瀑布流分享，喜欢，评论按钮
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="photoId">照片ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.PhotoDetail(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            照片详细显示页
+            </summary>
+            <param name="photoId"></param>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetPhotoDescription(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.String)">
+            <summary>
+            设置描述的连接
+            </summary>
+            <param name="urls"></param>
+            <param name="photoId"></param>
+            <param name="description"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._DetailPhotoSide(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            照片详细页面侧边栏
+            </summary>
+            <param name="urls"></param>
+            <param name="photoId">照片的id</param>
+            <returns>照片详细页面侧边栏</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SearchWaterFall(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            全文搜索瀑布流
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="keyword"></param>
+            <param name="userId"></param>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._PhotoGlobalSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            照片全局搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._PhotoQuickSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            照片快捷搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.PhotoPageSearch(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            照片搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.PhotoSearchAutoComplete(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            问答搜索自动完成
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.GetPhotoLabel(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            获取圈人的信息
+            </summary>
+            <param name="urls"></param>
+            <param name="labelId">圈人的id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.GetLabelsOfPhoto(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取相册下的图片
+            </summary>
+            <param name="urls"></param>
+            <param name="photoId">相片id</param>
+            <param name="tenantTypeId">租户类型id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.DeletePhotoLabel(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            删除圈人
+            </summary>
+            <param name="urls"></param>
+            <param name="labelId">被删除的圈人id</param>
+            <returns>删除圈人</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._DetailPhotoSideTag(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            照片详细显示页面侧边的标签
+            </summary>
+            <param name="PhotoId">照片id</param>
+            <param name="urls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetPhotoTagInDetail(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.String)">
+            <summary>
+            给照片设置标签
+            </summary>
+            <param name="urls"></param>
+            <param name="photoId">照片id</param>
+            <param name="tags">标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetPhotoEssential(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.Boolean)">
+            <summary>
+            设置照片精华
+            </summary>
+            <param name="urls"></param>
+            <param name="photoId">照片id</param>
+            <param name="isEssential">是否精华</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._DeletePhotoInDetail(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            在照片详细显示页面中删除照片
+            </summary>
+            <param name="urls"></param>
+            <param name="photoId">照片id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._DetailSetAlbumCover(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.Boolean)">
+            <summary>
+            照片详细显示页面设置标题图
+            </summary>
+            <param name="urls"></param>
+            <param name="photoId">照片id</param>
+            <param name="isCover">是否是标题图</param>
+            <returns>照片详细显示页面设置标题图</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._GetOnePhoto(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            获取照片的一条数据
+            </summary>
+            <param name="urls"></param>
+            <param name="photoId">照片的id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.TenantTypeIdsExtension">
+            <summary>
+            相册定义的租户类型
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.TenantTypeIdsExtension.PhotoApplication(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            相册应用
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.TenantTypeIdsExtension.Album(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            相册
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.TenantTypeIdsExtension.Photo(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            照片
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.TenantTypeIdsExtension.PhotoLabel(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            照片圈人
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="T:Spacebuilder.Photo.OwnerDataKeysExtension">
+            <summary>
+            相册用户计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.OwnerDataKeysExtension.PhotoCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            照片数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.ImageSizeTypeExtension">
+            <summary>
+            图片尺寸类型
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ImageSizeTypeExtension.P100(Tunynet.Common.ImageSizeTypeKeys)">
+            <summary>
+            100*100像素等比例缩放，主要用于封面缩略图
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ImageSizeTypeExtension.P160(Tunynet.Common.ImageSizeTypeKeys)">
+            <summary>
+            160*160像素等比例缩放，主要用于封面缩略图
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ImageSizeTypeExtension.P200(Tunynet.Common.ImageSizeTypeKeys)">
+            <summary>
+            200*200像素裁剪方图（先等比例缩放再裁剪），主要用于封面缩略图
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ImageSizeTypeExtension.P240(Tunynet.Common.ImageSizeTypeKeys)">
+            <summary>
+            240像素等宽等比例缩放（即按照宽度缩放，不按照高度缩放），主要用于瀑布流
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ImageSizeTypeExtension.P320(Tunynet.Common.ImageSizeTypeKeys)">
+            <summary>
+            320像素等宽等比例缩放（即按照宽度缩放，不按照高度缩放），主要用于瀑布流的鼠标悬浮显示
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.ImageSizeTypeExtension.P800(Tunynet.Common.ImageSizeTypeKeys)">
+            <summary>
+            800像素等宽等比例缩放（即按照宽度缩放，不按照高度缩放），主要用于相册阅读模式及照片详情页
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.Album">
+            <summary>
+            相册的实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Album.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Album.Clone">
+            <summary>
+            克隆当前实体（浅拷贝）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.AlbumId">
+             <summary>
+            相册ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.AlbumName">
+             <summary>
+            相册名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.TenantTypeId">
+             <summary>
+            租户类型
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.OwnerId">
+             <summary>
+            所有者ID，用户的相册，OwnerId=UserId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.UserId">
+             <summary>
+            相册作者ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.Author">
+             <summary>
+            作者名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.Description">
+             <summary>
+            相册描述
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.CoverId">
+             <summary>
+            封面照片ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.PhotoCount">
+             <summary>
+            照片数
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.DisplayOrder">
+             <summary>
+            排序，默认与主键相同
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.DateCreated">
+             <summary>
+            创建日期
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.LastModified">
+             <summary>
+            修改时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.LastUploadDate">
+             <summary>
+            最后上传照片时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.Cover">
+            <summary>
+            标题图
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.User">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.Covers">
+            <summary>
+            标题图不存在时取前9张照片
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.AuditItemKey">
+            <summary>
+            审核项Key 
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.Tunynet#Common#IPrivacyable#ContentId">
+            <summary>
+            内容项Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Album.PrivacyStatus">
+             <summary>
+            隐私状态
+             </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.SortBy_Album">
+            <summary>
+            相册排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.SortBy_Album.DateCreated_Desc">
+            <summary>
+            发布时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.SortBy_Album.DateCreated_Asc">
+            <summary>
+            发布时间正序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.SortBy_Album.LastUploadDate_Desc">
+            <summary>
+            最后上传时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.SortBy_Album.LastUploadDate_Asc">
+            <summary>
+            最后上传时间正序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.SortBy_Album.DisplayOrder">
+            <summary>
+            根据显示顺序
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.SortBy_Photo">
+            <summary>
+            照片排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.SortBy_Photo.DateCreated_Desc">
+            <summary>
+            发布时间倒序（最新照片）
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoLabel">
+            <summary>
+            圈人实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoLabel.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.LabelId">
+             <summary>
+            圈人Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.PhotoId">
+             <summary>
+            照片ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.TenantTypeId">
+             <summary>
+            租户类型ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.ObjetId">
+             <summary>
+            被圈人（对象）ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.ObjectName">
+             <summary>
+            被圈人（对象）名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.UserId">
+            <summary>
+            操作者Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.Description">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.AreaX">
+             <summary>
+            被圈区域X坐标
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.AreaY">
+             <summary>
+            被圈区域Y坐标
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.AreaWidth">
+             <summary>
+            被圈区域宽度
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.AreaHeight">
+             <summary>
+            被圈区域高度
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.LastModified">
+             <summary>
+            修改时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabel.Photo">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.Photo">
+            <summary>
+            照片的实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.Photo.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.PhotoId">
+             <summary>
+            照片ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.AlbumId">
+             <summary>
+            相册ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.TenantTypeId">
+             <summary>
+            租户类型，同步自相册
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.OwnerId">
+             <summary>
+            所有者ID，同步自相册
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.UserId">
+             <summary>
+            相册作者ID，同步自相册
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.Author">
+             <summary>
+            作者名称，同步自相册
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.RelativePath">
+             <summary>
+            照片相对物理地址，用于直连访问
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.OriginalUrl">
+             <summary>
+            采集照片的原始地址
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.Description">
+             <summary>
+            照片描述
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.IsEssential">
+             <summary>
+            是否精华
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.IP">
+             <summary>
+            ip地址
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.PrivacyStatus">
+             <summary>
+            隐私状态，同步自相册
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.DateCreated">
+             <summary>
+            创建日期
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.LastModified">
+             <summary>
+            修改时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.Album">
+            <summary>
+            相册
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.User">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.CommentCount">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.RecentHitCount">
+            <summary>
+            照片7天内计数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.AuditItemKey">
+            <summary>
+            审核项Key 
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Photo.Tunynet#Common#IPrivacyable#ContentId">
+            <summary>
+            内容项Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoApplication.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户在应用中的数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="takeOverUserName">用于接管删除用户时不能删除的内容(例如：用户创建的群组)</param>
+            <param name="isTakeOver">是否接管被删除用户可被接管的内容</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoConfig.Instance">
+            <summary>
+            获取PhotoConfig实例
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoConfig.Initialize(Autofac.ContainerBuilder)">
+            <summary>
+            应用初始化
+            </summary>
+            <param name="containerBuilder">容器构建器</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoConfig.Load">
+            <summary>
+            应用加载
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoConfig.ApplicationId">
+            <summary>
+            ApplicationId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoConfig.ApplicationKey">
+            <summary>
+            ApplicationKey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoConfig.ApplicationType">
+            <summary>
+            获取PhotoApplication实例
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoLabelRepository">
+            <summary>
+            相册应用的圈人仓储实现
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.IPhotoLabelRepository">
+            <summary>
+            相册应用的圈人仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoLabelRepository.GetLabelsOfPhoto(System.Int64,System.String)">
+            <summary>
+            获取圈人对象列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="photoId">照片ID</param>
+            <param name="tenantTypeId">租户类型id</param>
+            <returns>返回圈人列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoLabelRepository.GetLabelsOfPhoto(System.Int64,System.String)">
+            <summary>
+            获取圈人对象列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="photoId">照片ID</param>
+            <returns>返回圈人列表</returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoRepository">
+            <summary>
+            相册应用的照片仓储实现
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.IPhotoRepository">
+            <summary>
+            相册应用的照片仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.MovePhoto(Spacebuilder.Photo.Photo,Spacebuilder.Photo.Album)">
+            <summary>
+            移动相片
+            </summary>
+            <param name="photo">移动相片</param>
+            <param name="targetAlbum">接收的相册</param>
+            <returns>移动是否成功</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.UpdatePrivacyStatus(System.Int64)">
+            <summary>
+            相册隐私状态更改，同步更改相册下隐私状态
+            </summary>
+            <param name="albumId"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.SetEssential(System.Int64,System.Boolean)">
+            <summary>
+            设置精华
+            </summary>
+            <param name="photo">照片对象</param>
+            <param name="isEssential">是否精华</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.GetPhotos(System.String,System.String,System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            获取照片列表（用于频道页面）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="tagName">标签</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.GetUserPhotos(System.String,System.Nullable{System.Int64},System.Boolean,System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            获取用户照片列表（用于用户空间）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="userId">作者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="tagName">标签</param>
+            <param name="albumId">相册ID</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.GetOwnerPhotos(System.String,System.Int64,System.Boolean,System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Int32,System.Int32)">
+            <summary>
+            获取所有者照片列表（用于群组）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">拥有者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="tagName">标签</param>
+            <param name="albumId">相册ID</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.GetPhotosForAdmin(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{Tunynet.Common.AuditStatus},System.Int32,System.Int32)">
+            <summary>
+            管理员获取照片数据
+            </summary>
+            <param name="tenantTypeIds">租户类型ID</param>
+            <param name="descriptionKeyword">照片描述</param>
+            <param name="userId">作者ID</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="isEssential">是否精华</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回管理员分页照片数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.GetPhotoApplicationStatisticData(System.String)">
+            <summary>
+            照片统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回照片统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.GetPhotoManageableData(System.String)">
+            <summary>
+            照片管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回照片管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IPhotoRepository.GetPhotosOfFollowedUsers(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            获取用户关注照片
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.#ctor">
+            <summary>
+            构造器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.#ctor(Tunynet.Common.PubliclyAuditStatus)">
+            <summary>
+            构造器
+            </summary>
+            <param name="publiclyAuditStatus"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.MovePhoto(Spacebuilder.Photo.Photo,Spacebuilder.Photo.Album)">
+            <summary>
+            移动相片
+            </summary>
+            <param name="photo">被移动的照片</param>
+            <param name="targetAlbum">接收的相册</param>
+            <returns>是否移动成功</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.UpdatePrivacyStatus(System.Int64)">
+            <summary>
+            相册隐私状态更改，同步更改相册下隐私状态
+            </summary>
+            <param name="albumId"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.SetEssential(System.Int64,System.Boolean)">
+            <summary>
+            设置精华
+            </summary>
+            <param name="photoId">照片对象</param>
+            <param name="isEssential">是否精华</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.GetPhotos(System.String,System.String,System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            获取照片列表（用于频道页面）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="tagName">标签</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="createDatetime">动态所需时间</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.GetUserPhotos(System.String,System.Nullable{System.Int64},System.Boolean,System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            获取用户照片列表（用于用户空间）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="userId">作者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="tagName">标签</param>
+            <param name="albumId">相册ID</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.GetOwnerPhotos(System.String,System.Int64,System.Boolean,System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Int32,System.Int32)">
+            <summary>
+            获取所有者照片列表（用于群组）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">拥有者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="tagName">标签</param>
+            <param name="albumId">相册ID</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.GetPhotosForAdmin(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{Tunynet.Common.AuditStatus},System.Int32,System.Int32)">
+            <summary>
+            管理员获取照片数据
+            </summary>
+            <param name="tenantTypeId">租户类型ID</param>
+            <param name="descriptionKeyword">照片描述</param>
+            <param name="userId">作者ID</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="isEssential">是否精华</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回管理员分页照片数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.GetPhotosOfFollowedUsers(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            获取用户关注照片
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Spacebuilder.Photo.PhotoRepository.GetPhotoApplicationStatisticData(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Spacebuilder.Photo.PhotoRepository.GetPhotoManageableData(System.String)">
+            <summary>
+            照片管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回照片管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoRepository.GetSql_GetPhotos(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Nullable{Tunynet.Common.AuditStatus},System.String,System.Nullable{System.Boolean},System.Nullable{System.Int64},Spacebuilder.Photo.SortBy_Photo)">
+            <summary>
+            通用的获取SQL的方法
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="descriptionKeyword">描述性字段</param>
+            <param name="userId">用户id</param>
+            <param name="ownerId">拥有者id</param>
+            <param name="isEssential">是否精华</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="tagName">标签名</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核和隐私状态</param>
+            <param name="albumId">相册id</param>
+            <param name="sortBy">排序方式</param>
+            <returns>SQL</returns>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoRepository.publiclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoRepository.PubliclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.AlbumRepository">
+            <summary>
+            相册应用的相册仓储实现
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.IAlbumRepository">
+            <summary>
+            相册应用的相册仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.IAlbumRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            删除用户时，指定用户接管当前用户的相册以及相册下照片
+            </summary>
+            <param name="userId"></param>
+            <param name="takeOverUser"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.IAlbumRepository.GetAlbums(System.String,System.Nullable{System.Int64},Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于频道）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IAlbumRepository.GetUserAlbums(System.String,System.Int64,System.Boolean,Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于用户空间）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="userId">用户ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IAlbumRepository.GetOwnerAlbums(System.String,System.Int64,System.Boolean,Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于群组）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IAlbumRepository.GetAlbumsForAdmin(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{Tunynet.Common.AuditStatus},System.Int32,System.Int32)">
+            <summary>
+            管理员获取相册数据
+            </summary>
+            <remarks>无需缓存</remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="nameKeyword">相册名称</param>
+            <param name="userId">作者ID</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IAlbumRepository.GetAlbumApplicationStatisticData(System.String)">
+            <summary>
+            获取相册统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>返回相册统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.IAlbumRepository.GetAlbumManageableData(System.String)">
+            <summary>
+            获取相册管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>返回相册管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.#ctor">
+            <summary>
+            构造器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.#ctor(Tunynet.Common.PubliclyAuditStatus)">
+            <summary>
+            构造器
+            </summary>
+            <param name="publiclyAuditStatus"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            删除用户时，指定用户接管当前用户的相册以及相册下照片
+            </summary>
+            <param name="userId"></param>
+            <param name="takeOverUser"></param>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.GetAlbums(System.String,System.Nullable{System.Int64},Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于频道）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.GetUserAlbums(System.String,System.Int64,System.Boolean,Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于用户空间）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="userId">用户ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.GetOwnerAlbums(System.String,System.Int64,System.Boolean,Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于群组）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.GetAlbumsForAdmin(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{Tunynet.Common.AuditStatus},System.Int32,System.Int32)">
+            <summary>
+            管理员获取相册数据
+            </summary>
+            <remarks>无需缓存</remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="nameKeyword">相册名称</param>
+            <param name="userId">作者ID</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.GetAlbumApplicationStatisticData(System.String)">
+            <summary>
+            获取相册统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>返回相册统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.GetAlbumManageableData(System.String)">
+            <summary>
+            获取相册管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>返回相册管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumRepository.GetSql_GetAlbums(System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{System.Boolean},System.String,System.Nullable{Tunynet.Common.AuditStatus},Spacebuilder.Photo.SortBy_Album)">
+            <summary>
+            获取Sql
+            </summary>
+            <param name="tenantTypeId"></param>
+            <param name="ownerId"></param>
+            <param name="ignoreAuditAndPrivacy"></param>
+            <param name="userId"></param>
+            <param name="nameKeyword"></param>
+            <param name="auditStatus"></param>
+            <param name="sortBy"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Spacebuilder.Photo.AlbumRepository.publiclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumRepository.PubliclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.Resources.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Resources.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Resources.Resource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Resources.Resource.ApplicationName_Photo">
+            <summary>
+              查找类似 相册 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Resources.Resource.CountObject_Photo">
+            <summary>
+              查找类似 照片 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Resources.Resource.Description_ModeratedUser_CreatePhotoDenied">
+            <summary>
+              查找类似 您现在处于管制状态，不能传照片 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.Resources.Resource.WhoLike">
+            <summary>
+              查找类似 {0}的喜欢 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoFullTextQuery">
+            <summary>
+            照片全文检索的条件
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoFullTextQuery.PageSize">
+            <summary>
+            每页显示记录数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoFullTextQuery.TenantTypeId">
+            <summary>
+            租户类型
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoFullTextQuery.Keyword">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoFullTextQuery.Filter">
+            <summary>
+            筛选
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoFullTextQuery.IgnoreAuditAndPrivacy">
+            <summary>
+            是否忽略审核状态和隐私状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoFullTextQuery.UserId">
+            <summary>
+            筛选XXX的相册
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoFullTextQuery.PageIndex">
+            <summary>
+            当前显示页面页码
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoSearchRange">
+             <summary>
+            筛选枚举 
+             </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoSearchRange.ALL">
+            <summary>
+            全部
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoSearchRange.DESCRIPTION">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoSearchRange.TAG">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoSearchRange.AUTHOR">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoIndexDocument">
+            <summary>
+            照片索引文档
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.PhotoId">
+            <summary>
+            照片id
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.AlbumId">
+            <summary>
+            相册id
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.TenantTypeId">
+            <summary>
+            租户类型
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.Author">
+             <summary>
+            作者 
+             </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.DateCreated">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.Tag">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoIndexDocument.PrivacyStatus">
+            <summary>
+            隐私状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoIndexDocument.Convert(Spacebuilder.Photo.Photo)">
+            <summary>
+            将Photo转换成Document
+            </summary>
+            <param name="photo">Photo类型实体</param>
+            <returns>Document类型实体</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoIndexDocument.Convert(System.Collections.Generic.IEnumerable{Spacebuilder.Photo.Photo})">
+            <summary>
+            将Photo批量转换成Document
+            </summary>
+            <param name="photos">待转换的Photo集合</param>
+            <returns>得到的Document集合</returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoSearcher">
+            <summary>
+            照片搜索器
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoSearcher.CODE">
+            <summary>
+            照片搜索code属性
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Photo.PhotoSearcher.WATERMARK">
+            <summary>
+            水印
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.#ctor(System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">Searcher名称</param>
+            <param name="indexPath">索引文件所在路径（支持"~/"及unc路径）</param>
+            <param name="asQuickSearch">是否作为快捷搜索</param>
+            <param name="displayOrder">显示顺序</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.QuickSearchActionUrl(System.String)">
+            <summary>
+            处理快捷搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.PageSearchActionUrl(System.String)">
+            <summary>
+            处理当前应用搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.GlobalSearchActionUrl(System.String)">
+            <summary>
+            处理全局搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.RebuildIndex">
+            <summary>
+            重建索引
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.Insert(Spacebuilder.Photo.Photo)">
+            <summary>
+            添加索引
+            </summary>
+            <param name="photo">待添加的索引</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.Insert(System.Collections.Generic.IEnumerable{Spacebuilder.Photo.Photo})">
+            <summary>
+            批量添加索引
+            </summary>
+            <param name="photos">Photo集合</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.Update(Spacebuilder.Photo.Photo)">
+            <summary>
+            更新索引
+            </summary>
+            <param name="photo">要更新的Photo</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.Update(System.Collections.Generic.IEnumerable{Spacebuilder.Photo.Photo})">
+            <summary>
+            批量更新索引
+            </summary>
+            <param name="photos">Photo集合</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.Delete(Spacebuilder.Photo.Photo)">
+            <summary>
+            删除索引
+            </summary>
+            <param name="photo">待删除的Photo</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.Delete(System.Collections.Generic.IEnumerable{Spacebuilder.Photo.Photo})">
+            <summary>
+            批量删除索引
+            </summary>
+            <param name="photos">Photo集合</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.Search(Spacebuilder.Photo.PhotoFullTextQuery)">
+            <summary>
+            照片搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.AutoCompleteSearch(System.String,System.Int32)">
+            <summary>
+            获取匹配的前几条热词
+            </summary>
+            <param name="keyword">要匹配的关键字</param>
+            <param name="topNumber">前N条</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoSearcher.BuildLuceneSearchBuilder(Spacebuilder.Photo.PhotoFullTextQuery)">
+            <summary>
+            根据照片搜索条件构建lucene查询条件
+            </summary>
+            <param name="query">查询条件</param>
+            <returns>lucene条件</returns>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.Code">
+            <summary>
+            搜索器的唯一标识
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.WaterMark">
+            <summary>
+            搜索器水印
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.IsDisplay">
+            <summary>
+            是否前台显示
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.DisplayOrder">
+            <summary>
+            显示顺序
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.IsBaseOnLucene">
+            <summary>
+            是否基于Lucene实现
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.IndexPath">
+            <summary>
+            Lucene索引路径（完整物理路径，支持unc）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.AsQuickSearch">
+            <summary>
+            是否作为快捷搜索
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoSearcher.SearchEngine">
+            <summary>
+            关联的搜索引擎实例
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoService">
+            <summary>
+            相册业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.#ctor(Spacebuilder.Photo.IAlbumRepository,Spacebuilder.Photo.IPhotoRepository,Spacebuilder.Photo.IPhotoLabelRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="albumRepository">相册仓储实现</param>
+            <param name="photoRepository">相册仓储实现</param>
+            <param name="photoLabelRepository">相册圈人实现</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.CreateAlbum(Spacebuilder.Photo.Album)">
+            <summary>
+            创建相册
+            </summary>
+            <remarks>
+            1.注意Insert之后需要调用Update方法更新一下DisplayOrder字段
+            2.使用AuditService.ChangeAuditStatusForCreate设置审核状态；
+            </remarks>
+            <param name="album">相册对象</param>
+            <returns>返回Bool值</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.UpdateAlbum(Spacebuilder.Photo.Album,System.Int64)">
+            <summary>
+            编辑相册
+            </summary>
+            <remarks>
+            调用私有方法UpdateAlbum
+            </remarks>
+            <param name="album">相册对象</param>
+            <param name="userId">当前操作人</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.UpdateAlbum(Spacebuilder.Photo.Album,System.Int64,System.Boolean)">
+            <summary>
+            编辑相册
+            </summary>
+            <remarks>
+            1.使用AuditService.ChangeAuditStatusForUpdate设置审核状态； 
+            2.判断PrivacyStatus是否有变化，如有变化，调用PhotoRepository的UpdatePrivacyStatus方法更新照片的隐私状态
+            3.需要触发的事件:1)Update的OnBefore、OnAfter；2)审核状态变更
+            </remarks>
+            <param name="album">相册对象</param>
+            <param name="userId">当前操作人</param>
+            <param name="changeAuditStatusForUpdate">是否更新审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.DeleteAlbum(Spacebuilder.Photo.Album)">
+            <summary>
+            删除相册
+            </summary>
+            <remarks>
+            1.删除相册时同时删除相册下的所有照片以及照片的圈人；
+            2.注意需要删除动态，通过EventModule处理；
+            3.注意需要扣除新建相册时增加的积分，通过EventModule处理；
+            4.需要触发的事件:1)Delete的OnBefore、OnAfter；2)审核状态变更
+            </remarks>
+            <param name="album">相册对象</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.ApproveAlbum(System.Int64,System.Boolean)">
+            <summary>
+            审核相册
+            </summary>
+            <remarks>
+            1.需要触发的事件：1) 批准或不批准；2) 审核状态变更；
+            </remarks>
+            <param name="albumId">相册ID</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户时处理其相册内容
+            </summary>
+            <remarks>
+            1.如果需要接管，直接执行Repository的方法更新数据库记录
+            2.如果不需要接管，调用DeleteAlbum、DeletePhoto、DeleteLabel循环删除该用户下的所有相册、照片、圈人
+            </remarks>
+            <param name="userId">用户ID</param>
+            <param name="takeOverUserName">指定接管用户的用户名</param>
+            <param name="isTakeOver">是否接管</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetAlbum(System.Int64)">
+            <summary>
+            获取相册对象
+            </summary>
+            <param name="albumId">相册ID</param>
+            <returns>返回相册对象</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetAlbums(System.String,System.Nullable{System.Int64},Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于频道）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetUserAlbums(System.String,System.Int64,System.Boolean,Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于用户空间）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="userId">用户ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetOwnerAlbums(System.String,System.Int64,System.Boolean,Spacebuilder.Photo.SortBy_Album,System.Int32,System.Int32)">
+            <summary>
+            获取相册列表（用于群组）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回相册分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetAlbums(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            获取相册列表（根据Id组装实体）
+            </summary>
+            <param name="albumIds">相册ID列表</param>
+            <returns>返回相册列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetAlbumsForAdmin(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{Tunynet.Common.AuditStatus},System.Int32,System.Int32)">
+            <summary>
+            管理员获取相册数据
+            </summary>
+            <remarks>无需缓存</remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="nameKeyword">相册名称</param>
+            <param name="userId">作者ID</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetAlbumApplicationStatisticData(System.String)">
+            <summary>
+            获取相册统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回相册统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetAlbumManageableData(System.String)">
+            <summary>
+            获取相册管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回相册管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.CreatePhoto(Spacebuilder.Photo.Photo,System.Web.HttpPostedFileBase)">
+            <summary>
+            创建照片
+            </summary>
+            <remarks>
+            1.更新相册的PhotoCount+1
+            2.更新用户内容计数OwnerData+1
+            3.需要同步相册的TenantTypeId、OwnerId、UserId、Author、PrivacyStatus字段
+            4.注意在EventModule中处理动态、积分；
+            5.使用AuditService.ChangeAuditStatusForCreate设置审核状态；
+            6.需要触发的事件:1)Create的OnBefore、OnAfter；2)审核状态变更；
+            </remarks>
+            <param name="photo">照片对象</param>
+            <param name="file">上传文件</param>
+            <returns>返回是否成功创建</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.UploadPhoto(Spacebuilder.Photo.Photo,System.Web.HttpPostedFileBase)">
+            <summary>
+            照片上传
+            </summary>
+            <param name="photo">照片对象</param>
+            <param name="file">需上传的文件</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.UpdatePhoto(Spacebuilder.Photo.Photo,System.Int64)">
+            <summary>
+            编辑照片
+            </summary>
+            <remarks>
+            调用私有方法UpdatePhoto
+            </remarks>
+            <param name="photo">照片对象</param>
+            <param name="userId">当前操作者id</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.UpdatePhoto(Spacebuilder.Photo.Photo,System.Int64,System.Boolean)">
+            <summary>
+            编辑照片
+            </summary>
+            <remarks>
+            1.使用AuditService.ChangeAuditStatusForUpdate设置审核状态；
+            2.需要触发的事件:1)Update的OnBefore、OnAfter；2)审核状态变更；
+            </remarks>
+            <param name="photo">照片对象</param>
+            <param name="userId">当前操作者id</param>
+            <param name="changeAuditStatusForUpdate">是否更新审核字段</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.DeletePhoto(Spacebuilder.Photo.Photo)">
+            <summary>
+            删除照片
+            </summary>
+            <remarks>
+            1.更新所属相册计数PhotoCount-1
+            2.更新用户内容计数OwnerData-1
+            3.如果照片是封面，需要将相册的CoverId属性重置为0
+            4.需要调用TagService.ClearTagsFromItem删除标签关联
+            5.需要同步删除照片圈人
+            6.通过EventModule处理动态和积分的变化；
+            7.需要触发的事件:1)Delete的OnBefore、OnAfter；2)审核状态变更
+            </remarks>
+            <param name="photo">照片对象</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.ApprovePhoto(System.Int64,System.Boolean)">
+             <summary>
+             更新审核状态
+             </summary>
+            <remarks>
+             1.需要触发的事件：1) 批准或不批准；2) 审核状态变更；
+             2.审核状态的变化影响动态的生成与删除、积分的变化
+             </remarks>
+             <param name="photoId">照片ID</param>
+             <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.SetEssential(Spacebuilder.Photo.Photo,System.Boolean)">
+            <summary>
+            设置照片精华
+            </summary>
+            <remarks>
+            1.精华状态未变化不用进行任何操作
+            2.在EventModule里处理积分
+            3.需要触发的事件：加精或取消精华SetEssential的OnAfter
+            </remarks>
+            <param name="photo">照片ID</param>
+            <param name="isEssential">是否精华</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.MovePhoto(Spacebuilder.Photo.Photo,Spacebuilder.Photo.Album)">
+            <summary>
+            移动照片
+            </summary>
+            <remarks>
+            1.更新原相册的PhotoCount-1
+            2.如果照片是封面，需要将原相册的CoverId属性重置为0
+            3.更新照片所属相册ID
+            4.审核状态不改变、精华不改变
+            5.更新目标相册的PhotoCount+1
+            </remarks>
+            <param name="photo">需要移动的照片对象</param>
+            <param name="targetAlbum">目标相册对象</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.SetCover(Spacebuilder.Photo.Photo,System.Boolean)">
+            <summary>
+            设置封面
+            </summary>
+            <param name="photo">照片对象</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhoto(System.Int64)">
+            <summary>
+            获取照片对象
+            </summary>
+            <param name="photoId">照片ID</param>
+            <returns>返回照片对象</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhotos(System.String,System.String,System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Int32,System.Int32)">
+            <summary>
+            获取照片列表（用于频道页面）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="tagName">标签</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetUserPhotos(System.String,System.Int64,System.Boolean,System.String,System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Int32,System.Int32)">
+            <summary>
+            获取用户照片列表（用于用户空间）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="userId">作者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="tagName">标签</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhotosOfAlbum(System.String,System.Int64,System.Boolean,Spacebuilder.Photo.SortBy_Photo,System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            获取用户相册照片列表（用于用户空间）
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="albumId">相册ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetOwnerPhotos(System.String,System.Int64,System.Boolean,System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Photo.SortBy_Photo,System.Int32,System.Int32)">
+            <summary>
+            获取所有者照片列表（用于群组）
+            </summary>
+            <remarks>
+            缓存周期：对象集合，使用分区缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型</param>
+            <param name="ownerId">拥有者ID</param>
+            <param name="ignoreAuditAndPrivacy">是否忽略审核状态和隐私，相册主人查看时为true</param>
+            <param name="tagName">标签</param>
+            <param name="albumId">相册ID</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回照片分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhotos(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            获取照片列表（根据Id组装实体）
+            </summary>
+            <param name="photoIds">照片ID集合</param>
+            <returns>照片列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhotosForAdmin(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{Tunynet.Common.AuditStatus},System.Int32,System.Int32)">
+            <summary>
+            管理员获取照片数据
+            </summary>
+            <param name="tenantTypeIds">租户类型ID</param>
+            <param name="descriptionKeyword">照片描述</param>
+            <param name="userId">作者ID</param>
+            <param name="ownerId">所有者ID</param>
+            <param name="isEssential">是否精华</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>返回管理员分页照片数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhotoApplicationStatisticData(System.String)">
+            <summary>
+            照片统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回照片统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhotoManageableData(System.String)">
+            <summary>
+            照片管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回照片管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhotosOfFollowedUsers(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            获取用户关注的人的照片
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetPhotoEXIFMetaData(System.Int64)">
+            <summary>
+            获取照片的EXIF数据
+            </summary>
+            <param name="photoId">照片id</param>
+            <returns>返回照片的EXIF数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetLabel(System.Int64)">
+            <summary>
+            获取圈人对象
+            </summary>
+            <param name="labelId">圈人ID</param>
+            <returns>返回圈人对象</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.GetLabelsOfPhoto(System.String,System.Int64)">
+            <summary>
+            获取圈人对象列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="tenantTypeId">租户类型ID</param>
+            <param name="photoId">照片ID</param>
+            <returns>返回圈人列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.CreateLabel(Spacebuilder.Photo.PhotoLabel)">
+            <summary>
+            创建圈人
+            </summary>
+            <param name="label">圈人对象</param>
+            <returns>返回创建是否成功</returns>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.UpdateLabel(Spacebuilder.Photo.PhotoLabel)">
+            <summary>
+            编辑圈人
+            </summary>
+            <param name="label">圈人对象</param>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoService.DeleteLabel(Spacebuilder.Photo.PhotoLabel)">
+            <summary>
+            删除圈人
+            </summary>
+            <param name="label">圈人对象</param>
+        </member>
+        <member name="T:Spacebuilder.Photo.UrlRoutingRegistration">
+            <summary>
+            问答路由设置
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.AlbumEditModel">
+            <summary>
+            编辑相册的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumEditModel.AsAlbum">
+            <summary>
+            转换为相册实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.AlbumId">
+             <summary>
+            相册ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.AlbumName">
+             <summary>
+            相册名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.OwnerId">
+             <summary>
+            所有者ID，用户的相册，OwnerId=UserId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.TenantTypeId">
+             <summary>
+            租户类型
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.UserId">
+             <summary>
+            相册作者ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.Author">
+             <summary>
+            作者名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.Description">
+             <summary>
+            相册描述
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.DateCreated">
+             <summary>
+            创建日期
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.LastModified">
+             <summary>
+            修改时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.PrivacyStatus">
+             <summary>
+            隐私状态
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.PrivacyStatus1">
+            <summary>
+            隐私设置用户列表
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.AlbumEditModel.PrivacyStatus2">
+            <summary>
+            隐私设置分组列表
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.AlbumExtensions">
+            <summary>
+            相册实体的扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.AlbumExtensions.AsEditModel(Spacebuilder.Photo.Album)">
+            <summary>
+            将数据库中的信息转换成EditModel实体
+            </summary>
+            <param name="album">日志实体</param>
+            <returns>编辑相册的EditModel</returns>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoEditModel">
+            <summary>
+            PhotoEditModel
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoEditModel.PhotoId">
+            <summary>
+            照片ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoEditModel.AlbumId">
+            <summary>
+            相册ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoEditModel.OwnerId">
+            <summary>
+            拥有者Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoEditModel.RelativePath">
+            <summary>
+            相对地址
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoEditModel.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoEditModelExtense">
+            <summary>
+            PhotoEditModelExtense
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoLabelEditModel">
+            <summary>
+            PhotoEditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Photo.PhotoLabelEditModel.AsPhotoLabel">
+            <summary>
+            转换为数据存储实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.LabelId">
+             <summary>
+            圈人Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.PhotoId">
+             <summary>
+            照片ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.TenantTypeId">
+             <summary>
+            租户类型ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.ObjetId">
+             <summary>
+            被圈人（对象）ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.ObjectName">
+             <summary>
+            被圈人（对象）名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.Description">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.AreaX">
+             <summary>
+            被圈区域X坐标
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.AreaY">
+             <summary>
+            被圈区域Y坐标
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.AreaWidth">
+             <summary>
+            被圈区域宽度
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.AreaHeight">
+             <summary>
+            被圈区域高度
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.LastModified">
+             <summary>
+            修改时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.CanEdit">
+            <summary>
+            是否能够编辑
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Photo.PhotoLabelEditModel.UserLink">
+            <summary>
+            用户的连接
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Photo.PhotoLabelEditModelExtense">
+            <summary>
+            圈人编辑
+            </summary>
+        </member>
+    </members>
+</doc>

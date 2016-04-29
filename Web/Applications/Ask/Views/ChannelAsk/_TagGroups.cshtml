@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TagGroup>
+@{
+    bool isShowBubble = ViewData.Get<bool>("isShowBubble", true);
+    bool isShowMore = ViewData.Get<bool>("isShowMore", false);
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-tags">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+	    <p class="tn-option"><a href="@SiteUrls.Instance().AskTags()">更多</a></p>
+		<h3 class="tn-helper-reset">问题标签</h3>
+    </div>
+    @if (Model != null && Model.Count() > 0)
+    {
+        Dictionary<long, IEnumerable<string>> tagsOfGroup = ViewData.Get<Dictionary<long, IEnumerable<string>>>("tagsOfGroup", new Dictionary<long, IEnumerable<string>>());
+
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <div class="tn-directory">
+                @foreach (var group in Model)
+                {
+                    if (tagsOfGroup.ContainsKey(group.GroupId)&&tagsOfGroup[group.GroupId].Count() != 0)
+                    { 
+                        <h5 class="tn-directory-path"><a href="@SiteUrls.Instance().AskTags()#@group.GroupId">@group.GroupName</a></h5>
+                            if (tagsOfGroup[group.GroupId].Count() > 6 && isShowBubble)
+                            {
+                                <div class="tn-directory-more" id="hide-@(group.GroupId)" style="display:none">
+                                    <div class="tn-widget tn-bubble tn-bubble-arrow-left">
+                                        <div class="tn-bubble-arrow">
+                                            <b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble"></b>
+                                        </div>
+                                        <div class="tn-bubble-content tn-widget-content tn-border-gray tn-corner-all">
+                                            <div class="tn-directory-level">
+                                            @foreach (var tag in tagsOfGroup[group.GroupId])
+                                            {
+                                                <span class="tn-directory-item"><a href="@SiteUrls.Instance().AskTagDetail(tag)" target = "_blank" title="@tag">@StringUtility.Trim(tag, 5)</a></span>
+                                            }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="tn-expand"><a menu="#hide-@(group.GroupId)" data_menu_position="right" href="###" class="tn-icon tn-smallicon-slide-next">展开</a></span>  
+                            }
+                        <div class="tn-directory-level tn-border-bottom tn-border-gray">
+                            @foreach (var tag in tagsOfGroup[group.GroupId].Take(6))
+                            {
+                                <span class="tn-directory-item"><a href="@SiteUrls.Instance().AskTagDetail(tag)" outerclass = "tn-tag-card" plugin="tipsyHoverCard" data-url="@SiteUrls.Instance()._AskTagContents(tag)" target = "_blank">@StringUtility.Trim(tag,5)</a></span>
+                            }
+                            @if (tagsOfGroup[group.GroupId].Count() > 6 && isShowMore)
+                            {
+                                <span class="tn-directory-item"><em class="tn-text-note">...</em></span>
+                                <span class="tn-directory-item"><a href="@SiteUrls.Instance().AskTags()#@group.GroupId">更多</a></span>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        @Html.Action("_TagCloud", "Channel", new { Area = "Common", tenantTypeId = TenantTypeIds.Instance().AskQuestion() })
+    }
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+        $('[menu]').each(function () {
+            var ops = new Object();
+            ops.disabled = $(this).attr("data_menu_disabled");
+            ops.clickTrigger = $(this).attr("data_menu_clickTrigger");
+            ops.url = $(this).attr("url");
+            ops.position = $(this).attr("data_menu_position");
+            $(this).menuButton(ops);
+        });
+    });
+</script>)

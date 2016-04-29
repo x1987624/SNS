@@ -1,0 +1,136 @@
+﻿@model PagingDataSet<Photo>
+@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+
+    Album album = ViewData.Get<Album>("album", null);
+    long albumId = album.AlbumId;
+    int pageIndex = ViewData.Get<int>("pageIndex", 1);
+    int pageCount = Model.PageCount;
+    var cover = album.Cover;
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.Action("_MyOtherAlbums", new { spaceKey = Url.SpaceKey(), albumId = albumId })
+    @Html.Action("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-album-detail">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-album-wall">
+            <div class="tn-main-heading tn-border-gray tn-border-bottom tn-helper-clearfix">
+                <h2>
+                    @album.AlbumName</h2>
+                <ul class="tn-feedback">
+                    <li><a class="tn-icon tn-icon-share" title="分享" href="@SiteUrls.Instance()._ShareToMicroblog("#相册分享#" + "@" + album.User.NickName + " 的相册\"" + album.AlbumName + "\" " + SiteUrls.FullUrl(SiteUrls.Instance().AlbumDetailList(album.User.UserName, album.AlbumId)) + " 很不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(cover == null ? string.Empty : cover.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200()))" plugin="dialog"></a></li>
+                    @if (album.PrivacyStatus == PrivacyStatus.Public && DIContainer.Resolve<Authorizer>().RecommendItem_Manage(TenantTypeIds.Instance().Album()))
+                    { 
+                        <li><a class="tn-icon tn-icon-flag" title="推荐" href="@SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Album(), albumId, album.AlbumName, userId: album.UserId)" plugin="dialog"></a></li>
+                    }
+                </ul>
+            </div>
+            <div class="tn-list-header">
+                <div class="tn-list-header-row tn-helper-clearfix tn-border-gray tn-border-bottom">
+                    @if (DIContainer.Resolve<Authorizer>().Album_Edit(album))
+                    { 
+                        <div class="tn-option">
+                            <a href="@SiteUrls.Instance().PhotoManage(Url.SpaceKey(), albumId)" class="tn-button tn-corner-all tn-button-text-only tn-button-default"><span
+                                class="tn-button-text">照片管理</span> </a>
+                        </div>
+                    }
+                    <div class="tn-filter">
+                        查看：<a class="tn-action tn-action-text-icon" href="@SiteUrls.Instance().AlbumDetailList(Url.SpaceKey(), albumId)">
+                            <span class="tn-icon tn-icon-browse-medium"></span><span class="tn-action-text">列表模式</span>
+                        </a><a class="tn-action tn-action-text-icon  tn-selected"  href="@SiteUrls.Instance().AlbumDetailView(Url.SpaceKey(), albumId)">
+                            <span class="tn-icon tn-icon-browse-detail"></span><span class="tn-action-text">阅读模式</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @if (Model == null || Model.Count == 0)
+            {
+                <div class="tn-no-data">
+                    暂无照片！
+                </div>
+            }
+            else
+            {
+                <ul class="tn-list">
+                    @foreach (var photo in Model)
+                    {
+                        <li class="tn-list-item tn-border-gray tn-border-bottom">
+                            <div class="tn-media-wrap">
+                                <a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)">
+                                    <img width="720" class="tnui-image-detail" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P800())"></a>
+                            </div>
+                            <div class="tn-info tn-helper-clearfix">
+                                <em class="tn-date tn-text-note">@photo.DateCreated.ToFriendlyDate(true)</em>
+                                <ul class="tn-feedback">
+                                    <li><a class="tn-icon tn-icon-share" href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享#" + photo.User != null ? ("@" + photo.User.NickName) : "" + " 的照片\"" + photo.Description + "\"不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" plugin="dialog" title="分享"></a></li>
+                                    <li><a class="tn-icon tn-icon-bubble" data-photo-id="@photo.PhotoId" href="###" id="comment-photo-@(photo.PhotoId)" title="评论"></a></li>
+                                    <li>
+                                        @Html.SupportOppose(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tn-descrip" id ="photo-description-@photo.PhotoId" title="@photo.Description">
+                                <p>
+                                    @Html.Raw(photo.Description)
+                                </p>
+                            </div>
+                            <div id="photo-comment-@(photo.PhotoId)">
+                                @Html.Action("_Comment", "Channel", new { area = "Common", commentedObjectId = photo.PhotoId, ownerId = photo.OwnerId, tenantTypeId = TenantTypeIds.Instance().Photo() })
+                            </div>
+                        </li>                
+                    }
+                    <div class="tn-load-more tn-bg-gray tn-border-gray" id="showMoreDiv">
+                        <div id="active_loading" class="tn-loading" style="display: none">
+                        </div>
+                        <a href="javascript:;" class="tn-action tn-action-text-icon-right">@Html.Icon(IconTypes.SmallCollapseOpen)<span
+                            class="tn-action-text">更多信息</span> </a>
+                    </div>
+                </ul>
+                
+            }
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+                       $(document).ready(function () {
+                           var pageIndex = parseInt("@pageIndex");
+        if (pageIndex >= parseInt("@pageCount")) {
+            $("#showMoreDiv").hide();
+        }
+        //更多
+        $("#showMoreDiv").click(function (e) {
+            e.preventDefault();
+            $this = $(this);
+            $('#active_loading').show();
+            $this.find('a').hide();
+            pageIndex += 1;
+            $.get('@SiteUrls.Instance()._PhotoList(Url.SpaceKey(), albumId)',
+             { pageIndex: pageIndex },
+             function (data) {
+                 $this.prev().append(data);
+                 $('#active_loading').hide();
+                 $this.children('a').show();
+                 if (pageIndex >= parseInt("@pageCount")) {
+                     $this.hide();
+                 }
+             });
+        });
+
+        $("div[id^='photo-comment-']").hide();
+
+        $("a[id^='comment-photo-']").toggle(function () {
+            var photoId = $(this).data("photoId");
+            $("div#photo-comment-" + photoId).show();
+        },
+        function () {
+            var photoId = $(this).data("photoId");
+            $("div#photo-comment-" + photoId).hide();
+        });
+        var url = '@(SiteUrls.Instance().Upload(Url.SpaceKey()))';
+        $("a[href='" + url + "']").attr('href', url + "?albumId=@albumId");
+    })
+
+</script>)

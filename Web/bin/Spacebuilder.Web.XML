@@ -1,0 +1,842 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.Web</name>
+    </assembly>
+    <members>
+        <member name="M:Web.MvcApplication.Application_Start">
+            <summary>
+            应用程序启动时执行的事件
+            </summary>
+        </member>
+        <member name="M:Web.MvcApplication.Application_End(System.Object,System.EventArgs)">
+            <summary>
+            应用程序终止时执行的事件
+            </summary>
+            <param name="source"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Web.MvcApplication.InitializeSetup">
+            <summary>
+            初始化程序安装步骤
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Web.Resources.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.AccountBinding_ShareToFirend">
+            <summary>
+              查找类似 使用{0}登录了网站“{1}”{2} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Channel">
+            <summary>
+              查找类似 频道 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_AdminPunish">
+            <summary>
+              查找类似 被管理员惩罚 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_AdminReward">
+            <summary>
+              查找类似 被管理员奖励 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_AnonymousDisplayName">
+            <summary>
+              查找类似 匿名用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_BeforeYesterday">
+            <summary>
+              查找类似 前天 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_BrowserTitleSeparator">
+            <summary>
+              查找类似 - 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_Colon">
+            <summary>
+              查找类似 ： 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_DateTimeWhenZero">
+            <summary>
+              查找类似 - 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_DefaultDateFormat">
+            <summary>
+              查找类似 yyyy-MM-dd 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_DefaultTimeFormat">
+            <summary>
+              查找类似 HH:mm 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_ExceptionUrl">
+            <summary>
+              查找类似 异常URL：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_He">
+            <summary>
+              查找类似 他 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_HttpMethod">
+            <summary>
+              查找类似 Http传输方式：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_Now">
+            <summary>
+              查找类似 现在 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_NumberWhenZero">
+            <summary>
+              查找类似 - 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_PagerFirstButton">
+            <summary>
+              查找类似 &amp;lt;&amp;lt; 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_PagerLastButton">
+            <summary>
+              查找类似 &amp;gt;&amp;gt; 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_PagerNextButton">
+            <summary>
+              查找类似 下一页 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_PagerPreviousButton">
+            <summary>
+              查找类似 上一页 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_Pattern_CNMonthDay">
+            <summary>
+              查找类似 {0}月{1}日{2} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_Pattern_DayAgo">
+            <summary>
+              查找类似 {0}天之前 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_Pattern_HoursAgo">
+            <summary>
+              查找类似 {0}小时之前 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_Pattern_MinutelAgo">
+            <summary>
+              查找类似 {0}分钟之前 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_Pattern_SecondsAgo">
+            <summary>
+              查找类似 {0}秒之前 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_PointTrade">
+            <summary>
+              查找类似 积分交易 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_PunishUser">
+            <summary>
+              查找类似 惩罚用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_RewardUser">
+            <summary>
+              查找类似 奖励用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_She">
+            <summary>
+              查找类似 她 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_Ta">
+            <summary>
+              查找类似 Ta 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_TodayAt">
+            <summary>
+              查找类似 今天 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_TransactionTax">
+            <summary>
+              查找类似 交易税 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_UserAgent">
+            <summary>
+              查找类似 用户代理信息：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_UserIP">
+            <summary>
+              查找类似 用户IP：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Common_YesterdayAt">
+            <summary>
+              查找类似 昨天 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.ControlPanel">
+            <summary>
+              查找类似 后台 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_AccessDenied">
+            <summary>
+              查找类似 没有足够的访问权限 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_BasicManagementAccessDenied">
+            <summary>
+              查找类似 没有管理{0}的权限 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_ContentNotFound">
+            <summary>
+              查找类似 “{0}”不存在或已被删除，Id:{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_EmailUnableToSend">
+            <summary>
+              查找类似 发送邮件时产生异常{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_FloodDenied">
+            <summary>
+              查找类似 不允许频繁发帖 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_LicenseAuthorizeDenied">
+            <summary>
+              查找类似 找不到合法的Spacebuilder授权文件，请确保Web目录下存在后缀为lic的合法授权文件；如果您是商业客户，请到 http://www.jinhusns.com/Products/Contact 联系我们 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_PostAccessDenied">
+            <summary>
+              查找类似 没有发布{0}的权限 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_PostReplyAccessDenied">
+            <summary>
+              查找类似 没有进行回复的权限 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_RegisterDenied">
+            <summary>
+              查找类似 禁止注册 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_UnauthorizedAccessException">
+            <summary>
+              查找类似 I/O或无访问权限引发的异常 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_UnknownError">
+            <summary>
+              查找类似 未知错误 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Exception_UserNotFound">
+            <summary>
+              查找类似 用户“{0}”不存在或已被删除 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0x10F">
+            <summary>
+              查找类似 设备制造厂商 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0x110">
+            <summary>
+              查找类似 相机型号 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0x829A">
+            <summary>
+              查找类似 曝光时间 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0x8824">
+            <summary>
+              查找类似 感光度 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0x9003">
+            <summary>
+              查找类似 拍摄日期 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0x9205">
+            <summary>
+              查找类似 最大光圈 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0x9209">
+            <summary>
+              查找类似 闪光灯 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0x920a">
+            <summary>
+              查找类似 焦距 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0xa002">
+            <summary>
+              查找类似 宽度 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.EXIFLabel_0xa003">
+            <summary>
+              查找类似 高度 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.GoldCoin">
+            <summary>
+              查找类似 金币 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.GroupSpace">
+            <summary>
+              查找类似 群组空间 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Message_Pattern_RegisterFailedForDuplicateEmailAddress">
+            <summary>
+              查找类似 邮箱已被占用&amp;lt;a href=&amp;quot;{0}&amp;quot;&amp;gt;[忘记密码？]&amp;lt;/a&amp;gt; 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.NoActivateUser">
+            <summary>
+              查找类似 取消激活用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_ActivateUser">
+            <summary>
+              查找类似 批量激活了用户： {0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_Approved">
+            <summary>
+              查找类似 把 {0}：{1} 设置为通过审核 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_AutoNoModeratedUser">
+            <summary>
+              查找类似 依据规则自动取消管制了用户： {0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_BanUser">
+            <summary>
+              查找类似 封禁了用户： {0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_CancelActivateUser">
+            <summary>
+              查找类似 批量取消激活了用户： {0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_CancelEssential">
+            <summary>
+              查找类似 把 {0}：{1} 取消精华 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_CancelModerateUser">
+            <summary>
+              查找类似 批量取消管制了用户： {0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_CancelSticky">
+            <summary>
+              查找类似 把 {0}：{1} 取消置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_ControlledView">
+            <summary>
+              查找类似 查看了 {0}：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_Create">
+            <summary>
+              查找类似 创建了 {0}：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_Delete">
+            <summary>
+              查找类似 删除了 {0}：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_DeleteUser">
+            <summary>
+              查找类似 删除了用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_Disapproved">
+            <summary>
+              查找类似 把 {0}：{1} 设置为未通过审核 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_ModerateUser">
+            <summary>
+              查找类似 批量管制了用户： {0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_NoActivateUser">
+            <summary>
+              查找类似 取消激活用户： {0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_ResetPassword">
+            <summary>
+              查找类似 对用户： {0}重设了密码 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_RewardAndPunishUsers">
+            <summary>
+              查找类似 奖惩了用户：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_SetCategory">
+            <summary>
+              查找类似 把 {0}：{1} 由 {2} 设置为 {3} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_SetEssential">
+            <summary>
+              查找类似 把 {0}：{1} 设置为精华 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_SetSticky">
+            <summary>
+              查找类似 把 {0}：{1} 设置为置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_UnbanUser">
+            <summary>
+              查找类似 解禁了用户： {0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationLog_Pattern_Update">
+            <summary>
+              查找类似 更新了 {0}：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_ActivateUser">
+            <summary>
+              查找类似 激活用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_Approved">
+            <summary>
+              查找类似 通过审核 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_BanUser">
+            <summary>
+              查找类似 封禁用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_CancelEssential">
+            <summary>
+              查找类似 取消设置精华 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_CancelSticky">
+            <summary>
+              查找类似 取消设置精华 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_Create">
+            <summary>
+              查找类似 创建 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_Delete">
+            <summary>
+              查找类似 删除 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_DeleteUser">
+            <summary>
+              查找类似 删除用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_Disapproved">
+            <summary>
+              查找类似 不通过审核 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_NoActivateUser">
+            <summary>
+              查找类似 取消激活用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_RewardAndPunishUsers">
+            <summary>
+              查找类似 奖惩用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_SetEssential">
+            <summary>
+              查找类似 设置精华 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_SetSticky">
+            <summary>
+              查找类似 置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_UnbanUser">
+            <summary>
+              查找类似 解禁用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_Update">
+            <summary>
+              查找类似 更新 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.OperationType_UpdateUser">
+            <summary>
+              查找类似 更新用户 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_Approved">
+            <summary>
+              查找类似 {0}：{1} 通过审核 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_Create">
+            <summary>
+              查找类似 创建了 {0}：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_CreateComment">
+            <summary>
+              查找类似 {0}评论了:{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_CreateInviteFriendRecord">
+            <summary>
+              查找类似 {0}成功邀请了用户{1}注册 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_Delete">
+            <summary>
+              查找类似 删除了 {0}：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_DeleteComment">
+            <summary>
+              查找类似 {0}删除了评论：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_DeleteInvitedUser">
+            <summary>
+              查找类似 {0}邀请的用户{1}被删除了 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_Disapproved">
+            <summary>
+              查找类似 {0}：{1} 未通过审核 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_FirstUploadAvatar">
+            <summary>
+              查找类似 首次上传头像 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_FollowUser">
+            <summary>
+              查找类似 关注了用户&quot;{0}&quot; 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_FreeModeratedUser">
+            <summary>
+              查找类似 {0}邀请的用户{1}成功解除了管制 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_Oppose">
+            <summary>
+              查找类似 反对了{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_RecommendContent">
+            <summary>
+              查找类似 {0}：{1} 被管理员推荐 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_RecommendUser">
+            <summary>
+              查找类似 您被管理员推荐 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_Register">
+            <summary>
+              查找类似 {0}注册了帐号 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_SetEssential">
+            <summary>
+              查找类似 {0}：{1} 被管理员设置为精华 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_SetFolderSticky">
+            <summary>
+              查找类似 {0}：{1} 被管理员设置为栏目置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_SetGlobalSticky">
+            <summary>
+              查找类似 {0}：{1} 被管理员设置为整站置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_SetSticky">
+            <summary>
+              查找类似 {0}：{1} 被管理员设置为置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.PointRecord_Pattern_Support">
+            <summary>
+              查找类似 赞同了{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.UserSpace">
+            <summary>
+              查找类似 用户空间 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_DateType">
+            <summary>
+              查找类似 {0}无效 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_EmailRequired">
+            <summary>
+              查找类似 请输入电子邮箱 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_EmailStyle">
+            <summary>
+              查找类似 邮箱格式不正确，请输入正确格式的邮箱地址 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_NickNameHasSensitiveWord">
+            <summary>
+              查找类似 非法昵称 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_NickNameIsDisallowed">
+            <summary>
+              查找类似 昵称不允许使用，请选择其他昵称后注册 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_NickNameIsExisting">
+            <summary>
+              查找类似 该昵称已被占用，请更换其他昵称重试 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_NickNameRegex">
+            <summary>
+              查找类似 只能输入字母、数字、汉字和下划线 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_NickNameRequired">
+            <summary>
+              查找类似 请输入昵称 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_NickNameTooLong">
+            <summary>
+              查找类似 昵称长度最多{0}位 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_NickNameTooShort">
+            <summary>
+              查找类似 昵称长度不能少于{0}位 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_NumericInvalid">
+            <summary>
+              查找类似 {0}必须是数字 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_PasswordRegex">
+            <summary>
+              查找类似 您输入的密码格式不正确 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_Pattern_MinRequiredNonAlphanumericCharacters">
+            <summary>
+              查找类似 您的密码中特殊字符太少，请至少输入 {0} 个特殊字符（如：*、$等） 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_Pattern_MinRequiredPasswordLength">
+            <summary>
+              查找类似 密码长度不能少于 {0} 个字符 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_Range">
+            <summary>
+              查找类似 {0}必须介于{1}和之{2}间 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_RegularExpression">
+            <summary>
+              查找类似 {0} 表达式：{1} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_Required">
+            <summary>
+              查找类似 {0}不能为空 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_RequiredPassword">
+            <summary>
+              查找类似 密码不能为空 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_StringLength">
+            <summary>
+              查找类似 {0}长度要求填写{2} 至 {1} 位 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserEmailIsExisting">
+            <summary>
+              查找类似 该邮箱已被占用，请更换邮箱重试 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameHasSensitiveWord">
+            <summary>
+              查找类似 非法用户名 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameHasSensitiveWordForMobileClient">
+            <summary>
+              查找类似 非法用户名 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameIsDisallowed">
+            <summary>
+              查找类似 该用户名不允许使用，请选择其他名字后注册 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameIsDisallowedForMobileClient">
+            <summary>
+              查找类似 该账号不允许使用，请选择其他名字后注册 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameIsExisting">
+            <summary>
+              查找类似 该用户名已被占用，请更换用户名重试 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameIsExistingForMobileClient">
+            <summary>
+              查找类似 该账号已被占用，请更换账号重试 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameRegex">
+            <summary>
+              查找类似 只能输入字母、数字、汉字和下划线 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameRequired">
+            <summary>
+              查找类似 请输入用户名 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameRequiredForMobileClient">
+            <summary>
+              查找类似 请输入账号 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameTooLong">
+            <summary>
+              查找类似 用户名长度最多{0}位 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameTooLongForMobileClient">
+            <summary>
+              查找类似 账号长度最多{0}位 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameTooShort">
+            <summary>
+              查找类似 用户名长度不能少于{0}位 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Web.Resources.Resource.Validate_UserNameTooShortForMobileClient">
+            <summary>
+              查找类似 账号长度不能少于{0}位 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Environments.Starter">
+            <summary>
+            启动应用程序并预热
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Environments.Starter.Start">
+            <summary>
+            启动
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Environments.Starter.InitializeDIContainer">
+            <summary>
+            初始化DI容器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Environments.Starter.InitializeMVC">
+            <summary>
+            初始化MVC环境
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Environments.Starter.InitializeApplication">
+            <summary>
+            初始化应用程序，加载基础数据
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Environments.Starter.Stop">
+            <summary>
+            停止服务器
+            </summary>
+        </member>
+    </members>
+</doc>

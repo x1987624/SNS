@@ -1,0 +1,46 @@
+﻿@model PagingDataSet<AskQuestion>
+@{
+    AskSearcher askSearcher = (AskSearcher)SearcherFactory.GetSearcher(AskSearcher.CODE);
+    string keyword = Request.QueryString.Get<string>("keyword", string.Empty);
+
+}
+@if (Model.TotalRecords > 0)
+{
+    <input type="hidden" class="totalRecords" value="@Model.TotalRecords" />
+    <input type="hidden" class="queryDuration" value="@Model.QueryDuration" />
+    <div class="tn-content-heading tn-border-light tn-border-bottom">
+        <div class="tn-option">
+            <a href="@askSearcher.PageSearchActionUrl(keyword)">更多</a></div>
+        <h4>
+            问答</h4>
+    </div>
+    <div class="tnc-search-article">
+        <ul class="tn-list">
+            @foreach (var question in Model)
+            {
+
+                <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom">
+                    <div class="tn-list-item-area-main">
+                        <div class="tn-list-item-row tn-list-item-heading">
+                            <h5 class="tn-helper-reset">
+                                <a href="@SiteUrls.Instance().AskQuestionDetail(question.QuestionId)" target="_blank">@Html.Raw(SearchEngine.Highlight(keyword, question.Subject, 100))</a>
+                            </h5>
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-summary">
+                            <p>    
+                              @Html.Raw(SearchEngine.Highlight(keyword, HtmlUtility.TrimHtml(question.Body, 100), 100))
+                            </p>
+                        </div>
+                        <div class="tn-list-item-row tn-list-info">
+                            <p>
+                                <a class="tn-user-name" href="@SiteUrls.Instance().AskUser(question.User.UserName)" target="_blank">
+                                    @Html.Raw(SearchEngine.Highlight(keyword, question.Author, 100)) </a><em class="tn-date tn-text-note">@question.DateCreated.ToUserDateString(true)</em>
+                                <em class="tn-count tn-text-note">回答数：@question.AnswerCount</em></p>
+                        </div>
+                    </div>
+                </li>
+                        
+            }
+        </ul>
+    </div>
+}

@@ -1,0 +1,37 @@
+﻿@model PagingDataSet<User>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="tnc-person-list">
+        <ul class="tn-list ">
+            @foreach (User user in Model)
+            {
+                var askStatisticData = ViewData.Get<Dictionary<long, Dictionary<string, long>>>("askStatisticData", null);
+                var userDescription = ViewData.Get<Dictionary<long, string>>("userDescription", null);
+                <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed">
+                    <div class="tn-list-item-area-left">
+                        @Html.ShowUserAvatar(user, SiteUrls.Instance().AskUser(user.UserName), AvatarSizeType.Small, HyperLinkTarget._blank)
+                    </div>
+                    <div class="tn-list-item-area-main">
+                        <div class="tn-helper-right">
+                            @Html.FollowUser(user.UserId, "关注")
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-heading">
+                            <h5 class="tn-helper-reset">
+                                <a href="@SiteUrls.Instance().AskUser(user.UserName)" target="_blank">@user.DisplayName</a>
+                            </h5>
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-summary">
+                            <p>
+                                <span>问题：@askStatisticData[user.UserId][OwnerDataKeys.Instance().QuestionCount()]</span> <span>回答：@askStatisticData[user.UserId][OwnerDataKeys.Instance().AnswerCount()]</span>
+                            </p>
+                            <p>
+                                @userDescription[user.UserId]
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+}
+@Html.Hidden("pageCount", Model.PageCount)

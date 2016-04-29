@@ -1,0 +1,205 @@
+﻿@model User
+@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Ask/Styles/app.css");
+    Html.Script("~/Scripts/jquery/Jeditable/jquery.jeditable.js");
+    var currentUser = UserContext.CurrentUser;
+    string userDescription = ViewData.Get<string>("userDescription", String.Empty);
+    bool isAcceptQuestion = ViewData.Get<bool>("isAcceptQuestion", false);
+    bool isFollowed = currentUser.IsFollowed(Model.UserId);
+    bool allowOperation = DIContainer.Resolve<Authorizer>().Ask_UserSetting(Model.UserId);
+
+    string ta = "我";
+    if (currentUser == null || currentUser.UserId != Model.UserId)
+    {
+        ta = Model.Profile.ThirdPerson();
+    } 
+}
+@section Aside{
+    @Html.Action("_UserAchievement", "ChannelAsk", new { userId = Model.UserId, ta = ta })
+    @Html.Action("_UserFollowedTagsSide", "ChannelAsk", new { userId = Model.UserId, topNum = 6, ta = ta })
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all tnc-user-followed">
+        @Html.Action("_FollowedUserList", "UserSpace", new { Area = "Common", spaceKey = Model.UserName })
+    </div>
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all tnc-user-fans">
+        @Html.Action("_FollowerList", "UserSpace", new { Area = "Common", spaceKey = Model.UserName })
+    </div>
+}
+@Html.PointMessage()
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-my-ask">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="tn-profile tn-helper-clearfix">
+            @Html.ShowUserAvatar(Model, AvatarSizeType.Small, true, HyperLinkTarget._self, enableCachingInClient: false)
+            <div class="tn-info">
+                <div class="tn-title tn-border-gray tn-border-bottom">
+                    <div class="tn-option">
+                        @if (currentUser != null && currentUser.UserId != Model.UserId)
+                        {
+                            @Html.FollowUser(Model.UserId, "关注")
+                            if (isAcceptQuestion)
+                            {
+                            <a id="askTa" plugin="dialog" class="tn-button tn-corner-all tn-button-text-only tn-button-default tn-button-hollow " href="@SiteUrls.Instance()._AskTa(Model.UserId)"><span class="tn-button-text">向@(ta)提问</span></a>
+                            }
+                        }
+                        <a class="tn-button tn-corner-all tn-button-default tn-button-hollow tn-button-text-icon-primary" href="@SiteUrls.Instance().SpaceHome(Model.UserName)"><span class="tn-icon tn-smallicon-add"></span><span class="tn-button-text">查看@(ta)的空间</span></a>
+                        @if (allowOperation)
+                        {
+                            <a id="mySetting" plugin="dialog" class="tn-button tn-corner-all tn-button-default tn-button-hollow tn-button-text-icon-primary" href="@SiteUrls.Instance()._AskUserSettings(Model.UserId)"><span class="tn-icon tn-smallicon-set"></span><span class="tn-button-text">我的设置</span></a>
+                        }
+                    </div>
+                    <p class="tn-name"><a class="tn-user-name" href="@SiteUrls.Instance().SpaceHome(Model.UserName)">@Model.DisplayName</a>@Html.IdentificationType(Model.UserId)</p>
+                </div>
+                <div class="tn-introduction">
+                    <div id="editDescription" class="tn-txt" value="@userDescription" style="cursor:pointer;">@userDescription</div>
+                    <a class="tn-edit" href="#" style="display: none;" id="editUserIntroduce">编辑</a>
+                </div>
+            </div>
+        </div>
+        <div class="tn-tabs">
+            <ul class="tn-tabs-nav tn-border-gray tn-border-bottom tn-helper-clearfix">
+                <li class="tn-widget-content tn-border-gray tn-border-trl tn-tabs-selected"><a class="tnui-tab" href="@SiteUrls.Instance()._AskUserAnswers(Model.UserId, 10)">@(ta)的回答</a></li>
+                <li class="tn-widget-content tn-border-gray tn-border-trl"><a class="tnui-tab" href="@SiteUrls.Instance()._AskUserQuestions(Model.UserId, 10)">@(ta)的问题</a></li>
+                <li class="tn-widget-content tn-border-gray tn-border-trl"><a class="tnui-tab" href="@SiteUrls.Instance()._AskUserFollowedQuestions(Model.UserId, 10)">@(ta)关注的问题</a></li>
+                <li class="tn-widget-content tn-border-gray tn-border-trl"><a class="tnui-tab" href="@SiteUrls.Instance()._AskUserFollowedTags(Model.UserId, 10)">@(ta)关注的标签</a></li>
+            </ul>
+            <div class="tn-tabs-panel">
+                <ul id="ask-list" class="tn-list spb-myask-list">
+                </ul>
+                <div class="tn-load-more tn-bg-gray tn-border-gray" style="display: none;">
+                    <a id="load-more" href="#" class="tn-action tn-action-text-icon-right"><span class="tn-icon tn-smallicon-collapse-open"></span><span class="tn-action-text">更多</span> </a>
+                </div>
+                <div class="tn-loading tn-border-gray tn-corner-all" style="display: none;">
+                </div>
+                <div class="tn-load-end tn-border-gray tn-corner-all" style="display: none;">
+                    加载失败，请稍候再试...
+                </div>
+                <div class="tn-no-data" style="display: none;">
+                    暂无数据
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+                       $(function () {
+                           var pageIndex = 1;
+                           var url = "@(SiteUrls.Instance()._AskUserAnswers(Model.UserId, 10))";
+
+        //加载页面列表
+        function loadMore() {
+            $('.tn-load-more').hide();
+            $('.tn-load-end').hide();
+            $('.tn-loading').show();
+
+            $.get(url, { pageIndex: pageIndex }, function (data, status, xhr) {
+                $('.tn-loading').hide();
+                if (status === "success") {
+                    $('#ask-list').append(data);
+                    var pageCount = $('#pageCount:last').val();
+                    if (pageCount == 0) {
+                        $('.tn-no-data').show();
+                    } else if (pageCount <= pageIndex) {
+                        $('.tn-no-data').hide();
+                    } else {
+                        $('.tn-load-more').show();
+                        $('.tn-no-data').hide();
+
+                        pageIndex++;
+                    }
+                } else {
+                    $('.tn-load-end').show();
+                }
+            });
+        }
+        //点击更多
+        $('#load-more').click(function (e) {
+            e.preventDefault();
+            loadMore();
+        });
+        //页面加载时加载“他的回答”的第一页
+        loadMore();
+        //切换标签页
+        $(".tnui-tab").click(function (e) {
+            e.preventDefault();
+            $(this).parent("li").addClass("tn-tabs-selected");
+            $(this).parent("li").siblings().removeClass("tn-tabs-selected");
+            var _url = $(this).attr("href");
+            if (url == _url) {
+                return false;
+            }
+            $("#ask-list").empty();
+            $('.tn-load-more').hide();
+            $('.tn-load-end').hide();
+            $('.tn-loading').hide();
+            $('.tn-no-data').hide();
+            url = _url;
+            pageIndex = 1;
+            loadMore();
+        });
+
+    });
+</script>)
+
+@if (allowOperation)
+{
+    @Html.ScriptBlock(@<script type="text/javascript">
+                           $(function () {
+                               $("#editDescription").editable("@Html.Raw(SiteUrls.Instance()._AskSaveUserDescription(Model.UserId))", {
+                name: "description",
+                method: "POST",
+                rows: '2',
+                cols: '70',
+                event: 'click',
+                onblur: 'submit',
+                type: "textarea",
+                cancel: '取消',
+                submit: '保存',
+                select: true,
+                tooltip: "单击可以编辑我的简介",
+                placeholder: '单击可以编辑我的简介',
+                ajaxoptions: { dataType: 'json' },
+                onedit: function (settings, self) {
+                    $("#editUserIntroduce").hide();
+                    $(".tn-introduction").unbind();
+                },
+                callback: function (data, settings) {
+                    var description = data.description;
+                    if (data == "1") {
+                        art.dialog.tips("简介不能超过200个字！", 1.5, 0);
+                        description = $("#editDescription").attr("value");
+                    }
+                    $(this).text(description);
+                    $(".tn-introduction").hover(function (e) {
+                        $("#editUserIntroduce").show();
+                    }, function () {
+                        $("#editUserIntroduce").hide();
+                    });
+                }
+            });
+            //鼠标移上去显示编辑
+            $(".tn-introduction").hover(function (e) {
+                $("#editUserIntroduce").show();
+            }, function () {
+                $("#editUserIntroduce").hide();
+            });
+            $("#editUserIntroduce").click(function () {
+                $("#editDescription").click();
+            });
+
+        });
+
+    </script>)
+}
+else
+{ 
+    @Html.ScriptBlock(@<script type="text/javascript">
+                           $(function () {
+                               $("#editDescription").css("cursor", "default");
+                           });
+
+    </script>)
+}
+
+
+
+

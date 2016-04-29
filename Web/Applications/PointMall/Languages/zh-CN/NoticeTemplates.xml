@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<notices>
+    <notice templateName="ApplyRecord">
+      您兑换的 <a href="@Model.RelativeObjectUrl" target="_blank">@Model.RelativeObjectName</a> 已经得到批准。
+    </notice>
+    <notice templateName="CancelRecord">
+      您兑换的 <a href="@Model.RelativeObjectUrl" target="_blank">@Model.RelativeObjectName</a> 未得到批准。
+    </notice>
+</notices>

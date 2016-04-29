@@ -1,0 +1,9 @@
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Ask.dll.config
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Ask.XML
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Ask.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Ask.pdb
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Ask.csprojResolveAssemblyReference.cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Spacebuilder.Ask.Resources.Resource.resources
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Ask.csproj.GenerateResource.Cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Spacebuilder.Ask.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Spacebuilder.Ask.pdb

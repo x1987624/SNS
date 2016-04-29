@@ -1,0 +1,156 @@
+﻿@model PagingDataSet<Album>
+@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+
+    SortBy_Album sortBy =Request.QueryString.Get<SortBy_Album>("sortBy",SortBy_Album.DateCreated_Desc);
+    long albumCount = 0;
+    if (Model != null)
+    {
+        albumCount = Model.TotalRecords;
+    }
+    IUser currentUser=UserContext.CurrentUser;
+    bool isOwner = Url.SpaceKey().ToLower() == (currentUser == null ? string.Empty : currentUser.UserName.ToLower());
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.Action("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+@Html.PointMessage()
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-album-list-box">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-album-list">
+            <div class="tn-list-header">
+                <div class="tn-list-header-row tn-helper-clearfix tn-border-gray tn-border-bottom">
+                    @if (isOwner)
+                    { 
+                        <div class="tn-option">
+                            @Html.LinkButton("创建相册", SiteUrls.Instance()._EditAlbum(Url.SpaceKey(), callBack: "CreateAlbumCallBack"), iconType: IconTypes.SmallAdd, htmlAttributes: new { id = "createAlbum", plugin = "dialog" })
+                            <a class="tn-button tn-corner-all tn-button-default tn-button-text-icon-secondary" menu="#moreOptions" href="#"><span class="tn-icon tn-smallicon-triangle-down"></span><span class="tn-button-text">@sortBy.EnumMetadataDisplay()</span></a>
+                            <div id="moreOptions" class="tn-more-options tn-widget-content tn-border-gray" style="display: none">
+                                <ul class="tn-more-list">
+                                    @foreach (var item in Enum.GetValues(typeof(SortBy_Album)).Cast<SortBy_Album>().Take(4))
+                                    {                                     
+                                        <li>@Html.Link(item.EnumMetadataDisplay(), SiteUrls.Instance().Albums(Url.SpaceKey(), item), item.EnumMetadataDisplay(), new { @class = "tn-item-link" })</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                    <span class="tn-count tn-text-note">共@(albumCount)个相册</span>
+                </div>
+            </div>
+            @if (Model != null && Model.Count >= 0)
+            { 
+                <ul class="tn-album-list tn-helper-clearfix">
+                    @foreach (var album in Model)
+                    { 
+                        <li class="tn-album-item tn-hover">
+                            <div class="tn-album-cover tn-widget-content tn-border-gray">
+                                <div class="tn-photo-wrap tn-widget-content tn-border-gray"  style="cursor:pointer">
+                                    <a href="@SiteUrls.Instance().AlbumDetailList(Url.SpaceKey(),album.AlbumId)">
+                                    @if (DIContainer.Resolve<Authorizer>().Album_View(album))
+                                    {
+                                        var cover = album.Cover;
+                                        if (album.CoverId > 0 && cover != null)
+                                        {                                         
+                                            <img alt="@cover.Description" src="@SiteUrls.Instance().ImageUrl(cover.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" class="tnui-image-detail" width="100" height="100"/>
+                                        }
+                                        else
+                                        {
+                                            var covers=album.Covers;
+                                            if (covers != null && covers.Count() > 0)
+                                            { 
+                                                <ul class="spb-cover-group tn-helper-clearfix">
+                                                    @foreach (var photo in covers)
+                                                    { 
+                                                        <li>
+                                                            <img alt="@photo.Description" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" class="tnui-image-detail" width="30" height="30"/>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                            else
+                                            {                                                 
+                                                <img src="@SiteUrls.Instance().ImageUrl(string.Empty, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" width="100" height="100"/>                                                    
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {                                         
+                                        <img src="@SiteUrls.Instance().ImageUrl(string.Empty, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" width="100" height="100"/>                                           
+                                    }
+                                    </a>
+                                    @if (DIContainer.Resolve<Authorizer>().Album_Edit(album))
+                                    { 
+                                        @*<div class="tn-state-hidden tn-move">
+                                            <a class="tn-icon tn-icon-move" title="移动" href="###"></a>
+                                            <div class="tn-overlay">
+                                            </div>
+                                        </div>
+                                        todo：zhaok 移动尚未实现暂时屏蔽*@
+                                        <div class="tn-state-hidden tn-edit">
+                                            <a  class="tn-icon tn-smallicon-write" title="编辑" plugin="dialog" href="@SiteUrls.Instance()._EditAlbum(Url.SpaceKey(), album.AlbumId, "CreateAlbumCallBack")">
+                                            </a><a class="tn-icon tn-smallicon-cross" id="deleteAlbum-@(album.AlbumId)" title="删除" href="@SiteUrls.Instance()._DeleteAlbum(Url.SpaceKey(), album.AlbumId)">
+                                            </a>
+                                            <div class="tn-overlay">
+                                            </div>
+                                        </div>                                        
+                                    }
+                                    @if (album.PrivacyStatus != PrivacyStatus.Public)
+                                    { 
+                                        <div class="tn-limit">
+                                            @Html.PrivacyStatusIcon(album.PrivacyStatus)
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <p class="tn-text-heading">
+                                @album.AlbumName</p>
+                            <p class="tn-text-note tn-info tn-helper-clearfix">
+                                <em class="tn-count">@(album.PhotoCount)张</em>
+                                <em class="tn-date">
+                                    @album.LastUploadDate.ToFriendlyDate(false)                                
+                                </em>
+                            </p>
+                        </li>
+                    }
+                </ul>
+                <div class="tn-pagination">
+                    @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    function CreateAlbumCallBack(data) {
+        if (data.MessageType == -1) {
+            alert(data.MessageContent);
+        }
+        else {
+            art.dialog.tips("操作成功！", 1.5, 1, function () { window.location.reload(true) });
+        }
+    }
+    $(function () {
+
+        $("a[id^='deleteAlbum-']").click(function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var url = $this.attr("href");
+            art.dialog.confirm('此操作会删除相册及相册内的所有照片,<br/>您确定要执行此操作吗？', function () {
+                $.post(url, function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true) });
+                });
+            });
+        });
+
+        $(".tn-photo-wrap").click(function (e) {
+            e = e || window.event;
+            if (!$(e.target).hasClass("tn-icon")) {
+                window.location = $(this).children("a").attr("href");
+            }
+        })
+
+    });
+</script>)

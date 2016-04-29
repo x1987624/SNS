@@ -1,0 +1,953 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.Blog.Service</name>
+    </assembly>
+    <members>
+        <member name="T:Spacebuilder.Blog.BlogSettings">
+            <summary>
+            日志设置
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSettings.AllowSetSiteCategory">
+            <summary>
+            是否允许用户设置站点分类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSettings.RecommendPicTypeId">
+            <summary>
+            图片日志推荐类型ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSettings.RecommendWordTypeId">
+            <summary>
+            文字日志推荐类型ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSettings.RecommendUserTypeId">
+            <summary>
+            推荐用户类型ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSettings.ShowSummaryInRss">
+            <summary>
+            是否在Rss输出里只显示摘要
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSettings.RssPageSize">
+            <summary>
+            Rss输出条数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.ApplicationIdsExtension">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.ApplicationIdsExtension.Blog(ApplicationIds)">
+            <summary>
+            帖吧应用Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.ApplicationKeysExtension">
+            <summary>
+            应用Key
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.ApplicationKeysExtension.Blog(ApplicationKeys)">
+            <summary>
+            贴吧
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.AuditItemKeysExtension">
+            <summary>
+            日志审核项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuditItemKeysExtension.Blog_Thread(Tunynet.Common.AuditItemKeys)">
+            <summary>
+            日志审核项
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.CountTypesExtension">
+            <summary>
+            日志计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.CountTypesExtension.ReproduceCount(Tunynet.Common.CountTypes)">
+            <summary>
+            被转载次数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.MultiTenantServiceKeysExtension">
+            <summary>
+            日志定义的ServiceKey
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.OwnerDataKeysExtension">
+            <summary>
+            用户计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.OwnerDataKeysExtension.ThreadCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            日志数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.TenantTypeIdsExtension">
+            <summary>
+            日志定义的租户类型
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.TenantTypeIdsExtension.Blog(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            日志应用
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.TenantTypeIdsExtension.BlogThread(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.ArchiveItem">
+            <summary>
+            日志归档统计项目
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.ArchiveItem.ToString">
+            <summary>
+            用于构建CacheKey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.ArchiveItem.Year">
+            <summary>
+            归档阶段-年
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.ArchiveItem.Month">
+            <summary>
+            归档阶段-月
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.ArchiveItem.Day">
+            <summary>
+            归档阶段-日
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.ArchiveItem.Count">
+            <summary>
+            该阶段的日志统计数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.SortBy_BlogThread">
+            <summary>
+            日志排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.SortBy_BlogThread.DateCreated_Desc">
+            <summary>
+            发布时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.SortBy_BlogThread.CommentCount">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.SortBy_BlogThread.StageHitTimes">
+            <summary>
+            阶段浏览数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.ArchivePeriod">
+            <summary>
+            日志归档阶段
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.ArchivePeriod.Year">
+            <summary>
+            按年
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.ArchivePeriod.Month">
+            <summary>
+            按月
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.ArchivePeriod.Day">
+            <summary>
+            按天
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogThread">
+            <summary>
+            日志实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThread.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThread.GetBody">
+            <summary>
+            获取BlogThread的Body
+            </summary>
+            <remarks>
+            由于使用独立的实体内容缓存，Body属性已经置为null
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThread.GetResolvedBody">
+            <summary>
+            获取BlogThread的解析过的内容
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThread.Clone">
+            <summary>
+            克隆当前实体（浅拷贝）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.ThreadId">
+             <summary>
+            ThreadId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.TenantTypeId">
+             <summary>
+            租户类型Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.OwnerId">
+             <summary>
+            拥有者Id（例如：用户Id、群组Id）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.FeaturedImageAttachmentId">
+            <summary>
+            标题图对应的附件Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.FeaturedImage">
+            <summary>
+            标题图文件（带部分路径）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.LastModified">
+            <summary>
+            最后更新日期
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.UserId">
+             <summary>
+            日志作者UserId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.Author">
+             <summary>
+            作者
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.Subject">
+             <summary>
+            标题
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.Body">
+             <summary>
+            内容
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.Summary">
+             <summary>
+            摘要
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.Keywords">
+             <summary>
+            关键字
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.IsDraft">
+             <summary>
+            是否草稿
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.IsLocked">
+             <summary>
+            是否锁定（锁定的日志不允许评论）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.IsEssential">
+             <summary>
+            是否精华
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.IsSticky">
+             <summary>
+            是否置顶
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.IsReproduced">
+             <summary>
+            是否转载
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.OriginalAuthorId">
+             <summary>
+            被转载用户Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.IP">
+             <summary>
+            发布人IP
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.AuditStatus">
+             <summary>
+            审核状态
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.PrivacyStatus">
+             <summary>
+            隐私状态
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.OriginalAuthorName">
+            <summary>
+            原作者名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.OriginalThreadId">
+            <summary>
+            被转载的日志id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.PrevThreadId">
+            <summary>
+            上一日志ThreadId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.PrevThread">
+            <summary>
+            上一日志
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.NextThreadId">
+            <summary>
+            下一日志ThreadId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.NextThread">
+            <summary>
+            下一日志
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.ResolvedSubject">
+            <summary>
+            根据是否转载返回带前缀的标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.OwnerCategories">
+            <summary>
+            所有者分类id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.OwnerCategoryNames">
+            <summary>
+            所有者分类名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.SiteCategoryId">
+            <summary>
+            站点分类id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.SiteCategoryName">
+            <summary>
+            站点分类名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.TagNames">
+            <summary>
+            主题标签名列表
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.HitTimes">
+            <summary>
+            浏览数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.CommentCount">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.ReproduceCount">
+            <summary>
+            被转载数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.User">
+            <summary>
+            日志作者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.AuditItemKey">
+            <summary>
+            审核项Key 
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThread.Tunynet#Common#IPrivacyable#ContentId">
+            <summary>
+            内容项Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogThreadRepository">
+            <summary>
+            日志仓储
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.IBlogThreadRepository">
+            <summary>
+            日志仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.SetEssential(System.Int64,System.Boolean)">
+            <summary>
+            加精/取消精华
+            </summary>
+            <param name="threadId">日志ID</param>
+            <param name="isEssential">是否精华</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            删除某用户时指定其他用户接管数据
+            </summary>
+            <param name="userId">要删日志的用户Id</param>
+            <param name="takeOverUser">要接管日志的用户</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetPrevThreadId(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            上一日志ThreadId
+            </summary>
+            <param name="blogThread">当前日志</param>
+            <returns>上一日志ThreadId</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetNextThreadId(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            下一日志ThreadId
+            </summary>
+            <param name="blogThread">当前日志</param>
+            <returns>下一日志ThreadId</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetOwnerThreads(System.String,System.Int64,System.Boolean,System.Boolean,System.Nullable{System.Int64},System.String,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            获取Owner的日志
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="ignorePrivate">是否忽略私有</param>
+            <param name="categoryId">类别Id</param>
+            <param name="tagName">标签名称</param>
+            <param name="isSticky">是否置顶的排在前面</param>
+            <param name="pageSize">pageSize</param> 
+            <param name="pageIndex">页码</param>        
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetDraftThreads(System.String,System.Int64)">
+            <summary>
+            获取Owner的草稿
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="ownerId">所有者id</param>
+            <returns>日志草稿列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetArchiveItems(System.String,System.Int64,System.Boolean,System.Boolean)">
+            <summary>
+            获取归档项目
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">OwnerId</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="ignorePrivate">是否忽略私有</param>
+            <returns>归档项目列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetsForArchive(System.String,System.Int64,System.Boolean,System.Boolean,Spacebuilder.Blog.ArchivePeriod,Spacebuilder.Blog.ArchiveItem,System.Int32,System.Int32)">
+            <summary>
+            获取存档的日志分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">ownerId</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="ignorePrivate">是否忽略私有</param>
+            <param name="archivePeriod">归档阶段</param>
+            <param name="archiveItem">归档日期标识</param>
+            <param name="pageSize">pageSize</param> 
+            <param name="pageIndex">页码</param>
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetTops(System.String,System.Int32,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Blog.SortBy_BlogThread)">
+            <summary>
+            获取日志的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="categoryId">类别Id</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">日志排序条件</param>
+            <returns>日志列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.Gets(System.String,System.Nullable{System.Int64},System.Boolean,System.Boolean,System.Nullable{System.Int64},System.String,System.Nullable{System.Boolean},Spacebuilder.Blog.SortBy_BlogThread,System.Int32,System.Int32)">
+            <summary>
+            获取日志排行分页集合
+            </summary>
+            <remarks>rss订阅也使用方法</remarks>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">OwnerId</param>
+            <param name="categoryId">类别Id</param>
+            <param name="tagName">标签名称</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageSize">分页大小</param> 
+            <param name="pageIndex">页码</param>
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetsForAdmin(System.String,System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{System.Int64},System.String,System.Int32,System.Int32)">
+            <summary>
+            获取日志排行分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="categoryId">站点类别Id</param>
+            <param name="isEssential">是否精华</param>
+            <param name="ownerId">OwnerId</param>
+            <param name="subjectKeywords">标题关键字</param>
+            <param name="pageSize">分页大小</param> 
+            <param name="pageIndex">页码</param>
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetManageableDatas(System.String)">
+            <summary>
+            获取日志管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>日志管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.IBlogThreadRepository.GetStatisticDatas(System.String)">
+            <summary>
+            获取日志统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>日志统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.Update(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            更新日志
+            </summary>
+            <param name="blogThread">日志实体</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetResolvedBody(System.Int64)">
+            <summary>
+            获取解析的正文
+            </summary>
+            <param name="threadId">日志id</param>
+            <returns>解析后的日志正文</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetBody(System.Int64)">
+            <summary>
+            获取日志正文内容
+            </summary>
+            <param name="threadId">日志id</param>
+            <returns>日志正文内容</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            删除某用户时指定其他用户接管数据
+            </summary>
+            <param name="userId">要删日志的用户Id</param>
+            <param name="takeOverUser">要接管日志的用户</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.SetEssential(System.Int64,System.Boolean)">
+            <summary>
+            加精/取消精华
+            </summary>
+            <param name="threadId">日志id</param>
+            <param name="isEssential">是否精华</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetPrevThreadId(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            获取上一篇
+            </summary>
+            <param name="blogThread">当前日志</param>
+            <returns>上一篇日志id</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetNextThreadId(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            获取下一篇
+            </summary>
+            <param name="blogThread">当前日志</param>
+            <returns>下一篇日志id</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetOwnerThreads(System.String,System.Int64,System.Boolean,System.Boolean,System.Nullable{System.Int64},System.String,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            获取Owner的日志
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="ignorePrivate">是否忽略私有</param>
+            <param name="categoryId">类别Id</param>
+            <param name="tagName">标签名称</param>
+            <param name="isSticky">是否置顶的排在前面</param>
+            <param name="pageSize">分页大小</param> 
+            <param name="pageIndex">页码</param>        
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetDraftThreads(System.String,System.Int64)">
+            <summary>
+            获取Owner的草稿
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="ownerId">所有者id</param>
+            <returns>日志列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetArchiveItems(System.String,System.Int64,System.Boolean,System.Boolean)">
+            <summary>
+            获取归档项目
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">所有者id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="ignorePrivate">是否忽略私有</param>
+            <returns>归档项目id</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetsForArchive(System.String,System.Int64,System.Boolean,System.Boolean,Spacebuilder.Blog.ArchivePeriod,Spacebuilder.Blog.ArchiveItem,System.Int32,System.Int32)">
+            <summary>
+            获取存档的日志分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">所有者id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="ignorePrivate">是否忽略私有</param>
+            <param name="archivePeriod">归档阶段</param>
+            <param name="archiveItem">归档日期标识</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetTops(System.String,System.Int32,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Blog.SortBy_BlogThread)">
+            <summary>
+            获取日志的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="categoryId">类别Id</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">日志排序依据</param>
+            <returns>日志列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.Gets(System.String,System.Nullable{System.Int64},System.Boolean,System.Boolean,System.Nullable{System.Int64},System.String,System.Nullable{System.Boolean},Spacebuilder.Blog.SortBy_BlogThread,System.Int32,System.Int32)">
+            <summary>
+            获取日志排行分页集合
+            </summary>
+            <remarks>rss订阅也使用方法</remarks>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">所有者id</param>
+            <param name="categoryId">类别Id</param>
+            <param name="tagName">标签名称</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetsForAdmin(System.String,System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{System.Int64},System.String,System.Int32,System.Int32)">
+            <summary>
+            获取日志排行分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="categoryId">站点类别Id</param>
+            <param name="isEssential">是否精华</param>
+            <param name="ownerId">OwnerId</param>
+            <param name="subjectKeywords">标题关键字</param>        
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetManageableDatas(System.String)">
+            <summary>
+            获取日志管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>日志管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetStatisticDatas(System.String)">
+            <summary>
+            获取日志统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>日志统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadRepository.GetCacheKeyOfResolvedBody(System.Int64)">
+            <summary>
+            获取解析正文缓存Key
+            </summary>
+            <param name="threadId">日志id</param>
+            <returns>正文缓存key</returns>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogThreadRepository.publiclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadRepository.PubliclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogBodyProcessor">
+            <summary>
+            日志正文解析器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogBodyProcessor.AtUserTagGenerate(System.String,System.String)">
+            <summary>
+            生成at用户标签
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="displayName">显示名</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogBodyProcessor.AddBBTag(System.String,Tunynet.Common.Attachment)">
+            <summary>
+            添加BBTag实体
+            </summary>
+            <param name="htmlTemplate">html模板</param>
+            <param name="attachment">带替换附件</param>
+            <returns>BBTag实体</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogBodyProcessor.ParsedMediaTagGenerate(System.String,Tunynet.Common.ParsedMedia)">
+            <summary>
+            生成多媒体内容标签
+            </summary>
+            <param name="shrotUrl">短网址</param>
+            <param name="parsedMedia">多媒体连接实体</param>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogService">
+            <summary>
+            日志业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.#ctor(Spacebuilder.Blog.IBlogThreadRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="blogThreadRepository">日志仓储实现</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.Create(Spacebuilder.Blog.BlogThread,System.String,System.String)">
+            <summary>
+            撰写日志/转载日志
+            </summary>
+            <param name="blogThread">日志实体</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.UpdatePrivacySettings(Spacebuilder.Blog.BlogThread,System.String,System.String)">
+            <summary>
+            设置隐私状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.Update(Spacebuilder.Blog.BlogThread,System.Boolean,System.String,System.String)">
+            <summary>
+            更新日志
+            </summary>
+            <param name="blogThread">日志实体</param>
+            <param name="changeAuditStatusForUpdate">是否改变审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.SetEssential(System.Int64,System.Boolean)">
+            <summary>
+            加精/取消精华
+            </summary>
+            <param name="threadId">日志Id</param>
+            <param name="isEssential">是否设为精华</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.SetEssential(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            批量加精/取消精华
+            </summary>
+            <param name="threadIds">待处理的日志Id列表</param>
+            <param name="isEssential">是否设为精华</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.SetSticky(System.Int64,System.Boolean)">
+            <summary>
+            置顶/取消置顶
+            </summary>
+            <param name="threadId">日志Id</param>
+            <param name="isSticky">是否置顶</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.Approve(System.Int64,System.Boolean)">
+            <summary>
+            批准/不批准日志
+            </summary>
+            <param name="threadId">待被更新的主题帖Id</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.Approve(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            批量批准/不批准日志
+            </summary>
+            <param name="threadIds">待处理的日志Id列表</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.Delete(System.Int64)">
+            <summary>
+            删除日志
+            </summary>
+            <param name="threadId">日志Id</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.Delete(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            删除日志
+            </summary>
+            <param name="blogThread">日志实体</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户时处理所有日志相关的数据（删除用户时使用）
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="takeOverUserName">用于接管删除用户时不能删除的内容(例如：用户创建的群组)</param>
+            <param name="takeOverAll">是否接管被删除用户的所有内容</param>
+            <remarks>接管被删除用户的所有内容</remarks>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.Get(System.Int64)">
+            <summary>
+            获取日志
+            </summary>
+            <param name="threadId">日志Id</param>
+            <returns>日志实体</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetPrevThreadId(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            上一日志ThreadId
+            </summary>
+            <param name="blogThread">当前日志实体</param>
+            <returns>上一日志ThreadId</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetNextThreadId(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            下一日志ThreadId
+            </summary>
+            <param name="blogThread">当前日志实体</param>
+            <returns>下一日志ThreadId</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetOwnerThreads(System.String,System.Int64,System.Boolean,System.Boolean,System.Nullable{System.Int64},System.String,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            获取Owner的日志
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="ignorePrivate">是否忽略隐私状态为不公开的（作者或管理员查看时忽略隐私状态）</param>
+            <param name="categoryId">类别Id</param>
+            <param name="tagName">标签名称</param>
+            <param name="isSticky">是否置顶的排在前面</param>
+            <param name="pageSize">每页记录数</param>
+            <param name="pageIndex">页码</param>        
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetDraftThreads(System.String,System.Int64)">
+            <summary>
+            获取Owner的草稿
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="ownerId">所有者id</param>
+            <returns>日志列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetArchiveItems(System.String,System.Int64,System.Boolean,System.Boolean)">
+            <summary>
+            获取归档项目
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">所有者id</param>
+            <param name="ignoreAudit">忽略审核状态</param>
+            <param name="ignorePrivate">忽略隐私状态为私有的记录</param>
+            <returns>归档项目列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetsForArchive(System.String,System.Int64,System.Boolean,System.Boolean,Spacebuilder.Blog.ArchivePeriod,Spacebuilder.Blog.ArchiveItem,System.Int32,System.Int32)">
+            <summary>
+            获取存档的日志分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">ownerId</param>
+            <param name="ignoreAudit">忽略审核状态</param>
+            <param name="ignorePrivate">忽略隐私状态为私有的记录</param>
+            <param name="archivePeriod">归档阶段</param>
+            <param name="archiveItem">归档统计项目</param>
+            <param name="pageSize">每页记录数</param>
+            <param name="pageIndex">页码</param>
+            <returns>日志分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetTops(System.String,System.Int32,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Blog.SortBy_BlogThread)">
+            <summary>
+            获取日志的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="categoryId">类别Id</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">日志排序依据</param>
+            <returns>日志列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.Gets(System.String,System.Nullable{System.Int64},System.Boolean,System.Boolean,System.Nullable{System.Int64},System.String,System.Nullable{System.Boolean},Spacebuilder.Blog.SortBy_BlogThread,System.Int32,System.Int32)">
+            <summary>
+            获取日志排行分页集合
+            </summary>
+            <remarks>rss订阅也使用方法</remarks>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">所有者id</param>
+            <param name="ignoreAudit">忽略审核状态</param>
+            <param name="ignorePrivate">忽略隐私状态为私有的记录</param>
+            <param name="categoryId">类别Id</param>
+            <param name="tagName">标签名称</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageSize">每页记录数</param>
+            <param name="pageIndex">页码</param>
+            <returns>日志分页列表</returns>
+        </member>
+        <!-- 对于成员“M:Spacebuilder.Blog.BlogService.GetsForAdmin(System.String,System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{System.Int64},System.String,System.Int32,System.Int32)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Spacebuilder.Blog.BlogService.GetBlogThreads(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            根据日志Id集合组装日志实体集合
+            </summary>
+            <param name="threadIds">日志Id集合</param>
+            <returns>日志实体集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetManageableDatas(System.String)">
+            <summary>
+            获取日志管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>日志管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogService.GetStatisticDatas(System.String)">
+            <summary>
+            获取日志统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>日志统计数据</returns>
+        </member>
+    </members>
+</doc>

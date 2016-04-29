@@ -1,0 +1,230 @@
+﻿@model AskQuestion
+@{
+    Layout = "app-detail-2cols";
+    Html.Style("~/Applications/Ask/Styles/app.css");
+    Html.Script("~/Scripts/jquery/scrollTo/jquery.scrollto.js");
+    Html.Script("~/Scripts/tunynet/plugins/jquery.spb.collapsibleBox.js"); 
+
+    IUser currentUser = UserContext.CurrentUser;
+    IUser user = Model.User;
+    Authorizer authorizer = DIContainer.Resolve<Authorizer>();
+    IEnumerable<Tag> tags = Model.Tags;
+    string pageIndex = Request.QueryString.Get<string>("pageIndex", null);
+    string answerId = Request.QueryString.Get<string>("answerId", null);
+
+    IEnumerable<Attachment> attachments = ViewData.Get<IEnumerable<Attachment>>("attachments", null);
+
+    List<long> l = new List<long>() { Model.QuestionId };
+}
+@section Aside{
+    @Html.Action("_RelevantQuestions", "ChannelAsk", new { questionId = Model.QuestionId })
+    @Html.Action("_QuestionStatus", "ChannelAsk", new { questionId = Model.QuestionId })
+    @Html.AdvertisingPosition("10101300003")
+}
+@if (authorizer.IsAdministrator(AskConfig.Instance().ApplicationId) && (int)Model.AuditStatus < (int)(new AuditService().GetPubliclyAuditStatus(AskConfig.Instance().ApplicationId)))
+{ 
+    <div class="tn-cue-highlight tn-corner-all tn-message-box" id="prompt">
+        <a href="#" class="tn-icon tn-smallicon-cross tn-helper-right" id="hidespan"></a>
+        <span class="tn-helper-left"><span class="tn-icon tn-icon-exclamation"></span></span>
+        <div class="tn-helper-flowfix">
+            <strong>提示：</strong>当前问题尚未通过审核，你可以<a href="@SiteUrls.Instance()._ApproveQuestion(Model.QuestionId, true)" id = "audit-success">通过审核</a>
+            @if (Model.AuditStatus == AuditStatus.Pending)
+            {
+                @:或者
+                <a href="@SiteUrls.Instance()._ApproveQuestion(Model.QuestionId, false)" id = "audit-fail">不通过审核</a>
+            }
+        </div>
+    </div>
+    @Html.ScriptBlock(@<script type="text/javascript">
+        $(function () {
+            $("#hidespan").click(function (e) {
+                e.preventDefault();
+                $("#prompt").hide();
+            });
+
+            //通过审核
+            $("a[id^='audit-']").click(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "Post",
+                    url: $(this).attr("href"),
+                    success: function (data) {
+                        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                            $("#prompt").hide();
+                        });
+                    }
+                });
+            });
+        });
+    </script>)
+}
+<div class="tnc-main">
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-detail-box">
+        <div class="tn-box-content tn-widget-content tn-corner-all">
+            <div class="spb-ask-detail-wrap">
+                <div class="spb-ask-detail tn-hover">
+                    @if (tags != null)
+                    {
+                        <p class="tn-tags">
+                            @foreach (var tag in tags)
+                            {
+                                <span><a href="@SiteUrls.Instance().AskTagDetail(tag.TagName)" outerclass = "tn-tag-card"  plugin="tipsyHoverCard" data-url="@SiteUrls.Instance()._AskTagContents(tag.TagName)" target="_blank">@tag.TagName</a></span>  
+                            }
+                        </p>   
+                    }
+                    <div class="tn-detail">
+                        <h1>@(Model.Subject)
+                            @Html.QuestionStatusIcon(Model.Status)
+                        </h1>
+                        @if (Model.IsEssential)
+                        {
+                            <span title="精华" class="tn-icon-colorful tn-icon-colorful-fine tn-icon-inline"></span>
+                        }
+                        @if (Model.Reward > 0)
+                        {
+                            <span title="悬赏值" class="tn-reward"><span class="tn-icon-colorful tn-icon-colorful-coins tn-icon-inline">
+                            </span><em class="tn-count">悬赏：@Model.Reward</em></span>   
+                        }
+                    </div>
+                    <div class="tn-explain tn-detail-text">
+                        @Html.DisplayHtmlEditorContent(TenantTypeIds.Instance().AskQuestion(), Model.GetResolvedBody(), 680)
+                    </div>
+                    @Html.Action("_ListAttachement", "Channel", new { area = "common", teantTypeId = TenantTypeIds.Instance().AskQuestion(), threadId = Model.QuestionId })
+                    <div class="tn-info tn-helper-clearfix">
+                        <span class="tn-feedback">
+                            @if (currentUser != null && currentUser.UserId != Model.UserId)
+                            {
+                                @Html.Action("_SubscribeQuestionButton", "ChannelAsk", new { userId = currentUser.UserId, questionId = Model.QuestionId })
+                            }
+                            @if (authorizer.Answer_Create(Model))
+                            {   
+                                <a id="let-me-answer" href="###" class="tn-action"><span class="tn-action-text">我来回答</span></a>  
+                            }
+                            <a id="let-me-comment" href="###" class="tn-action"><span class="tn-action-text">评论(@Model.CommentCount)</span></a>
+                        </span>
+                        @Html.ShowUserAvatar(user, SiteUrls.Instance().AskUser(user.UserName), AvatarSizeType.Micro, HyperLinkTarget._self)
+                        <a class="tn-user-name" href="@SiteUrls.Instance().AskUser(user.UserName)">@Model.Author</a>
+                        <em class="tn-date tn-text-note">于 @Model.DateCreated.ToFriendlyDate(true) 提问</em>
+                        <span class="tn-actions tn-state-hidden">
+                            @if (authorizer.Question_Edit(Model))
+                            {
+                                <a href="@SiteUrls.Instance().AskQuestionEdit(Model.QuestionId)" class="tn-action"><span
+                                    class="tn-action-text">编辑</span></a>
+                                <a id="cancel-question" href="@SiteUrls.Instance()._AskCancel(Model.QuestionId)" class="tn-action">
+                                    <span class="tn-action-text">取消</span></a>
+                            }
+                            @if (authorizer.Question_SetEssential())
+                            {
+                                if (Model.IsEssential)
+                                {
+                                <a id="set-essential" href="@SiteUrls.Instance()._AskSetEssential(Model.QuestionId, false)" class="tn-action">
+                                    <span class="tn-action-text">取消精华</span></a>
+                                }
+                                else
+                                {
+                                <a id="set-essential" href="@SiteUrls.Instance()._AskSetEssential(Model.QuestionId, true)" class="tn-action">
+                                    <span class="tn-action-text">设置精华</span></a>
+                                }
+                            }
+                            <a href="@Html.Raw(SiteUrls.Instance()._ImpeachReport(Model.UserId, SiteUrls.Instance().AskQuestionDetail(Model.QuestionId), StringUtility.Trim(Model.Subject, 50)))" rel="nofollow" class="tn-action" plugin="dialog">
+                                <span class="tn-action-text">举报</span></a> </span>
+                    </div>
+                </div>
+                <div class="spb-answer-form">
+                    @if (authorizer.Answer_Create(Model))
+                    {
+                        <div id="answer-form" style="display: none;" class="tn-collapsible-content">
+                            @Html.Action("_AnswerEdit", "ChannelAsk", new RouteValueDictionary { { "questionId", Model.QuestionId } })
+                        </div>
+                    }
+                </div>
+                <div id="questionComment" class="spb-ask-comment" style="display: none">
+                    <div class="tn-widget tn-bubble tn-bubble-arrow-top tn-bubble-top-right">
+                        <div class="tn-bubble-arrow">
+                            <b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble">
+                            </b>
+                        </div>
+                        <div class="tn-bubble-content tn-widget-content tn-border-gray tn-corner-all">
+                            @Html.Action("_Comment", "Channel", new { area = "Common", commentedObjectId = Model.QuestionId, ownerId = Model.UserId, tenantTypeId = TenantTypeIds.Instance().AskQuestion(), toUserId = Model.UserId })
+                        </div>
+                    </div>
+                </div>
+                @Html.Action("_AnswerList", "ChannelAsk", new RouteValueDictionary { 
+                                                                { "questionId", Model.QuestionId },
+                                                                { "pageIndex", pageIndex },
+                                                                {"answerId",answerId}
+                                                              })
+                @Html.AdvertisingPosition("10101300004")
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script>
+
+    //加载回答列表的url
+    var answerListUrl = "@Html.Raw(SiteUrls.Instance()._AskAnswerList(Model.QuestionId, null))";
+    //回答回调函数
+    function AnswerEditSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+            if (data.MessageType == 1) {
+                //$("#Body", "#answer-form").val("");
+                $("#answer-form").slideUp(300);
+                $("#let-me-answer").hide();
+                $.get(answerListUrl, function (data) {
+                    $("#answer-list").replaceWith(data);
+                });
+            }
+        });
+    }
+
+    $(function () {
+
+        //加精/取消精华
+        $("#set-essential").click(function (e) {
+            var self = $(this);
+            $.post(self.attr("href"), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    if (data.MessageType == '1') {
+                        window.location.reload();
+                    }
+                });
+            });
+
+            return false;
+        });
+
+        //取消问题
+        $("#cancel-question").click(function (e) {
+            e.preventDefault();
+            var self = $(this);
+            art.dialog.confirm('确认要取消该问题吗？', function () {
+                $.post(self.attr("href"), function (data) {
+                    if (data.MessageType == '1') {
+                        window.location.href = "@(SiteUrls.Instance().AskUser(user.UserName))";
+                    }
+                });
+                return false;
+            });
+        });
+
+        //我来回答
+        $("#let-me-answer").click(function (e) {
+            e.preventDefault();
+            $("#answer-form").slideToggle(300);
+        })
+
+        //取消回答
+        $("#cancel-answer").click(function (e) {
+            e.preventDefault();
+            $("#answer-form").slideUp(300);
+        })
+
+        //问题评论
+        $("#let-me-comment").click(function (e) {
+            e.preventDefault();
+            $("#questionComment").toggle();
+        })
+
+    })
+</script>)

@@ -1,0 +1,119 @@
+﻿@model Photo
+@{
+    IUser user = UserContext.CurrentUser;
+    Authorizer authorizer = DIContainer.Resolve<Authorizer>();
+}
+<div class="tn-user-panel">
+    @Html.ShowUserAvatar(Model.UserId, AvatarSizeType.Micro, true, isShowUserCard: false)
+    <div class="tn-photo-info">
+        <p class="tn-user-name">
+            <a href="@SiteUrls.Instance().SpaceHome(Model.UserId)"><strong>@Model.User.DisplayName</strong></a>
+        </p>
+        <p style="display: block" class="tn-photo-description">
+            <span>@Model.Description </span>
+            @if (authorizer.Photo_Edit(Model))
+            { 
+                <a class="tn-icon tn-smallicon-write" id="photoDescriptionWrite" title="编辑照片描述" href="javascript:;">编辑</a>
+            }
+        </p>
+        @if (authorizer.Photo_Edit(Model))
+        {
+            <div style="display: none" class="tn-editor">
+                <form id="formSetDescription" method="post" action="@SiteUrls.Instance()._SetPhotoDescription()">
+                    @Html.HiddenFor(n => n.PhotoId)
+                    @Html.TextAreaFor(n => n.Description)
+                    <button class="tn-submit" type="button">
+                        保存</button>
+                    <button id="editDescriptionCancel" class="tn-cancel" type="button">
+                        取消</button>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+@{
+    var tags = Model.Tags.Select(n =>
+            {
+                return new
+                {
+                    TagName = n.TagName,
+                    link = SiteUrls.Instance().PhotosInTag(Model.User.UserName, n.TagName)
+                };
+            });
+}
+<div class="tn-tags-wrap tn-helper-clearfix" id="PhotoLabelSide-Tag" link="@SiteUrls.Instance()._DetailPhotoSideTag(Model.PhotoId)" data-tag="@Json.Encode(tags)">
+    @if (authorizer.Photo_Edit(Model))
+    {
+        @Html.Link("编辑", "javascript:;", "编辑标签", new { @class = "tn-icon tn-smallicon-write", name = "PhotoTagEdit" })
+        <div name="PhotoTagEdit" style="display: none;">
+            <form id="detailPhotoTagForm" action="@SiteUrls.Instance()._SetPhotoTagInDetail()" method="post">
+                @Html.TagSelector("tags", TenantTypeIds.Instance().Photo(), Model.PhotoId)
+                @Html.Hidden("photoId", Model.PhotoId)
+                <button class="tn-submit" type="button">
+                    保存</button>
+                <button id="PhotoTagEditCancel" class="tn-cancel" type="button">
+                    取消</button>
+            </form>
+        </div>
+    }
+</div>
+<div class="tn-feedback">
+    <ul class="tn-helper-clearfix">
+        <li>
+            @Html.SupportOppose(TenantTypeIds.Instance().Photo(), Model.PhotoId, Model.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)
+        </li>
+        <li><a id="dialog-sharephoto" class="tn-action tn-action-text-icon" href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享#" + Model.User != null ? ("@" + Model.User.NickName) : "" + " 的照片\"" + Model.Description + "\" " + " 不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(Model.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P240()))" plugin="dialog">
+            <span class="tn-icon tn-icon-share"></span><span class="tn-action-text">分享</span></a>
+            <a  class="tn-action" href="@SiteUrls.Instance()._ImpeachReport(user == null ? 0 : user.UserId, SiteUrls.Instance().PhotoDetail(Model.PhotoId), "照片")" plugin="dialog">
+                <span class="tn-action-text">举报</span></a>
+        </li>
+    </ul>
+
+</div>
+<div id="PhotoLabelSideModel" style="display: none;">
+    <li id="labelUser-{0}" name="{0}"><a target="_blank" href="{1}" class="tn-user-name">{2}</a>{3}</li>
+</div>
+<div class="tn-mark-control">
+    <div class="tn-title tn-helper-clearfix">
+        @{
+            bool canLabelCreat = authorizer.PhotoLabel_Creat(Model) && !(Request.Browser.Browser == "IE" && Request.Browser.MajorVersion == 6);
+        }
+        <a class="tn-action tn-action-text-icon" @(canLabelCreat ? "title=点击圈人" : "") @(canLabelCreat ? "href=javascript:;" : "")>
+            <span class="tn-icon tn-icon-focus"></span><span @(canLabelCreat ? "id =labelPhoto" : "") class="tn-action-text">圈人</span></a><em class="tn-count" id="photoLabelCount"></em>
+    </div>
+    @{
+        IEnumerable<PhotoLabel> photoLabels = ViewData.Get<IEnumerable<PhotoLabel>>("PhotoLabels", null);
+    }
+    <div class="tn-mark-people">
+        <a href="@SiteUrls.Instance().DeletePhotoLabel()" style="display:none;" id="delePhotoLabelLink"></a>
+        <ul id="PhotoLabelSide-label" class="tn-helper-clearfix">
+        </ul>
+    </div>
+</div>
+<div class="tn-comment-area" name="parent">
+    @{
+        int commentCount = ViewData.Get<int>("CommentCount", 0);
+    }
+    <div class="tn-title tn-helper-clearfix" id="nexttoggle-comment">
+        <span class="tn-title-text"><span class="tn-icon tn-icon-bubble"></span><strong>评论</strong><em
+            class="tn-count">@(commentCount > 0 ? commentCount.ToString() : "")</em></span>
+        <span class="tn-switch"><a name="toggleicon" href="javascript:;" class="tn-icon tn-smallicon-triangle-up"></a></span>
+    </div>
+    <div class="tn-comment-list" name="nexttoggle">
+        @Html.Action("_Comment", "Channel", new
+   {
+       area = "Common",
+       commentedObjectId = Model.PhotoId,
+       ownerId = Model.OwnerId,
+       toUserId = Model.UserId,
+       tenantTypeId = TenantTypeIds.Instance().Photo(),
+       subject = string.Format("{0}的照片", Model.User.DisplayName),
+       commentClass = "tn-comment-simple"
+   })
+    </div>
+</div>
+@{
+    Dictionary<int, string> exifData = ViewData.Get<Dictionary<int, string>>("EXIFMetaData", null);
+    Dictionary<int, string> enabledEXIF = ViewData.Get<Dictionary<int, string>>("EnabledEXIF", null);
+}
+

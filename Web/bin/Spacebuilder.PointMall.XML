@@ -1,0 +1,1673 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.PointMall</name>
+    </assembly>
+    <members>
+        <member name="M:Spacebuilder.PointMall.PointGiftCommentUrlGetter.GetCommentedObjectName(System.Int64,System.String)">
+            <summary>
+            获取被评论对象名称
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftCommentUrlGetter.GetCommentedObject(System.Int64)">
+            <summary>
+            获取被评论对象(部分)
+            </summary>
+            <param name="commentedObjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftCommentUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointMallApplicationStatisticDataGetter">
+            <summary>
+            商城应用数据获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallApplicationStatisticDataGetter.GetManageableDatas(System.String)">
+            <summary>
+            获取商城管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>管理数据列表</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallApplicationStatisticDataGetter.GetStatisticDatas(System.String)">
+            <summary>
+            获取商城统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>统计数据列表</returns>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointMallRecommendUrlGetter">
+            <summary>
+            日志推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointMallRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointMallSettings">
+            <summary>
+            积分商城设置
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointMallSettings.RecommendGiftTypeId">
+            <summary>
+            商品推荐类型ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointMallSettings.RecommendGiftTypeIdHome">
+            <summary>
+            商品推荐类型ID-商品首页
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PriceSetting">
+            <summary>
+            积分商城设置
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.PriceSetting.priceIntervals">
+            <summary>
+            私有数据保存
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PriceSetting.#ctor">
+            <summary>
+            禁用初始化方法
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PriceSetting.RegisterSettings(System.Xml.Linq.XElement)">
+            <summary>
+            注册设置
+            </summary>
+            <param name="xElement">准备解析的Xml</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PriceSetting.Get">
+            <summary>
+            获取数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PriceSetting.PriceIntervals">
+            <summary>
+            价格区间
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.Controllers.ChannelPointMallController">
+            <summary>
+            积分商城频道控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController.Home">
+            <summary>
+            首页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._Submenu">
+            <summary>
+            子菜单
+            </summary>
+            <returns></returns>        
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController.Rank(System.String,System.Nullable{System.Int64},Spacebuilder.PointMall.SortBy_PointGift,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            商品排行
+            </summary>
+            <param name="nameKeyword">关键字</param>
+            <param name="categoryId">类别id</param>
+            <param name="sortBy">排序</param>
+            <param name="maxPrice">某个区间的最大价格</param>
+            <param name="minPrice">某个区间的最小价格</param>
+            <param name="pageSize">每页多少条</param>
+            <param name="pageIndex">第几页</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController.RecursiveGetAllParentCategories(Tunynet.Common.Category,System.Collections.Generic.List{Tunynet.Common.Category}@)">
+            <summary>
+            迭代获取类别
+            </summary>
+            <param name="category"></param>
+            <param name="allParentCategories"></param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController.GiftDetail(System.Int64)">
+            <summary>
+            商品描述
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._CreateRecord(System.Int64)">
+            <summary>
+            创建兑换记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._CreateRecord(Spacebuilder.PointMall.RecordEditModel)">
+             <summary>
+             创建兑换记录的Post方法
+             </summary>
+            <param name="recordEditModel">数据库编辑实体</param>
+             <returns>Json</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._SetMailAddress(Spacebuilder.PointMall.MailAddressEditModel)">
+            <summary>
+            设置邮寄地址的Post方法
+            </summary>
+            <param name="mailAddressEditModel">邮寄地址的editModel</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._GiftCategories">
+            <summary>
+            商品类别
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._BestSellGifts(System.Int32)">
+            <summary>
+            热销商品
+            </summary>
+            <param name="topNumber">显示个数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._HotGifts(System.Int32)">
+            <summary>
+            人气商品
+            </summary>
+            <param name="topNumber">显示个数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._NewestGifts(System.Int32)">
+            <summary>
+            最新商品
+            </summary>
+            <param name="topNumber">个数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._RecommendGiftsHome(System.Int32,System.String)">
+            <summary>
+            积分商城首页推荐商品幻灯片
+            </summary>
+            <param name="topNumber">显示个数</param>
+            <param name="recommendTypeId">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._RecommendGiftsSide">
+            <summary>
+            推荐商品
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._LastViewedGifts">
+            <summary>
+            浏览过的商品
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._GiftComments(System.Int64,System.Int32,System.Int32,System.Nullable{Spacebuilder.PointMall.ApproveStatus})">
+            <summary>
+            商品兑换记录
+            </summary>
+            <param name="giftId">商品Id</param>
+            <param name="pageIndex">页码</param>
+            <param name="pageSize">每页多少条</param>
+            <param name="approveStatus">审核状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._FavoriteButton(System.Int64)">
+            <summary>
+            收藏商品按钮
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._Favorite(System.Int64)">
+            <summary>
+            收藏商品操作
+            </summary>
+            <param name="giftId">商品</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ChannelPointMallController._FavoriteCancel(System.Int64)">
+            <summary>
+            取消收藏商品操作
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController">
+            <summary>
+            积分商城后台管理控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController.ManagePointGifts(System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            管理商品
+            </summary>
+            <param name="name">商品名</param>
+            <param name="categoryId">分类Id</param>
+            <param name="isEnabled">是否上架</param>
+            <param name="maxPrice">最大价格</param>
+            <param name="minPrice">最小价格</param>
+            <param name="pageIndex">当前页码</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController._ChangeGiftStatus(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            更改商品状态
+            </summary>
+            <param name="giftIds">商品Id集合</param>
+            <param name="isEnabled">是否上架</param>
+            <returns>Json</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController._SetGiftCategories(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            修改商品类别的Get方法
+            </summary>
+            <param name="giftIds">商品Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController._SetGiftCategories(System.Collections.Generic.IEnumerable{System.Int64},System.Int64)">
+            <summary>
+            类别设置的Post方法
+            </summary>
+            <param name="giftIds">商品Id集合</param>
+            <param name="categoryId">要修改的类别Id</param>
+            <returns>Json</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController.EditGift(System.Int64)">
+            <summary>
+            添加/编辑商品的Get方法
+            </summary>
+            <param name="giftId">商品Id</param>
+            <returns>View</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController.EditGift(Spacebuilder.PointMall.PointGiftEditModel)">
+            <summary>
+            添加/修改商品的post方法
+            </summary>
+            <param name="model">商品EditModel</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController.ManageRecords(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String,System.Nullable{Spacebuilder.PointMall.ApproveStatus},System.Int32,System.Int32)">
+            <summary>
+            管理申请
+            </summary>
+            <param name="beginDate">开始时间</param>
+            <param name="endDate">结束时间</param>
+            <param name="userId">用户Id</param>
+            <param name="approveStatus">审核状态</param>
+            <param name="pageIndex">当前页码</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController._ChangeRecordStatus(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            修改兑换申请状态
+            </summary>
+            <param name="recordIds">要处理的兑换记录Id集合</param>
+            <param name="isApprove">是否接受</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController._DeleteRecords(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除兑换记录
+            </summary>
+            <param name="recordIds">要删除的兑换记录Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController._SetTrackInfo(System.Int64)">
+            <summary>
+            设置跟踪信息的Get方法
+            </summary>
+            <param name="recordId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController._SetTrackInfo(System.Int64,System.String)">
+            <summary>
+            设置跟踪信息的post方法
+            </summary>
+            <param name="recordId">兑换申请Id</param>
+            <param name="trackInfo">跟踪信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.ControlPanelPointMallController._ShowMailAddressInfo(System.Int64)">
+            <summary>
+            展示联系方式的Get方法
+            </summary>
+            <param name="recordId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.PointMall.Controllers.PointMallActivityController">
+            <summary>
+            积分商城动态控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.PointMallActivityController.ExchangeGift(System.Int64)">
+            <summary>
+            商品兑换动态
+            </summary>
+            <param name="ActivityId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.PointMall.Controllers.UserSpacePointMallController">
+            <summary>
+            积分商城用户控件控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.UserSpacePointMallController.Home(System.String,System.Nullable{Spacebuilder.PointMall.ApproveStatus},System.Int32)">
+            <summary>
+            兑换申请
+            </summary>
+            <param name="date">查看时间</param>
+            <param name="approveStatus">申请状态</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.UserSpacePointMallController._Appraise(System.Int64)">
+            <summary>
+            评价模态框
+            </summary>
+            <param name="recordId">兑换记录Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.UserSpacePointMallController._Appraise(System.Int64,System.String)">
+            <summary>
+            评价
+            </summary>
+            <param name="recordId">兑换记录Id</param>
+            <param name="appraise">评价内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.UserSpacePointMallController._CancelExchange(System.Int64)">
+            <summary>
+            取消兑换申请
+            </summary>
+            <param name="recordId">兑换记录Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.UserSpacePointMallController.MyFavorites(System.Int32)">
+            <summary>
+            我的收藏
+            </summary>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.Controllers.UserSpacePointMallController._CancelFavorite(System.Int64)">
+            <summary>
+            取消收藏
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.PointMall.EventModules.PointMallEventModule">
+            <summary>
+            处理商城动态、通知的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.EventModules.PointMallEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.EventModules.PointMallEventModule.RecordAcitivityEventModule_After(Spacebuilder.PointMall.PointGiftExchangeRecord,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            兑换商品时处理积分，动态
+            </summary>
+            <param name="record">兑换申请</param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="T:Spacebuilder.PointMall.ActivityItemKeysExtension">
+            <summary>
+            积分商城应用动态项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.ActivityItemKeysExtension.ExchangeGift(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            兑换商品
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.AuthorizerExtension">
+            <summary>
+            积分商城权限验证
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.AuthorizerExtension.Gift_Manage(Spacebuilder.Common.Authorizer)">
+            <summary>
+            创建，编辑，删除商品，商品上下架，推荐，
+            </summary>
+            <remarks>
+            仅管理员
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.PointMall.AuthorizerExtension.Gift_Exchange(Spacebuilder.Common.Authorizer,Spacebuilder.PointMall.PointGift)">
+            <summary>
+            积分换商品
+            </summary>
+            <remarks>
+            登录用户并且积分够的用户
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.PointMall.AuthorizerExtension.ExchangeRecord_Manage(Spacebuilder.Common.Authorizer)">
+            <summary>
+            申请接受，拒绝
+            </summary>
+            <remarks>
+            仅管理员
+            </remarks>
+        </member>
+        <member name="T:Spacebuilder.PointMall.NoticeTemplateNamesExtension">
+            <summary>
+            扩展NoticeTemplateNames
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.NoticeTemplateNamesExtension.ApplyRecord(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            兑换申请被批准
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.NoticeTemplateNamesExtension.CancelRecord(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            兑换申请被拒绝
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.OwnerDataKeysExtension">
+            <summary>
+            计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.OwnerDataKeysExtension.PostCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            申请总数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.HtmlHelperRecordStatusIconExtensions">
+            <summary>
+            输出兑换申请状态图标的方法
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.HtmlHelperRecordStatusIconExtensions.ApproveStatusIcon(System.Web.Mvc.HtmlHelper,Spacebuilder.PointMall.ApproveStatus)">
+            <summary>
+            输出兑换申请状态图标的方法
+            </summary>
+            <param name="htmlHelper"></param>
+            <param name="approveStatus">兑换申请状态</param>
+        </member>
+        <member name="T:Spacebuilder.PointMall.RecommendItemExtensionByPointGifts">
+            <summary>
+            推荐项类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.RecommendItemExtensionByPointGifts.GetPointGifts(Tunynet.Common.RecommendItem)">
+            <summary>
+            获取商品
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Common.SiteUrlsExtension">
+            <summary>
+            商城链接管理扩展
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Home(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            频道首页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.GiftDetail(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            商品明细
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="giftId">商品ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._GiftComments(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{Spacebuilder.PointMall.ApproveStatus})">
+            <summary>
+            商品评价
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._CreateRecord(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            创建兑换记录
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="giftId">商品ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Rank(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64},Spacebuilder.PointMall.SortBy_PointGift,System.Int32,System.Int32)">
+            <summary>
+            商品排行
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="nameKeyword">商品名称</param>
+            <param name="categoryId">商品类别Id</param>
+            <param name="sortBy">排序</param>
+            <param name="maxPrice">某个区间的最大价格</param>
+            <param name="minPrice">某个区间的最低价格</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._Favorite(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            收藏商品操作
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._FavoriteCancel(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            取消收藏操作
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.PointMallHome(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            用户空间首页(兑换申请)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.PointMallHome(Spacebuilder.Common.SiteUrls,System.String,System.String,System.Nullable{Spacebuilder.PointMall.ApproveStatus},System.Int32)">
+            <summary>
+            用户空间首页(兑换申请)
+            </summary>
+            <param name="date">查看时间</param>
+            <param name="approveStatus">申请状态</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._CancelFavorite(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            取消收藏
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="objectId">商品Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._CancelExchange(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            取消兑换
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="recordId">兑换记录Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._Appraise(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            评价
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="spaceKey"></param>
+            <param name="recordId">兑换记录Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.EditGift(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            添加/修改商品
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="giftId">商品Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.ManagePointGifts(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Boolean})">
+            <summary>
+            管理商品
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="name">名称关键字</param>
+            <param name="categoryId">分类Id</param>
+            <param name="maxPrice">最小价格</param>
+            <param name="minPrice">最大价格</param>
+            <param name="isEnabled">是否上架</param>
+            <param name="pageIndex">当前页码</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._ChangeGiftStatus(Spacebuilder.Common.SiteUrls,System.Boolean,System.Nullable{System.Int64})">
+            <summary>
+            更改商品的状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="giftId">商品Id，用于单个更改</param>
+            <param name="isEnabled">是否上架</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.ManageRecords(Spacebuilder.Common.SiteUrls,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int64},System.Nullable{Spacebuilder.PointMall.ApproveStatus})">
+            <summary>
+            管理申请
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="beginDate">开始时间</param>
+            <param name="endDate">结束时间</param>
+            <param name="userId">用于Id</param>
+            <param name="approveStatus">申请状态</param>
+            <param name="pageIndex">当前页码</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetGiftCategories(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            设置商品类别
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.ManagePointGifts(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            管理商品
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="name">商品名</param>
+            <param name="categoryId">类别Id</param>
+            <param name="isEnabled">是否上架</param>
+            <param name="maxPrice">最大价格</param>
+            <param name="minPrice">最小价格</param>
+            <param name="pageIndex">当前页码</param>
+            <param name="pageSize">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetTrackInfo(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            设置跟踪信息
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="recordId">兑换记录Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._SetMailAddress(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            设置邮寄地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._DeleteRecords(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            删除兑换记录
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._ChangeRecordStatus(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            修改兑换申请状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApprove">是否接受申请</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._ShowMailAddressInfo(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            展示联系方式
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="recordId">兑换记录Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.PointMall.TenantTypeIdsExtension">
+            <summary>
+            积分商城定义的租户类型
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.TenantTypeIdsExtension.PointMallApplication(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            积分商城应用
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.TenantTypeIdsExtension.PointGift(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            商品
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.TenantTypeIdsExtension.PointGiftExchangeRecord(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            兑换申请
+            </summary>
+            <param name="TenantTypeIds"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.PointMall.SortBy_PointGift">
+            <summary>
+            商品排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.SortBy_PointGift.DateCreated_Desc">
+            <summary>
+            发布时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.SortBy_PointGift.HitTimes_Desc">
+            <summary>
+            阶段点击数倒排序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.SortBy_PointGift.Sales_Desc">
+            <summary>
+            阶段性销量倒排序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.SortBy_PointGift.Price_Desc">
+            <summary>
+            价格倒排序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.SortBy_PointGift.Price_Asc">
+            <summary>
+            价格正排序
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.ApproveStatus">
+            <summary>
+            申请状态
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.ApproveStatus.Pending">
+            <summary>
+            待批准
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.ApproveStatus.Approved">
+            <summary>
+            已批准
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.PointMall.ApproveStatus.Rejected">
+            <summary>
+            未批准
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointGift">
+            <summary>
+            商品的实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGift.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGift.FeaturedImageUrls">
+            <summary>
+            获取商品的展示图片地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.GiftId">
+             <summary>
+            商品ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.Name">
+             <summary>
+            商品名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.Description">
+             <summary>
+            商品描述
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.UserId">
+             <summary>
+            添加人UserId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.FeaturedImageAttachmentId">
+            <summary>
+            附件ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.FeaturedImage">
+             <summary>
+            商品展示IMG
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.Price">
+             <summary>
+            单价
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.ExchangedCount">
+            <summary>
+            兑换总数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.IsEnabled">
+             <summary>
+            是否上架
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.FeaturedImageIds">
+            <summary>
+            商品图片ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.DateCreated">
+             <summary>
+            创建日期
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.LastModified">
+             <summary>
+            修改时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.ExchangeNumber">
+            <summary>
+            兑换数量
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.Category">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGift.HitCount">
+            <summary>
+            浏览计数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointGiftExchangeRecord">
+            <summary>
+            兑换记录的实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecord.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.RecordId">
+             <summary>
+            记录ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.GiftId">
+            <summary>
+            商品ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.GiftName">
+             <summary>
+            商品名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.PayerUserId">
+             <summary>
+            兑换人ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.Payer">
+             <summary>
+            兑换人姓名
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.Number">
+             <summary>
+            数量
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.Price">
+             <summary>
+            花费的总积分
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.DateCreated">
+             <summary>
+            创建日期
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.LastModified">
+             <summary>
+            最后更新时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.Appraise">
+            <summary>
+            评价
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.AppraiseDate">
+            <summary>
+            评价时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.TrackInfo">
+            <summary>
+            跟踪信息
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.Addressee">
+             <summary>
+            收件人
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.Tel">
+             <summary>
+            联系电话
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.Address">
+             <summary>
+            邮寄地址
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.PostCode">
+             <summary>
+            邮编
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.PayerUser">
+            <summary>
+            兑换人
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftExchangeRecord.PointGift">
+            <summary>
+            商品
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallApplication.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户在应用中的数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="takeOverUserName">用于接管删除用户时不能删除的内容(例如：用户创建的群组)</param>
+            <param name="isTakeOver">是否接管被删除用户可被接管的内容</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallConfig.Instance">
+            <summary>
+            获取PhotoConfig实例
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallConfig.Initialize(Autofac.ContainerBuilder)">
+            <summary>
+            应用初始化
+            </summary>
+            <param name="containerBuilder">容器构建器</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallConfig.Load">
+            <summary>
+            应用加载
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointMallConfig.ApplicationId">
+            <summary>
+            ApplicationId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointMallConfig.ApplicationKey">
+            <summary>
+            ApplicationKey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointMallConfig.ApplicationType">
+            <summary>
+            获取PhotoApplication实例
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointGiftRepository">
+            <summary>
+            积分商城应用的商品仓储实现
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.IPointGiftRepository">
+            <summary>
+            积分商城应用的商品仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.IPointGiftRepository.GetPointGifts(System.String,System.Nullable{System.Int64},Spacebuilder.PointMall.SortBy_PointGift,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取商品列表（用于频道）
+            </summary>
+            <param name="nameKeyword">商品名称关键字</param>
+            <param name="categoryId">类别ID</param>
+            <param name="sortBy">排序规则</param>
+            <param name="maxPrice">最大单价</param>
+            <param name="minPrice">最小单价</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.IPointGiftRepository.GetGiftsForAdmin(System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            管理员获取商品数据
+            </summary>
+            <param name="nameKeyword">商品名称关键字</param>
+            <param name="isEnabled">是否上架</param>
+            <param name="maxPrice">最大单价</param>
+            <param name="minPrice">最小单价</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.IPointGiftRepository.GetPointGifts(Spacebuilder.PointMall.SortBy_PointGift,System.Int32)">
+            <summary>
+            获取商品列表
+            </summary>       
+            <param name="sortby">排序规则</param>
+            <param name="topNumber">条数</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.IPointGiftRepository.GetGiftExchangeNumber(System.Int64)">
+            <summary>
+            获取商品兑换次数
+            </summary>
+            <param name="giftId">商品ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftRepository.GetPointGifts(System.String,System.Nullable{System.Int64},Spacebuilder.PointMall.SortBy_PointGift,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取商品列表（用于频道）
+            </summary>
+            <param name="nameKeyword">商品名称关键字</param>
+            <param name="categoryId">类别ID</param>
+            <param name="sortBy">排序规则</param>
+            <param name="maxPrice">最大单价</param>
+            <param name="minPrice">最小单价</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftRepository.GetGiftsForAdmin(System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            管理员获取商品数据
+            </summary>
+            <param name="nameKeyword">商品名称关键字</param>
+            <param name="categoryId">类别</param>
+            <param name="isEnabled">是否上架</param>
+            <param name="maxPrice">最大单价</param>
+            <param name="minPrice">最小单价</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftRepository.GetPointGifts(Spacebuilder.PointMall.SortBy_PointGift,System.Int32)">
+            <summary>
+            获取商品列表
+            </summary>       
+            <param name="sortby">排序规则</param>
+            <param name="topNumber">条数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftRepository.GetSql_GetPointGifts(System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Int32,System.Int32,Spacebuilder.PointMall.SortBy_PointGift,System.Int32)">
+            <summary>
+            获取Sql语句
+            </summary>
+            <param name="nameKeyword">商品名称关键字</param>
+            <param name="categoryId">类别ID</param>
+            <param name="isEnabled">是否上架</param>
+            <param name="maxPrice">最大单价</param>
+            <param name="minPrice">最小单价</param>
+            <param name="sortBy">排序依据</param>
+            <param name="topNumber">取出所需条数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftRepository.GetPointGiftApplicationStatisticData(System.String)">
+            <summary>
+            获取商品统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回应用统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftRepository.GetGiftExchangeNumber(System.Int64)">
+            <summary>
+            获取商品兑换次数
+            </summary>
+            <param name="giftId">商品ID</param>
+            <returns></returns>        
+        </member>
+        <member name="T:Spacebuilder.PointMall.IPointGiftExchangeRecordRepository">
+            <summary>
+            积分商城应用的兑换记录仓储接口
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointGiftExchangeRecordRepository">
+            <summary>
+            积分商城应用的兑换记录仓储实现
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecordRepository.GetRecordApplicationStatisticData(System.String)">
+            <summary>
+            获取申请统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回应用统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecordRepository.GetRecordManageableData(System.String)">
+            <summary>
+            获取申请管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回申请管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecordRepository.GetSql_GetRecords(System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{Spacebuilder.PointMall.ApproveStatus},System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            获取记录的Sql
+            </summary>
+            <param name="giftId">商品ID</param>
+            <param name="userId">兑换人ID</param>
+            <param name="approveStatus">申请状态</param>
+            <param name="beginDate">开始日期</param>
+            <param name="endDate">结束日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecordRepository.GetRecords(System.Nullable{System.Int64},System.Int32,System.Int32,System.Nullable{Spacebuilder.PointMall.ApproveStatus})">
+            <summary>
+            获取评价（用于频道）
+            </summary>
+            <param name="giftId">商品ID</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <param name="approveStatus">审核状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecordRepository.GetRecordsForAdmin(System.Nullable{System.Int64},System.Nullable{Spacebuilder.PointMall.ApproveStatus},System.Nullable{System.DateTime},System.DateTime,System.Int32,System.Int32)">
+            <summary>
+            管理员获取兑换记录
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="approveStatus">记录状态</param>
+            <param name="beginDate">开始时间</param>
+            <param name="endDate">结束时间</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecordRepository.GetRecordsOfUser(System.Int64,System.DateTime,System.DateTime,System.Nullable{Spacebuilder.PointMall.ApproveStatus},System.Int32,System.Int32)">
+            <summary>
+            获取兑换记录(用于空间)
+            </summary>
+            <param name="userId">兑换人ID</param>
+            <param name="beginDate">开始时间</param>
+            <param name="endDate">结束时间</param>
+            <param name="approveStatus">审核状态</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecordRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            删除用户时处理其兑换申请
+            </summary>
+            <remarks>
+            1.如果需要接管，直接执行Repository的方法更新数据库记录
+            2.如果不需要接管，删除申请记录
+            </remarks>
+            <param name="userId">用户ID</param>
+            <param name="takeOverUser">指定接管用户的用户名</param>
+        </member>
+        <member name="T:Spacebuilder.PointMall.Resources.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.Resources.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.Resources.Resource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.Resources.Resource.ApplicationName_PointMall">
+            <summary>
+              查找类似 积分商城 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.Resources.Resource.CountObject_PointMall">
+            <summary>
+              查找类似 申请 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointMallService">
+            <summary>
+            商城业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.#ctor(Spacebuilder.PointMall.IPointGiftRepository,Spacebuilder.PointMall.IPointGiftExchangeRecordRepository,Spacebuilder.Common.IMailAddressRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="giftRepository">商品仓储实现</param>
+            <param name="recordRepository">兑换记录仓储实现</param>
+            <param name="mailAddressRepository">邮寄信息仓储实现</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.CreateGift(Spacebuilder.PointMall.PointGift)">
+            <summary>
+            创建商品
+            </summary>
+            <remarks>
+            1.创建商品
+            2.处理商品图片，将附件关联到商品
+            </remarks>
+            <param name="gift">商品对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.UpdateGift(Spacebuilder.PointMall.PointGift)">
+            <summary>
+            编辑商品
+            </summary>
+            <remarks>
+            1.编辑商品
+            2.处理商品图片，将附件关联到商品
+            </remarks>
+            <param name="gift">商品对象</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.SetEnabled(Spacebuilder.PointMall.PointGift,System.Boolean)">
+            <summary>
+            是否上架
+            </summary>
+            <param name="gift">商品对象</param>
+            <param name="isEnabled">是否显示</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetGift(System.Int64)">
+            <summary>
+            获取商品对象
+            </summary>
+            <param name="giftId">商品ID</param>
+            <returns>返回商品对象</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetGifts(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            获取商品列表（根据Id组装实体）
+            </summary>
+            <param name="giftIds">商品ID列表</param>
+            <returns>返回商品列表</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetGifts(System.String,System.Nullable{System.Int64},Spacebuilder.PointMall.SortBy_PointGift,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取商品列表
+            </summary>
+            <param name="nameKeyword">商品名称关键字</param>
+            <param name="categoryId">类别ID</param>
+            <param name="sortBy">排序规则</param>
+            <param name="maxPrice">最大单价</param>
+            <param name="minPrice">最小单价</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetGifts(Spacebuilder.PointMall.SortBy_PointGift,System.Int32)">
+            <summary>
+            获取商品列表
+            </summary>       
+            <param name="sortby">排序规则</param>
+            <param name="topNumber">条数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetGiftsForAdmin(System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            管理员获取商品数据
+            </summary>
+            <param name="nameKeyword">商品名称关键字</param>
+            <param name="isEnabled">是否上架</param>
+            <param name="maxPrice">最大单价</param>
+            <param name="minPrice">最小单价</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetGiftExchangeNumber(System.Int64)">
+            <summary>
+            获取商品兑换次数
+            </summary>
+            <param name="giftId">商品ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.CreateRecord(Spacebuilder.PointMall.PointGiftExchangeRecord)">
+            <summary>
+            创建兑换记录
+            </summary>
+            <remarks>
+            1.冻结相应积分
+            </remarks>
+            <param name="record">记录对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.IsApprove(Spacebuilder.PointMall.PointGiftExchangeRecord,System.Boolean)">
+            <summary>
+            是否批准申请
+            </summary>
+            <remarks>
+            1.需要触发的事件:1)Update的OnBefore、OnAfter；
+            2.如果申请通过，则不能被取消。
+            3.申请通过后触发动态，通知。
+            4.申请被否决后，积分返还。
+            </remarks>
+            <param name="record">记录对象</param>
+            <param name="isApprove">是否批准</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.CancelRecord(Spacebuilder.PointMall.PointGiftExchangeRecord)">
+            <summary>
+            删除记录
+            </summary>
+            <remarks>
+            1.管理员无权删除兑换记录
+            2.记录已经批准则不能删除记录
+            3.冻结积分返还
+            </remarks>
+            <param name="record">记录对象</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.SetAppraise(System.Int64,System.String)">
+            <summary>
+            设置评价
+            </summary>
+            <param name="recordId">记录ID</param>
+            <param name="appraise">评价内容</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.SetTrackInfo(System.Int64,System.String)">
+            <summary>
+            设置跟踪信息
+            </summary>
+            <param name="recordId">记录ID</param>
+            <param name="trackInfo">跟踪信息</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户时处理其兑换申请
+            </summary>
+            <remarks>
+            1.如果需要接管，直接执行Repository的方法更新数据库记录
+            2.如果不需要接管，删除申请记录
+            </remarks>
+            <param name="userId">用户ID</param>
+            <param name="takeOverUserName">指定接管用户的用户名</param>
+            <param name="isTakeOver">是否接管</param>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetRecord(System.Int64)">
+            <summary>
+            获取记录对象
+            </summary>
+            <param name="recordId">记录ID</param>
+            <returns>返回记录对象</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetRecords(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            获取记录列表（根据Id组装实体）
+            </summary>
+            <param name="recordIds">记录ID列表</param>
+            <returns>返回记录列表</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetRecords(System.Int64,System.Int32,System.Int32,System.Nullable{Spacebuilder.PointMall.ApproveStatus})">
+            <summary>
+            获取评价（用于频道）
+            </summary>
+            <param name="giftId">商品ID</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetRecordsOfUser(System.Int64,System.DateTime,System.DateTime,System.Nullable{Spacebuilder.PointMall.ApproveStatus},System.Int32,System.Int32)">
+            <summary>
+            获取兑换记录(用于空间)
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="year">年份</param>
+            <param name="approveStatus">是否批准</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetRecordsForAdmin(System.Nullable{System.Int64},System.Nullable{Spacebuilder.PointMall.ApproveStatus},System.Nullable{System.DateTime},System.DateTime,System.Int32,System.Int32)">
+            <summary>
+            管理员获取兑换记录
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="recordStatus">记录状态</param>
+            <param name="beginDate">开始时间</param>
+            <param name="endDate">结束时间</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetRecordApplicationStatisticData(System.String)">
+            <summary>
+            获取应用统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回应用统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointMallService.GetRecordManageableData(System.String)">
+            <summary>
+            获取申请管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns>返回申请管理数据</returns>
+        </member>
+        <member name="T:Spacebuilder.PointMall.UrlRoutingRegistration">
+            <summary>
+            积分商城路由设置
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.MailAddressEditModel">
+            <summary>
+            邮寄地址的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.MailAddressEditModel.AsMailAddress">
+            <summary>上
+            转换为MailAddress
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.PointMall.MailAddressEditModel.AddressId">
+             <summary>
+            邮寄地址ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.MailAddressEditModel.Addressee">
+             <summary>
+            收件人
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.MailAddressEditModel.Tel">
+             <summary>
+            联系电话
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.MailAddressEditModel.Address">
+             <summary>
+            邮寄地址
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.MailAddressEditModel.PostCode">
+             <summary>
+            邮编
+             </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.MailAddressExtensions">
+            <summary>
+            MailAddress的扩展方法
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.MailAddressExtensions.AsEditModel(Spacebuilder.Common.MailAddress)">
+            <summary>
+            转化为编辑实体
+            </summary>
+            <param name="mailAddress"></param>
+            <returns>邮寄地址的EditModel</returns>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointGiftEditModel">
+            <summary>
+            创建商品的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftEditModel.AsPointGift">
+            <summary>
+            转化为PointGift
+            </summary>
+            <returns>PointGift</returns>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftEditModel.GiftId">
+             <summary>
+            商品ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftEditModel.Name">
+             <summary>
+            商品名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftEditModel.Description">
+             <summary>
+            商品描述
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftEditModel.FeaturedImage">
+             <summary>
+            商品展示IMG
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftEditModel.Price">
+             <summary>
+            单价
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftEditModel.IsEnabled">
+             <summary>
+            是否上架
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftEditModel.FeaturedImageIds">
+            <summary>
+            商品图片ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.PointGiftEditModel.CategoryId">
+            <summary>
+            类别Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointGiftExtensions">
+            <summary>
+            PointGift的扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExtensions.AsPointGiftEditModel(Spacebuilder.PointMall.PointGift)">
+            <summary>
+            转化为PointGiftEditModel
+            </summary>
+            <param name="pointGift">数据库实体</param>
+            <returns>对应的EditModel</returns>
+        </member>
+        <member name="M:Spacebuilder.PointMall.RecordEditModel.#ctor">
+            <summary>
+            构造器，初始化数量为1
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.RecordEditModel.AsPointGiftExchangeRecord">
+            <summary>
+            转化为数据库实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.RecordId">
+             <summary>
+            记录ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.GiftId">
+            <summary>
+            商品ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.GiftName">
+             <summary>
+            商品名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.PayerUserId">
+             <summary>
+            兑换人ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.Payer">
+             <summary>
+            兑换人姓名
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.Number">
+             <summary>
+            数量
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.DateCreated">
+             <summary>
+            创建日期
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.LastModified">
+             <summary>
+            最后更新时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.TrackInfo">
+            <summary>
+            跟踪信息
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.Addressee">
+             <summary>
+            收件人
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.Tel">
+             <summary>
+            联系电话
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.Address">
+             <summary>
+            邮寄地址
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.PointMall.RecordEditModel.PostCode">
+             <summary>
+            邮编
+             </summary>
+        </member>
+        <member name="T:Spacebuilder.PointMall.PointGiftExchangeRecordExtensions">
+            <summary>
+            数据库实体扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.PointMall.PointGiftExchangeRecordExtensions.AsRecordEditModel(Spacebuilder.PointMall.PointGiftExchangeRecord)">
+            <summary>
+            转化为ViewModel
+            </summary>
+            <param name="record"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

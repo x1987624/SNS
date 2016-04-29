@@ -1,0 +1,46 @@
+﻿@model PagingDataSet<Photo>
+@foreach (var photo in Model)
+{
+    var user = photo.User;
+    if (user == null)
+    {
+        continue;
+    }
+    <div class="spb-photo-unit masonry-brick  tnui-photo-waterfall">
+        <div class="spb-photo-unit-inner tn-border-gray tn-hover">
+            <div class="spb-photo-area">
+                <a href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" plugin="dialog" class="tn-img">
+                    <img width="150" class="tnui-image-detail" src="@(SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P240()))"></a>
+                <ul class="tn-actions tn-widget-content tn-border-gray tn-corner-all tn-helper-clearfix tn-state-hidden">
+                    <li><a title="分享"  href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享#" + (photo.User != null ? ("@" + photo.User.NickName) : "") + " 的照片\"" + photo.Description + "\"不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" plugin="dialog" class="tn-icon tn-icon-share">
+                    </a></li>
+                    <li><a title="评论" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" plugin="dialog" class="tn-icon tn-icon-bubble">
+                    </a></li>
+                    <li>
+                        <div class="tn-praise">
+                            @Html.SupportOppose(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="tn-info">
+                <div class="tn-descrip" title="@photo.Description">
+                    <p>
+                        @photo.Description
+                    </p>
+                </div>
+                <div class="tn-tags">
+                    @foreach (var tag in photo.Tags)
+                    {
+                        <span><a title="@tag.DisplayName" href="@SiteUrls.Instance().PhotosInTag(user.UserName, tag.TagName)">@HtmlUtility.TrimHtml(tag.DisplayName, 13)</a></span>
+                    }
+                </div>
+                <div class="tn-author tn-border-gray tn-border-top tn-helper-clearfix">
+                    @Html.ShowUserAvatar(user, SiteUrls.Instance().Ta(user.UserName), AvatarSizeType.Micro, HyperLinkTarget._self)
+                    <p>
+                        <a title="@photo.Album.AlbumName" href="@SiteUrls.Instance().AlbumDetailList(user.UserName, photo.AlbumId)">@HtmlUtility.TrimHtml(photo.Album.AlbumName, 9)</a></p>
+                </div>
+            </div>
+        </div>
+    </div>   
+}

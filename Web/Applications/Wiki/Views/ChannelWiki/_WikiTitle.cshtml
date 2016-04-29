@@ -1,0 +1,72 @@
+﻿@{
+    var currentUser = UserContext.CurrentUser;
+}
+<div class="tn-info-part">
+    @{
+        long allUsersCount = new UserService().GetManageableCounts(false, false, false)[UserManageableCountType.IsAll];
+        string count = allUsersCount.ToString();
+        char[] _count = count.ToArray();
+        int i = 1;
+        int surplusCharCount = _count.Length;
+    }
+    <dl>
+        <dt>用户：</dt>
+        <dd>
+            @foreach (char item in _count)
+            {
+                <span><em style="position:relative" name="number@(i)">@item</em></span>
+                surplusCharCount--;
+                if (surplusCharCount == 3 || surplusCharCount == 6 || surplusCharCount == 9)
+                { 
+                <em>,</em>
+                }
+                i++;
+            }
+        </dd>
+    </dl>
+    @Html.Action("_AllWikisCount", "ChannelWiki", new { area = "Wiki" })
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(document).ready(function () {
+        function ChangeNumber(spanC) {
+            var span = spanC;
+            var number = parseInt(span.html());
+            if (number == 0)
+                number = 10;
+            var speed = 1000 / (number);
+            span.html(0);
+            for (var i = 1; i <= number ; i++) {
+                span.animate({
+                    top: 30,
+                    opacity: 0
+                }, speed, function () {
+                    span.css({ top: -20, opacity: 1 });
+                    var htmlnumber = parseInt(span.html()) + 1;
+                    if (htmlnumber == 10)
+                        htmlnumber = 0;
+                    span.html(htmlnumber);
+                    if (span.html() == number) {
+                        span.animate({
+                            top: 0,
+                            opacity: 1
+                        }, 570)
+                    }
+                    if (span.html() == 0) {
+                        span.animate({
+                            top: 0,
+                            opacity: 1
+                        }, 570)
+                    }
+                });
+            }
+        }
+        @for (int k = 1; k < 10; k++)
+        {
+			 <text>
+        if ($("[name='number@(k)']")) {
+            ChangeNumber($("[name='number@(k)']"));
+        }
+        </text>
+        }
+    });
+</script>)

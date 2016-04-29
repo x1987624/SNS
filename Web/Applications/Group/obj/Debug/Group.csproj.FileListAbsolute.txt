@@ -1,0 +1,9 @@
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Group.dll.config
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Group.XML
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Group.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Group.pdb
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Group\obj\Debug\Group.csprojResolveAssemblyReference.cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Group\obj\Debug\Spacebuilder.Group.Resources.Resource.resources
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Group\obj\Debug\Group.csproj.GenerateResource.Cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Group\obj\Debug\Spacebuilder.Group.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Group\obj\Debug\Spacebuilder.Group.pdb

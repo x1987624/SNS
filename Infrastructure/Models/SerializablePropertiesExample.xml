@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+  <members>
+    <member name="T:Tunynet.ISerializableProperties">
+      <example>
+        <para>定义可序列化属性的实体参见以下示例：</para>
+        <code language="c#">
+          <![CDATA[
+    [TableName("test_SampleEntities")]
+    [PrimaryKey("Id", autoIncrement = true)]
+    [CacheSetting(true, PropertyNamesOfArea = "UserId,AuditingStatus", PropertyNameOfBody = "Body")]
+    [Serializable]
+    public class ExtendedPropertyEntity : IEntity, ISerializableProperties
+    {
+
+        #region 需要持久化属性
+
+        public long UserId { get; set; }
+
+        public long Id { get; set; }
+
+        public Guid SettingsKey { get; set; }
+
+        public string Body { get; set; }
+
+        public bool IsApproved { get; set; }
+
+        public decimal Price { get; set; }
+
+        public AuditingStatuses AuditingStatus { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        #endregion
+
+
+        #region 可序列化属性
+
+        /// <summary>
+        /// string类型的可序列化属性
+        /// </summary>
+        [Ignore]
+        public string ExtendedProperty_String
+        {
+            get { return GetExtendedProperty<string>("ExtendedProperty_String"); }
+            set { SetExtendedProperty("ExtendedProperty_String", value); }
+        }
+
+        /// <summary>
+        /// int类型的可序列化属性
+        /// </summary>
+        [Ignore]
+        public int ExtendedProperty_Int
+        {
+            get { return GetExtendedProperty<int>("ExtendedProperty_int"); }
+            set { SetExtendedProperty("ExtendedProperty_int", value); }
+        }
+
+        /// <summary>
+        /// 日期类型的可序列化属性
+        /// </summary>
+        [Ignore]
+        public DateTime ExtendedProperty_DateTime
+        {
+            get { return GetExtendedProperty<DateTime>("ExtendedProperty_DateTime"); }
+            set { SetExtendedProperty("ExtendedProperty_DateTime", value); }
+        }
+
+        #endregion
+
+
+        #region IEntity 成员
+        object IEntity.EntityId { get { return this.Id; } }
+        bool IEntity.IsDeletedInDatabase { get; set; }
+        #endregion
+
+
+        #region ISerializableProperties 成员
+
+        /// <summary>
+        /// 获取propertyName指定的属性值
+        /// </summary>
+        /// <param name="propertyName">属性名称</param>
+        public T GetExtendedProperty<T>(string propertyName)
+        {
+            return PropertySerializer.GetExtendedProperty<T>(propertyName);
+        }
+
+        /// <summary>
+        /// 获取propertyName指定的属性值
+        /// </summary>
+        /// <param name="propertyName">属性名称</param>
+        /// <param name="defaultValue">如果未找到则返回该默认值</param>
+        public T GetExtendedProperty<T>(string propertyName, T defaultValue)
+        {
+            return PropertySerializer.GetExtendedProperty<T>(propertyName, defaultValue);
+        }
+
+        /// <summary>
+        /// 设置可序列化属性
+        /// </summary>
+        /// <param name="propertyName">属性名称</param>
+        /// <param name="propertyValue">属性值</param>
+        public void SetExtendedProperty(string propertyName, object propertyValue)
+        {
+            PropertySerializer.SetExtendedProperty(propertyName, propertyValue);
+        }
+
+        /// <summary>
+        /// 存储前把可序列化属性序列化成PropertyNames和PropertyValues
+        /// </summary>
+        void ISerializableProperties.Serialize()
+        {
+            PropertySerializer.Serialize(ref this.propertyNames, ref this.propertyValues);
+        }
+
+        private PropertySerializer propertySerializer = null;
+        /// <summary>
+        /// 可序列化属性序列化器
+        /// </summary>
+        private PropertySerializer PropertySerializer
+        {
+            get
+            {
+                if (propertySerializer == null)
+                    propertySerializer = new PropertySerializer(this.PropertyNames, this.PropertyValues);
+
+                return propertySerializer;
+            }
+        }
+
+        private string propertyNames;
+        /// <summary>
+        /// 序列化属性名称字符串
+        /// </summary>
+        /// <remarks>
+        /// 保留该属性的目的是通过orm存取数据库的数据
+        /// </remarks>
+        public string PropertyNames
+        {
+            get { return propertyNames; }
+            private set { this.propertyNames = value; }
+        }
+
+        private string propertyValues;
+        /// <summary>
+        /// 序列化属性值字符串
+        /// </summary>
+        /// <remarks>
+        /// 保留该属性的目的是通过orm存取数据库的数据
+        /// </remarks>
+        public string PropertyValues
+        {
+            get { return propertyValues; }
+            private set { this.propertyValues = value; }
+        }
+
+        #endregion
+
+    }
+          ]]>
+        </code>
+      </example>
+    </member>
+    <member name="T:Tunynet.SerializablePropertiesBase">
+      <example>
+        <para>定义可序列化属性的实体参见以下示例：</para>
+        <code language="c#">
+          <![CDATA[
+    [TableName("test_SampleEntities")]
+    [PrimaryKey("Id", autoIncrement = true)]
+    [CacheSetting(true, PropertyNamesOfArea = "UserId,AuditingStatus", PropertyNameOfBody = "Body")]
+    [Serializable]
+    public class SerializablePropertyEntityImplementBaseClass : SerializablePropertiesBase,IEntity
+    {
+        /// <summary>
+        /// 新建实体时使用
+        /// </summary>
+        public static SerializablePropertyEntityImplementBaseClass New()
+        {
+            SerializablePropertyEntityImplementBaseClass newPoco = new SerializablePropertyEntityImplementBaseClass()
+            {
+                SettingsKey = Guid.NewGuid(),
+                AuditingStatus = AuditingStatuses.Success,
+                DateCreated = DateTime.UtcNow
+            };
+            return newPoco;
+        }
+
+        #region 需要持久化属性
+
+        public long UserId { get; set; }
+        
+        public long Id { get; protected set; }
+
+        public Guid SettingsKey { get; set; }
+
+        public string Body { get; set; }
+
+        public bool IsApproved { get; set; }
+
+        public decimal Price { get; set; }
+
+        public AuditingStatuses AuditingStatus { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        #endregion
+
+
+        #region 可序列化属性
+
+        /// <summary>
+        /// string类型的可序列化属性
+        /// </summary>
+        [Ignore]
+        public string ExtendedProperty_String
+        {
+            get { return GetExtendedProperty<string>("ExtendedProperty_String"); }
+            set { SetExtendedProperty("ExtendedProperty_String", value); }
+        }
+
+        /// <summary>
+        /// int类型的可序列化属性
+        /// </summary>
+        [Ignore]
+        public int ExtendedProperty_Int
+        {
+            get { return GetExtendedProperty<int>("ExtendedProperty_int"); }
+            set { SetExtendedProperty("ExtendedProperty_int", value); }
+        }
+
+        /// <summary>
+        /// 日期类型的可序列化属性
+        /// </summary>
+        [Ignore]
+        public DateTime ExtendedProperty_DateTime
+        {
+            get { return GetExtendedProperty<DateTime>("ExtendedProperty_DateTime"); }
+            set { SetExtendedProperty("ExtendedProperty_DateTime", value); }
+        }
+
+        #endregion
+
+
+        #region IEntity 成员
+        object IEntity.EntityId { get { return this.Id; } }
+        bool IEntity.IsDeletedInDatabase { get; set; }
+        #endregion
+    }
+          ]]>
+        </code>
+      </example>
+    </member>
+  </members>
+</doc>

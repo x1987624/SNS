@@ -1,0 +1,9 @@
+﻿@model  PagingDataSet<AskQuestion>
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var question in Model)
+    { 
+        @Html.Partial("_QuestionItem", question)
+    }
+}
+@Html.Hidden("pageCount", Model.PageCount)

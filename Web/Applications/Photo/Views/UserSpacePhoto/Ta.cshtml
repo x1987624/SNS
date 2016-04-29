@@ -1,0 +1,99 @@
+﻿@model PagingDataSet<Album>
+@{
+    Layout = "app-list-2cols";
+    PagingDataSet<Photo> newPhotos = ViewData.Get<PagingDataSet<Photo>>("newPhotos", null);
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    Html.Script("~/Scripts/jquery/masonry/jquery.masonry.js");
+    Html.Script("~/Scripts/jquery/masonry/jquery.infinitescroll.js");
+    Html.Script("~/Applications/Photo/Scripts/jquery.spb.photo.waterfall.js");
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.Action("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-photo-its">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-album-list">
+            <div class="tn-list-header">
+                <div class="tn-list-header-row tn-helper-clearfix tn-border-gray tn-border-bottom">
+                    <div class="tn-option">
+                        @Html.Link("查看更多>>", SiteUrls.Instance().Albums(Url.SpaceKey()), "查看更多", htmlAttributes: new { id = "createAlbum" })
+                    </div>
+                    <span class="tn-count tn-text-note">他的相册(共@(Model == null ? 0 : Model.TotalRecords)个)</span>
+                </div>
+            </div>
+            @if (Model != null && Model.Count >= 0)
+            { 
+                <ul class="tn-album-list tn-helper-clearfix">
+                    @foreach (var album in Model)
+                    { 
+                        <li class="tn-album-item tn-hover">
+                            <div class="tn-album-cover tn-widget-content tn-border-gray">
+                                <div class="tn-photo-wrap tn-widget-content tn-border-gray">
+                                    <a href="@SiteUrls.Instance().AlbumDetailList(Url.SpaceKey(),album.AlbumId)">
+                                    @if (DIContainer.Resolve<Authorizer>().Album_View(album))
+                                    {
+                                        if (album.CoverId > 0)
+                                        {                                             
+                                            <img src="@SiteUrls.Instance().ImageUrl(album.Cover.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" width="100" height="100"/>                                            
+                                        }
+                                        else
+                                        {                                             
+                                            if (album.Covers != null && album.Covers.Count() > 0)
+                                            { 
+                                                <ul class="spb-cover-group tn-helper-clearfix">
+                                                    @foreach (var photo in album.Covers)
+                                                    { 
+                                                        <li>
+                                                            <img src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" width="30" height="30"/>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                            else
+                                            {                                                 
+                                                 <img src="@SiteUrls.Instance().ImageUrl(string.Empty, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" width="100" height="100"/>                                                    
+                                            }
+                                        }
+                                    }
+                                    else
+                                    { 
+                                         <img src="@SiteUrls.Instance().ImageUrl(string.Empty, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" width="100" height="100"/>                                            
+                                    }
+                                    </a>
+                                    @if (album.PrivacyStatus != PrivacyStatus.Public)
+                                    { 
+                                        <div class="tn-limit">
+                                            @Html.PrivacyStatusIcon(album.PrivacyStatus)
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <p class="tn-text-heading">
+                                @album.AlbumName</p>
+                            <p class="tn-text-note tn-info tn-helper-clearfix">
+                                <em class="tn-count">@(album.PhotoCount)张</em>
+                            </p>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="spb-photo-new">
+          <div class="tn-list-header">
+                <div class="tn-list-header-row tn-helper-clearfix tn-border-gray tn-border-bottom">
+                    <div class="tn-option">
+                        @Html.Link("查看更多>>", SiteUrls.Instance().Photos(Url.SpaceKey()), "查看更多", htmlAttributes: new { id = "createAlbum" })
+                    </div>
+                    <span class="tn-count tn-text-note">最新照片</span>
+                </div>
+            </div>
+            <div id="spbThumbnailFalls" class="spb-thumbnail-falls"></div>
+            <nav id="page-nav">
+            @{
+                <a href='@Html.Raw(Url.Action("_NewWaterFall", new { spaceKey = Url.SpaceKey(), showMore = true, pageIndex = 2 }))'></a>
+            }
+            </nav> 
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+﻿@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    SelectList albumList = ViewData.Get<SelectList>("albumList", null);
+    long albumId = ViewData.Get<long>("albumId", 0);
+    int attachmentLength = ViewData.Get<int>("attachmentLength", 0);
+    string allowedFileExtensions = ViewData.Get<string>("allowedFileExtensions", null);
+    string spaceKey = Url.SpaceKey();
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.AjaxAction("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-photo-upload">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-photo-upload-wrap">
+            <div class="tn-main-heading tn-border-gray tn-border-bottom">
+                <h2>上传照片</h2>
+            </div>
+            <div class="spb-photo-upload-main">
+                <div id="queueManage" class="spb-photo-upload-row"></div>
+                <div id="queueImages" style="display: none" class="spb-photo-upload-row spb-photo-edit">
+                    <form id="completePhotoForm" action="@SiteUrls.Instance().CompleteUpload(spaceKey)" method="post">
+                        <div class="tn-list-header tn-bg-gray">
+                            <span class="spb-unified-tag">统一标签：</span>
+                            @Html.TagSelector("commonTag", TenantTypeIds.Instance().Photo(), null, UserIdToUserNameDictionary.GetUserId(spaceKey))
+                        </div>
+                        <div class="spb-photo-edit-list">
+                            <ul id="imgList" class="tn-helper-clearfix">
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="spb-photo-upload-row">
+                    <span class="tn-text-note">批量上传单次最多可选择10个照片，每个照片最大限制 @Formatter.FormatFriendlyFileSize(attachmentLength * 1024)以内；允许上传类型有 @allowedFileExtensions</span>
+                </div>
+                <div class="spb-photo-upload-row">
+                    <div class="spb-photo-upload-button">
+                    </div>
+                    @if (albumList.Count() > 0)
+                    {
+                        @Html.DropDownList("albumId", albumList, new { @class = "tn-dropdownlist tn-input-medium" })
+                    }
+                    else
+                    {
+                        @Html.DropDownList("albumId", albumList, "请先新建相册", new { @class = "tn-dropdownlist tn-input-medium" }) 
+                    }
+                    <span class="tn-action">
+                        @Html.Link("创建相册", SiteUrls.Instance()._EditAlbum(spaceKey, callBack: "uploadcreatealbumcallback"), "创建相册", new { id = "createAlbum", plugin = "dialog" })
+                    </span>
+                </div>
+                <div id="uploadButton" class="spb-photo-upload-row">
+                    <div id="removeWhenSubmit">
+                        @Html.Uploadify("uploadPhoto", TenantTypeIds.Instance().Photo(), allowedFileExtensions, buttonOptions: new ButtonOptions().SetText("选择照片").SetWidth(90),
+            uploadFileOptions: new UploadFileOptions()
+                  .SetFileObjName("fileData")
+                  .SetUploaderUrl(SiteUrls.Instance().UploadPhoto(spaceKey, albumId))
+                  .MergeUploadifyCallBack("onUploadSuccess", "OnUploadSuccess")
+                  .SetAutoUpload(true)
+                  .SetMultiple(true)
+                  .SetPreventCaching(true)
+                  .SetQueueId("queueManage")
+                  .SetQueueSizeLimit(10)
+                  .SetRemoveCompleted(true)
+                  .MergeUploadifyFormData("CurrentUserIdToken", Utility.EncryptTokenForUploadfile(0.1, UserIdToUserNameDictionary.GetUserId(Url.SpaceKey())))
+                  .MergeUploadifyFormData("resize", true)
+            )
+                    </div>
+                    @Html.LinkButton("完成上传", "", HighlightStyles.Primary, ButtonSizes.Large, htmlAttributes: new { id = "completeUpload", style = "display:none;" })
+                </div>
+                <div class="spb-photo-upload-row">
+                    无法正常上传？试试<span class="tn-action"><a href="@SiteUrls.Instance().UploadNormal(albumId, spaceKey)">普通上传</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+
+                       function uploadcreatealbumcallback(data) {
+                           var albumId = data.AlbumId;
+                           art.dialog.tips("创建相册成功！", 2, 1);
+                           window.location.href = '@(SiteUrls.Instance().Upload(spaceKey))?albumId=' + albumId;
+    }
+    //成功上传图片
+    function OnUploadSuccess(file, data, response) {
+        if (isNaN(data)) {
+            art.dialog.tips(data, 1.5, 0);
+        } else {
+            $("#queueImages").show();
+            $.post('@(SiteUrls.Instance()._PhotoItem(spaceKey))?photoId=' + data, function (data) {
+                $("#imgList").append(data);
+            })
+            $("#completeUpload").show();
+        }
+    }
+    $(function () {
+
+        $("#albumId").change(function () {
+            var albumId = $(this).val();
+            if (albumId) {
+                window.location.href = '@(SiteUrls.Instance().Upload(spaceKey))?albumId=' + albumId;
+            }
+            else {
+                art.dialog.tips("请新建一个相册！", 2, 0);
+            }
+        })
+
+        $("#completeUpload").click(function () {
+            var albumId = $("#albumId").val();
+            if (albumId) {
+                $("#removeWhenSubmit").remove();
+                $("#completePhotoForm").submit();
+            }
+            else {
+                art.dialog.tips("请新建一个相册！", 2, 0);
+            }
+        })
+
+        $(".tn-set").livequery("click", function () {
+            $this = $(this);
+            var url;
+            if ($this.children().hasClass("tnui-coverOn")) { url = $this.attr("url") + "&isCover=false"; } else { url = $this.attr("url") + "&isCover=true"; }
+            $.post(url, function () {
+                $(".tnui-albumCover").removeClass("tn-button-primary").addClass("tn-button-secondary");
+                if ($this.children().hasClass("tnui-coverOn")) {
+                    $(".tnui-albumCover").removeClass("tnui-coverOn").attr("title", "设为封面");
+                    $this.children().removeClass("tn-button-primary").addClass("tn-button-secondary");
+                }
+                else {
+                    $(".tnui-albumCover").removeClass("tnui-coverOn").attr("title", "设为封面");
+                    $this.children().addClass("tnui-coverOn").attr("title", "取消封面");
+                    $this.children().removeClass("tn-button-secondary").addClass("tn-button-primary");
+                }
+            });
+        })
+
+    })
+</script>)

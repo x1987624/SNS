@@ -1,0 +1,43 @@
+﻿@model PagingDataSet<WikiPage>
+@{
+    WikiSearcher wikiSearcher = (WikiSearcher)SearcherFactory.GetSearcher(WikiSearcher.CODE);
+    string keyword = Request.QueryString.GetString("keyword", string.Empty);
+}
+@if (Model.TotalRecords > 0)
+{
+    <input type="hidden" class="totalRecords" value="@Model.TotalRecords" />
+    <input type="hidden" class="queryDuration" value="@Model.QueryDuration" />
+    <div class="tn-content-heading tn-border-light tn-border-bottom">
+        <div class="tn-option">
+            <a href="@wikiSearcher.PageSearchActionUrl(keyword)">更多</a>
+        </div>
+        <h4>百科</h4>
+    </div>
+    <div class="tnc-search-article">
+        <ul class="tn-list">
+            @foreach (WikiPage wikiPage in Model)
+            {
+                <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom">
+                    <div class="tn-list-item-area-main">
+                        <div class="tn-list-item-row tn-list-item-heading">
+                            <h5 class="tn-helper-reset">
+                                <a target="_blank" href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)">
+                                    @Html.Raw(SearchEngine.Highlight(keyword, wikiPage.Title, 100))</a>
+                            </h5>
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-summary">
+                            <p>@Html.Raw(SearchEngine.Highlight(keyword, HtmlUtility.TrimHtml(wikiPage.Body, 100), 100))</p>
+                        </div>
+                        <div class="tn-list-item-row tn-list-info">
+                            <p>
+                                <a target="_blank" href="@SiteUrls.Instance().SpaceHome(wikiPage.UserId)" class="tn-user-name">
+                                    @Html.Raw(SearchEngine.Highlight(keyword, wikiPage.Author, 100))</a>
+                                <em class="tn-date tn-text-note">@wikiPage.DateCreated.ToUserDateString(true)</em>
+                            </p>
+                        </div>
+                    </div>
+                </li> 
+            }
+        </ul>
+    </div>
+}

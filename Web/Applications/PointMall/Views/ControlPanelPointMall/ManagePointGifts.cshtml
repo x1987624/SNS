@@ -1,0 +1,273 @@
+﻿@model  PagingDataSet<PointGift>
+@{    
+    Layout = "_ControlPanel";
+
+    SelectList isEnabledList = ViewData.Get<SelectList>("isEnabledList", null);
+    long categoryId = Request.QueryString.Get<long>("categoryId");
+}
+<script src="@Tunynet.Utilities.WebUtility.ResolveUrl("~/Scripts/jquery/jquery-migrate-1.0.0.js")"></script>
+<div class="tn-block">
+    <div class="tnc-main">
+        @Html.Partial("_ManageRightMenu")
+        <div class="tnc-ctn-center">
+            <h1><span>商品管理</span></h1>
+            <div class="tnc-ctnright-list">
+                <div class="tn-manager-search tn-helper-clearfix">
+                    <div class="tnc-search-adminform">
+                        @using (Html.BeginForm("ManagePointGifts", "ControlPanelPointMall", FormMethod.Get))
+                        {
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    商品名称：</label>
+                                @Html.TextBox("name",null, new { @class = "tn-textbox tn-input-medium tn-border-gray" })
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    价格：</label>
+                                @Html.TextBox("minPrice", null, new { @class = "tn-textbox tn-border-gray  tn-input-short" })
+                                -
+                                @Html.TextBox("maxPrice", null, new { @class = "tn-textbox tn-border-gray  tn-input-short" })
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">状态：</label>
+                                @Html.DropDownList("isEnabled", isEnabledList, "全部", new { @class = "tn-dropdownList" })
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    分类：</label>
+                                @Html.CategoryDropDownListFor("categoryId",categoryId, TenantTypeIds.Instance().PointGift(), 0, 2)
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                </label>
+                                @Html.Button("搜索", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { @class = "tn-button-text", id = "searchGifts" })
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="tnc-content-manage">
+                    <div class="tn-list-header">
+                        <div class="tn-toolbar-area">
+                            @Html.LinkButton("上架", SiteUrls.Instance()._ChangeGiftStatus(true), iconType: IconTypes.SmallUpload, htmlAttributes: new { id = "gift-added" })
+                            @Html.LinkButton("下架", SiteUrls.Instance()._ChangeGiftStatus(false), iconType: IconTypes.SmallDownload, htmlAttributes: new { id = "gift-unAdded" })
+                            @Html.LinkButton("设置类别", "javascript:void(0)", iconType: IconTypes.SmallSet, htmlAttributes: new { id = "set-gift-category" })
+                            @Html.LinkButton("添加商品", SiteUrls.Instance().EditGift(), iconType: IconTypes.SmallAdd, htmlAttributes: new { id = "add-gift"})
+                        </div>
+                    </div>
+                    @if (Model == null || Model.Count == 0)
+                    { 
+                        <div class="tn-no-data">
+                            没有查询到数据！</div>
+                    }
+                    else
+                    {
+                        <form action="#" method="post" id="Form-Gift">
+                        <table class="tn-table-grid">
+                            <tbody>
+                                <tr class="tn-table-grid-header">
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        <input type="checkbox" class="tn-checkbox" id="select-all" name="checkbox" />
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        商品名称
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        单价
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        已兑换
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        状态
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        类别
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        创建时间
+                                    </th>
+                                     <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        最后修改时间
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        操作
+                                    </th>
+                                </tr>
+                                @foreach (var gift in Model)
+                                {
+                                    <tr class="tn-table-grid-row">
+                                        <td class="tn-border-gray tn-border-bottom tn-width-check">
+                                            <input type="checkbox" class="tnui-gift-id" id="gift-@gift.GiftId" name="giftIds" value="@gift.GiftId" />
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                                            <a href="@SiteUrls.Instance().GiftDetail(gift.GiftId)" title="@gift.Name" target="_blank">@StringUtility.Trim(gift.Name.Trim(),10)</a>
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-number tn-nowrap">
+                                            @gift.Price
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-number tn-nowrap">
+                                            @gift.ExchangedCount
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-icon1">
+                                            @if (gift.IsEnabled)
+                                            { 
+                                                <span class= "tn-icon tn-icon-upload" title="已上架"></span>
+                                            }
+                                            else
+                                            { 
+                                                <span class= "tn-icon tn-icon-download" title="已下架"></span>
+                                            }
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-category tn-nowrap">
+                                            @(gift.Category==null ? string.Empty : gift.Category.CategoryName)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-user-name">
+                                            @gift.DateCreated.ToUserDateString(true)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-user-name">
+                                            @gift.LastModified.ToUserDateString(true)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-action2 tn-nowrap">
+                                            <a href="@SiteUrls.Instance().EditGift(gift.GiftId)">编辑</a> <span class="tn-action tn-action-text-icon-right tn-action-has-drop-menu tn-border-trl" menu="#moreOptions@(gift.GiftId)"><span class="tn-icon tn-smallicon-triangle-down"></span><a href="javascript:;" class="tn-action-text">更多</a> </span>
+                                            <div id="moreOptions@(gift.GiftId)" class="tn-more-options tn-widget-content tn-border-gray" style="display:none">
+                                                <ul class="tn-more-list">
+                                                    <li>@Html.Link("上架", SiteUrls.Instance()._ChangeGiftStatus(true, gift.GiftId), "上架", new { @class = "tn-item-link ", id = "tnui-set-Added-"+gift.GiftId })</li>
+                                                    <li>@Html.Link("下架", SiteUrls.Instance()._ChangeGiftStatus(false, gift.GiftId), "下架", new { @class = "tn-item-link ", id = "tnui-set-unAdded-" + gift.GiftId })</li>
+                                                    @if (gift.IsEnabled) { 
+                                                        <li>@Html.Link("推荐", SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().PointGift(), gift.GiftId, gift.Name, userId: gift.UserId), "推荐", new { @class = "tn-item-link tnui-set-category", plugin = "dialog" })</li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        </form>
+                        <div class="tn-pagination">
+                            @Html.PageSizeDropdownList("pageSize")
+                            @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                            @Html.PagingResults(Model)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+        //处理火狐下浏览器刷新后复选框仍然选中
+        removeChecked();
+        function removeChecked() {
+            $(".tnui-gift-id").each(function () {
+                if ($(this).attr("checked")) {
+                    $(this).removeAttr("checked");
+                }
+            });
+            $("#select-all").removeAttr("checked");
+        }
+
+
+        // 全选 全不选
+        $("#select-all").click(function () {
+            //设置下面复选框的状态
+            if ($(this).attr("checked")) {
+                $(".tnui-gift-id").each(function () {
+                    $(this).attr("checked", true);
+                });
+            } else {
+                $(".tnui-gift-id").each(function () {
+                    $(this).removeAttr("checked");
+                });
+            }
+        });
+
+        //给当前行添加样式
+        $(".tn-table-grid-row").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+
+        //点击单个上架/下架
+        $("a[id^='tnui-set-']").click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            $.post(url, function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload(true);
+                });
+            });
+        });
+
+        //点批量上架/下架
+        $("a[id^='gift-']").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='giftIds']:checked").length) {
+                alert("请至少选择一个商品进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            $.post(url, $("form#Form-Gift").serialize(), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload(true);
+                });
+                removeChecked();
+            });
+        });
+    });
+
+    //判断输入价格
+    $("#searchGifts").click(function (e) {
+        var minPrice = $("#minPrice").val();
+        var maxPrice = $("#maxPrice").val();
+        if (minPrice != '' && !$.isNumeric(minPrice)) {
+            art.dialog.alert("最小价格必须输入数字！");
+            return false;
+        }
+        if (maxPrice != '' && !$.isNumeric(maxPrice)) {
+            art.dialog.alert("最大价格必须输入数字！");
+            return false;
+        }
+        if (maxPrice < minPrice && maxPrice!="") {
+            $("#minPrice").val(maxPrice)
+            var maxPrice = $("#maxPrice").val(minPrice);
+            $.get($(this).attr("href"));
+        }
+    });
+
+
+    //手动序列化
+    function getSeletctdIds() {
+        var giftIds = "";
+        $("input[name='giftIds']:checked").each(function () {
+            giftIds += "giftIds=" + $(this).val() + "&";
+        });
+        return giftIds;
+    }
+
+    //批量修改类别
+    $("#set-gift-category").click(function (e) {
+        e.preventDefault();
+        if (!$("input[name='giftIds']:checked").length) {
+            art.dialog.alert("请至少选择一个商品操作！");
+            return false;
+        }
+        var dialog = art.dialog();
+        var url = '@SiteUrls.Instance()._SetGiftCategories()';
+        url += "?" + getSeletctdIds()
+
+        $.get(url, function (data) {
+            dialog.content(data);
+        });
+    });
+
+
+</script>)

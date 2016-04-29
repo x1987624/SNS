@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PointGift>
+
+@if (Model != null && Model.Count() > 0)
+{
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-browse-commodity">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        <h3 class="tn-helper-reset">最近浏览过的商品</h3>
+    </div>
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        <ul class="tn-list tn-trisect tn-helper-clearfix">
+        @foreach (PointGift gift in Model)
+        { 
+            <li class="tn-list-item tn-helper-clearfix">
+                <div class="tn-list-item-area-left">
+                    <div class="tn-avatar">
+                        <a target="_blank" title="@gift.Name" href="@SiteUrls.Instance().GiftDetail(gift.GiftId)">
+                            <img width="50px" alt="@gift.Name" src="@SiteUrls.Instance().ImageUrl(gift.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Small())" />
+                        </a>
+                    </div>
+                </div>
+                <div class="tn-list-item-area-main">
+                    <div class="tn-list-item-row tn-list-item-heading">
+                        <p class="tn-helper-reset">
+                            <a target="_blank" title="@gift.Name" href="@SiteUrls.Instance().GiftDetail(gift.GiftId)">@StringUtility.Trim(gift.Name,8)</a>
+                        </p>
+                    </div>
+                    <div class="tn-list-item-row tn-list-item-summary">
+                        <p class="tn-text-note">
+                            <span class="tn-explain-icon">
+                                <span class="tn-icon-colorful tn-icon-colorful-coins"></span>
+                                <span class="tn-icon-text">@gift.Price</span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        }
+        </ul>
+    </div>
+</div>
+}
+

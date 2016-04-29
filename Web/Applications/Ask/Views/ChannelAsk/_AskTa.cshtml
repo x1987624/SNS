@@ -1,0 +1,39 @@
+﻿@model AskQuestionEditModel
+@{
+    SelectList askRewardsList = ViewData.Get<SelectList>("askRewards", null);
+    IUser user = ViewData.Get<IUser>("user", null);
+    string title = "向 " + user.DisplayName + " 提问";
+}
+@using (Html.BeginAjaxForm("_AskTa", "ChannelAsk", new { AskUserId = user.UserId}, FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "OnSuccessCallBack" }))
+{  
+    <div class="tnc-dailog-pd">
+        <div class="tn-form tn-form-single"> 
+            <div class="tn-form-row">
+                <label class="tn-form-label">悬赏：</label>
+                @Html.DropDownList("Reward", askRewardsList, new { @class = "tn-dropdownlist" })
+            </div>         
+            <div class="tn-form-row">
+                <label class="tn-form-label">问题：</label>
+                @Html.TextAreaFor(n => n.Subject, new RouteValueDictionary { { "class", "tn-textarea tn-input-long tn-border-gray" } })
+                @Html.ValidationMessageFor(n => n.Subject)
+            </div>
+            <div class="tn-form-row">
+            <label class="tn-form-label">标签：</label>
+                @Html.TagSelector("TagNames", TenantTypeIds.Instance().AskQuestion(), 0, UserContext.CurrentUser.UserId)
+                @Html.ValidationMessageFor(n => n.TagNames)     
+            </div>
+            <div class="tnc-custom-btn">
+                @Html.Button("发布", ButtonTypes.Submit, HighlightStyles.Primary)
+                @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close" })
+           </div>
+        </div>
+    </div>
+}
+<script type="text/dialog">
+    this.title("@(title)");
+</script>
+@Html.ScriptBlock(@<script language="javascript" type="text/javascript">
+    function OnSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType);
+    }
+</script>)

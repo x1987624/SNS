@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewBag.Tile = "_ChildCategory";
+    bool sameLevel = ViewData.Get<bool>("sameLevel", false);
+    long speechModuleCategoryId = Convert.ToInt64(ConfigurationManager.AppSettings["HaierSpeechModelFolderId"]);
+}
+@if (Model != null && Model.Count() > 0)
+{ 
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all ">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">
+
+                @if (sameLevel)
+                {
+                    <text>所有分类</text>
+                }
+                else
+                { 
+                    <text>子类别</text>
+                }
+
+            </h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <ul class="tn-list hr-list-son tn-helper-clearfix">
+                @foreach (Category category in Model)
+                {
+                    if (category.CategoryId == speechModuleCategoryId)
+                    {
+                        continue;
+                    }
+                    <li><a href="@SiteUrls.Instance().Pages(category.CategoryId)">@category.CategoryName</a></li>       
+                }
+            </ul>
+        </div>
+    </div>
+}

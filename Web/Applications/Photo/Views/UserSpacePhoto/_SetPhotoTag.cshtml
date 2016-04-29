@@ -1,0 +1,37 @@
+﻿@using (Html.BeginAjaxForm("_SetPhotoTag", "UserSpacePhoto", FormMethod.Post, new AjaxFormOptions { OnErrorCallBack = "OnErrorCallBack", OnSuccessCallBack = "OnSuccessCallBack" }))
+{
+    <div class="tnc-dailog-pd">
+        <div class="tn-form-box">
+            <table>
+                <tbody>                    
+                    <tr>
+                        <th>
+                            照片标签：
+                        </th>
+                        <td>
+                            @Html.TagSelector("tags", TenantTypeIds.Instance().Photo(), null, UserIdToUserNameDictionary.GetUserId(Url.SpaceKey()))
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-bg-gray tn-border-gray tn-border-top">
+        @Html.Button("提交", ButtonTypes.Submit, HighlightStyles.Primary)
+        @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close" })
+    </div>
+    @Html.Hidden("photoIds")
+}
+<script type="text/dialog">
+this.title("批量贴标签");
+</script>
+@Html.ScriptBlock(@<script language="javascript" type="text/javascript">
+    function OnSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true); });
+    }
+    function OnErrorCallBack(data) {
+        alert(data.MessageContent, function () {
+            window.location.reload();
+        })
+    }
+</script>)

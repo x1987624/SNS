@@ -1,0 +1,197 @@
+﻿@model PagingDataSet<WikiPage>
+@{
+    
+    AuditStatus? auditStatus = Request.QueryString.Get<AuditStatus?>("auditStatus", null);
+    var userId = ViewData.Get<long?>("userId", null);
+    SelectList categoryList = ViewData.Get<SelectList>("categoryList", null);
+    SelectList isEssentialList = ViewData.Get<SelectList>("isEssential", null);
+    long categoryId = ViewData.Get<long>("categoryId", 0);
+}
+
+<div id="Wiki-module" class="tn-tabs-panel">
+    <div class="tn-list-header">
+        <div class="tn-toolbar-area hr-search-bar">
+            <ul class="tn-helper-clearfix">
+                @using (Html.BeginAjaxForm("_Wikimodule", "ChannelWiki", FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "OnSuccessCallBack1" }))
+                {
+                    <input name="categoryId" value="@categoryId" type="hidden"/>
+                <li>
+                    标题：
+                    @Html.TextBox("titleKeywords", "", new { @class = "tn-textbox tn-input-medium tn-border-gray" })
+                </li>
+                <li>
+                    审核状态：
+                    @(Html.EnumDropDownList<AuditStatus?>("auditStatus", auditStatus, "全部", new { @class = "tn-dropdownlist" }))
+                </li>
+                <li>
+                    @Html.Button("搜索", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { @class = "tn-button-text" })
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="tn-toolbar-area">
+            @Html.LinkButton("通过审核", SiteUrls.Instance()._ApproveWikiPage_ForCategory(true), iconType: IconTypes.SmallAccept, htmlAttributes: new { id = "audit-success" })
+            @Html.LinkButton("不通过审核", SiteUrls.Instance()._ApproveWikiPage_ForCategory(false), iconType: IconTypes.SmallStop, htmlAttributes: new { id = "audit-fail" })
+            @Html.LinkButton("删除", SiteUrls.Instance()._DeleteWikiPage_ForCategory(), iconType: IconTypes.SmallCross, htmlAttributes: new { id = "delete-wikis" })
+        </div>
+    </div>
+    @if (Model == null || Model.Count() == 0)
+    { 
+        <div class="tn-no-data">
+            没有查询到数据！
+        </div>
+    }
+    else if (Model != null)
+    {
+        <form action="#" method="post" id="Form-Wiki">
+            <table class="tn-table-grid">
+                <tbody>
+                    <tr class="tn-table-grid-header">
+                        <th class="tn-border-gray tn-border-bottom tn-text-note">
+                            <input type="checkbox" class="tn-checkbox" id="select-all" name="checkbox" />
+                        </th>
+                        <th class="tn-border-gray tn-border-bottom tn-text-note">编辑人
+                        </th>
+                        <th class="tn-border-gray tn-border-bottom tn-text-note">编辑材料
+                        </th>
+                        <th class="tn-border-gray tn-border-bottom tn-text-note">状态
+                        </th>
+                        <th class="tn-border-gray tn-border-bottom tn-text-note">编辑时间
+                        </th>
+                    </tr>
+                    @foreach (WikiPage wikiPage in Model)
+                    {
+                        <tr class="tn-table-grid-row">
+                            <td class="tn-border-gray tn-border-bottom tn-width-check">
+                                @Html.SipmleCheckBox("pageIds", wikiPage.PageId, htmlAttributes: new { @class = "tnui-wiki-id" })
+                            </td>
+                            <td class="tn-border-gray tn-border-bottom tn-width-user-name tn-nowrap">
+                                @Html.Link(StringUtility.Trim(wikiPage.Author, 8), SiteUrls.Instance().SpaceHome(wikiPage.UserId), wikiPage.Author, htmlAttributes: new { @class = "tn-user-name" }, navigateTarget: HyperLinkTarget._blank)
+                            </td>
+                            <td class="tn-border-gray tn-border-bottom tn-width-icon1 tn-nowrap">
+                                @Html.AuditStatusIcon(wikiPage.AuditStatus)
+                            </td>
+                            @*                                    <td class="tn-border-gray tn-border-bottom tn-width-category  tn-nowrap">
+                                @wikiPage.SiteCategory.CategoryName
+                            </td>*@
+                            <td class="tn-border-gray tn-border-bottom tn-width-datetime tn-nowrap">
+                                @wikiPage.DateCreated.ToUserDateString(true)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+        <div class="tn-pagination">
+            @Html.AjaxPagingButton(Model, "Wiki-module", PaginationMode.NumericNextPrevious, 7, Url.Action("_Wikimodule", "ChannelWiki", new { area = "Wiki" }))
+        </div>
+    }</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+
+        //处理火狐下浏览器刷新后复选框仍然选中
+        removeChecked();
+        function removeChecked() {
+            $(".tnui-wiki-id").each(function () {
+                if ($(this).attr("checked")) {
+                    $(this).removeAttr("checked");
+                }
+            });
+            $("#select-all").removeAttr("checked");
+        }
+
+        $(".tn-more-options ul a.tn-item-link").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+
+        //给当前行添加样式
+        $(".tn-table-grid-row").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+
+        // 全选 全不选
+        $("#select-all").click(function () {
+            //设置下面复选框的状态
+            if ($(this).attr("checked")) {
+                $(".tnui-wiki-id").each(function () {
+                    $(this).attr("checked", true);
+                });
+            } else {
+                $(".tnui-wiki-id").each(function () {
+                    $(this).removeAttr("checked");
+                });
+            }
+        });
+
+        //点通过审核
+        $("a[id^='audit-']").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='pageIds']:checked").length) {
+                alert("请至少选择一条日志进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            $.post(url, $("form#Form-Wiki").serialize(), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload(true);
+                });
+            })
+        });
+
+
+        //点批量删除
+        $("#delete-wikis").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='pageIds']:checked").length) {
+                alert("请至少选择一条词条进行操作！");
+                return false;
+            }
+            var url = $(this).attr("href");
+            //debugger;
+            $.post(url, $("form#Form-Wiki").serialize(), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload(true);
+                });
+            });
+            //debugger;
+            //var url = $(this).attr("href");
+            //art.dialog.confirm('您确认要删除吗？', function () {
+                
+            //    removeChecked();
+            //});
+        });
+
+        ////单个删除
+        //$('.tnui-delete-wikiid').click(function (e) {
+        //    e.preventDefault();
+        //    var url = $(this).attr("href");
+        //    art.dialog.confirm('您确认要删除吗？', function () {
+        //        $.post(url, function (data) {
+        //            art.dialog.tips("删除成功！", 1.5, 1, function () {
+        //                window.location.reload(true);
+        //            });
+
+        //        });
+        //    });
+        //});
+
+
+    });
+
+    function OnSuccessCallBack1(data) {
+        $('#Wiki-module').replaceWith(data);
+    }
+</script>)

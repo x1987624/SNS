@@ -1,0 +1,90 @@
+﻿@model  PagingDataSet<PointGift>
+@{
+    Layout = "app-list-2cols";
+    
+    ApproveStatus? approveStatus=Request.QueryString.Get<ApproveStatus?>("approveStatus",null);
+    IUser user = UserContext.CurrentUser;
+}
+@section aside{
+   @Html.Partial("_MyPoint")
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-my-collection">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        @if (Model == null || Model.Count() == 0)
+        { 
+            <div class="tn-no-data">暂无收藏商品！</div>
+        }
+        else
+        {
+            <form action="#" method="post" id="Form-BatchSet">
+                <table class="tn-table-grid">
+                    <tbody>
+                        <tr class="tn-table-grid-header">
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                商品名称
+                            </th>
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                单价
+                            </th>
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                状态
+                            </th>
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                操作
+                            </th>
+                        </tr>
+                        @foreach (var pointGift in Model)
+                        {
+                            <tr class="tn-table-grid-row">
+                                <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                                    @Html.Link(pointGift.Name, SiteUrls.Instance().GiftDetail(pointGift.GiftId), pointGift.Name, new { target="_blank"})
+                                </td>
+                                <td class="tn-border-gray tn-border-bottom tn-nowrap">
+                                    @pointGift.Price
+                                </td>
+                                <td class="tn-border-gray tn-border-bottom tn-width-status tn-nowrap">
+                                    @if (pointGift.IsEnabled)
+                                    {
+                                        @:可以兑换 
+                                    }
+                                    else
+                                    {
+                                        @:已下架 
+                                    }
+                                </td>
+                                <td class="tn-border-gray tn-border-bottom tn-width-action2 tn-nowrap">
+                                    @Html.Link("取消收藏", SiteUrls.Instance()._CancelFavorite(user.UserName, pointGift.GiftId), "取消收藏", new { @class = "tn-corner-all tn-button-text-only tn-button-lite tnui-cancelfavorite" })
+                                    @if (pointGift.IsEnabled)
+                                    {
+                                        @Html.Link("申请兑换", SiteUrls.Instance()._CreateRecord(pointGift.GiftId), "申请兑换", new { @class = "tn-corner-all tn-button-text-only tn-button-lite",plugin="dialog" })
+                                    }
+                                       
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
+            <div class="tn-pagination">
+                @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                @Html.PagingResults(Model)
+            </div>
+        }
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+        //取消收藏
+        $(".tnui-cancelfavorite").click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            art.dialog.confirm('确定要取消收藏吗？', function () {
+                $.post(url, function (data) {
+                    if (data) {
+                        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(); });
+                    }
+                });
+            });
+        });
+    });
+</script>)

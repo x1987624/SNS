@@ -1,0 +1,79 @@
+﻿@model AlbumEditModel
+@{
+    string callback = Request.QueryString.Get<string>("callBack", null);    
+}
+@using (Html.BeginAjaxForm("_EditAlbum", "UserSpacePhoto", FormMethod.Post, new AjaxFormOptions {  OnErrorCallBack = "OnErrorCallBack", OnSuccessCallBack = callback }))
+{
+    @Html.HiddenFor(n => n.AlbumId)
+    <div class="tnc-dailog-pd">
+        <div class="tn-form-box">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>
+                            相册名称：
+                        </th>
+                        <td>
+                            @Html.TextBoxFor(n => n.AlbumName, InputWidthTypes.Long)
+                            @Html.ValidationMessageFor(n => n.AlbumName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            相册描述：
+                        </th>
+                        <td>
+                            @Html.TextAreaFor(n => n.Description, new RouteValueDictionary { { "class", "tn-textbox tn-input-long tn-border-gray" } })
+                            @Html.ValidationMessageFor(n => n.Description)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            隐私设置：
+                        </th>
+                        <td>
+                            @Html.Action("_PrivacyStatusSetter", "Channel", new
+                            {
+                                area = "Common",
+                                userId = UserContext.CurrentUser.UserId,
+                                itemName = "PrivacyStatus",
+                                itemPrivacyStatus = Model.PrivacyStatus,
+                                selectedUserIds = ViewData["userPrivacySpecifyObjects"] as string,
+                                selectedUserGroupIds = ViewData["userGroupPrivacySpecifyObjects"] as string,
+                            })
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-bg-gray tn-border-gray tn-border-top">
+        @Html.Button("提交", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { id = "editMyAlbum" })
+        @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close" })
+    </div>
+}
+<script type="text/dialog">
+    @if (Model.AlbumId == 0)
+    { 
+        @:this.title("创建相册");
+    }
+    else
+    { 
+        @:this.title("编辑相册");
+    }
+</script>
+@Html.ScriptBlock(@<script language="javascript" type="text/javascript">
+    $(function () {
+        $("#editMyAlbum").click(function () {
+            if ($("#removeWhenSubmit").length>0) {
+                $("#removeWhenSubmit").remove();
+            }
+        })
+    })
+
+    function OnErrorCallBack(data) {
+        alert(data.MessageContent, function () {
+            window.location.reload();
+        })
+    }
+</script>)

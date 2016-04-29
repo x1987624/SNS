@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<notices>
+    <notice templateName="NewPhotoComment">
+      您的照片 <a href="@Model.RelativeObjectUrl" target="_blank">@Model.RelativeObjectName</a> 被 <a href="@Model.LeadingActorUrl" target="_blank">@Model.LeadingActor</a> 评论了。
+    </notice>
+</notices>

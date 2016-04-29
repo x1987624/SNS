@@ -1,0 +1,241 @@
+﻿@model WikiPageEditModel
+@{
+    Layout = "app-1col";
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+    string pageName = Model.PageId > 0 ? "编辑词条" : "新建词条";
+    string buttonText = Model.PageId > 0 ? "保存" : "发布";
+    IUser user = UserContext.CurrentUser;
+    #region haiersns-2-qinwx-20130916 获取当前标签
+
+    IEnumerable<string> tagName = null;
+    if (TempData["wikiTagName"] != null)
+    {
+        tagName = new List<string>() { TempData["wikiTagName"].ToString() };
+    }
+    #endregion
+    int speechCategoryId = Convert.ToInt32(ConfigurationManager.AppSettings["HaierSpeechModelFolderId"]);
+    long categoryId = -1;
+    if (Convert.ToInt32(TempData["wikiCategoryId"]) > 0)
+    {
+        categoryId = Convert.ToInt32(TempData["wikiCategoryId"]);
+    }
+    
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all hr-edit-body">
+    <div class="tn-main-heading tn-border-gray tn-border-bottom">
+        <h2>@pageName</h2>
+    </div>
+    @Html.StatusMessage()
+    @using (Html.BeginForm("EditPage", "ChannelWiki", FormMethod.Post, new { id = "form-wiki-edit" }))
+    {
+        //1 创建
+        //  editDiv1 显示
+        //2 编辑
+        //  管理员（创建者+管理员），editDiv1显示
+        //  非管理员，editDiv1 隐藏
+        bool isShowGuild = false;
+        string[] adminRoles = { RoleNames.Instance().ContentAdministrator(), RoleNames.Instance().SuperAdministrator() };
+        if (Model.PageId < 1 || UserContext.CurrentUser.UserId == Model.OwnerId || UserContext.CurrentUser.IsInRoles(adminRoles))
+        {
+            isShowGuild = true;
+        }
+        string editDiv1ShowString = isShowGuild ? "" : "style=display:none";
+        string editDiv2ShowString = isShowGuild ? "style=display:none" : "";
+                
+        <div class="tn-box-content tn-widget-content tn-corner-all" id="editDiv1" @editDiv1ShowString>
+            <div class="hr-create-specific tn-helper-clearfix">
+                <div class="tn-right">
+                    <p>
+                        <b>重要提示：</b>百科是任何人都可以随时编辑和添加词条、内容的自由的百科全书，内容集成量非常广阔，是一个开发性的百科全书，其目标是为本企业上的每一个人自由的提供知识和信息。
+                        <br>
+                        <br>
+                        它其实是一种新技术，一种超文本系统。这种超文本系统支持面向社群的协作式写作，同时也包括一组支持这种写作的辅助工具。也就是说，这是多人协作的写作工具。而参与创作的人，也被称为维客。
+                    </p>
+                </div>
+                <div class="tn-left">
+                    <div class="tn-form tn-label-right">
+                        <div class="tn-form-row tn-bg-gray">
+                            <label class="tn-form-label">词条名称：</label>
+                            @if (Model.PageId < 1)
+                            {
+                                @Html.TextBoxFor(n => n.Title, InputWidthTypes.Long)
+                            }
+                            else
+                            {
+                                @Model.Title
+                                @Html.HiddenFor(n => n.Title)
+                            }
+                            @Html.ValidationMessageFor(n => n.Title)
+                        </div>
+                        <div class="tn-form-row tn-bg-gray">
+                            <label class="tn-form-label">分类：</label>
+
+                            @Html.CategoryDropDownListFor(n => n.SiteCategoryId, TenantTypeIds.Instance().WikiPage(), 0)
+                            @Html.ValidationMessageFor(n => n.SiteCategoryId)
+                        </div>
+                        <div class="tn-form-row tn-bg-gray">
+                            <label class="tn-form-label">标签：</label>
+                            @if (tagName != null)
+                            {
+                                @Html.TagSelector("TagNames", tagName, TenantTypeIds.Instance().WikiPage(), Model.PageId)
+                            }
+                            else
+                            {
+                                @Html.TagSelector("TagNames", TenantTypeIds.Instance().WikiPage(), Model.PageId)
+                            }
+
+                            @Html.ValidationMessageFor(n => n.TagNames)
+                        </div>
+                        <div class="tn-form-row tn-bg-gray">
+                            <label class="tn-form-label">设置标题图：</label>
+                            @Html.SetTitleImageFor(n => n.FeaturedImageAttachmentId, TenantTypeIds.Instance().WikiPage(), Model.PageId)
+                        </div>
+                        <div class="tn-form-row tn-form-row-button">
+                            <label class="tn-form-label">&nbsp;</label>
+                            <a href="javascript:;" class="tn-button tn-corner-all tn-button-text-only tn-button-large tn-button-primary" id="editDiv1Button">
+                                <span class="tn-button-text">下一步</span>
+                            </a>
+                            @*<button class="tn-button tn-corner-all tn-button-text-only tn-button-large tn-button-primary" id="editDiv1Button">
+                                    <span class="tn-button-text">下一步</span>
+                                </button>*@
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            $("#editDiv1Button").click(function () {
+                if ($("#Title").val() == "") {
+                    alert("请输入词条名称");
+                }
+                else if ($("#SiteCategoryId").val() == "") {
+                    alert("请选择分类");
+                }
+                else if ($("span[for='Title']").html() != null) {
+                    alert($("span[for='Title']").html());
+                }
+                else {
+                    $("#editDiv1").attr("style", "display:none");
+                    $("#editDiv2").attr("style", "");
+                }
+
+            });
+        </script>
+                
+                            //分割线——————————————————————————————————————————
+    
+        <div class="tn-form tn-label-right" id="editDiv2" @editDiv2ShowString>
+
+            <div class="tn-box-content tn-widget-content tn-corner-all">
+                @if (Model.PageId > 0)
+                {
+                    <h1>@Model.Title</h1>
+                }
+                else
+                {
+                    <h1 id="showTitleH1">@Model.Title</h1>
+                }
+                @Html.HiddenFor(n => n.PageId)
+                @Html.HiddenFor(n => n.VersionId)
+                @Html.HiddenFor(n => n.OwnerId)
+                @Html.HiddenFor(n => n.TenantTypeId)
+                <div class="tn-edit-box">
+                    @Html.UEditorFor(n => n.Body, TenantTypeIds.Instance().WikiPage(), Model.PageId, new Dictionary<string, object> { { "style", "height:400px;" } })
+                    @* @Html.HtmlEditorFor(n => n.Body, new HtmlEditorOptions(HtmlEditorMode.Simple).MergeHtmlAttribute("style", "height:400px;")
+                       .AddPhotoButton(TenantTypeIds.Instance().WikiPage(), Model.PageId)
+                       .AddFileButton(TenantTypeIds.Instance().WikiPage(), Model.PageId)
+                       .AddMusicButton()
+                       .AddVideoButton())*@
+
+                </div>
+                @Html.ValidationMessageFor(n => n.Body)
+
+                @if (Model.PageId > 0)
+                {
+                
+                    <div class="tn-form-row">
+                        <label class="tn-form-label">编辑原因：</label>
+                        @Html.TextAreaFor(n => n.Reason, InputWidthTypes.Longest)
+                        @Html.ValidationMessageFor(n => n.Reason)
+                    </div>
+                }
+                <div class="tn-form-row tn-form-row-button">
+                    @* @if (Model.PageId > 0)
+                    {
+                        if ((Model.OwnerId == user.UserId) || DIContainer.Resolve<Authorizer>().IsAdministrator(ApplicationIds.Instance().Wiki()))
+                        {
+                              @Html.CheckBoxFor(n => n.IsLocked);
+                              <label for="IsLocked" title="被锁定的词条除了管理员和自己以外不允许被他人编辑"> 是否锁定该词条 </label>
+                        }
+                        else
+                        {
+                            <label class="tn-form-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        }
+                    }
+                    else
+                    {
+                        @Html.CheckBoxFor(n => n.IsLocked);
+                        <label for="IsLocked" title="被锁定的词条除了管理员和自己以外不允许被他人编辑"> 是否锁定该词条 </label>     
+                    }*@
+
+                    @Html.Button(buttonText, ButtonTypes.Submit, HighlightStyles.Primary, ButtonSizes.Large, null, TextIconLayout.IconText, null, new { id = "submit-publish" })
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    @if (isShowGuild)
+                    {
+                        <a href="javascript:;" class="tn-button tn-corner-all tn-button-text-only tn-button-large tn-button-primary" id="editDiv2Button">
+                            <span class="tn-button-text">上一步</span>
+                        </a>
+@*<button class="tn-button tn-corner-all tn-button-text-only tn-button-large tn-button-primary" id="editDiv2Button">
+                        <span class="tn-button-text">上一步</span>
+                    </button>*@
+                    }
+                </div>
+
+            </div>
+
+        </div>
+                    if (isShowGuild)
+                    {
+        <script type="text/javascript">
+            $(function () {
+                $("#editDiv2Button").click(function () {
+                    $("#editDiv2").attr("style", "display:none");
+                    $("#editDiv1").attr("style", "");
+                });
+            });
+        </script>
+                    }
+    }
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#Title").focus();
+        $("#submit-publish").click(function () {
+            tinyMCE.triggerSave();
+            var tags = $("#as-selections-TagNames li").text();
+            if (tags != "") {
+                var _tags = tags.replace(/×/g, ",");
+                //replace(/,/g, ".");
+                $("#as-values-TagNames").val(_tags);
+            }
+        });
+
+        $("#SiteCategoryId_0 option[value='@speechCategoryId']").remove();
+
+
+        $(".tnc-titleimg-add.tn-hover").replaceWith($(".tnc-titleimg-add.tn-hover").children());
+
+    });
+</script>
+
+@*用于给分类下拉框赋默认值*@
+@if (categoryId != -1)
+{
+    <script>
+        $(function () { $("#SiteCategoryId_0").val("@categoryId"); });
+    </script>
+}

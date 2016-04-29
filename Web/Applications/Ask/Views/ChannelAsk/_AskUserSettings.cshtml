@@ -1,0 +1,43 @@
+﻿@{
+    long userId = ViewData.Get<long>("userId", 0);
+    bool isAcceptQuestion = ViewData.Get<bool>("isAcceptQuestion", false);  
+}
+@using (Html.BeginAjaxForm("_AskUserSettings", "ChannelAsk", new { userId = userId }, FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "OnSuccessCallBack" }))
+{
+<div class="tnc-set-category-mod">
+    <div class="tnc-dailog-pd">
+        <div class="tn-form-box">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>向我提问：</th>
+                        <td><ul class="tn-radiobutton-list">
+                                <li>
+                                    <label>
+                                        <input type="radio" name="accept" value="true" @(isAcceptQuestion ? "checked=\"checked\"" : "")  />
+                                        允许 </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="radio" name="accept" value="false" @(!isAcceptQuestion ? "checked=\"checked\"" : "") />
+                                        不允许 </label>
+                                </li>
+                            </ul></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-border-gray tn-border-top tn-bg-gray"> @Html.Button("保存", ButtonTypes.Submit, HighlightStyles.Primary)
+        @Html.Button("取消", ButtonTypes.Cancel, HighlightStyles.Secondary, htmlAttributes: new { id = "cancelSetting", dialogOperation = "close" }) </div>
+</div>
+} 
+<script type="text/dialog">
+this.title("我的设置");
+</script> 
+@Html.ScriptBlock(@<script language="javascript" type="text/javascript">
+    function OnSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType);
+    }
+</script>)

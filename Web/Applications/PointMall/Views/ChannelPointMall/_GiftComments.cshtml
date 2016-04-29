@@ -1,0 +1,54 @@
+﻿@model PagingDataSet<PointGiftExchangeRecord>
+@{
+    var tradePointCategory = new PointService().GetPointCategory("TradePoints");
+    long giftId = ViewData.Get<long>("giftId", 0);
+    ApproveStatus approveStatus = Request.QueryString.Get<ApproveStatus>("approveStatus", ApproveStatus.Approved);
+}
+<div id="ExchangeRecord_@(approveStatus)">
+    @if (Model != null && Model.Count() > 0)
+    { 
+        <ul class="tn-comments">
+            @foreach (PointGiftExchangeRecord comment in Model)
+            { 
+                <li class="tn-comment-item">
+                    <div class="tn-comment tn-helper-clearfix">
+                        <div class="tn-comment-avatar">
+                            @Html.ShowUserAvatar(comment.PayerUser, SiteUrls.Instance().SpaceHome(comment.PayerUserId), AvatarSizeType.Small, HyperLinkTarget._blank)
+                            <p class="tn-name">
+                                <a href="@SiteUrls.Instance().SpaceHome(comment.PayerUserId)" title="@comment.PayerUser.DisplayName" target="_blank">@comment.PayerUser.DisplayName</a></p>
+                        </div>
+                        <div class="tn-comment-info tn-hover tn-widget tn-bubble tn-bubble-arrow-left">
+                            <div class="tn-bubble-arrow">
+                                <b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble">
+                                </b>
+                            </div>
+                            <div class="tn-bubble-content tn-widget-content tn-border-gray tn-corner-all">
+                                @if (comment.Appraise.Length > 0)
+                                {
+                                    <p class="spb-gift-records-text tn-border-gray tn-border-bottom tn-border-dashed">@Html.Raw(comment.Appraise)</p>
+                                }
+                                <div class="tn-comment-feed tn-helper-clearfix">
+                                    <div class="">
+                                        <p>
+                                            <span>花费@(tradePointCategory.CategoryName)：@comment.Price</span><span>兑换数量：@comment.Number</span><span>兑换时间：@comment.DateCreated.ToFriendlyDate()</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+        <div class="tn-pagination">
+            @Html.AjaxPagingButton(Model, "ExchangeRecord_" + approveStatus)
+            @Html.PagingResults(Model)
+        </div>
+    }
+    else
+    {
+        <div class="tn-no-data">
+            暂无兑换记录!
+        </div>
+    }
+</div>

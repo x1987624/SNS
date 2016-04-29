@@ -1,0 +1,1715 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.CMS</name>
+    </assembly>
+    <members>
+        <member name="T:Spacebuilder.CMS.CmsBodyProcessor">
+            <summary>
+            资讯正文解析器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsBodyProcessor.AddBBTag(System.String,Spacebuilder.CMS.ContentAttachment)">
+            <summary>
+            添加BBTag实体
+            </summary>
+            <param name="htmlTemplate">html模板</param>
+            <param name="attachment">带替换附件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsCommentUrlGetter.GetCommentedObjectName(System.Int64,System.String)">
+            <summary>
+            获取被评论对象名称
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsCommentUrlGetter.GetCommentedObject(System.Int64)">
+            <summary>
+            获取被评论对象(部分)
+            </summary>
+            <param name="commentedObjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsCommentUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsOwnerDataGetter">
+            <summary>
+            用户资讯计数获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsOwnerDataGetter.GetDataUrl(System.String,System.Nullable{System.Int64})">
+            <summary>
+            获取链接地址
+            </summary>
+            <param name="spaceKey">用户名</param>
+            <param name="ownerId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsOwnerDataGetter.DataKey">
+            <summary>
+            datakey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsOwnerDataGetter.DataName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsOwnerDataGetter.ApplicationId">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsTagUrlGetter">
+            <summary>
+            资讯标签云Url获取
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsTagUrlGetter.GetUrl(System.String,System.Int64)">
+            <summary>
+            获取链接
+            </summary>
+            <param name="tagName"></param>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsApplicationStatisticDataGetter">
+            <summary>
+            资讯应用数据Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsApplicationStatisticDataGetter.GetManageableDatas(System.String)">
+            <summary>
+            获取管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>管理数据列表</returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsApplicationStatisticDataGetter.GetStatisticDatas(System.String)">
+            <summary>
+            获取统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>统计数据列表</returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsRecommendUrlGetter">
+            <summary>
+            资讯推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.CommentRecommendUrlGetter">
+            <summary>
+            资讯推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CommentRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.CMS.CommentRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.ContentPages">
+            <summary>
+            对内容进行分页
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.CMS.ContentPages.PageSeparator">
+            <summary>
+            分页符
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentPages.GetPageContentForStorage(System.String,System.Int32,System.Boolean)">
+            <summary>
+            内容分页
+            </summary>
+            <param name="strContent">要分页的字符串内容</param>
+            <param name="intPageSize">分页大小</param>
+            <param name="isOpen">最后一页字符小于intPageSize的1/4加到上一页</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentPages.IsBegin(System.Char)">
+            <summary>
+            &lt; 符号搜索
+            </summary>
+            <param name="cr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentPages.IsEnd(System.Char)">
+            <summary>
+            &gt;  符号搜索
+            </summary>
+            <param name="cr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentPages.SubString(System.Int32,System.String@)">
+            <summary>
+            截取分页内容
+            </summary>
+            <param name="index">每页字符长度</param>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentPages.Gindex(System.String,System.Int32)">
+            <summary>
+            返回真实字符长度
+            </summary>
+            <param name="str"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentPages.RemoveHtml(System.String)">
+            <summary>
+            移除Html标记
+            </summary>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentPages.CutString(System.String,System.Int32,System.Int32)">
+            <summary>
+            从字符串的指定位置截取指定长度的子字符串
+            </summary>
+            <param name="str">原字符串</param>
+            <param name="startIndex">子字符串的起始位置</param>
+            <param name="length">子字符串的长度</param>
+            <returns>子字符串</returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.ContentTypeKeys">
+            <summary>
+            内容模型标识
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentTypeKeys.News">
+            <summary>
+            文章
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentTypeKeys.NewsLink">
+            <summary>
+            链接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.ActivityItemKeysExtension">
+            <summary>
+            资讯动态项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.ActivityItemKeysExtension.CreateCmsComment(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            评论资讯
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.AuthorizerExtension">
+            <summary>
+            资讯权限验证
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.AuthorizerExtension.CMS_Contribute(Spacebuilder.Common.Authorizer)">
+            <summary>
+            投稿
+            </summary>
+            <param name="authorizer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.AuthorizerExtension.CMS_ManageContentItemsForChannel(Spacebuilder.Common.Authorizer)">
+            <summary>
+            是否具有前台管理资讯的权限
+            </summary>
+            <param name="authorizer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.AuthorizerExtension.CMS_Contribute(Spacebuilder.Common.Authorizer,System.String@)">
+            <summary>
+            投稿
+            </summary>
+            <param name="authorizer"></param>
+            <param name="errorMessage"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.AuthorizerExtension.CMS_CreateContentItem(Spacebuilder.Common.Authorizer,Spacebuilder.CMS.ContentFolder)">
+            <summary>
+            发布内容项
+            </summary>
+            <param name="folder">栏目</param>
+            <param name="authorizer"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.AuthorizerExtension.CMS_EditContentItem(Spacebuilder.Common.Authorizer,Spacebuilder.CMS.ContentItem)">
+            <summary>
+            编辑内容项
+            </summary>
+            <param name="authorizer"></param>
+            <param name="contentItem"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.AuthorizerExtension.CMS_DeleteContentItem(Spacebuilder.Common.Authorizer,Spacebuilder.CMS.ContentItem)">
+            <summary>
+            删除资讯
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.AuthorizerExtension.CMS_DeleteContentAttachment(Spacebuilder.Common.Authorizer,Spacebuilder.CMS.ContentAttachment)">
+            <summary>
+            刪除附件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.AuthorizerExtension.CMS_ManageContentFolder(Spacebuilder.Common.Authorizer,Spacebuilder.CMS.ContentFolder)">
+            <summary>
+            管理栏目
+            </summary>
+            <param name="authorizer"></param>
+            <param name="folder">栏目</param>
+        </member>
+        <member name="T:Spacebuilder.CMS.HtmlHelperFolderDropDownListExtensions">
+            <summary>
+            栏目联动下拉列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.HtmlHelperFolderDropDownListExtensions.FolderDropDownListFor``1(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32}},System.String,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32})">
+            <summary>
+            栏目下拉列表
+            </summary>
+            <param name="htmlHelper">被扩展的htmlHelper实例</param>
+            <param name="expression">选择实体中栏目属性的lamda表达式</param>
+            <param name="contentTypeKey">数据模型Id</param>
+            <param name="exceptFolderId">需要去掉的ID</param>
+            <param name="folderLevel">栏目层级(默认取站点配置）</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.HtmlHelperFolderDropDownListExtensions.FolderDropDownList(System.Web.Mvc.HtmlHelper,System.String,System.Int32,System.String,System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String)">
+            <summary>
+            栏目下拉列表
+            </summary>
+            <param name="htmlHelper">被扩展的htmlHelper实例</param>
+            <param name="name">控件name属性</param>
+            <param name="value">选中的栏目Id</param>
+            <param name="contentTypeKey">数据模型Id</param>
+            <param name="exceptFolderId">需要去掉的ID</param>
+            <param name="folderLevel">栏目层级(默认取站点配置）</param>
+        </member>
+        <member name="T:Spacebuilder.CMS.FolderServiceHelper">
+            <summary>
+            栏目业务逻辑扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.FolderServiceHelper.#ctor(System.String,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            构造器
+            </summary>
+            <param name="contentTypeKey"></param>
+            <param name="exceptFolderId"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.FolderServiceHelper.GetParentId(System.Int32)">
+            <summary>
+            获取父栏目Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.FolderServiceHelper.GetChildrenDictionary(System.Int32)">
+            <summary>
+            获取子栏目
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.FolderServiceHelper.GetRootFolderDictionary">
+            <summary>
+            获取一级栏目
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.NoticeTemplateNamesExtension">
+            <summary>
+            扩展NoticeTemplateNames
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.NoticeTemplateNamesExtension.ContributeAccepted(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            投稿被采纳
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.NoticeTemplateNamesExtension.ContributeGlobalStickied(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            投稿被全局置顶
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.NoticeTemplateNamesExtension.ContributeFolderStickied(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            投稿被栏目置顶
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.PermissionItemKeysExtension">
+            <summary>
+            权限项标识扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.PermissionItemKeysExtension.CMS_ContentItem(Tunynet.Common.PermissionItemKeys)">
+            <summary>
+            资讯投稿的权限项标识
+            </summary>
+            <param name="pik"><see cref="T:Tunynet.Common.PermissionItemKeys"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.PointItemKeysExtension">
+            <summary>
+            积分项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.PointItemKeysExtension.CMS_ContributeAccepted(Tunynet.Common.PointItemKeys)">
+            <summary>
+            投稿被采纳
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.PointItemKeysExtension.CMS_ContributeDeleted(Tunynet.Common.PointItemKeys)">
+            <summary>
+            投稿被删除
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.PointItemKeysExtension.CMS_StickyNews(Tunynet.Common.PointItemKeys)">
+            <summary>
+            投稿被置顶
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.RecommendItemExtensionByBarSection">
+            <summary>
+            推荐项类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.RecommendItemExtensionByBarSection.GetContentItem(Tunynet.Common.RecommendItem)">
+            <summary>
+            资讯
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.RecommendItemExtensionByBarSection.GetComment(Tunynet.Common.RecommendItem)">
+            <summary>
+            评论
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.SiteUrlsExtension">
+            <summary>
+            资讯链接管理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._ListContentAttachments(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{Tunynet.Common.MediaType})">
+            <summary>
+            上传附件列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._ContentAttachmentManage(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            附件上传管理
+            </summary>  
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._EditContentAttachment(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            附件上传
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._DeleteContentAttachments(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            批量/单个删除附件
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="attachmentId">资讯ID</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.ContentAttachmentUrl(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean)">
+            <summary>
+            获取附件下载的URL
+            </summary>
+            <param name="attachmentId">附件Id</param>
+            <param name="enableCaching">是否缓存</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.ContentAttachmentTempUrl(Spacebuilder.Common.SiteUrls,System.Int64,System.String,System.Boolean)">
+            <summary>
+            附件下载的临时地址，根据设定的时间自动过期
+            </summary>
+            <param name="attachmentId">附件id</param>
+            <param name="token">加密串</param>
+            <param name="enableCaching">是否缓存</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.ContentAttachmentDirectUrl(Spacebuilder.Common.SiteUrls,Spacebuilder.CMS.ContentAttachment,System.Boolean)">
+            <summary>
+            附件下载的直连地址
+            </summary>
+            <param name="attachment">附件实体</param>
+            <param name="enableClientCaching">是否缓存</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.UploadContentAttachment(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            上传资讯附件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.UploadContentAttachment(Spacebuilder.Common.SiteUrls,System.Int64,System.Double)">
+            <summary>
+            上传资讯附件
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="timeliness">时间限制</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._PreviewVideo(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            预览视频
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsHome(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            资讯首页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.ContentItemDetail(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            资讯详细显示页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.FolderDetail(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            栏目详细显示页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._DeleteContribute(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            删除投稿
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.Contribute(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            投稿
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsTagDetail(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            标签详细
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsUser(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            我的资讯
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.Comments(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            资讯评论
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="contentItemId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._LastestItems(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            最新资讯列表
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.GetChildContentFolders(Spacebuilder.Common.SiteUrls,System.String,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            获取子级栏目
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._TagSelector(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            标签控件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.ChannelManageContentItems(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int32})">
+            <summary>
+            资讯前台管理
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+            <param name="folderId"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._DeleteContentItems(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            批量/单个删除资讯
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="contentItemId">资讯ID</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._CmsSetSticky(Spacebuilder.Common.SiteUrls,System.Boolean,System.Boolean,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int64})">
+            <summary>
+            前台置顶
+            </summary>
+            <param name="siteurls"></param>
+            <param name="contentItemId">资讯Id</param>
+            <param name="isGlobalSticky">是否整站置顶</param>
+            <param name="isFolderSticky">是否栏目置顶</param>
+            <param name="globalStickyDate">整站置顶时间</param>
+            <param name="folderStickyDate">栏目置顶时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._SetStickyDate(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            设置置顶时间
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="contentItemId">资讯Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsUpdateAuditStatus(Spacebuilder.Common.SiteUrls,System.Boolean,System.Nullable{System.Int64})">
+            <summary>
+            批量更新资讯的审核状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApprove">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._SetContentFolder(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            设置资讯栏目
+            </summary>
+            <param name="urls"></param>
+            <param name="contentItemId">被设置的单条栏目</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsGlobalSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            资讯全局搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsQuickSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            资讯快捷搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsPageSearch(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            资讯搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsSearchAutoComplete(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            资讯搜索自动完成
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.CmsControlPanelManage(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus})">
+            <summary>
+            资讯后台管理
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.EditContentItem(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            编辑资讯
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="contentTypeId"></param>
+            <param name="contentItemId">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.ManageContentFolders(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            资讯栏目管理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.ChangeContentFolderOrder(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            更改显示顺序
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.DeleteContentFolder(Spacebuilder.Common.SiteUrls,System.Int32)">
+            <summary>
+            删除资讯栏目
+            </summary>
+            <param name="contentFolderId">栏目ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._EditContentFolderLink(Spacebuilder.Common.SiteUrls,System.Int32)">
+            <summary>
+            添加编辑类别页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.EditContentFolder(Spacebuilder.Common.SiteUrls,System.Int32,System.Int32)">
+            <summary>
+            添加编辑类别页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._MoveContentFolder(Spacebuilder.Common.SiteUrls,System.Int32,System.String)">
+            <summary>
+            合并移动资讯栏目页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension._MoveContentFolder(Spacebuilder.Common.SiteUrls,System.Int32,System.Int32,System.String)">
+            <summary>
+            合并移动资讯栏目
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.SiteUrlsExtension.ManageContentAttachments(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            资讯后台管理
+            </summary>
+            <param name="siteUrls"></param>
+        </member>
+        <member name="T:Spacebuilder.CMS.HtmlEditorOptionsExtension">
+            <summary>
+            对HtmlEditorOptions进行扩展
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.HtmlEditorOptionsExtension.AddUploadFileButton(Spacebuilder.Common.HtmlEditorOptions)">
+            <summary>
+            增加上传文件按钮
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.ContentAttachmentAuthorizeHandler">
+            <summary>
+            检测文件附件下载权限，如未购买，则先购买
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.ContentAttachmentDownloadHandler">
+            <summary>
+            处理文件附件下载
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.Resources.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.Resources.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.Resources.Resource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.Resources.Resource.ApplicationName_CMS">
+            <summary>
+              查找类似 资讯 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.Resources.Resource.Description_ModeratedUser_CreateNewsDenied">
+            <summary>
+              查找类似 您现在处于管制状态，不能投稿 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.Resources.Resource.OperationLog_Pattern_CancelFolderSticky">
+            <summary>
+              查找类似 把 {0}：{1} 取消栏目置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.Resources.Resource.OperationLog_Pattern_CancelGlobalSticky">
+            <summary>
+              查找类似 把 {0}：{1} 取消全局置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.Resources.Resource.OperationLog_Pattern_SetFolderSticky">
+            <summary>
+              查找类似 把 {0}：{1} 设置为栏目置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.Resources.Resource.OperationLog_Pattern_SetGlobalSticky">
+            <summary>
+              查找类似 把 {0}：{1} 设置为全局置顶 的本地化字符串。
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsApplication.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户在应用中的数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="takeOverUserName">用于接管删除用户时不能删除的内容(例如：用户创建的群组)</param>
+            <param name="isTakeOver">是否接管被删除用户可被接管的内容</param>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsConfig">
+            <summary>
+            资讯配置类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsConfig.Instance">
+            <summary>
+            获取CMSConfig实例
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsConfig.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            构造器
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsConfig.Initialize(Autofac.ContainerBuilder)">
+            <summary>
+            应用初始化
+            </summary>
+            <param name="containerBuilder">容器构建器</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsConfig.Load">
+            <summary>
+            应用加载
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsConfig.EnableSocialComment">
+            <summary>
+            是否启用社会化评论组件
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsConfig.ApplicationId">
+            <summary>
+            ApplicationId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsConfig.ApplicationKey">
+            <summary>
+            ApplicationKey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsConfig.ApplicationType">
+            <summary>
+            获取CMSApplication实例
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.Controllers.ChannelCmsController">
+            <summary>
+            资讯控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.Home">
+            <summary>
+            资讯首页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._ContentAttachmentManage">
+            <summary>
+            附件上传的管理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._EditContentAttachment">
+            <summary>
+            附件上传编辑页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._ListContentAttachments(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{Tunynet.Common.MediaType},System.Int32)">
+            <summary>
+            附件列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._PreviewVideo(System.Int64)">
+            <summary>
+            附件上传编辑页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.UploadContentAttachment">
+            <summary>
+            上传资讯附件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._DeleteContentAttachments(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删除附件
+            </summary>
+            <param name="attachmentIds"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._CreateCmsComment(System.Int64)">
+            <summary>
+            创建资讯评论的动态块
+            </summary>
+            <param name="ActivityId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._LastestItems(System.Int32,System.Int32)">
+            <summary>
+            最新资讯列表
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._RecommendContentItems(System.String,System.Int32)">
+            <summary>
+            推荐资讯
+            </summary>
+            <param name="topNumber"></param>
+            <param name="recommendTypeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._RecommendComments(System.String,System.Int32)">
+            <summary>
+            推荐评论（精彩点评）
+            </summary>
+            <param name="topNumber"></param>
+            <param name="recommendTypeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._Tops(Spacebuilder.CMS.ContentItemSortBy,System.Nullable{System.Int32},System.String,System.Int32)">
+            <summary>
+            资讯TopN内容块
+            </summary>
+            <param name="sortBy"></param>
+            <param name="contentFolderId"></param>
+            <param name="viewName"></param>
+            <param name="topNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._HisContribute(System.Int64,System.Int32)">
+            <summary>
+            他的投稿
+            </summary>
+            <param name="userId"></param>
+            <param name="topNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._VisitorAlsoVisited(System.Int64,System.Int32)">
+            <summary>
+            侧边栏-浏览过本文的人还看过
+            </summary>
+            <param name="contentItemId">资讯Id</param>
+            <param name="topNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.ContentItemDetail(System.Int64)">
+            <summary>
+            资讯详情页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.Comments(System.Int64)">
+            <summary>
+            评论列表
+            </summary>
+            <param name="contentItemId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.CmsUser(System.String,System.Nullable{System.Int32},System.Nullable{Tunynet.Common.AuditStatus},System.Int32,System.Int32)">
+            <summary>
+            他的资讯/我的资讯
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._DeleteContribute(System.Int64)">
+            <summary>
+            删除投稿
+            </summary>
+            <param name="contentItemId"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.FolderDetail(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            栏目详细页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.TagDetail(System.String,System.Int32,System.Int32)">
+            <summary>
+            资讯标签详情页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.Contribute(System.Nullable{System.Int64})">
+            <summary>
+            投稿
+            </summary>
+            <param name="contentItemId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.Contribute(Spacebuilder.CMS.ContentItemEditModel)">
+            <summary>
+            编辑内容项
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.ManageContentItems(System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            管理资讯
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._DeleteContentItems(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删除资讯
+            </summary>
+            <param name="contentItemIds">资讯id列表</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._UpdateAuditStatus(System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            更新审核状态
+            </summary>
+            <param name="contentItemIds">被操作项的Id集合</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._SetStickyDate(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            设置置顶时间的局部页面
+            </summary>
+            <param name="contentItemIds">资讯Id</param>
+            <returns>设置置顶时间的局部页面</returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.CmsSetSticky(System.Collections.Generic.List{System.Int64},System.Boolean,System.Boolean,System.DateTime,System.DateTime)">
+            <summary>
+            批量置顶
+            </summary>
+            <param name="contentItemIds"></param>
+            <param name="isGlobalSticky"></param>
+            <param name="isFolderSticky"></param>
+            <param name="globalStickyDate"></param>
+            <param name="folderStickyDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._SetContentFolder(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            设置资讯的栏目
+            </summary>
+            <param name="contentItemIds">被移动的资讯id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._SetContentFolder(System.Collections.Generic.List{System.Int64},System.Int32)">
+            <summary>
+            设置资讯栏目
+            </summary>
+            <param name="contentItemIds">准备移动的资讯id</param>
+            <param name="toContentFolderId">接收的栏目</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.Search(Spacebuilder.CMS.CmsFullTextQuery)">
+            <summary>
+            资讯搜索
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._GlobalSearch(Spacebuilder.CMS.CmsFullTextQuery,System.Int32)">
+            <summary>
+            资讯全局搜索
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._QuickSearch(Spacebuilder.CMS.CmsFullTextQuery,System.Int32)">
+            <summary>
+            资讯快捷搜索
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.SearchAutoComplete(System.String,System.Int32)">
+            <summary>
+            资讯搜索自动完成
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._UserData(System.Int64)">
+            <summary>
+            用户数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._UserComment">
+            <summary>
+            评论详细页中的用户数据（显示用户评论数）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController.GetChildContentFolders(System.String,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            获取子级栏目
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ChannelCmsController._TagSelector(System.Int64,System.Int32,System.String)">
+            <summary>
+            资讯标签选择器（支持自动提取）
+            </summary>
+            <param name="contentFolderId"></param>
+            <param name="contentItemId"></param>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.Controllers.ControlPanelCmsController">
+            <summary>
+            资讯管理控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.ManageContentItems(System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32)">
+            <summary>
+            管理资讯
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.EditContentItem(System.Nullable{System.Int64},System.Nullable{System.Int32})">
+            <summary>
+            编辑资讯
+            </summary>
+            <param name="contentItemId">内容项id</param>
+            <param name="contentTypeId">内容模板id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.EditContentItem(Spacebuilder.CMS.ContentItemEditModel)">
+            <summary>
+            编辑内容项
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.ManageContentFolders">
+            <summary>
+            管理栏目
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.DeleteContentFolder(System.Int32)">
+            <summary>
+            删除栏目
+            </summary>
+            <param name="contentFolderId">栏目ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController._EditContentFolderLink(System.Int32)">
+            <summary>
+            添加编辑链接
+            </summary>
+            <param name="contentFolderId">栏目ID</param>
+            <param name="parentId">父栏目ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController._EditContentFolderLink(Spacebuilder.CMS.FolderEditModel)">
+            <summary>
+            编辑添加栏目
+            </summary>
+            <param name="folderEditModel">栏目实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.EditContentFolder(System.Int32,System.Int32)">
+            <summary>
+            添加编辑栏目
+            </summary>
+            <param name="contentFolderId">栏目ID</param>
+            <param name="parentId">父栏目ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.EditContentFolder(Spacebuilder.CMS.FolderEditModel)">
+            <summary>
+            编辑添加栏目
+            </summary>
+            <param name="folderEditModel">栏目实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController._MoveContentFolder(System.Int32,System.String)">
+            <summary>
+            合并移动栏目页
+            </summary>
+            <param name="fromContentFolderId"></param>
+            <param name="option"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController._MoveContentFolder(System.Int32,System.Int32,System.String)">
+            <summary>
+            合并移动栏目
+            </summary>
+            <param name="fromContentFolderId"></param>
+            <param name="contentFolderId"></param>
+            <param name="option"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.ChangeContentFolderOrder(System.Int32,System.Int32)">
+            <summary>
+            更改栏目显示顺序
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.Controllers.ControlPanelCmsController.ManageContentAttachments(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{Tunynet.Common.MediaType},System.Int32,System.Int32)">
+            <summary>
+            后台附件管理
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.EventModules.CmsIndexEventModule">
+            <summary>
+            处理资讯索引的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.CmsIndexEventModule.AddTagsToCms_BatchAfter(System.Collections.Generic.IEnumerable{System.String},Tunynet.Common.TagEventArgs)">
+            <summary>
+            为资讯添加标签时触发
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.CmsIndexEventModule.DeleteUpdateTags_Before(Tunynet.Common.Tag,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            删除和更新标签时触发
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.CmsIndexEventModule.ContentItem_After(Spacebuilder.CMS.ContentItem,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            资讯增量索引
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.EventModules.ContentItemEventModule">
+            <summary>
+            处理资讯动态、积分的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.ContentItemEventModule.RegisterEventHandler">
+            <summary>
+            注册EventHandler
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.ContentItemEventModule.ContentItemPointModule_After(Spacebuilder.CMS.ContentItem,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            积分处理程序
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.ContentItemEventModule.ContentItemPointModuleForManagerOperation_After(Spacebuilder.CMS.ContentItem,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            处理置顶操作
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.ContentItemEventModule.ContentItemNoticeModule_After(Spacebuilder.CMS.ContentItem,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            通知处理程序
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.ContentItemEventModule.CmsCommentActivityEventModule_After(Tunynet.Common.Comment,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            评论资讯动态处理程序
+            </summary>
+            <param name="comment"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="T:Spacebuilder.CMS.EventModules.CMSOperationLogEventModule">
+            <summary>
+            处理资讯操作日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.CMSOperationLogEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.CMSOperationLogEventModule.CmsOperationLogEventModule_After(Spacebuilder.CMS.ContentItem,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            资讯操作日志事件处理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.EventModules.CMSOperationLogEventModule.ContentFolderOperationLogEventModule_After(Spacebuilder.CMS.ContentFolder,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            资讯操作日志事件处理
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsFullTextQuery">
+            <summary>
+            资讯全文检索条件
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.CMS.CmsFullTextQuery.PageSize">
+            <summary>
+            每页显示记录数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsFullTextQuery.Keywords">
+            <summary>
+            关键字集合
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsFullTextQuery.Keyword">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsFullTextQuery.Range">
+            <summary>
+            筛选
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsFullTextQuery.ContentFolderId">
+            <summary>
+            栏目Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsFullTextQuery.PageIndex">
+            <summary>
+            当前显示页面页码
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsSearchRange">
+            <summary>
+            搜索范围
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.CMS.CmsSearchRange.ALL">
+            <summary>
+            全部
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.CMS.CmsSearchRange.TITLE">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.CMS.CmsSearchRange.BODY">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.CMS.CmsSearchRange.AUTHOR">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.CMS.CmsSearchRange.TAG">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsIndexDocument">
+            <summary>
+            资讯索引文档
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsIndexDocument.Convert(Spacebuilder.CMS.ContentItem)">
+            <summary>
+            contentItem转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="contentItem">资讯实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsIndexDocument.Convert(System.Collections.Generic.IEnumerable{Spacebuilder.CMS.ContentItem})">
+            <summary>
+            contentItem批量转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="contentItems">资讯实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.CmsSearcher">
+            <summary>
+            资讯搜索器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.#ctor(System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">Searcher名称</param>
+            <param name="indexPath">索引文件所在路径（支持"~/"及unc路径）</param>
+            <param name="asQuickSearch">是否作为快捷搜索</param>
+            <param name="displayOrder">显示顺序</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.GlobalSearchActionUrl(System.String)">
+            <summary>
+            处理全局搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.QuickSearchActionUrl(System.String)">
+            <summary>
+            处理快捷搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.PageSearchActionUrl(System.String)">
+            <summary>
+            处理当前应用搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.RebuildIndex">
+            <summary>
+            重建索引
+            </summary>  
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.Insert(Spacebuilder.CMS.ContentItem)">
+            <summary>
+            添加索引
+            </summary>
+            <param name="cmsThread">待添加的资讯</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.Insert(System.Collections.Generic.IEnumerable{Spacebuilder.CMS.ContentItem})">
+            <summary>
+            添加索引
+            </summary>
+            <param name="contentItems">待添加的资讯</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.Delete(System.Int64)">
+            <summary>
+            删除索引
+            </summary>
+            <param name="cmsContentItemId">待删除的资讯Id</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.Delete(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除索引
+            </summary>
+            <param name="cmsContentItemIds">待删除的资讯Id列表</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.Update(Spacebuilder.CMS.ContentItem)">
+            <summary>
+            更新索引
+            </summary>
+            <param name="cmsThread">待更新的资讯</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.Update(System.Collections.Generic.IEnumerable{Spacebuilder.CMS.ContentItem})">
+            <summary>
+            更新索引
+            </summary>
+            <param name="contentItems">待更新的资讯集合</param>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.Search(Spacebuilder.CMS.CmsFullTextQuery)">
+            <summary>
+            资讯分页搜索
+            </summary>
+            <param name="cmsQuery">搜索条件</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.AutoCompleteSearch(System.String,System.Int32)">
+            <summary>
+            获取匹配的前几条资讯热词
+            </summary>
+            <param name="keyword">要匹配的关键字</param>
+            <param name="topNumber">前N条</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.CMS.CmsSearcher.BuildLuceneSearchBuilder(Spacebuilder.CMS.CmsFullTextQuery)">
+            <summary>
+            根据帖吧搜索查询条件构建Lucene查询条件
+            </summary>
+            <param name="Query"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsSearcher.AsQuickSearch">
+            <summary>
+            是否作为快捷搜索
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsSearcher.SearchEngine">
+            <summary>
+            关联的搜索引擎实例
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsSearcher.Code">
+            <summary>
+            搜索器的唯一标识
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsSearcher.IsDisplay">
+            <summary>
+            是否前台显示
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsSearcher.DisplayOrder">
+            <summary>
+            显示顺序
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsSearcher.IndexPath">
+            <summary>
+            Lucene索引路径（完整物理路径，支持unc）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsSearcher.IsBaseOnLucene">
+            <summary>
+            是否基于Lucene实现
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.CmsSearcher.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.ExpireStickyContentItemTask">
+            <summary>
+            每天更新置顶时间到期的资讯任务
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.ExpireStickyContentItemTask.Execute(Tunynet.Tasks.TaskDetail)">
+            <summary>
+            任务执行的内容
+            </summary>
+            <param name="taskDetail">任务配置状态信息</param>
+        </member>
+        <member name="T:Spacebuilder.CMS.UrlRoutingRegistration">
+            <summary>
+            资讯路由设置
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.ContentItemEditModel">
+            <summary>
+            资讯实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentItemEditModel.AsContentItem(System.Web.HttpRequestBase)">
+            <summary>
+            将EditModel转换成数据库实体
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.AdditionalProperties">
+            <summary>
+            扩展属性
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.ContentFolderId">
+            <summary>
+            栏目id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.ContentItemId">
+            <summary>
+            内容项id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.ContentTypeId">
+            <summary>
+            内容模型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.UserId">
+            <summary>
+            作者UserId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.DisplayOrder">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.FeaturedImageAttachmentId">
+            <summary>
+            图片土建id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.FeaturedImage">
+            <summary>
+            图片名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.IsContributed">
+            <summary>
+            是否用户投稿
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.IsEssential">
+            <summary>
+            是否精华
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.IsGlobalSticky">
+            <summary>
+            是否整站置顶
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.IsFolderSticky">
+            <summary>
+            是否栏目置顶
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.GlobalStickyDate">
+            <summary>
+            整站置顶时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.FolderStickyDate">
+            <summary>
+            栏目置顶时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.ReleaseDate">
+            <summary>
+            发布时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.FirstAsTitleImage">
+            <summary>
+            设置第一张图片为标题图
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.AutoPage">
+            <summary>
+            自动分页
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.TrimBodyAsSummary">
+            <summary>
+            是否截取内容前200字作为摘要
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.LinkUrl">
+            <summary>
+            链接地址
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.Summary">
+            <summary>
+            摘要
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.TagNames">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.ContentItemEditModel.ContentFolder">
+            <summary>
+            获取栏目
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.ContentItemExtensions">
+            <summary>
+            资讯扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentItemExtensions.AsEditModel(Spacebuilder.CMS.ContentItem)">
+            <summary>
+            将数据库实体转换成EditModel
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.CMS.FolderEditModel">
+            <summary>
+            创建栏目的类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.ContentFolderId">
+            <summary>
+            ContentFolderId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.FolderName">
+            <summary>
+            栏目名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.Description">
+            <summary>
+            栏目描述
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.Editor">
+            <summary>
+            栏目编辑
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.ParentId">
+            <summary>
+            ParentId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.ParentName">
+            <summary>
+            父栏目名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.IsEnabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.NeedAuditing">
+            <summary>
+            是否审核
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.ContentTypeKeys">
+            <summary>
+            内容模型Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.METATitle">
+            <summary>
+            meta标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.METAKeywords">
+            <summary>
+            meta关键词
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.METADescription">
+            <summary>
+            meta描述
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.IsAsNavigation">
+            <summary>
+            是否作为导航显示
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.IsLink">
+            <summary>
+            是否外部链接
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.LinkUrl">
+            <summary>
+            链接地址(支持 ~/)
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.IsLinkToNewWindow">
+            <summary>
+            是否在新窗口打开链接
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.Page_List">
+            <summary>
+            默认内容列表页面
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.Page_Detail">
+            <summary>
+            默认详细显示页面
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.CurrentNavigationId">
+            <summary>
+            导航Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.CMS.FolderEditModel.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.CMS.ContentFolderExtensions">
+            <summary>
+            栏目的扩展方法
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.CMS.ContentFolderExtensions.AsEditModel(Spacebuilder.CMS.ContentFolder)">
+            <summary>
+            转换成AsEditModel
+            </summary>
+        </member>
+    </members>
+</doc>

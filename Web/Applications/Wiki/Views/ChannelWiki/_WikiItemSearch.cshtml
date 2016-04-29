@@ -1,0 +1,38 @@
+﻿@model WikiPage
+@{
+    string keyword = Request.QueryString.GetString("keyword", string.Empty);
+    string spaceKey=UserIdToUserNameDictionary.GetUserName(Model.UserId);
+    Category SiteCategory = Model.SiteCategory;
+}
+@if (Model != null)
+{
+  <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom">
+    <div class="tn-list-item-area-main">
+        <div class="tn-list-item-row tn-list-item-heading">
+            <h5 class="tn-helper-reset">
+                <a target="_blank" href="@SiteUrls.Instance().PageDetail(Model.PageId)">
+                @Html.Raw(SearchEngine.Highlight(keyword, Model.Title, 100))
+                </a>                
+            </h5>
+        </div>
+        <div class="tn-list-item-row tn-list-item-summary">
+            <p><span>分类：<a href="@SiteUrls.Instance().Pages(SiteCategory.CategoryId)">@SiteCategory.CategoryName</a></span></p>
+            <p>
+              <span>@Html.Raw(SearchEngine.Highlight(keyword, HtmlUtility.TrimHtml(Model.Body, 100), 100))</span>
+            </p>
+        </div>
+        <div class="tn-list-item-row tn-tags">
+            @foreach (var tag in Model.TagNames)
+            {
+              <span><a class="tnui-blog-tags" href="@SiteUrls.Instance().WikiTagDetail(tag)">@Html.Raw(SearchEngine.Highlight(keyword, tag, 100))</a></span>
+            }
+        </div>
+        <div class="tn-list-item-row tn-list-info">
+            <a target="_blank" class="tn-user-name" href="@SiteUrls.Instance().MyHome(spaceKey)">
+            @Html.Raw(SearchEngine.Highlight(keyword, Model.Author, 100))
+            </a>
+            <em class="tn-date tn-text-note">@Model.DateCreated.ToFriendlyDate()</em>
+        </div>
+    </div>
+</li>
+}

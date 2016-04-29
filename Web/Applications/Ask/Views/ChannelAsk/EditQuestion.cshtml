@@ -1,0 +1,107 @@
+﻿@model AskQuestionEditModel
+@{
+    Layout = "app-form-2cols";
+    Html.Script("~/Scripts/tunynet/plugins/jquery.spb.collapsibleBox.js");
+
+    string title = Model.QuestionId > 0 ? "编辑问题" : "添加问题";
+    string buttonText = Model.QuestionId > 0 ? "保存" : "发布";
+
+    SelectList askRewards = ViewData.Get<SelectList>("askRewards", null);
+    int subjectCount = Model.Subject == null ? 0 : Model.Subject.Length;
+    string hasBody = string.IsNullOrEmpty(Model.Body) ? "false" : "true";
+
+}
+@section Aside{
+    @Html.AjaxAction("_SimilarQuestions", "ChannelAsk", new { topNum = 5 })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-create">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="tn-main-heading tn-border-gray tn-border-bottom">
+            <h2>@title</h2>
+        </div>
+        @Html.StatusMessage()
+        @using (Html.BeginForm("EditQuestion", "ChannelAsk", FormMethod.Post, new { id = "form-ask-edit" }))
+        {
+            @Html.HiddenFor(n => n.QuestionId)
+            @Html.HiddenFor(n => n.OwnerId)
+            <div class="tn-publish">
+                <div class="tn-write-title">
+                    @Html.TextBoxFor(n => n.Subject, InputWidthTypes.Longest, new RouteValueDictionary { { "id", "askSubject" }, { "class", "tn-textbox tn-border-gray" } })
+                    <span id="SubjectCount" class="tn-count tn-text-note">@subjectCount/@TextLengthSettings.TEXT_SUBJECT_MAXLENGTH</span>
+                    @Html.ValidationMessageFor(n => n.Subject)
+                </div>
+                <div class="tn-collapsible tn-collapsible-closed">
+                    <div class="tn-border-bottom tn-border-gray tn-collapsible-header tn-switch-left"
+                        style="cursor: pointer;">
+                        <h4 class="tn-helper-reset">
+                            <a href="javascript:void(0)">添加补充说明</a>
+                        </h4>
+                        <span class="tn-icon tn-switch tn-smallicon-collapse-open"></span>
+                    </div>
+                    <div style="display: none;" class="tn-collapsible-content">
+                        @Html.UEditorFor(n => n.Body, TenantTypeIds.Instance().AskQuestion(), Model.QuestionId, new Dictionary<string, object> { { "style", "height:250px;" } })
+                        @*@Html.HtmlEditorFor(n => n.Body, new HtmlEditorOptions(HtmlEditorMode.Enhanced).MergeHtmlAttribute("style", "height:250px;")
+                                                     .AddPhotoButton(TenantTypeIds.Instance().AskQuestion(), Model.QuestionId)
+                                                     .AddFileButton(TenantTypeIds.Instance().AskQuestion(), Model.QuestionId))*@
+                        @Html.ValidationMessageFor(n => n.Body)
+                    </div>
+                </div>
+                <div class="tn-form-box">
+                    <table>
+                        @if (Model.QuestionStatus != QuestionStatus.Resolved)
+                        {
+                            <tr>
+                                <th>悬赏：
+                                </th>
+                                <td>@Html.DropDownList("Reward", askRewards, new { @class = "tn-dropdownlist" })
+                                </td>
+                            </tr>   
+                        }
+                        else
+                        {
+                            <input type="hidden" name="Reward" value="@Model.Reward" /> 
+                        }
+                        <tr>
+                            <th>标签：
+                            </th>
+                            <td>
+                                @Html.TagSelector("TagNames", TenantTypeIds.Instance().AskQuestion(), Model.QuestionId, Model.UserId == 0 ? UserContext.CurrentUser.UserId : Model.UserId)
+                                @Html.ValidationMessageFor(n => n.TagNames)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tn-publish-btn">
+                    @Html.Button(buttonText, ButtonTypes.Submit, HighlightStyles.Primary, ButtonSizes.Large, null, TextIconLayout.IconText, null, new { id = "submit-publish" })
+                    @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, ButtonSizes.Large, null, TextIconLayout.IconText, null, new { id = "submit-publish", onClick = "javascript:history.go(-1);" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@Html.ScriptBlock(@<script>
+                       $(function () { 
+
+                           //搜索相似问题
+                           $("#askSubject").keyup(function(){
+                               var subject=$(this).val();
+                               $.post('@SiteUrls.Instance()._AskSimilarQuestions()',{subject:subject},function(data){
+                $("#similarQuestion").replaceWith(data);
+            })
+        })
+
+        //截字
+        $("#askSubject","#form-ask-edit").GetTextCount('SubjectCount', @(TextLengthSettings.TEXT_SUBJECT_MAXLENGTH), true);
+
+        //添加补充说明
+        if (@(hasBody)) {
+            $(".tn-collapsible").removeClass("tn-collapsible-closed").addClass("tn-collapsible-opened");
+        $("#form-ask-edit .tn-icon").removeClass("tn-smallicon-collapse-open").addClass("tn-smallicon-collapse-close");
+        $(".tn-collapsible-content").show();
+    }else{
+            $(".tn-collapsible").removeClass("tn-collapsible-opened").addClass("tn-collapsible-closed");
+    $("#form-ask-edit .tn-icon").removeClass("tn-smallicon-collapse-close").addClass("tn-smallicon-collapse-open");
+    $(".tn-collapsible-content").hide();
+    }
+    })
+</script>)

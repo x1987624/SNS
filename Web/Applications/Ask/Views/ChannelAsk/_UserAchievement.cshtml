@@ -1,0 +1,46 @@
+﻿@model Dictionary<string, long>
+@{    
+    double questionCount = Model[OwnerDataKeys.Instance().QuestionCount()];
+    double answerCount = Model[OwnerDataKeys.Instance().AnswerCount()];
+    double answerAcceptCount = Model[OwnerDataKeys.Instance().AnswerAcceptCount()];
+    double answerSupportCount = Model[OwnerDataKeys.Instance().AnswerSupportCount()];
+    double userAskReputation = Model[OwnerDataKeys.Instance().UserAskReputation()];
+    double answerAcceptPersent = 0;
+    if (answerCount != 0)
+    {
+       answerAcceptPersent = (Math.Round((answerAcceptCount / answerCount), 2)) * 100;
+    }   
+  
+    string ta = ViewData.Get<string>("ta", "我"); 
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-his-achievement">
+  <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+    <h3 class="tn-helper-reset">@(ta)的成就</h3>
+  </div>
+  <div class="tn-box-content tn-widget-content tn-corner-bottom">
+    <div class="tn-info-part">
+      <div class="spb-basic-info">
+        <dl>
+          <dt>回答数：</dt>
+          <dd>@answerCount</dd>
+        </dl>
+        <dl>
+          <dt>被采纳率：</dt>
+          <dd>@(answerAcceptPersent)%</dd>
+        </dl>
+        <dl>
+          <dt>赞同数：</dt>
+          <dd>@answerSupportCount</dd>
+        </dl>
+        <dl>
+          <dt>问题数：</dt>
+          <dd>@questionCount</dd>
+        </dl>
+        <dl>
+          <dt>贡献值：</dt>
+          <dd><span>@userAskReputation</span></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>

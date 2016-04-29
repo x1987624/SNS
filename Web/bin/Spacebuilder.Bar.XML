@@ -1,0 +1,3404 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.Bar</name>
+    </assembly>
+    <members>
+        <member name="T:Spacebuilder.Bar.BarSectionAuthorizeAttribute">
+            <summary>
+            用于处理帖吧访问权限的过滤器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionAuthorizeAttribute.OnAuthorization(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            身份认证
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarApplication.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户在应用中的数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="takeOverUserName">用于接管删除用户时不能删除的内容(例如：用户创建的群组)</param>
+            <param name="isTakeOver">是否接管被删除用户可被接管的内容</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarConfig.Instance">
+            <summary>
+            获取BarConfig实例
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarConfig.Initialize(Autofac.ContainerBuilder)">
+            <summary>
+            应用初始化
+            </summary>
+            <param name="containerBuilder">容器构建器</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarConfig.Load">
+            <summary>
+            应用加载
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarConfig.ApplicationId">
+            <summary>
+            ApplicationId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarConfig.ApplicationKey">
+            <summary>
+            ApplicationKey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarConfig.ApplicationType">
+            <summary>
+            获取SocialDiscussApplication实例
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarCommentUrlGetter.GetCommentedObjectName(System.Int64,System.String)">
+            <summary>
+            获取被评论对象名称
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarCommentUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarOwnerDataGetter">
+            <summary>
+            贴吧内容数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarOwnerDataGetter.GetDataUrl(System.String,System.Nullable{System.Int64})">
+            <summary>
+            获取链接地址
+            </summary>
+            <param name="spaceKey">用户名</param>
+            <param name="ownerId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarOwnerDataGetter.DataKey">
+            <summary>
+            datakey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarOwnerDataGetter.DataName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarOwnerDataGetter.ApplicationId">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostOwnerDataGetter.GetDataUrl(System.String,System.Nullable{System.Int64})">
+            <summary>
+            获取链接地址
+            </summary>
+            <param name="spaceKey">用户名</param>
+            <param name="ownerId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostOwnerDataGetter.DataKey">
+            <summary>
+            datakey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostOwnerDataGetter.DataName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostOwnerDataGetter.ApplicationId">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarTenantAuthorizationHandler">
+            <summary>
+            帖吧租户权限验证处理器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarTenantAuthorizationHandler.IsTenantManager(Tunynet.Common.IUser,System.Int64)">
+            <summary>
+            判断是否为租户管理者
+            </summary>
+            <param name="currentUser">当前用户</param>
+            <param name="tenantOwnerId">租户拥有者Id</param>
+            <returns>true-是；false-不是</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarTenantAuthorizationHandler.IsTenantMember(Tunynet.Common.IUser,System.Int64)">
+            <summary>
+            判断是否为租户普通成员
+            </summary>
+            <param name="currentUser">当前用户</param>
+            <param name="tenantOwnerId">租户拥有者Id</param>
+            <returns>true-是；false-不是</returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarThreadRecommendUrlGetter">
+            <summary>
+            帖子推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSectionRecommendUrlGetter">
+            <summary>
+            贴吧推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            贴吧详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarThreadAtUserAssociatedUrlGetter">
+            <summary>
+            At用户关联项Url获取
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadAtUserAssociatedUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarTagUrlGetter">
+            <summary>
+            帖吧Url获取
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarTagUrlGetter.GetUrl(System.String,System.Int64)">
+            <summary>
+            获取链接
+            </summary>
+            <param name="tagName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarApplicationStatisticDataGetter">
+            <summary>
+            帖吧应用数据Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarApplicationStatisticDataGetter.GetManageableDatas(System.String)">
+            <summary>
+            获取管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarApplicationStatisticDataGetter.GetStatisticDatas(System.String)">
+            <summary>
+            获取统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarPostAtUserAssociatedUrlGetter">
+            <summary>
+            At用户关联项Url获取
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostAtUserAssociatedUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarActivityController._CreateBarThread(System.Int64)">
+            <summary>
+            创建帖子的动态内容块
+            </summary>
+            <param name="ActivityId">动态id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarActivityController._CreateBarPost(System.Int64)">
+            <summary>
+            创建主题帖的回帖的动态块
+            </summary>
+            <param name="ActivityId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarActivityController._CreateBarRating(System.Int64)">
+            <summary>
+            帖子评分的动态
+            </summary>
+            <param name="ActivityId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.Controllers.BarController">
+            <summary>
+            帖吧
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.Home">
+            <summary>
+            帖吧首页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._RecommendThread(System.Int32,System.String)">
+            <summary>
+            推荐帖子
+            </summary>
+            <param name="topNum"></param>
+            <param name="recommendTypeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._TopSections(System.Int32,System.Nullable{System.Int64},Spacebuilder.Bar.SortBy_BarSection,Spacebuilder.Bar.Controllers.DisplayTemplate_TopSections)">
+            <summary>
+            帖吧列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._RecommendSections(System.Int32,System.String,Spacebuilder.Bar.Controllers.DisplayTemplate_RecommendSections,System.Boolean)">
+            <summary>
+            推荐贴吧
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._CategorySections(System.Nullable{System.Int64})">
+            <summary>
+            帖吧分类内容块
+            </summary>
+            <param name="categoryId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.RecursiveGetAllParentCategories(Tunynet.Common.Category,System.Collections.Generic.List{Tunynet.Common.Category}@)">
+            <summary>
+            递归获取所有的父分类的集合（包含当前分类）
+            </summary>
+            <param name="category">当前类别</param>
+            <param name="allParentCategories">所有的父类别</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.CreateSection">
+            <summary>
+            创建帖吧
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.CreateSection(Spacebuilder.Bar.BarSectionEditModel)">
+            <summary>
+            创建帖吧
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.SectionDetail(System.Int64,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Int32)">
+            <summary>
+            帖吧详细显示页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.SectionMembers(System.Int64,System.Int32)">
+            <summary>
+            帖吧成员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.DeleteManager(System.Int64,System.Int64)">
+            <summary>
+            删除管理员
+            </summary>
+            <param name="sectionId"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._DeleteBarSectionLogo(System.Int64)">
+            <summary>
+            删除帖吧logo
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.MyFollowedUsers(System.Int64)">
+            <summary>
+            帖吧成员中我关注的人
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.ListSections(System.String,System.Nullable{System.Int64},System.Nullable{Spacebuilder.Bar.SortBy_BarSection},System.Int32)">
+            <summary>
+            帖吧列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._UserData(System.Int64,Spacebuilder.Bar.Controllers.DisplayTemplate_UserData)">
+            <summary>
+            用户数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="displayTemplate">用户数据内容块显示模板</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.UserThreads(System.String,System.Boolean,System.Int32)">
+            <summary>
+            用户帖子列表
+            </summary>
+            <param name="userName"></param>
+            <param name="isPosted"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.UserFollowedSections(System.Int64,System.Boolean)">
+            <summary>
+            用户关注的帖吧列表
+            </summary>
+            <param name="userId"></param>
+            <param name="userCreated">是否是用户加入的群组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._SubscribeSectionButton(System.Int64)">
+            <summary>
+            关注帖吧
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.SubscribeSection(System.Int64)">
+            <summary>
+            关注帖吧
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.CancelSubscribeSection(System.Int64)">
+            <summary>
+            取消关注帖吧
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._BarSubmenu(System.Nullable{System.Int64})">
+            <summary>
+            帖子的顶部的局部页面
+            </summary>
+            <returns>显示帖吧的局部视图</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.Rank(System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Int32)">
+            <summary>
+            帖子排行
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.ListsByTag(System.String,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Int32)">
+            <summary>
+            标签显示帖子列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._Tops(System.Int32,System.Nullable{System.Boolean},System.Nullable{Spacebuilder.Bar.SortBy_BarThread})">
+            <summary>
+            帖子TopN列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._GroupTops(System.Int32,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread)">
+            <summary>
+            帖子TopN列表,群组热门讨论
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.TagMap">
+            <summary>
+            标签地图
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.Search(Spacebuilder.Bar.Search.BarFullTextQuery)">
+            <summary>
+            帖吧搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._GlobalSearch(Spacebuilder.Bar.Search.BarFullTextQuery,System.Int32)">
+            <summary>
+            帖吧搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._QuickSearch(Spacebuilder.Bar.Search.BarFullTextQuery,System.Int32)">
+            <summary>
+            帖吧快捷搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.SearchAutoComplete(System.String,System.Int32)">
+            <summary>
+            帖吧搜索自动完成
+            </summary>
+            <param name="keyword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.Delete(System.Int64)">
+            <summary>
+            删除单挑帖子
+            </summary>
+            <param name="threadId">帖子id</param>
+            <returns>删除帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.Edit(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑帖子
+            </summary>
+            <param name="sectionId">帖吧id</param>
+            <param name="threadId">帖子id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.Edit(Spacebuilder.Bar.BarThreadEditModel)">
+            <summary>
+            编辑页面
+            </summary>
+            <param name="barThreadEditModel">帖子实体</param>
+            <returns>处理状态</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.ThreadDetail(System.Int64,System.Int32,System.Boolean,Spacebuilder.Bar.SortBy_BarPost,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            帖子详细显示页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.GetAllParentCategories(Tunynet.Common.Category,System.Collections.Generic.List{Tunynet.Common.Category}@)">
+            <summary>
+            递归获取所有父级（如果没有子级则不包含本级）
+            </summary>
+            <param name="category"></param>
+            <param name="allParentCategories"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._MoveThread(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            移动帖子
+            </summary>
+            <param name="threadId">帖子id</param>
+            <returns>移动帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.MoveThread(System.Int64,System.Int64)">
+            <summary>
+            移动帖子
+            </summary>
+            <param name="threadId">准备移动的帖子</param>
+            <param name="toSectionId">接受帖子的帖吧</param>
+            <returns>移动帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._HisOtherThreads(System.Int64,System.Int64)">
+            <summary>
+            他的其他的帖子
+            </summary>
+            <param name="userId">用户的id</param>
+            <param name="exceptThreadId">被排除的帖子的id</param>
+            <returns>他的其他帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._ListBarRatings(System.Int64,System.Int32)">
+            <summary>
+            评分局部页面
+            </summary>
+            <param name="threadId">被评论的帖子id</param>
+            <param name="pageIndex">当前页码</param>
+            <returns>评分局部页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._CreatBarRating(System.Int64)">
+            <summary>
+            创建评分页面
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._CreatBarRating(Spacebuilder.Bar.BarRatingEditModel)">
+            <summary>
+            创建评分
+            </summary>
+            <returns>创建评分</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._OneBarRating(System.Int64)">
+            <summary>
+            一条评分的局部页面
+            </summary>
+            <param name="ratingId">评分id</param>
+            <returns>一条评分的局部页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.EditPost(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑回帖
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.EditPost(Spacebuilder.Bar.BarPostEditModel)">
+            <summary>
+            编辑回帖
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.StatusMessage(Spacebuilder.Common.StatusMessageType,System.String)">
+            <summary>
+            返回提示信息（会自动判断是同步请求还是异步请求）
+            </summary>
+            <param name="messageType">提示信息类型</param>
+            <param name="messageContent">提示信息内容</param>
+            <returns>若是异步请求，则返回json数据；若是同步请求，则跳转到信息提示页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.DeletePost(System.Int64)">
+            <summary>
+            删除回帖
+            </summary>
+            <param name="postId">回帖的id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._ListPost(System.Int64,System.Int64,System.Int32,System.Boolean)">
+            <summary>
+            回帖列表
+            </summary>
+            <param name="threadId">帖子的id</param>
+            <param name="parentId">父回帖的id</param>
+            <param name="pageIndex">当前页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._BarPost(System.Int64)">
+            <summary>
+            一条回帖的展示
+            </summary>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._ChildPost(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            子级回帖
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._PagingThreads(Tunynet.PagingDataSet{Spacebuilder.Bar.BarThread},System.Boolean)">
+            <summary>
+            展示帖子的局部分页
+            </summary>
+            <param name="threads">要展示的实体</param>
+            <returns>展示帖子的局部分页</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._SetStickyDate(System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            设置置顶时间的局部页面
+            </summary>
+            <param name="threadIds">帖子id</param>
+            <param name="showTips">是否显示Tips提示。</param>
+            <returns>设置置顶时间的局部页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.ManageThreads(Spacebuilder.Bar.ManageThreadEditModel,System.Int32)">
+            <summary>
+            前台管理帖吧页面（管理帖子）
+            </summary>
+            <param name="model">用户填充的实体</param>
+            <param name="pageIndex">当前页码</param>
+            <returns>后台管理帖吧页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.ManagePosts(Spacebuilder.Bar.ManagePostsEditModel,System.Int32)">
+            <summary>
+            管理回帖页面
+            </summary>
+            <param name="pageIndex">当前页码</param>
+            <param name="model">回帖管理的model</param>
+            <returns>管理回帖</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.ManageThreadCategories(System.Int64,System.Int32)">
+            <summary>
+            管理帖子类别
+            </summary>
+            <param name="sectionId"></param>
+            <param name="pageIndex">当前页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._EditThreadCategory(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑帖子的类别局部页面
+            </summary>
+            <returns>编辑帖子的类别局部页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._EditThreadCategoryPost(Spacebuilder.Common.CategoryEditModel)">
+            <summary>
+            编辑帖吧的分类
+            </summary>
+            <param name="model">编辑</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.ChangeDisplayOrder(System.Int64,System.Int64)">
+            <summary>
+            改变类别的排序
+            </summary>
+            <param name="id">本条的id</param>
+            <param name="referenceId">准备交换的id</param>
+            <returns>改变类别的排序</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.DeleteThreadCategory(System.Int64)">
+            <summary>
+            删除分类
+            </summary>
+            <param name="categoryId">分类id</param>
+            <returns>删除分类</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.BatchUpdateThreadAuditStatus(System.Collections.Generic.List{System.Int64},System.Int64,System.Boolean)">
+            <summary>
+            设置帖子的审核状态
+            </summary>
+            <param name="sectionId"></param>
+            <param name="threadIds"></param>
+            <param name="isApproved"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.BatchSetEssential(System.Collections.Generic.List{System.Int64},System.Int64,System.Boolean)">
+            <summary>
+            批量精华
+            </summary>
+            <param name="sectionId"></param>
+            <param name="threadIds">操作的帖子id</param>
+            <param name="isEssential">是否精华</param>
+            <returns>批量精华</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.BatchSetSticky(System.Collections.Generic.List{System.Int64},System.Boolean,System.DateTime)">
+            <summary>
+            批量置顶
+            </summary>
+            <param name="sectionId"></param>
+            <param name="threadIds">操作的帖子id</param>
+            <param name="isSticky">是否置顶</param>
+            <param name="stickyDate">置顶时间</param>
+            <returns>批量置顶</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.BatchDeleteThread(System.Collections.Generic.List{System.Int64},System.Int64)">
+            <summary>
+            帖吧批量删除操作
+            </summary>
+            <param name="threadIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.BatchUpdatePostAuditStatus(System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            批量设置审核状态
+            </summary>
+            <param name="postIds">准备设置的id</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns>批量设置审核状态</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.BatchDeletePosts(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删除回帖
+            </summary>
+            <param name="postIds">准备删除的回帖id</param>
+            <returns>删除回帖</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.EditSection(System.Int64)">
+            <summary>
+            编辑帖吧页面
+            </summary>
+            <param name="sectionId">被编辑的帖吧id</param>
+            <returns>编辑帖吧页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController.EditSection(Spacebuilder.Bar.BarSectionEditModel)">
+            <summary>
+            管理帖吧信息
+            </summary>
+            <param name="model">帖吧信息载体</param>
+            <returns>管理帖吧信息</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._BarSetionSelector(System.String,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            帖吧选择器
+            </summary>
+            <param name="categoryId">类别id</param>
+            <param name="selectedSectionId">默认选中的帖吧</param>
+            <returns>帖吧选择器</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._BarSetionSelectItem(System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Boolean,System.String)">
+            <summary>
+            帖吧选择器显示的页面
+            </summary>
+            <param name="categoryId">分类id</param>
+            <param name="selectedSectionId">默认被选中的帖吧</param>
+            <returns>帖吧选择器</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._Edit(Spacebuilder.Bar.BarThreadEditModel)">
+            <summary>
+            编辑贴吧的局部视图
+            </summary>
+            <param name="model"></param>
+            <returns>编辑贴吧的局部视图</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._ThreadCategoriesSettings(System.Int64)">
+            <summary>
+            群组分类设置
+            </summary>
+            <param name="spaceKey">群组名</param>
+            <returns>群组分类设置</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._ThreadCategoriesSettings(System.Int64,Spacebuilder.Bar.ThreadCategoryStatus)">
+            <summary>
+            更新贴吧的分类设置
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <param name="threadCategoryStatus">帖子分类状态</param>
+            <returns>更新帖子的分类设置</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.BarController._TagCloud(System.Int32)">
+            <summary>
+            获取标签云
+            </summary>_CommentList
+            <param name="num">显示的标签数量</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.Controllers.DisplayTemplate_TopSections">
+            <summary>
+            帖吧排行内容块显示模板
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.DisplayTemplate_TopSections.Headline">
+            <summary>
+            头条列表
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.DisplayTemplate_TopSections.Summary">
+            <summary>
+            摘要列表
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Controllers.DisplayTemplate_RecommendSections">
+            <summary>
+            推荐帖吧内容块显示模板
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.DisplayTemplate_RecommendSections.Slide">
+            <summary>
+            幻灯列表
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.DisplayTemplate_RecommendSections.Summary">
+            <summary>
+            摘要列表
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Controllers.DisplayTemplate_UserData">
+            <summary>
+            用户数据内容块显示模板
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.DisplayTemplate_UserData.Side">
+            <summary>
+            幻灯列表
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.DisplayTemplate_UserData.Main">
+            <summary>
+            摘要列表
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Controllers.ManageSectionSubMenu">
+            <summary>
+            左侧项目的枚举项
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.ManageSectionSubMenu.ManageThread">
+            <summary>
+            管理帖子
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.ManageSectionSubMenu.ManagePost">
+            <summary>
+            管理回帖
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.ManageSectionSubMenu.ManageThreadCategories">
+            <summary>
+            管理帖子分组
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.ManageSectionSubMenu.EditSectionInfo">
+            <summary>
+            编辑帖吧的描述
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Controllers.ControlPanelBarController">
+            <summary>
+            帖吧管理Controller
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.ManageBars(Spacebuilder.Bar.ManageBarEditModel,System.Int32)">
+            <summary>
+            后台管理帖吧页面
+            </summary>
+            <returns>后台管理帖吧页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.ManageThreads(Spacebuilder.Bar.ManageThreadEditModel,System.Int32,System.String)">
+            <summary>
+            管理帖子页面
+            </summary>
+            <returns>管理帖子页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.BatchSetEssential(System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            批量设置/取消精华
+            </summary>
+            <param name="threadIds">帖子id</param>
+            <param name="isEssential">是否精华</param>
+            <returns>批量设置取消精华</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.BatchUpdateThreadAuditStatus(System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            设置帖子的审核状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.BatchUpdateThreadAuditStatu(System.Int64,System.Boolean)">
+            <summary>
+            设置帖子的审核状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.BatchSetSticky(System.Collections.Generic.List{System.Int64},System.Boolean,System.DateTime)">
+            <summary>
+            批量置顶
+            </summary>
+            <param name="threadIds">操作的帖子id</param>
+            <param name="isSticky">是否置顶</param>
+            <param name="stickyDate">置顶时间</param>
+            <returns>批量置顶</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.BatchDeleteThread(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删除帖子
+            </summary>
+            <param name="threadIds">准备删除的帖子id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.ManagePosts(Spacebuilder.Bar.ManagePostsEditModel,System.Int32,System.String)">
+            <summary>
+            管理回帖页面
+            </summary>
+            <param name="pageIndex">当前页码</param>
+            <param name="model">回帖管理的model</param>
+            <param name="tenantTypeId">租户类型id</param>
+            <returns>管理回帖</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.EditSection(System.Nullable{System.Int64})">
+            <summary>
+            编辑、添加帖吧
+            </summary>
+            <param name="sectionId">准备编辑的帖吧id</param>
+            <returns>编辑添加帖吧</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.EditSection(Spacebuilder.Bar.BarSectionEditModel)">
+            <summary>
+            添加编辑帖吧
+            </summary>
+            <param name="model">帖吧的EditModel</param>
+            <returns>添加编辑帖吧</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.DeleteSection(System.Int64)">
+            <summary>
+            删除帖吧
+            </summary>
+            <param name="sectionId">被删除帖吧的id</param>
+            <returns>删除帖吧操作</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.SectionSettings">
+            <summary>
+            帖吧设置
+            </summary>
+            <returns>帖吧设置</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.SectionSettings(Spacebuilder.Bar.SectionSettingsEditModel)">
+            <summary>
+            帖吧设置
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.BatchUpdateSectionAuditStatus(System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            批量更新帖吧的审核状态
+            </summary>
+            <param name="sectionIds">被更新的帖吧id</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns>批量更新帖吧的审核状态</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.ControlPanelBarController.BatchUpdateSectionAuditStatu(System.Int64,System.Boolean)">
+            <summary>
+            更新帖吧的审核状态
+            </summary>
+            <param name="sectionId">被更新的帖吧id</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns>更新帖吧的审核状态</returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.Controllers.GroupSpaceBarController">
+            <summary>
+            群组贴吧管理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.Detail(System.String,System.Int64,System.Int32,System.Boolean,Spacebuilder.Bar.SortBy_BarPost,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            帖子详细显示页面
+            </summary>
+            <param name="threadId">帖子id</param>
+            <param name="pageIndex">回帖页码</param>
+            <param name="onlyLandlord">只看楼主</param>
+            <param name="sortBy">排序方式</param>
+            <returns>帖子详细显示页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.SectionDetail(System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Int32)">
+            <summary>
+            帖吧详细显示页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.Edit(System.String,System.Nullable{System.Int64})">
+            <summary>
+            编辑帖子
+            </summary>
+            <param name="spaceKey">群组名</param>
+            <param name="threadId">帖子id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.EditPost(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑回帖页面
+            </summary>
+            <param name="spaceKey">群组名</param>
+            <param name="postId">回帖id</param>
+            <returns>编辑回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.UserThreads(System.String,System.Boolean,System.Int32)">
+            <summary>
+            用户帖子列表
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="isPosted">是否是回帖</param>
+            <param name="pageIndex">页码</param>
+            <param name="spaceKey">群组名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.ListByTag(System.String,System.String,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Int32)">
+            <summary>
+            标签显示帖子列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.ManageThreads(System.String,Spacebuilder.Bar.ManageThreadEditModel,System.Int32)">
+            <summary>
+            前台管理帖吧页面（管理帖子）
+            </summary>
+            <param name="model">用户填充的实体</param>
+            <param name="pageIndex">当前页码</param>
+            <returns>后台管理帖吧页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.ManagePosts(System.String,Spacebuilder.Bar.ManagePostsEditModel,System.Int32)">
+            <summary>
+            管理回帖页面
+            </summary>
+            <param name="pageIndex">当前页码</param>
+            <param name="model">回帖管理的model</param>
+            <returns>管理回帖</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.ManageThreadCategories(System.String,System.Int32)">
+            <summary>
+            管理帖子类别
+            </summary>
+            <param name="spaceKey"></param>
+            <param name="pageIndex">当前页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.RecursiveGetAllParentCategories(Tunynet.Common.Category,System.Collections.Generic.List{Tunynet.Common.Category}@)">
+            <summary>
+            递归获取所有的父分类的集合（包含当前分类）
+            </summary>
+            <param name="category">当前类别</param>
+            <param name="allParentCategories">所有的父类别</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController._TagCloud(System.String,System.Int32)">
+            <summary>
+            标签云
+            </summary>
+            <param name="spaceKey">群组名</param>
+            <param name="topNum">前N条数据</param>
+            <returns>标签云</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.Tags(System.String)">
+            <summary>
+            标签云图
+            </summary>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController._BarThreadSearch(System.String)">
+            <summary>
+            帖子搜索页面
+            </summary>
+            <param name="spaceKey">贴吧名称</param>
+            <returns>帖子搜索页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Controllers.GroupSpaceBarController.Search(System.String,System.String,Spacebuilder.Bar.Search.BarSearchRange,System.Int32)">
+            <summary>
+            群组内搜索帖子
+            </summary>
+            <param name="spaceKey">群组名</param>
+            <param name="keyword">关键字</param>
+            <param name="pageIndex">页码</param>
+            <returns>群组内搜索帖子</returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.Controllers.ManageSubMenu">
+            <summary>
+            群组帖吧管理菜单
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.ManageSubMenu.ManageThread">
+            <summary>
+            管理帖子
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.ManageSubMenu.ManagePost">
+            <summary>
+            管理回帖
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Controllers.ManageSubMenu.ManageCategroy">
+            <summary>
+            管理分组
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.EventModules.BarOperationLogEventModule">
+            <summary>
+            处理贴吧操作日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarOperationLogEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarOperationLogEventModule.BarSectionOperationLogEventModule_After(Spacebuilder.Bar.BarSection,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            贴吧操作日志事件处理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarOperationLogEventModule.BarThreadOperationLogEventModule_After(Spacebuilder.Bar.BarThread,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            帖子操作日志事件处理
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.EventModules.BarIndexEventModule">
+            <summary>
+            处理帖吧索引的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarIndexEventModule.AddTagsToBar_BatchAfter(System.Collections.Generic.IEnumerable{System.String},Tunynet.Common.TagEventArgs)">
+            <summary>
+            为日志添加标签时触发
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarIndexEventModule.DeleteUpdateTags_Before(Tunynet.Common.Tag,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            删除和更新标签时触发
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.EventModules.BarSectionEventModule">
+            <summary>
+            处理帖吧的EventModule
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarSectionEventModule.RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarSectionEventModule.SubscribeBarSectionEventModule_After(System.Int64,Tunynet.Common.SubscribeEventArgs)">
+            <summary>
+            关注帖吧事件处理程序
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarSectionEventModule.BarSectionNoticeEventModule_After(Spacebuilder.Bar.BarSection,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            帖吧申请处理结果通知
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarSectionEventModule.AutoMaintainBarSectionModule_After(Spacebuilder.Group.GroupEntity,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            贴吧所在呈现区域拥有者自动创建贴吧事件
+            </summary>
+            <param name="sender">群组实体</param>
+            <param name="eventArgs">事件参数</param>
+        </member>
+        <member name="T:Spacebuilder.Bar.EventModules.BarThreadEventModule">
+            <summary>
+            处理帖子动态、积分的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarThreadEventModule.RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarThreadEventModule.BarThreadActivityModule_After(Spacebuilder.Bar.BarThread,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            动态处理程序
+            </summary>
+            <param name="barThread"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarThreadEventModule.BarThreadPointModule_After(Spacebuilder.Bar.BarThread,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            审核状态发生变化时处理积分
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarThreadEventModule.BarThreadPointModuleForManagerOperation_After(Spacebuilder.Bar.BarThread,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            处理加精、置顶等操作
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarThreadEventModule.DeleteGroup_Before(Spacebuilder.Group.GroupEntity,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            删除群组是删除贴吧相关的
+            </summary>
+            <param name="group"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="T:Spacebuilder.Bar.EventModules.BarPostEventModule">
+            <summary>
+            处理帖子动态、积分的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarPostEventModule.RegisterEventHandler">
+            <summary>
+            注册EventHandler
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarPostEventModule.BarPostActivityModule_After(Spacebuilder.Bar.BarPost,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            动态处理程序
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarPostEventModule.BarPostPointModule_After(Spacebuilder.Bar.BarPost,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            积分处理程序
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarPostEventModule.BarPostNoticeModule_After(Spacebuilder.Bar.BarPost,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            通知处理程序
+            </summary>
+            <param name="sender"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="T:Spacebuilder.Bar.EventModules.BarRatingEventModule">
+            <summary>
+            处理帖子动态、积分的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.EventModules.BarRatingEventModule.RegisterEventHandler">
+            <summary>
+            注册EventHandler
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.ActivityItemKeysExtension">
+            <summary>
+            帖吧动态项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ActivityItemKeysExtension.CreateBarThread(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            发布帖子动态项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ActivityItemKeysExtension.CreateBarPost(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            发布回帖动态项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ActivityItemKeysExtension.CreateBarRating(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            帖子评分动态项
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.AuthorizerExtension">
+            <summary>
+            Bar的权限验证
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarSection_Create(Spacebuilder.Common.Authorizer)">
+            <summary>
+            是否具有创建BarSection的权限
+            </summary>        
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarSection_SetManager(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否拥有设置管理员权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="sectionId">帖吧id</param>
+            <returns>是否拥有设置管理员的权限</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarSection_SetManager(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarSection)">
+            <summary>
+            是否具有设置吧管理员的权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="barSection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarSection_Manage(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否具有管理BarSection的权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="barSectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarSection_Manage(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarSection)">
+            <summary>
+            是否具有管理BarSection的权限
+            </summary>
+            <param name="barSection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarSection_View(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否可以看到该贴吧
+            </summary>
+            <param name="authorizer"></param>
+            <param name="barSectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarSection_View(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarSection)">
+            <summary>
+            贴吧显示
+            </summary>
+            <param name="authorizer"></param>
+            <param name="barSection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarSection_Delete(Spacebuilder.Common.Authorizer)">
+            <summary>
+            是否具有删除BarSection的权限
+            </summary>
+            <param name="barSection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarThread_Create(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否具有创建BarThread的权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="sectionId">所属帖吧Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarThread_Create(Spacebuilder.Common.Authorizer,System.Int64,System.String@)">
+            <summary>
+            是否具有创建BarThread的权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="sectionId">所属帖吧Id</param>
+            <param name="errorMessage">无权信息提示</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarThread_Edit(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否具有编辑帖子的权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="threadId">帖子的id</param>
+            <returns>是否具有对应的权限</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarThread_BodyShow(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            body是否有显示的权限（主要是针对于回复可见的情况）
+            </summary>
+            <param name="authorizer"></param>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarThread_Edit(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarThread)">
+            <summary>
+            是否具有编辑BarThread的权限
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarThread_Manage(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarThread)">
+            <summary>
+            是否具有管理BarThread的权限
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarThread_Delete(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否具有删除BarThread的权限
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarThread_Delete(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarThread)">
+            <summary>
+            是否具有删除BarThread的权限
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarPost_Create(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否具有创建BarThread的权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="sectionId">所属帖吧Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarPost_Create(Spacebuilder.Common.Authorizer,System.Int64,System.String@)">
+            <summary>
+            是否具有创建BarPost的权限
+            </summary>
+            <param name="sectionId">所属帖吧Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarPost_Edit(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarPost)">
+            <summary>
+            是否具有编辑BarPost的权限
+            </summary>
+            <param name="post"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarPost_Edit(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否具有编辑BarPost的权限
+            </summary>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarPost_Delete(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarPost)">
+            <summary>
+            是否具有删除BarPost的权限
+            </summary>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarRating(Spacebuilder.Common.Authorizer,System.Int64,System.String@)">
+            <summary>
+            是否具有评分的权利
+            </summary>
+            <param name="authorizer">权限项</param>
+            <param name="threadId">被评论的帖子ID</param>
+            <returns>是否具有评分的权利</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarRating(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            是否具有评分的权利
+            </summary>
+            <param name="authorizer">权限项</param>
+            <param name="threadId">被评论的帖子ID</param>
+            <returns>是否具有评分的权利</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarRating(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarThread)">
+            <summary>
+            是否拥有平分的权限
+            </summary>
+            <param name="authorizer"></param>
+            <param name="thread">被评分的帖子</param>
+            <returns>是否允许评分</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuthorizerExtension.BarRating(Spacebuilder.Common.Authorizer,Spacebuilder.Bar.BarThread,System.String@)">
+            <summary>
+            是否具有评分的权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSectionActivityReceiverGetter">
+            <summary>
+            帖吧动态接收人获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionActivityReceiverGetter.Tunynet#Common#IActivityReceiverGetter#GetReceiverUserIds(Tunynet.Common.ActivityService,Tunynet.Common.Activity)">
+            <summary>
+            获取接收人UserId集合
+            </summary>
+            <param name="activityService">动态业务逻辑类</param>
+            <param name="ownerId">动态拥有者Id</param>
+            <param name="userId">动态发布者Id</param>
+            <param name="activityItemKey">动态项目标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionActivityReceiverGetter.IsReceiveActivity(Tunynet.Common.ActivityService,System.Int64,Tunynet.Common.Activity)">
+            <summary>
+            检查用户是否接收动态
+            </summary>
+            <param name="activityService"></param>
+            <param name="userId">UserId</param>
+            <param name="activity">动态</param>
+            <returns>接收动态返回true，否则返回false</returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.PermissionItemKeysExtension">
+            <summary>
+            权限项标识扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.PermissionItemKeysExtension.Bar_CreateThread(Tunynet.Common.PermissionItemKeys)">
+            <summary>
+            创建问题的权限项标识
+            </summary>
+            <param name="pik"><see cref="T:Tunynet.Common.PermissionItemKeys"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.PermissionItemKeysExtension.Bar_CreatePost(Tunynet.Common.PermissionItemKeys)">
+            <summary>
+            回答问题的权限项标识
+            </summary>
+            <param name="pik"><see cref="T:Tunynet.Common.PermissionItemKeys"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.PointItemKeysExtension">
+            <summary>
+            积分项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.PointItemKeysExtension.Bar_CreateThread(Tunynet.Common.PointItemKeys)">
+            <summary>
+            创建微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.PointItemKeysExtension.Bar_DeleteThread(Tunynet.Common.PointItemKeys)">
+            <summary>
+            删除微博
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.RecommendItemExtensionByBarSection">
+            <summary>
+            推荐项类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.RecommendItemExtensionByBarSection.GetBarSection(Tunynet.Common.RecommendItem)">
+            <summary>
+            贴吧
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.SiteUrlsExtension">
+            <summary>
+            帖吧链接管理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BarHome(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            帖吧首页
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BarGlobalSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            帖吧全局搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BarQuickSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            帖吧快捷搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BarPageSearch(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            帖吧搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.CreateSection(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            创建帖吧
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.SectionDetail(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Nullable{System.Int64})">
+            <summary>
+            帖吧的详细显示页面
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId">帖吧的Id</param>
+            <returns>帖吧详细像是页面的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.SectionMembers(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            帖吧成员列表页面
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId">帖吧的Id</param>
+            <returns>帖吧详细像是页面的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.DeleteManager(Spacebuilder.Common.SiteUrls,System.Int64,System.Int64)">
+            <summary>
+            删除帖吧管理员
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId">帖吧的Id</param>
+            <param name="userId">用户Id</param>
+            <returns>帖吧详细像是页面的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.MyFollowedUsersForSection(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            帖吧成员中我关注的人
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId">帖吧的Id</param>
+            <returns>帖吧详细像是页面的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ListSections(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.Nullable{Spacebuilder.Bar.SortBy_BarSection},System.String)">
+            <summary>
+            根据分类显示帖吧列表页
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="categoryId">帖吧的Id</param>
+            <param name="sortBy">帖吧依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._CategorySections(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            分类帖吧
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="categoryId">帖吧分类Id</param>
+            <returns>帖吧详细像是页面的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._SubscribeSectionButton(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            关注按钮
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.SubscribeSection(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            关注帖吧
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.CancelSubscribeSection(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            取消关注帖吧
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._DeleteBarSectionLogo(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            删除帖吧Logo
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BarThreadEdit(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑帖子的方法
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="SectionId">帖吧的id</param>
+            <param name="threadId">帖子的id(如果没有即发表新帖)</param>
+            <returns>编辑帖子的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ThreadDetail(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean,Spacebuilder.Bar.SortBy_BarPost,System.Nullable{System.Int32},System.Nullable{System.Int64},System.Boolean,System.Nullable{System.Int64})">
+            <summary>
+            帖子的详细显示页
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadId">帖子的id</param>
+            <param name="pageIndex">回复内容的id</param>
+            <param name="onlyLandlord">是否只看楼主</param>
+            <param name="sortBy">回帖的排序方式</param>
+            <param name="anchorPostId">回帖Id锚点</param>
+            <param name="isAnchorPostList">是否定位到回帖列表</param>
+            <param name="childPostIndex">自己回复的列表页码</param>
+            <returns>帖子的详细显示链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ListsByTag(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean})">
+            <summary>
+            标签下的帖子
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="tagName">标签名</param>
+            <returns>标签下的帖子名</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BarThreadRank(Spacebuilder.Common.SiteUrls,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean})">
+            <summary>
+            帖子排行
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sortBy"></param>
+            <param name="isEssential"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.TagMap(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            标签地图
+            </summary>
+            <param name="siteUrls"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.UserThreads(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{System.Boolean})">
+            <summary>
+            用户帖子页
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="userId"></param>
+            <param name="isPosted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.UserFollowedSections(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            用户关注的帖吧
+            </summary>
+            <param name="siteUrls"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._MoveThread(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            移动帖子
+            </summary>
+            <param name="threadId">帖子id</param>
+            <param name="categoryId">帖子id</param>
+            <param name="siteUrls"></param>
+            <returns>移动帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._BarSetionSelectItem(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.String)">
+            <summary>
+            帖吧选择页面
+            </summary>
+            <param name="categoryId">选中的类别</param>
+            <param name="selectedSectionId">被选中的帖吧</param>
+            <returns>帖吧选择的页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._ListBarRatings(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            帖子的评分
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadId">被评论的帖子的id</param>
+            <param name="pageIndex">当前页码</param>
+            <returns>帖子的评分</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._CreatBarRating(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            创建帖吧评论
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadId">被评论的id</param>
+            <returns>创建帖吧评论</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._OneBarRating(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            获取一条新的评分
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="ratingId">评分id</param>
+            <returns>获取一条新的评分</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ThreadDetailGotoPost(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            通过postid跳转到他的显示页面
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._ListBarPost(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{System.Int64},System.Int64,System.Boolean,System.Boolean)">
+            <summary>
+            回帖列表
+            </summary>
+            <param name="ParentId">父级回帖id</param>
+            <param name="siteUrls"></param>
+            <param name="ThreadId">主题帖id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._BarPost(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            一条子级回复
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="postId">回复的id</param>
+            <returns>子级回复的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._ChildPost(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            子级回复的链接（发帖以及回复列表）
+            </summary>
+            <param name="parentId">父级id</param>
+            <returns>子级回复的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.DeletePost(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            删除回帖
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="postId">被删除的回帖id</param>
+            <returns>删除回帖链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.EditPost(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑回帖方法
+            </summary>
+            <param name="threadId">主题帖id</param>
+            <param name="postId">回帖id</param>
+            <returns>编辑回帖的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._ThreadCategoriesSettings(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            帖子分类设置
+            </summary>
+            <param name="urls">连接</param>
+            <param name="sectionId">贴吧id</param>
+            <returns>帖子分类设置</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._GetManageableData(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            获取管理数据Url
+            </summary>
+            <param name="siteUrls"></param>
+            <returns>管理数据Url</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._GetStatisticData(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            获取统计数据Url
+            </summary>
+            <param name="siteUrls"></param>        
+            <returns>管理数据Url</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ManageThreads(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus},System.String)">
+            <summary>
+            管理贴子
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>管理贴子页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ManagePosts(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus},System.String)">
+            <summary>
+            管理回帖
+            </summary>        
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>管理回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ManageBars(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.Nullable{Tunynet.Common.AuditStatus})">
+            <summary>
+            管理帖吧
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+            <param name="sectionId">帖吧Id</param>
+            <returns>帖吧管理页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.SectionSettings(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            帖吧设置
+            </summary>
+            <param name="siteUrls"></param>
+            <returns>帖吧设置页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.EditSection(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            编辑帖吧
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId">帖吧id</param>
+            <returns>编辑帖吧名字</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.DeleteSection(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            删除帖吧
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId">帖吧id</param>
+            <returns>删除帖吧的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.DeleteThread(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            删除帖子
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadId">帖子id</param>
+            <returns>删除帖子的链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchUpdateThreadAuditStatus(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            批量设置帖子的审核状态（后台）
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApproved">是否通过</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchUpdateThreadAuditStatus(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean)">
+            <summary>
+            设置帖子的审核状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApproved">是否通过</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchSetEssential(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            批量设置精华（后台）
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isEssential">是否精华</param>
+            <returns>批量设置精华</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchSetSticky(Spacebuilder.Common.SiteUrls,System.Boolean,System.DateTime)">
+            <summary>
+            批量置顶（后台）
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isSticky">是否置顶</param>
+            <param name="stickyDate">置顶日期</param>
+            <returns>批量置顶</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchDeleteThread(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            批量删除帖子（后台）
+            </summary>
+            <param name="siteUrls"></param>
+            <returns>批量删除帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._SetStickyDate(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.Boolean)">
+            <summary>
+            设置置顶时间
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ManageThreadsForSection(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            管理单一帖吧的帖子（前台）
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="sectionId"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ManagePostsForSection(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            单一帖吧管理回帖页面（前台）
+            </summary>
+            <param name="siteUrl"></param>
+            <param name="sectionId">帖吧Id</param>
+            <param name="pageIndex">当前页码</param>
+            <returns>管理回帖页面（前台）</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ManageThreadCategoriesForSection(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            管理帖吧的分类信息（前台）
+            </summary>
+            <param name="siteUrl"></param>
+            <param name="sectionId">帖吧id</param>
+            <param name="pageIndex">当前页码</param>
+            <returns>管理帖吧的分类信息</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.EditSectionInfo(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            编辑帖吧的描述（前台）
+            </summary>
+            <param name="siteUrl"></param>
+            <param name="sectionId">帖吧的id</param>
+            <returns>编辑帖吧的描述</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchUpdateThreadAuditStatusForSection(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean)">
+            <summary>
+            批量设置帖子的审核状态（前台）
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApproved">是否通过</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchSetEssentialForSection(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean,System.Nullable{System.Int64})">
+            <summary>
+            批量设置精华（前台）
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isEssential">是否精华</param>
+            <param name="threadId">需要置顶的帖子</param>
+            <param name="sectionId">帖吧的id</param>
+            <returns>批量设置精华</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchSetStickyForSection(Spacebuilder.Common.SiteUrls,System.Boolean,System.DateTime,System.Nullable{System.Int64})">
+            <summary>
+            批量置顶（前台）
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isSticky">是否置顶</param>
+            <param name="stickyDate">置顶日期</param>
+            <returns>批量置顶</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchDeleteThreadForSection(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            批量删除帖子（前台）
+            </summary>
+            <param name="siteUrls"></param>
+            <returns>批量删除帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension._EditThreadCategory(Spacebuilder.Common.SiteUrls,System.Int64,System.Int64)">
+            <summary>
+            编辑类别的局部页
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="OwnerId">拥有者id（帖吧id）</param>
+            <param name="CategoryId">分类Id</param>
+            <returns>编辑分类的局部页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.ChangeSectionCategoryDisplayOrder(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            改变分类的排序
+            </summary>
+            <param name="siteUrls"></param>
+            <returns>改变分类的排序</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.DeleteThreadCategory(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            删除分类
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="categoryId">分类id</param>
+            <returns>改变分类的排序</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchUpdatePostAuditStatus(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            回帖批量设置审核状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApproved">是否通过审核</param>
+            <returns>回帖批量设置审核</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchDeletePosts(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            批量/单挑删除回帖
+            </summary>
+            <param name="url"></param>
+            <param name="postIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchUpdateSectionAuditStatus(Spacebuilder.Common.SiteUrls,System.Boolean,System.Nullable{System.Int64})">
+            <summary>
+            批量操作
+            </summary>
+            <param name="urls">被扩展的链接</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns>批量更新帖子的审核状态</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.BatchUpdateSectionAuditStatu(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean)">
+            <summary>
+            更新帖吧的审核状态
+            </summary>
+            <param name="sectionId">被更新的帖吧id</param>
+            <param name="isApproved">是否通过审核</param>
+            <returns>更新帖吧的审核状态</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupThreadDetail(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.Boolean,Spacebuilder.Bar.SortBy_BarPost,System.Nullable{System.Int32},System.Nullable{System.Int64},System.Boolean,System.Nullable{System.Int64})">
+            <summary>
+            群组贴吧帖子详细显示页面
+            </summary>
+            <param name="urls"></param>
+            <param name="threadId">帖子的id</param>
+            <param name="pageIndex">回复内容的id</param>
+            <param name="onlyLandlord">是否只看楼主</param>
+            <param name="sortBy">回帖的排序方式</param>
+            <param name="anchorPostId">回帖Id锚点</param>
+            <param name="isAnchorPostList">是否定位到回帖列表</param>
+            <param name="childPostIndex">自己回复的列表页码</param>
+            <returns>帖子的详细显示链接</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupSectionDetail(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64},System.Nullable{System.Boolean},System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            群组贴吧首页
+            </summary>
+            <param name="urls"></param>
+            <param name="spaceKey">群组groupKey</param>
+            <param name="categoryId">分类id</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序方式</param>
+            <param name="pageIndex">回帖页码</param>
+            <returns>群组贴吧首页</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupThreadListByTag(Spacebuilder.Common.SiteUrls,System.String,System.String,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Int32)">
+            <summary>
+            群组贴吧标签下的帖子
+            </summary>
+            <param name="spaceKey">群组groupKey</param>
+            <param name="tagName">标签名</param>
+            <param name="sortBy">排序字段</param>
+            <param name="isEssential">是否精华</param>
+            <param name="pageIndex">页码</param>
+            <returns>群组贴吧标签下的帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupThreadEdit(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64})">
+            <summary>
+            创建/编辑页面
+            </summary>
+            <param name="spaceKey">群组groupKey</param>
+            <param name="threadId">帖子id</param>
+            <returns>创建/编辑页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupEditPost(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            群组中的编辑回帖页面
+            </summary>
+            <param name="urls"></param>
+            <param name="threadId">帖子id</param>
+            <param name="postId">回帖id</param>
+            <returns>群组中的编辑回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupUserThreads(Spacebuilder.Common.SiteUrls,System.String,System.Boolean)">
+            <summary>
+            群组中用户的帖子
+            </summary>
+            <param name="urls"></param>
+            <param name="userName">用户名</param>
+            <param name="isPosted">是否是回帖</param>
+            <returns>群组中用户的帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupManageThreads(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            群组管理帖子页面
+            </summary>
+            <param name="urls"></param>
+            <param name="spaceKey">群组groupKey</param>
+            <returns>群组管理帖子页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupManagePosts(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            群组管理回帖页面
+            </summary>
+            <param name="urls"></param>
+            <param name="spaceKey">群组groupKey</param>
+            <returns>群组管理回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupManageThreadCategories(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            群组管理帖子分类页面
+            </summary>
+            <param name="urls"></param>
+            <param name="spaceKey">群组groupKey</param>
+            <returns>群组管理帖子分类页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupBarThreadSearch(Spacebuilder.Common.SiteUrls,System.String,System.String)">
+            <summary>
+            群组贴吧搜索页面
+            </summary>
+            <param name="urls"></param>
+            <param name="spaceKey">群组名</param>
+            <param name="keyWord">关键字</param>
+            <returns>群组贴吧搜索页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.Tags(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            标签云图
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.SiteUrlsExtension.GroupBarThreadSearch(Spacebuilder.Common.SiteUrls,System.Int64,System.String)">
+            <summary>
+            群组贴吧搜索页面
+            </summary>
+            <param name="urls"></param>
+            <param name="sectionId"></param>
+            <param name="keyWord"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.ActivityOwnerTypesExtension">
+            <summary>
+            帖吧拥有者类型
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ActivityOwnerTypesExtension.BarSection(Tunynet.Common.ActivityOwnerTypes)">
+            <summary>
+            帖吧
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarUrlHandler">
+            <summary>
+            处理特殊的BarUrl
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Resources.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Resources.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Resources.Resource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Resources.Resource.ApplicationName_Bar">
+            <summary>
+              查找类似 帖吧 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Resources.Resource.ApplicationName_GroupSpace_Bar">
+            <summary>
+              查找类似 讨论 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Resources.Resource.Description_ModeratedUser_CreateBarPostDenied">
+            <summary>
+              查找类似 您现在处于管制状态，不能回帖 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Resources.Resource.Description_ModeratedUser_CreateBarThreadDenied">
+            <summary>
+              查找类似 您现在处于管制状态，不能发帖 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Resources.Resource.Post_Subject_Prefix">
+            <summary>
+              查找类似 回复： 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Resources.Resource.Validate_TextTooLong">
+            <summary>
+              查找类似 您最多输入{1}个字 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Search.BarEntity">
+            <summary>
+            全文检索帖吧实体类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.SectionId">
+            <summary>
+            帖吧主键
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.SectionName">
+            <summary>
+            帖吧名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.ThreadId">
+            <summary>
+            发帖主键
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.PostId">
+            <summary>
+            回帖主键
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.Subject">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.Body">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.UserId">
+            <summary>
+            作者用户ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.Author">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.Tag">
+            <summary>
+            所有标签
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.Category">
+            <summary>
+            所有类别
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.DateCreated">
+            <summary>
+            创建日期
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarEntity.IsPost">
+            <summary>
+            是否回帖
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Search.BarFullTextQuery">
+            <summary>
+            帖吧全文检索条件
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Search.BarFullTextQuery.pageIndex">
+            <summary>
+            当前显示页面页码
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Search.BarFullTextQuery.PageSize">
+            <summary>
+            每页显示记录数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarFullTextQuery.Keyword">
+            <summary>
+            关键词
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarFullTextQuery.TenantTypeId">
+            <summary>
+            租户类型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarFullTextQuery.Term">
+            <summary>
+            搜索范围：标题 全文 作者 标签 
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarFullTextQuery.Range">
+            <summary>
+            帖吧ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarFullTextQuery.IsPost">
+            <summary>
+            是否回帖(1是 0不是 2全部)
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Search.BarSearchRange">
+            <summary>
+            帖吧搜索范围
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Search.BarSearchRange.ALL">
+            <summary>
+            全部
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Search.BarSearchRange.SUBJECT">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Search.BarSearchRange.BODY">
+            <summary>
+            全文
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Search.BarSearchRange.AUTHOR">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.Search.BarSearchRange.TAG">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.Search.BarIndexDocument">
+            <summary>
+            帖吧索引文档
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarIndexDocument.Convert(Spacebuilder.Bar.BarThread)">
+            <summary>
+            BarThread转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="BarThread">发帖实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarIndexDocument.Convert(Spacebuilder.Bar.BarPost)">
+            <summary>
+            BarPost转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="BarPost">回帖实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarIndexDocument.Convert(System.Collections.Generic.IEnumerable{Spacebuilder.Bar.BarThread})">
+            <summary>
+            BarThread批量转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="barThreads">发帖实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarIndexDocument.Convert(System.Collections.Generic.IEnumerable{Spacebuilder.Bar.BarPost})">
+            <summary>
+            BarPost批量转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="barPosts">回帖实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.Search.BarSearcher">
+            <summary>
+            帖吧搜索器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.#ctor(System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">Searcher名称</param>
+            <param name="indexPath">索引文件所在路径（支持"~/"及unc路径）</param>
+            <param name="asQuickSearch">是否作为快捷搜索</param>
+            <param name="displayOrder">显示顺序</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.GlobalSearchActionUrl(System.String)">
+            <summary>
+            处理全局搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.QuickSearchActionUrl(System.String)">
+            <summary>
+            处理快捷搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.PageSearchActionUrl(System.String)">
+            <summary>
+            处理当前应用搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.RebuildIndex">
+            <summary>
+            重建索引
+            </summary>  
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.InsertBarThread(Spacebuilder.Bar.BarThread)">
+            <summary>
+            添加索引
+            </summary>
+            <param name="barThread">待添加的发帖</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.InsertBarThread(System.Collections.Generic.IEnumerable{Spacebuilder.Bar.BarThread})">
+            <summary>
+            添加索引
+            </summary>
+            <param name="barThreads">待添加的发帖</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.InsertBarPost(Spacebuilder.Bar.BarPost)">
+            <summary>
+            添加索引
+            </summary>
+            <param name="barPost">待添加的回帖</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.InsertBarPost(System.Collections.Generic.IEnumerable{Spacebuilder.Bar.BarPost})">
+            <summary>
+            添加索引
+            </summary>
+            <param name="barPosts">待添加的回帖</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.DeleteBarThread(System.Int64)">
+            <summary>
+            删除索引
+            </summary>
+            <param name="barThreadId">待删除的发帖Id</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.DeleteBarThread(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除索引
+            </summary>
+            <param name="microblogIds">待删除的发帖Id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.DeleteBarPost(System.Int64)">
+            <summary>
+            删除索引
+            </summary>
+            <param name="barPostId">待删除的回帖Id</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.DeleteBarPost(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除索引
+            </summary>
+            <param name="microblogIds">待删除的回帖Id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.UpdateBarThread(Spacebuilder.Bar.BarThread)">
+            <summary>
+            更新索引
+            </summary>
+            <param name="barThread">待更新的发帖</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.UpdateBarThread(System.Collections.Generic.IEnumerable{Spacebuilder.Bar.BarThread})">
+            <summary>
+            更新索引
+            </summary>
+            <param name="barThreads">待更新的发帖集合</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.UpdateBarPost(Spacebuilder.Bar.BarPost)">
+            <summary>
+            更新索引
+            </summary>
+            <param name="barPost">待更新的回帖</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.UpdateBarPost(System.Collections.Generic.IEnumerable{Spacebuilder.Bar.BarPost})">
+            <summary>
+            更新索引
+            </summary>
+            <param name="barPosts">待更新的回帖集合</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.Search(Spacebuilder.Bar.Search.BarFullTextQuery)">
+            <summary>
+            贴吧分页搜索
+            </summary>
+            <param name="query">搜索条件</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.AutoCompleteSearch(System.String,System.Int32)">
+            <summary>
+            获取匹配的前几条帖吧热词
+            </summary>
+            <param name="keyword">要匹配的关键字</param>
+            <param name="topNumber">前N条</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.Search.BarSearcher.BuildLuceneSearchBuilder(Spacebuilder.Bar.Search.BarFullTextQuery)">
+            <summary>
+            根据帖吧搜索查询条件构建Lucene查询条件
+            </summary>
+            <param name="barQuery"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarSearcher.AsQuickSearch">
+            <summary>
+            是否作为快捷搜索
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarSearcher.SearchEngine">
+            <summary>
+            关联的搜索引擎实例
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarSearcher.Code">
+            <summary>
+            搜索器的唯一标识
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarSearcher.IsDisplay">
+            <summary>
+            是否前台显示
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarSearcher.DisplayOrder">
+            <summary>
+            显示顺序
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarSearcher.IndexPath">
+            <summary>
+            Lucene索引路径（完整物理路径，支持unc）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarSearcher.IsBaseOnLucene">
+            <summary>
+            是否基于Lucene实现
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.Search.BarSearcher.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.IBarUrlGetter">
+            <summary>
+            贴吧中获取连接的接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.IsPrivate(System.Int64)">
+            <summary>
+            是否为私有状态
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.ThreadDetail(System.Int64,System.Boolean,Spacebuilder.Bar.SortBy_BarPost,System.Int32,System.Nullable{System.Int64},System.Boolean,System.Nullable{System.Int64})">
+            <summary>
+            详细页面
+            </summary>
+            <param name="threadId">帖子的id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.SectionDetail(System.Int64,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Nullable{System.Int64})">
+            <summary>
+            贴吧详细显示页面
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <returns>贴吧详细显示页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.Edit(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑\创建帖子
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <param name="threadId">帖子id</param>
+            <returns>编辑\创建帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.EditPost(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑回帖的方法
+            </summary>
+            <param name="threadId">帖子的id</param>
+            <param name="postId">回帖的id</param>
+            <returns>编辑回帖的方法</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.UserSpaceHome(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户首页
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="sectionId">帖子id</param>
+            <returns>用户首页</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.UserThreads(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户的帖子页面
+            </summary>
+            <param name="sectionId">帖子id</param>
+            <param name="userId">用户id</param>
+            <returns>用户帖子的详细</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.UserPosts(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户的回帖页面
+            </summary>
+            <param name="sectionId">贴吧的id</param>
+            <param name="userId">用户id</param>
+            <returns>用户回帖的页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.ManageThreads(System.Int64)">
+            <summary>
+            管理帖子（前台页面）
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.ManagePosts(System.Int64)">
+            <summary>
+            管理回帖（前台页面）
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <returns>回帖管理</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.ManageCategories(System.Int64)">
+            <summary>
+            管理类别
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <returns>类别管理</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.ListByTag(System.String,System.Nullable{System.Int64},System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean})">
+            <summary>
+            标签下的帖子
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <param name="tagName">标签名</param>
+            <returns>标签下的帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter.BackstageHome">
+            <summary>
+            后台管理首页
+            </summary>
+            <returns>后台管理首页</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarUrlGetter._ManageSubMenu">
+            <summary>
+            后台快捷操局部页面的连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.IBarUrlGetter.TenantTypeId">
+            <summary>
+            租户类型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.IBarUrlGetter.ActivityOwnerType">
+            <summary>
+            动态拥有者类型
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.IsPrivate(System.Int64)">
+            <summary>
+            是否为私有状态
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.ThreadDetail(System.Int64,System.Boolean,Spacebuilder.Bar.SortBy_BarPost,System.Int32,System.Nullable{System.Int64},System.Boolean,System.Nullable{System.Int64})">
+            <summary>
+            帖子详细显示页面
+            </summary>
+            <param name="threadId">帖子id</param>
+            <param name="onlyLandlord">只看楼主</param>
+            <param name="sortBy">排序方式</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖子详细显示页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.SectionDetail(System.Int64,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Nullable{System.Int64})">
+            <summary>
+            贴吧详细显示页面
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <returns>贴吧详细显示页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.Edit(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            创建/编辑帖子页面
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <param name="threadId">帖子id</param>
+            <returns>创建/编辑帖子页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.EditPost(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑回帖页面
+            </summary>
+            <param name="threadId">帖子id</param>
+            <param name="postId">回帖id</param>
+            <returns>编辑回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.UserThreads(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户帖子页面
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="sectionId">帖子id</param>
+            <returns>用户帖子页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.UserPosts(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户的回帖页面
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="sectionId">帖子id</param>
+            <returns>用户的回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.ManageThreads(System.Int64)">
+            <summary>
+            管理帖子页面
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.ManagePosts(System.Int64)">
+            <summary>
+            管理回帖页面
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <returns>管理回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.ManageCategories(System.Int64)">
+            <summary>
+            管理贴吧类别页面
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <returns>管理贴吧类别页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.ListByTag(System.String,System.Nullable{System.Int64},System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean})">
+            <summary>
+            标签下的帖子页面
+            </summary>
+            <param name="tagName">标签名</param>
+            <param name="sectionId">贴吧id</param>
+            <returns>标签下的帖子页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.BackstageHome">
+            <summary>
+            后台管理首页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter._ManageSubMenu">
+            <summary>
+            后台管理局部页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetter.UserSpaceHome(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户首页
+            </summary>
+            <param name="userId">用户首页</param>
+            <param name="sectionId">贴吧id</param>
+            <returns>用户首页</returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarUrlGetter.TenantTypeId">
+            <summary>
+            租户类型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarUrlGetter.ActivityOwnerType">
+            <summary>
+            动态拥有者类型
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarUrlGetterFactory">
+            <summary>
+            贴吧中获取连接的接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarUrlGetterFactory.Get(System.String)">
+            <summary>
+            获取连接的方法
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <returns>获取连接的实例</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.IsPrivate(System.Int64)">
+            <summary>
+            是否为私有状态
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.SectionDetail(System.Int64,System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean},System.Nullable{System.Int64})">
+            <summary>
+            贴吧详细显示页面
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.Edit(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑页面
+            </summary>
+            <param name="sectionId"></param>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.EditPost(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            编辑回帖页面
+            </summary>
+            <param name="threadId">帖子id</param>
+            <param name="postId">回帖id</param>
+            <returns>编辑回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.UserThreads(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户帖子页面
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="sectionId">贴吧id</param>
+            <returns>用户帖子页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.UserPosts(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户回帖页面
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="sectionId">贴吧id</param>
+            <returns>用户回帖页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.ManageThreads(System.Int64)">
+            <summary>
+            前台管理帖子页面
+            </summary>
+            <param name="sectionId">帖子id</param>
+            <returns>前台管理帖子页面</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.ManagePosts(System.Int64)">
+            <summary>
+            管理回帖
+            </summary>
+            <param name="sectionId">帖子id</param>
+            <returns>管理回帖</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.ManageCategories(System.Int64)">
+            <summary>
+            管理分类
+            </summary>
+            <param name="sectionId">贴吧id</param>
+            <returns>管理分类</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.ListByTag(System.String,System.Nullable{System.Int64},System.Nullable{Spacebuilder.Bar.SortBy_BarThread},System.Nullable{System.Boolean})">
+            <summary>
+            标签下的帖子
+            </summary>
+            <param name="tagName">标签名</param>
+            <param name="sectionId">帖子id</param>
+            <returns>标签下的帖子</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.BackstageHome">
+            <summary>
+            后台管理首页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter._ManageSubMenu">
+            <summary>
+            后台导航
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.GroupUrlGetter.UserSpaceHome(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            用户首页
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="sectionId">贴吧id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.GroupUrlGetter.TenantTypeId">
+            <summary>
+            租户类型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.GroupUrlGetter.ActivityOwnerType">
+            <summary>
+            动态拥有者类型
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.ExpireStickyThreadsTask">
+            <summary>
+            每天更新置顶时间到期的帖子任务
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ExpireStickyThreadsTask.Execute(Tunynet.Tasks.TaskDetail)">
+            <summary>
+            任务执行的内容
+            </summary>
+            <param name="taskDetail">任务配置状态信息</param>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarPostEditModel">
+            <summary>
+            回帖编辑的数据传递载体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostEditModel.AsBarPost">
+            <summary>
+            转换成BarPost类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostEditModel.ThreadId">
+            <summary>
+            所属主题帖Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostEditModel.SectionId">
+            <summary>
+            所属帖吧的id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostEditModel.ParentId">
+            <summary>
+            父回帖的Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostEditModel.Subject">
+            <summary>
+            回帖的标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostEditModel.Body">
+            <summary>
+            帖子的主题内容
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostEditModel.MultilineBody">
+            <summary>
+            帖子的主题内容
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostEditModel.PostId">
+            <summary>
+            回帖的Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarPostEditModelExtensions">
+            <summary>
+            回帖的扩展方法
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostEditModelExtensions.AsEditModel(Spacebuilder.Bar.BarPost)">
+            <summary>
+            数据库中的对象转换为EditModel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarRatingEditModel">
+            <summary>
+            帖吧评分的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingEditModel.AsBarRating">
+            <summary>
+            转换成数据库存储实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRatingEditModel.Reason">
+            <summary>
+            评分理由
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRatingEditModel.ReputationPoints">
+            <summary>
+            评的威望值
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRatingEditModel.RemainReputationPoints">
+            <summary>
+            剩余的威望值
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRatingEditModel.UserId">
+            <summary>
+            评论用户的id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRatingEditModel.ThreadId">
+            <summary>
+            被评论帖子的id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRatingEditModel.TradePoints">
+            <summary>
+            评的交易积分
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSectionEditModel">
+            <summary>
+            创建编辑帖吧的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionEditModel.HasLogoImage">
+            <summary>
+            是否拥有logo
+            </summary>
+            <returns>是否拥有图表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionEditModel.AsBarSection">
+            <summary>
+            将ViewModel转换成数据库存储实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionEditModel.GetBarSectionByEditForManager">
+            <summary>
+            获取前台编辑的实体
+            </summary>
+            <returns>获取前台编辑的实体</returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.SectionId">
+            <summary>
+            帖吧Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.DisplayOrder">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.Name">
+            <summary>
+            帖吧名
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.CategoryId">
+            <summary>
+            类别
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.UserId">
+            <summary>
+            吧主
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.ManagerUserIds">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.ThreadCategoryStatus">
+            <summary>
+            帖子分类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionEditModel.IsEnabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSectionExtensions">
+            <summary>
+            帖吧的扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionExtensions.AsEditModel(Spacebuilder.Bar.BarSection)">
+            <summary>
+            将数据库中的信息转换成EditModel实体
+            </summary>
+            <param name="barSection"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarThreadEditModel">
+            <summary>
+            编辑帖子的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadEditModel.AsBarThread">
+            <summary>
+            将ViewModel转换成数据库存储实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.IsEssential">
+            <summary>
+            是否精华
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.IsHidden">
+            <summary>
+            只恢复可见
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.IsLocked">
+            <summary>
+            是否锁定
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.IsSticky">
+            <summary>
+            是否置顶
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.StickyDate">
+            <summary>
+            置顶期限
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.Subject">
+            <summary>
+            帖子标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.ThreadId">
+            <summary>
+            帖子Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.Body">
+            <summary>
+            帖子的内容
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.SectionId">
+            <summary>
+            所属帖吧Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.UserId">
+            <summary>
+            主题作者作者id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.CategoryId">
+            <summary>
+            分类id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.Author">
+            <summary>
+            主题帖作者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.TagNames">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadEditModel.DateCreated">
+            <summary>
+            主题帖创建的时间
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarThreadExtensions">
+            <summary>
+            帖子的扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadExtensions.AsEditModel(Spacebuilder.Bar.BarThread)">
+            <summary>
+            将数据库中的信息转换成EditModel实体
+            </summary>
+            <param name="barThread"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.ManageBarEditModel">
+            <summary>
+            Bar管理EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ManageBarEditModel.GetQuery">
+            <summary>
+            根据当前实体获取对应的Query
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageBarEditModel.CategoryId">
+            <summary>
+            帖吧的类别
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageBarEditModel.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageBarEditModel.KeyWord">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageBarEditModel.UserId">
+            <summary>
+            帖吧吧主
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageBarEditModel.Enabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageBarEditModel.PageSize">
+            <summary>
+            显示条数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.ManagePostsEditModel">
+            <summary>
+            管理回帖
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ManagePostsEditModel.AsBarPostQuery">
+            <summary>
+            将Edit转换成对应的Query
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManagePostsEditModel.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManagePostsEditModel.StartDate">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManagePostsEditModel.EndDate">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManagePostsEditModel.SectionId">
+            <summary>
+            帖吧id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManagePostsEditModel.PostKeyword">
+            <summary>
+            标题关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManagePostsEditModel.UserId">
+            <summary>
+            吧主id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManagePostsEditModel.PageSize">
+            <summary>
+            显示条数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.ManageThreadEditModel">
+            <summary>
+            管理主题帖
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ManageThreadEditModel.GetBarThreadQuery">
+            <summary>
+            获取Query
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.StartDate">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.EndDate">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.SectionId">
+            <summary>
+            帖吧id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.SubjectKeyword">
+            <summary>
+            标题关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.UserId">
+            <summary>
+            吧主id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.PageSize">
+            <summary>
+            显示条数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.IsSticky">
+             <summary>
+            是否置顶
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.IsEssential">
+             <summary>
+            是否精华
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.ManageThreadEditModel.CategoryId">
+            <summary>
+            类别Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.SectionSettingsEditModel">
+            <summary>
+            帖吧设置的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.SectionSettingsEditModel.AsBarSettings">
+            <summary>
+            转换成BarSetting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.EnableRating">
+            <summary>
+            是否启用评分
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.ReputationPointsMinValue">
+            <summary>
+            威望评分最小值
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.ReputationPointsMaxValue">
+            <summary>
+            威望评分最大值
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.UserReputationPointsPerDay">
+            <summary>
+            用户每日威望评分上限
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.OnlyFollowerCreateThread">
+            <summary>
+            是否仅允许关注用户发帖
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.EnableUserCreateSection">
+            <summary>
+            是否允许用户创建帖吧
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.UserRankOfCreateSection">
+            <summary>
+            允许申请帖吧的用户等级下限
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.ThreadSubjectMaxLength">
+            <summary>
+            帖子标题的最大长度
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.ThreadBodyMaxLength">
+            <summary>
+            帖子内容的最大长度
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.SectionSettingsEditModel.PostBodyMaxLength">
+            <summary>
+            回帖内容的最大长度
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.SectionSettingsEditModelExtensions">
+            <summary>
+            帖吧设置扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.SectionSettingsEditModelExtensions.AsEditModel(Spacebuilder.Bar.BarSettings)">
+            <summary>
+            转换为EditModel
+            </summary>
+            <param name="settings"></param>
+            <returns>EditModel</returns>
+        </member>
+    </members>
+</doc>

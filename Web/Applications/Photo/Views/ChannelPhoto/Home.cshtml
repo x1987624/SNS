@@ -1,0 +1,137 @@
+﻿@{
+    Layout = "app-1col";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    Html.Script("~/Applications/Photo/Scripts/jquery.spb.photo.waterfall.js");
+    Html.Script("~/Scripts/jquery/masonry/jquery.masonry.js");
+    Html.Script("~/Scripts/jquery/masonry/jquery.infinitescroll.js");
+    IEnumerable<Tag> tags = ViewData.Get<IEnumerable<Tag>>("tags", null);
+    IEnumerable<RecommendItem> recommendPhotoItems = ViewData.Get<IEnumerable<RecommendItem>>("recommendPhotoItems", null);
+    IEnumerable<RecommendItem> recommendAlbumItems = ViewData.Get<IEnumerable<RecommendItem>>("recommendAlbumItems", null);
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-photo-home">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-photo-home-wrap">
+            @Html.Partial("_HotTags", tags)            
+            <div class="spb-photo-rec tn-helper-clearfix">
+                @if (recommendPhotoItems != null && recommendPhotoItems.Count() > 0)
+                {
+                <div class="spb-slider spb-photo-slider spb-photo-slider-rec">
+                    <div class="spb-slider-nav">
+                       <div class="spb-slider-nav-clip">
+                          <ul>
+                            @for (int count = 1; count <= recommendPhotoItems.Count(); count++)
+                            {
+                                <li><a href="#">@count</a></li>    
+                            }
+                          </ul>
+                       </div>
+                    </div>
+                    <div class="spb-slider-panels">
+                        @foreach (RecommendItem item in recommendPhotoItems)
+                        {
+                            Photo photo = item.GetPhoto();
+                            if (photo != null)
+                            { 
+                                <div class="spb-slider-panel">
+                                    <a href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" plugin="dialog">
+                                        <img src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().Original())" width="680" alt="@item.ItemName"/>
+                                    </a>
+                                    <div class="spb-slider-panel-textbox">
+                                    <div class="spb-slider-panel-text">
+                                        <p>@item.ItemName</p>
+                                    </div>
+                                    <div class="spb-slider-panel-overlay"></div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                     @if (DIContainer.Resolve<Authorizer>().RecommendItem_Manage(TenantTypeIds.Instance().Photo()))
+                    {
+                    <div class="spb-rec-btn"><a href="@SiteUrls.Instance()._ManageRecommendItems(new PhotoSettings().RecommendPhotoTypeId,false)" class="tn-button tn-corner-all tn-button-default tn-button-icon-only" title="推荐管理" plugin="dialog"><span class="tn-icon tn-icon tn-icon-set"></span><span class="tn-button-text">推荐管理</span></a></div>
+                    }
+                </div>
+                }
+                @if (recommendAlbumItems != null && recommendAlbumItems.Count() > 0)
+                {
+                <div class="spb-album-rec">
+                    <ul class="tn-helper-clearfix">
+                        @foreach (RecommendItem item in recommendAlbumItems)
+                        {
+                            Album album = item.GetAlbum();
+                            if (album != null)
+                            {
+                                if (DIContainer.Resolve<Authorizer>().Album_View(album))
+                                { 
+                                    string coverUrl = string.Empty;
+                                    if (album.Cover != null)
+                                    {
+                                        coverUrl = album.Cover.RelativePath;
+                                    }
+                                    <li><a href="@SiteUrls.Instance().AlbumDetailList(album.User.UserName, album.AlbumId)" class="spb-album-cover" target="_blank">
+                                            <img width="75" height="75" src="@SiteUrls.Instance().ImageUrl(coverUrl, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" alt="@album.AlbumName" />
+                                        </a>
+                                        <div class="spb-album-zoom tn-widget-content tn-border-gray" style="display: none;">
+                                            <div class="tn-inner">
+                                                <div class="tn-head">
+                                                    <span class="tn-title">@item.ItemName</span><em class="tn-count">@(album.PhotoCount)张</em></div>
+                                                <div class="tn-overlay">
+                                                </div>
+                                                <a href="@SiteUrls.Instance().AlbumDetailList(album.User.UserName, album.AlbumId)" class="tn-cover" target="_blank">
+                                                    <img width="160" height="160" src="@SiteUrls.Instance().ImageUrl(coverUrl, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" alt="@album.AlbumName" />
+                                                </a>
+                                                <div class="tn-info">
+                                                    <div class="tn-avatar-mini">
+                                                        @Html.ShowUserAvatar(album.User, SiteUrls.Instance().Ta(album.User.UserName), AvatarSizeType.Small, HyperLinkTarget._blank,isShowUserCard:false)
+                                                    </div>
+                                                    <a href="@SiteUrls.Instance().Ta(album.User.UserName)" class="tn-user-name" target="_blank">@album.Author</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+                }
+            </div>
+            @Html.AdvertisingPosition("10100300001")
+            <div class="tn-content-heading tn-border-gray tn-border-bottom">
+                <h4>
+                    热门图片</h4>
+            </div>
+            <div id="spbThumbnailFalls" class="spb-photo-waterfall masonry">
+            </div>
+            <nav id="page-nav">
+                <a href="@SiteUrls.Instance()._Photos(sortBy: SortBy_Photo.HitTimes_Desc, pageIndex: 2)"></a>
+            </nav>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/Bundle/Scripts/SliderKit")
+<script type="text/javascript">
+    $(document).ready(function () {
+        //幻灯片配置脚本
+        $(".spb-photo-slider-rec").sliderkit({
+            cssprefix: "spb-slider",
+            auto: true,
+            circular: true,
+            shownavitems: 8,
+            autospeed: 3000,
+            panelfx: "sliding",
+            panelfxspeed: 1000,
+            panelfxeasing: "easeInOutExpo"
+        });
+
+        //推荐相册放大图
+        $(".spb-album-rec li").hover(
+            function () {
+                $(this).addClass("tn-hover").children(".spb-album-zoom").stop(true,true).delay(300).show(200);
+            },
+            function () {
+                $(this).removeClass("tn-hover").children(".spb-album-zoom").stop(true,true).hide(200);
+            }
+        );
+    });
+</script>

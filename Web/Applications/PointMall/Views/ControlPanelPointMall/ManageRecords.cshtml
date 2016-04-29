@@ -1,0 +1,250 @@
+﻿@model  PagingDataSet<PointGiftExchangeRecord>
+@{
+    
+    Layout = "_ControlPanel";
+    long? userId = ViewData.Get<long?>("userId",null);
+    var tradePointCategory = new PointService().GetPointCategory("TradePoints");
+}
+
+<div class="tn-block">
+    <div class="tnc-main">
+        @Html.Partial("_ManageRightMenu")
+        <div class="tnc-ctn-center">
+            <h1>
+                <span>兑换申请管理</span></h1>
+            <div class="tnc-ctnright-list">
+                <div class="tn-cue-highlight tn-corner-all tn-message-box">
+                    <ul>
+					    <li><strong>注意事项</strong></li>
+                        <li>只能对待批准的申请进行删除、批准、拒绝等操作，已批准或已拒绝的申请不能被操作！</li>
+                    </ul>
+                </div>
+                <div class="tn-manager-search tn-helper-clearfix">
+                    <div class="tnc-search-adminform">
+                        @using (Html.BeginForm("ManageRecords", "ControlPanelPointMall", FormMethod.Get))
+                        {
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    申请时间：</label>
+                                @Html.DatePicker("beginDate", Request.QueryString.Get<DateTime>("beginDate"), "-5Y", "+5Y")
+                                -
+                                @Html.DatePicker("endDate", Request.QueryString.Get<DateTime>("endDate"), "-5Y", "+5Y")
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                   申请人：</label>
+                                @Html.UserSelector("userId", userId)
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    状态：</label>
+                                @Html.EnumDropDownList("approveStatus", Request.QueryString.Get<ApproveStatus?>("approveStatus"), "全部", new { @class = "tn-dropdownlist" })
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                </label>
+                                @Html.Button("搜索", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { @class = "tn-button-text", id = "searchPhotos" })
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="tnc-content-manage">
+                    <div class="tn-list-header">
+                        <div class="tn-toolbar-area">
+                            @Html.LinkButton("批准", SiteUrls.Instance()._ChangeRecordStatus(true), iconType: IconTypes.SmallAccept, htmlAttributes: new { id = "record-accept", @class = "batch-operation" })
+                            @Html.LinkButton("拒绝", SiteUrls.Instance()._ChangeRecordStatus(false), iconType: IconTypes.SmallStop, htmlAttributes: new { id = "record-unAccept", @class = "batch-operation" })
+                            @Html.LinkButton("删除", SiteUrls.Instance()._DeleteRecords(), iconType: IconTypes.SmallCross, htmlAttributes: new { id = "record-delete" })
+                        </div>
+                    </div>
+                    @if (Model == null || Model.Count == 0)
+                    { 
+                        <div class="tn-no-data">
+                            没有查询到数据！</div>
+                    }
+                    else
+                    {
+                        <form action="#" method="post" id="Form-record">
+                        <table class="tn-table-grid">
+                            <tbody>
+                                <tr class="tn-table-grid-header">
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        <input type="checkbox" class="tn-checkbox" id="select-all" name="checkbox" />
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        商品名称
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        花费@(tradePointCategory.CategoryName)
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        申请数量
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        申请人
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        申请状态
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        收件地址
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        跟踪信息
+                                    </th>
+                                     <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        申请时间
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        操作
+                                    </th>
+                                </tr>
+                                @foreach (var record in Model)
+                                {
+                                    <tr class="tn-table-grid-row">
+                                        <td class="tn-border-gray tn-border-bottom tn-width-check">
+                                        <input type="checkbox" class="tnui-record-id" id="record-@record.RecordId" name="recordIds" value="@record.RecordId" />
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                                            <a title="@record.GiftName.Trim()" href="@SiteUrls.Instance().GiftDetail(record.GiftId)" target="_blank">@StringUtility.Trim(record.GiftName.Trim(),10)</a>
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-number tn-nowrap">
+                                            @record.Price
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-number tn-nowrap">
+                                            @record.Number
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                                            <a href="@SiteUrls.Instance().SpaceHome(record.PayerUserId)" title="@record.Payer" target="_blank">@record.Payer</a>
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-nowrap tn-width-icon1">
+                                            @switch (record.Status)
+                                            {
+                                                case ApproveStatus.Approved:
+                                                    {
+                                            <span class="tn-icon-colorful tn-icon-colorful-pass" title="已批准"></span>
+                                                    } break;
+                                                case ApproveStatus.Pending:
+                                                    {
+                                            <span class="tn-icon-colorful tn-icon-colorful-wait" title="待批准"></span>
+                                                    } break;
+                                                case ApproveStatus.Rejected:
+                                                    {
+                                            <span class="tn-icon-colorful tn-icon-colorful-stop" title="已拒绝"></span>
+                                                    } break;
+                                            }
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-datetime tn-nowrap">
+                                            <a href="@SiteUrls.Instance()._ShowMailAddressInfo(record.RecordId)" class="tuni-mail-address" id="address-info-@record.RecordId" plugin="dialog">查看</a>
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-category tn-nowrap">
+                                            @if (string.IsNullOrEmpty(record.TrackInfo))
+                                            { 
+                                                <span>暂无信息</span>
+                                            }
+                                            else
+                                            { 
+                                                <a href="javascript:void(0)" id="track-info-@record.RecordId" trackInfo="@Formatter.FormatMultiLinePlainTextForStorage(record.TrackInfo,true)" class="tuni-track-info">@StringUtility.Trim(record.TrackInfo, 15)</a>
+                                            }
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-datetime tn-nowrap">
+                                            @record.DateCreated.ToUserDateString(true)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-action2 tn-nowrap">
+                                           @{
+                                                if (record.Status == ApproveStatus.Approved)
+                                                {
+                                                    string operation = string.IsNullOrEmpty(record.TrackInfo) ? "添加跟踪信息" : "编辑跟踪信息";
+                                                    <a href="@SiteUrls.Instance()._SetTrackInfo(record.RecordId)" plugin="dialog">@operation</a>
+                                                }
+                                                else
+                                                { 
+                                                        <span>&nbsp;</span>
+                                                }
+                                           }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        </form>
+                        <div class="tn-pagination">
+                            @Html.PageSizeDropdownList("pageSize")
+                            @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                            @Html.PagingResults(Model)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.ScriptBlock(@<script type="text/javascript">
+
+    //处理火狐下刷新仍然选中问题。
+    $(document).ready(function() {
+        $(".tnui-record-id").removeAttr("checked");
+        $("#select-all").removeAttr("checked");
+    });
+
+    //处理全选按钮
+    $("#select-all").click(function () {
+        if ($(this).attr("checked")) {
+            $(".tnui-record-id").attr("checked",true);
+        } else {
+            $(".tnui-record-id").removeAttr("checked");
+        }
+    });
+
+    //批量接受/不接受
+    $(".batch-operation").click(function (e) {
+        if (!$("input.tnui-record-id:checked").length) {
+            alert("请至少选择一个商品进行操作！");
+            return false;
+        }
+        e.preventDefault();
+        var url = $(this).attr("href");
+        $.post(url, $("form#Form-record").serialize(), function (data) {
+            if (data.MessageType == 1) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload(true);
+                });
+            } else {
+                art.dialog.alert(data.MessageContent, function () {
+                    window.location.reload(true);
+                });
+            }
+
+        });
+    });
+
+    //批量删除
+    $("#record-delete").click(function (e) {
+        if (!$("input.tnui-record-id:checked").length) {
+            alert("请至少选择一个商品进行操作！");
+            return false;
+        }           
+        e.preventDefault();
+        var url = $(this).attr("href");
+        art.dialog.confirm("确定要删除这些兑换记录吗？", function () {
+            $.post(url, $("form#Form-record").serialize(), function (data) {
+                if (data.MessageContent.indexOf("成功")>0) {
+                    art.dialog.tips(data.MessageContent,1.5, data.MessageType, function () {
+                        window.location.reload(true);
+                    });
+                } else {
+                    art.dialog.alert(data.MessageContent,function () {
+                        window.location.reload(true);
+                    });
+                }
+            });
+        });
+    });
+
+    //跟踪信息模式框
+    $(".tuni-track-info").click(function (e) {
+        var trackInfo = $(this).attr('trackInfo');
+        art.dialog({ title: '跟踪信息', content: '<div class="tnc-dailog-pd tn-simple-text tnc-report-detail">' + trackInfo + '</div>' });
+    });
+
+</script>)

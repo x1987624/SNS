@@ -1,0 +1,9 @@
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.CMS.dll.config
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.CMS.xml
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.CMS.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.CMS.pdb
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\CMS\obj\Debug\CMS.csprojResolveAssemblyReference.cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.Resources.Resource.resources
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\CMS\obj\Debug\CMS.csproj.GenerateResource.Cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.pdb

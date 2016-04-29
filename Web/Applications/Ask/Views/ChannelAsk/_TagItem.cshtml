@@ -1,0 +1,17 @@
+﻿@model PagingDataSet<Tag>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="tn-box-content tn-widget-content tn-corner-bottom" id="tag-page-list">
+        <div class="spb-ask-tags-sort-box">
+            <p class="tn-tags-cloud">
+            @foreach (var tag in Model)
+            {
+                <span class="tn-bg-light tn-border-light"><a href="@SiteUrls.Instance().AskTagDetail(tag.TagName)" target="_blank" title="@tag.TagName">@tag.TagName</a></span>
+            }
+            </p>
+        </div>
+        <div class="tn-pagination">
+            @Html.AjaxPagingButton(Model, "tag-page-list", PaginationMode.NextPrevious)
+        </div>
+    </div>
+}

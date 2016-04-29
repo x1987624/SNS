@@ -1,0 +1,4 @@
+﻿@{
+    Layout = "app-1col";
+}
+@Html.Partial("_Tabs", new ViewDataDictionary { { "isEssential", true }, { "sortBy", SortBy_Photo.DateCreated_Desc } })

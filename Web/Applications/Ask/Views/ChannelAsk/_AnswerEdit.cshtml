@@ -1,0 +1,18 @@
+﻿@model AskAnswerEditModel
+@using (Html.BeginAjaxForm("_AnswerEdit", "ChannelAsk", FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "AnswerEditSuccessCallBack" }))
+{
+    <input type="hidden" name="answerId" value="@Model.AnswerId" />
+    <input type="hidden" name="questionId" value="@Model.QuestionId" />
+   @* @Html.UEditorFor(n => n.Body, TenantTypeIds.Instance().AskAnswer(), Model.AnswerId, new Dictionary<string, object> { { "id", "html-editor-" + Model.AnswerId }, { "style", "height:250px;" } })*@
+@Html.HtmlEditorFor(n => n.Body, new HtmlEditorOptions(HtmlEditorMode.Simple)
+                    .MergeHtmlAttribute("id", "html-editor-" + Model.AnswerId)
+                    .MergeHtmlAttribute("style", "height:300px;")
+                    .SetShowSmileyButton(false)
+                    .AddPhotoButton(TenantTypeIds.Instance().AskAnswer(), Model.AnswerId)
+                    .AddFileButton(TenantTypeIds.Instance().AskAnswer(), Model.AnswerId))
+    @Html.ValidationMessageFor(n => n.Body)
+    <div class="tnc-artdilog-btn tn-bg-gray tn-border-gray tn-border-top">
+        @Html.Button("提交", ButtonTypes.Submit, HighlightStyles.Primary)
+        @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { id = "cancel-answer", answerId = Model.AnswerId, @class = "tnui-cancelEditAnswer" })
+    </div>
+}

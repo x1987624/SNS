@@ -1,0 +1,43 @@
+﻿@model  PagingDataSet<Tag>
+@if (Model != null && Model.Count() > 0)
+{
+    IUser currentUser = UserContext.CurrentUser;
+
+    Dictionary<long, long> answerCountDic = ViewData.Get<Dictionary<long, long>>("answerCountDic", null);
+
+    foreach (var tag in Model)
+    {
+        <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed">
+            @if (!string.IsNullOrEmpty(tag.FeaturedImage))
+            {
+            <div class="tn-list-item-area-left">
+                    
+                <a href="@SiteUrls.Instance().AskTagDetail(tag.TagName)"><img width="100" height="100" alt="@tag.TagName" title="@tag.TagName" src="@SiteUrls.Instance().LogoUrl(tag.FeaturedImage, TenantTypeIds.Instance().Tag(), ImageSizeTypeKeys.Instance().Medium())" /></a>
+                    
+            </div>
+            }
+            <div class="tn-list-item-area-main">
+                <div class="tn-helper-right">
+                @if (currentUser != null)
+                { 
+                    @Html.Action("_SubscribeTagButton", "ChannelAsk", new { userId = currentUser.UserId, tagId = tag.TagId })
+                }
+                </div>
+                <div class="tn-list-item-row tn-list-item-heading">
+                    <h5 class="tn-helper-reset">
+                        <a href="@SiteUrls.Instance().AskTagDetail(tag.TagName)" target="_blank">@tag.TagName</a>
+                    </h5>
+                </div>
+                <div class="tn-list-item-row tn-list-item-summary">
+                    <p>
+                        <span>问题：@(tag.ItemCount)</span> <span>回答：@(answerCountDic[tag.TagId])</span>
+                    </p>
+                    <p>
+                        @Html.Raw(tag.Description)
+                    </p>
+                </div>
+            </div>
+        </li>
+    }
+}
+@Html.Hidden("pageCount", Model.PageCount)

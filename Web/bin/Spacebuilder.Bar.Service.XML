@@ -1,0 +1,2424 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.Bar.Service</name>
+    </assembly>
+    <members>
+        <member name="T:Spacebuilder.Bar.BarBodyProcessor">
+            <summary>
+            帖子正文解析器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarBodyProcessor.AtUserTagGenerate(System.String,System.String)">
+            <summary>
+            生成at用户标签
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="displayName">显示名</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarBodyProcessor.AddBBTag(System.String,Tunynet.Common.Attachment)">
+            <summary>
+            添加BBTag实体
+            </summary>
+            <param name="htmlTemplate">html模板</param>
+            <param name="attachment">带替换附件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarBodyProcessor.ParsedMediaTagGenerate(System.String,Tunynet.Common.ParsedMedia)">
+            <summary>
+            生成多媒体内容标签
+            </summary>
+            <param name="shortUrl">短网址</param>
+            <param name="parsedMedia">多媒体网址信息</param>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSettings">
+            <summary>
+            站点论坛设置
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.ThreadSubjectMaxLength">
+            <summary>
+            帖子标题的最高长度
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.ThreadBodyMaxLength">
+            <summary>
+            帖子内容长度
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.PostBodyMaxLength">
+            <summary>
+            回帖内容长度
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.EnableRating">
+            <summary>
+            是否启用帖子评分
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.ReputationPointsMaxValue">
+            <summary>
+            威望评分最大值
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.ReputationPointsMinValue">
+            <summary>
+            威望评分最小值
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.UserReputationPointsPerDay">
+            <summary>
+            用户每日威望评分上限
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.EnableUserCreateSection">
+            <summary>
+            是否允许用户创建帖吧
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.UserRankOfCreateSection">
+            <summary>
+            用户可以创建帖吧的等级限制
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.OnlyFollowerCreateThread">
+            <summary>
+            仅允许帖吧关注用户发帖
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.OnlyFollowerCreatePost">
+            <summary>
+            仅允许帖吧关注用户回帖
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSettings.SectionManagerMaxCount">
+            <summary>
+            帖吧允许的最大的管理员个数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.ApplicationIdsExtension">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ApplicationIdsExtension.Bar(ApplicationIds)">
+            <summary>
+            帖吧应用Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.ApplicationStatisticDataKeysExtension">
+            <summary>
+            用户计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ApplicationStatisticDataKeysExtension.SectionPendingCount(Tunynet.Common.ApplicationStatisticDataKeys)">
+            <summary>
+            帖吧待审核数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ApplicationStatisticDataKeysExtension.SectionAgainCount(Tunynet.Common.ApplicationStatisticDataKeys)">
+            <summary>
+            帖吧需再审核数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ApplicationStatisticDataKeysExtension.PostPendingCount(Tunynet.Common.ApplicationStatisticDataKeys)">
+            <summary>
+            回帖待审核数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ApplicationStatisticDataKeysExtension.PostAgainCount(Tunynet.Common.ApplicationStatisticDataKeys)">
+            <summary>
+            贴吧需再审核数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.AuditItemKeysExtension">
+            <summary>
+            帖吧审核项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuditItemKeysExtension.Bar_Section(Tunynet.Common.AuditItemKeys)">
+            <summary>
+            申请帖吧审核项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuditItemKeysExtension.Bar_Thread(Tunynet.Common.AuditItemKeys)">
+            <summary>
+            发布帖子审核项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.AuditItemKeysExtension.Bar_Post(Tunynet.Common.AuditItemKeys)">
+            <summary>
+            发布回帖审核项
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.CountTypesExtension">
+            <summary>
+            计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.CountTypesExtension.ThreadCount(Tunynet.Common.CountTypes)">
+            <summary>
+            主题帖数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.CountTypesExtension.ThreadAndPostCount(Tunynet.Common.CountTypes)">
+            <summary>
+            主题帖和回帖总数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.CountTypesExtension.FollowedCount(Tunynet.Common.CountTypes)">
+            <summary>
+            被关注数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.OwnerDataKeysExtension">
+            <summary>
+            拥有者计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.OwnerDataKeysExtension.ThreadCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            主题帖数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.OwnerDataKeysExtension.PostCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            回帖总数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.OwnerDataKeysExtension.FollowSectionCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            关注的帖吧数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.TenantTypeIdsExtension.Bar(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            帖吧应用
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.TenantTypeIdsExtension.BarSection(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            帖吧
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.TenantTypeIdsExtension.BarThread(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            帖子
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.TenantTypeIdsExtension.BarPost(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            回帖
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.TenantTypeIdsExtension.BarRating(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            评分
+            </summary>
+            <param name="TenantTypeIds"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.ApplicationKeysExtension">
+            <summary>
+            应用Key
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.ApplicationKeysExtension.Bar(ApplicationKeys)">
+            <summary>
+            贴吧
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.SortBy_BarSection">
+            <summary>
+            帖吧排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarSection.DateCreated_Desc">
+            <summary>
+            创建时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarSection.ThreadCount">
+            <summary>
+            主题帖数
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarSection.ThreadAndPostCount">
+            <summary>
+            主题帖和回帖总数
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarSection.StageThreadAndPostCount">
+            <summary>
+            阶段主题帖和回帖总数
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarSection.FollowedCount">
+            <summary>
+            被关注数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.SortBy_BarThread">
+            <summary>
+            帖子排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarThread.DateCreated_Desc">
+            <summary>
+            发布时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarThread.LastModified_Desc">
+            <summary>
+            更新时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarThread.HitTimes">
+            <summary>
+            浏览数
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarThread.StageHitTimes">
+            <summary>
+            阶段浏览数
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarThread.PostCount">
+            <summary>
+            回帖数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.SortBy_BarPost">
+            <summary>
+            回帖排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarPost.DateCreated">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.SortBy_BarPost.DateCreated_Desc">
+            <summary>
+            创建时间倒序
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.ThreadCategoryStatus">
+            <summary>
+            主题分类状态
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.ThreadCategoryStatus.Disabled">
+            <summary>
+            禁用
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.ThreadCategoryStatus.NotForceEnabled">
+            <summary>
+            启用（不强制）
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Bar.ThreadCategoryStatus.ForceEnabled">
+            <summary>
+            启用（强制）
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarPost">
+            <summary>
+            回帖实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPost.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPost.GetBody">
+            <summary>
+            获取BarPost的Body
+            </summary>
+            <remarks>
+            由于使用独立的实体内容缓存，Body属性已经置为null
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPost.GetResolvedBody">
+            <summary>
+            获取BarPost的解析过的内容
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.PostId">
+             <summary>
+            PostId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.SectionId">
+             <summary>
+            所属帖吧Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.TenantTypeId">
+             <summary>
+            所属帖吧租户类型Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.OwnerId">
+             <summary>
+            所属帖吧拥有者Id（例如：群组Id）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.ThreadId">
+             <summary>
+            所属帖子Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.ParentId">
+             <summary>
+            父回帖Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.UserId">
+             <summary>
+            主题作者用户Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.Author">
+             <summary>
+            主题作者
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.Subject">
+             <summary>
+            帖子标题
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.Body">
+             <summary>
+            帖子内容
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.IP">
+             <summary>
+            发帖人IP
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.ChildPostCount">
+             <summary>
+            子回复数
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.LastModified">
+             <summary>
+            最后更新日期（被回复时也需要更新时间）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.Thread">
+            <summary>
+            主题帖
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.Section">
+            <summary>
+            回帖所属的帖吧
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.User">
+            <summary>
+            主题帖作者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.Tunynet#Common#IAuditable#AuditItemKey">
+            <summary>
+            审核项Key 
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPost.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarPostQuery">
+            <summary>
+            封装管理回帖时用于查询回帖的条件
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostQuery.PostKeyword">
+            <summary>
+            标题关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostQuery.SectionId">
+            <summary>
+            帖吧Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostQuery.UserId">
+            <summary>
+            作者用户Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostQuery.StartDate">
+            <summary>
+            开始日期（用于发布时间条件）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostQuery.EndDate">
+            <summary>
+            结束日期（用于发布时间条件）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostQuery.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarRating">
+            <summary>
+            帖子评分
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRating.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.RatingId">
+             <summary>
+            RatingId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.ThreadId">
+             <summary>
+            所属帖子Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.UserId">
+             <summary>
+            评分用户Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.User">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.UserDisplayName">
+             <summary>
+            评分用户名
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.TradePoints">
+             <summary>
+            评的金币值
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.ReputationPoints">
+             <summary>
+            评的威望值
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.Reason">
+             <summary>
+            理由
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.IP">
+             <summary>
+            发帖人IP
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarRating.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSection">
+            <summary>
+            帖吧
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSection.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.SectionId">
+             <summary>
+            SectionId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.TenantTypeId">
+             <summary>
+            帖吧租户类型Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.OwnerId">
+             <summary>
+            帖吧拥有者Id（例如：活动Id、群组Id），若是帖吧应用，则OwnerId为0
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.UserId">
+             <summary>
+            吧主用户Id（若是活动/群组，则对应活动/群组创建者Id）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.Name">
+             <summary>
+            帖吧名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.Description">
+             <summary>
+            帖吧描述
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.LogoImage">
+             <summary>
+            Logo存储图片名称
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.IsEnabled">
+             <summary>
+            是否启用
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.EnableRss">
+             <summary>
+            是否启用RSS
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.ThreadCategoryStatus">
+             <summary>
+            主题分类状态 0=禁用；1=启用（不强制）；2=启用（强制）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.DisplayOrder">
+             <summary>
+            排序序号
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.HasLogoImage">
+            <summary>
+            判断是否有Logo
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.SectionManagers">
+            <summary>
+            吧管理员列表
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.User">
+            <summary>
+            吧主
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.Category">
+            <summary>
+            帖吧分类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.ThreadCategories">
+            <summary>
+            贴吧下所有帖子的分类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.AuditStatus">
+             <summary>
+            审核状态
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.ThreadCount">
+            <summary>
+            主题帖数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.ThreadAndPostCount">
+            <summary>
+            主题帖和回帖总数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.ToDayThreadAndPostCount">
+            <summary>
+            今日主题帖和回帖总数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSection.FollowedCount">
+             <summary>
+            被关注数
+             </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSectionQuery">
+            <summary>
+            封装管理帖吧时用于查询帖吧的条件
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionQuery.NameKeyword">
+            <summary>
+            帖吧关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionQuery.CategoryId">
+            <summary>
+            帖吧类别Id（包含后代子类别）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionQuery.UserId">
+            <summary>
+            吧主Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionQuery.IsEnabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarSectionQuery.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarThread">
+            <summary>
+            帖子
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThread.New">
+            <summary>
+            新建实体时使用
+            </summary>        
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThread.GetBody">
+            <summary>
+            获取BarThread的Body
+            </summary>
+            <remarks>
+            由于使用独立的实体内容缓存，Body属性已经置为null
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThread.GetResolvedBody">
+            <summary>
+            获取BarThread的解析过的内容
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThread.GetNewestPost">
+            <summary>
+            获取帖子的最新一条回复贴
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.ThreadId">
+             <summary>
+            ThreadId
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.SectionId">
+             <summary>
+            所属帖吧Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.TenantTypeId">
+             <summary>
+            所属帖吧租户类型Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.OwnerId">
+             <summary>
+            所属帖吧拥有者Id（例如：群组Id）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.UserId">
+             <summary>
+            主题作者用户Id
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.Author">
+             <summary>
+            主题作者
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.Subject">
+             <summary>
+            帖子标题
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.Body">
+             <summary>
+            帖子内容
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.IsLocked">
+             <summary>
+            是否锁定
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.IsEssential">
+             <summary>
+            是否精华
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.IsSticky">
+             <summary>
+            是否置顶
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.StickyDate">
+             <summary>
+            置顶期限
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.IsHidden">
+             <summary>
+            是否仅回复可见
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.HighlightStyle">
+             <summary>
+            高亮显示的样式代码
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.HighlightDate">
+             <summary>
+            高亮显示期限
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.Price">
+             <summary>
+            售价（交易积分）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.PostCount">
+            <summary>
+            回帖数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.IP">
+             <summary>
+            发帖人IP
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.LastModified">
+             <summary>
+            最后更新日期（被回复时也需要更新时间）
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.NextThreadId">
+            <summary>
+            下一主题ThreadId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.PrevThreadId">
+            <summary>
+            上一主题ThreadId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.NextThread">
+            <summary>
+            下一篇帖子
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.PrevThread">
+            <summary>
+            上一篇帖子
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.User">
+            <summary>
+            主题作者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.BarSection">
+            <summary>
+            所属帖吧
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.CategoryId">
+            <summary>
+            帖子的分类id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.Category">
+            <summary>
+            帖子的分类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.TagNames">
+            <summary>
+            主题标签名列表
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.Attachments">
+            <summary>
+            所属本帖子的
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.Tunynet#Common#IAuditable#AuditItemKey">
+            <summary>
+            审核项Key 
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.HitTimes">
+            <summary>
+            浏览数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.ToDayHitTimes">
+            <summary>
+            今日浏览数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThread.Last7DaysHitTimes">
+            <summary>
+            最近7天浏览数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarThreadQuery">
+            <summary>
+            封装管理帖子时用于查询帖子的条件
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.SubjectKeyword">
+            <summary>
+            标题关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.SectionId">
+            <summary>
+            帖吧Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.UserId">
+            <summary>
+            作者用户Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.StartDate">
+            <summary>
+            开始日期（用于发布时间条件）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.EndDate">
+            <summary>
+            结束日期（用于发布时间条件）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.IsSticky">
+             <summary>
+            是否置顶
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.IsEssential">
+             <summary>
+            是否精华
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadQuery.CategoryId">
+            <summary>
+            类别Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarPostRepository">
+             <summary>
+            回帖Repository
+             </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.IBarPostRepository">
+            <summary>
+            回帖仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetBody(System.Int64)">
+            <summary>
+            获取BarPost内容
+            </summary>
+            <param name="threadId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetResolvedBody(System.Int64)">
+            <summary>
+            获取解析过正文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetNewestPost(System.Int64)">
+            <summary>
+            获取主题帖最新的一条回复
+            </summary>
+            <param name="threadId"></param>
+            <returns>回复贴（若没有，则返回null）</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetAllPostsOfThread(System.Int64)">
+            <summary>
+            获取某个帖子下的所有回帖（用于删除帖子）
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetAllPostsOfUser(System.Int64)">
+            <summary>
+            获取某个用户的所有回帖（用于删除用户）
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetMyPosts(System.Int64,System.String,System.Int32)">
+            <summary>
+            获取我的回复贴分页集合
+            </summary>
+            <param name="userId">回复贴作者Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="pageIndex">页码</param>
+            <returns>回复贴列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.Gets(System.Int64,System.Boolean,System.Int64,Spacebuilder.Bar.SortBy_BarPost,System.Int32)">
+            <summary>
+            获取主题帖的回帖排行分页集合
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <param name="onlyStarter">仅看楼主</param>
+            <param name="starterId">楼主Id</param>
+            <param name="sortBy">回帖排序依据（默认为按创建时间正序排序）</param>
+            <param name="pageIndex">页码</param>
+            <returns>回复贴列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.Gets(System.String,Spacebuilder.Bar.BarPostQuery,System.Int32,System.Int32)">
+            <summary>
+            获取回帖的管理列表
+            </summary>
+            <param name="query">帖子查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖子分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetChildren(System.Int64,System.Int32,Spacebuilder.Bar.SortBy_BarPost)">
+            <summary>
+            获取子级回帖列表
+            </summary>
+            <param name="parentId">父回帖Id</param>
+            <param name="pageIndex">当前页码</param>
+            <param name="sortBy">排序字段</param> 
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetThreadIdsByUser(System.Int64,System.Int32)">
+            <summary>
+            用户某一段时间内对哪些帖子回过帖
+            </summary>
+            <param name="userId"></param>
+            <param name="beforeDays"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetPageIndexForPostInThread(System.Int64,System.Int64)">
+            <summary>
+            获取回复在帖子回复列表中的页码数
+            </summary>
+            <param name="threadId">帖子id</param>
+            <param name="postId">回复id</param>
+            <returns>回复在帖子回复列表中的页码数</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetPageIndexForChildrenPost(System.Int64,System.Int64)">
+            <summary>
+            获取二级回复在二级回复列表中的页码数
+            </summary>
+            <param name="parentId">父级回复id</param>
+            <param name="postId">回复id</param>
+            <returns>二级回复在二级回复列表中的页码数</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarPostRepository.GetManageableDatas(System.String)">
+            <summary>
+            获取统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.#ctor">
+            <summary>
+            构造器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.#ctor(Tunynet.Common.PubliclyAuditStatus)">
+            <summary>
+            构造器
+            </summary>
+            <param name="publiclyAuditStatus"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.Insert(Spacebuilder.Bar.BarPost)">
+            <summary>
+            插入回复贴
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.Update(Spacebuilder.Bar.BarPost)">
+            <summary>
+            更新帖子
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.Delete(Spacebuilder.Bar.BarPost)">
+            <summary>
+            删除回复贴
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetAllPostsOfThread(System.Int64)">
+            <summary>
+            获取某个帖子下的所有回帖（用于删除帖子）
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetAllPostsOfUser(System.Int64)">
+            <summary>
+            获取某个用户的所有回帖（用于删除用户）
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetResolvedBody(System.Int64)">
+            <summary>
+            获取解析的正文
+            </summary>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetBody(System.Int64)">
+            <summary>
+            获取BarPost内容
+            </summary>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetThreadIdsByUser(System.Int64,System.Int32)">
+            <summary>
+            用户某一段时间内对哪些帖子回过帖
+            </summary>
+            <param name="userId"></param>
+            <param name="beforeDays"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetNewestPost(System.Int64)">
+            <summary>
+            获取主题帖最新的一条回复
+            </summary>
+            <param name="threadId"></param>
+            <returns>回复贴（若没有，则返回null）</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetMyPosts(System.Int64,System.String,System.Int32)">
+            <summary>
+            获取我的回复贴分页集合
+            </summary>
+            <param name="userId">回复贴作者Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="pageIndex">页码</param>
+            <returns>回复贴列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.Gets(System.Int64,System.Boolean,System.Int64,Spacebuilder.Bar.SortBy_BarPost,System.Int32)">
+            <summary>
+            获取主题帖的回帖排行分页集合
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <param name="sortBy">回帖排序依据（默认为按创建时间正序排序）</param>
+            <param name="onlyStarter">仅看楼主</param>
+            <param name="starterId">楼主Id</param>
+            <param name="pageIndex">页码</param>
+            <returns>回复贴列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.Gets(System.String,Spacebuilder.Bar.BarPostQuery,System.Int32,System.Int32)">
+            <summary>
+            获取回帖的管理列表
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="query">帖子查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖子分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetChildren(System.Int64,System.Int32,Spacebuilder.Bar.SortBy_BarPost)">
+            <summary>
+            获取子级回帖列表
+            </summary>
+            <param name="parentId">父回帖Id</param>
+            <param name="pageIndex">当前页码</param>
+            <param name="sortBy">排序字段</param> 
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetCacheKey_NewestPost(System.Int64)">
+            <summary>
+            获取主题帖最新的一条回复的CacheKey
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetCacheKeyOfResolvedBody(System.Int64)">
+            <summary>
+            获取解析正文缓存Key
+            </summary>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetCacheKey_PostIdsOfThread(System.Int64,System.Boolean,Spacebuilder.Bar.SortBy_BarPost)">
+            <summary>
+            获取主题帖下回帖列表缓存
+            </summary>
+            <param name="threadId"></param>
+            <param name="onlyStarter"></param>
+            <param name="sortBy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetSql_Posts(System.Int64,System.Boolean,System.Int64,Spacebuilder.Bar.SortBy_BarPost)">
+            <summary>
+            获取主题帖的回帖列表的sql语句
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <param name="sortBy">回帖排序依据（默认为按创建时间正序排序）</param>
+            <param name="onlyStarter">仅看楼主</param>
+            <param name="starterId">楼主Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetPageIndexForPostInThread(System.Int64,System.Int64)">
+            <summary>
+            计算回帖在帖子的哪一页
+            </summary>
+            <param name="threadId"></param>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetPageIndexForChildrenPost(System.Int64,System.Int64)">
+            <summary>
+            计算子级回帖在子回帖的第几页
+            </summary>
+            <param name="parentId"></param>
+            <param name="postId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostRepository.GetManageableDatas(System.String)">
+            <summary>
+            获取统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarPostRepository.PubliclyAuditStatus">
+            <summary>
+            帖吧应用可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarRatingRepository">
+             <summary>
+            帖子评分Repository
+             </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.IBarRatingRepository">
+            <summary>
+            帖子评分仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarRatingRepository.Gets(System.Int64,System.Int32)">
+            <summary>
+            获取主题帖的评分记录分页集合
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <param name="pageIndex">页码</param>
+            <returns>评分列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarRatingRepository.GetThreadIdsByUser(System.Int64,System.Int32)">
+            <summary>
+            根据用户获取所有评过分的帖子列表
+            </summary>
+            <param name="userId"></param>
+            <param name="beforeDays">最近多少天内</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarRatingRepository.GetUserTodayRatingSum(System.Int64)">
+            <summary>
+            获取今天用户的评分数
+            </summary>
+            <param name="userId">用户id</param>
+            <returns>用户的评分数</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingRepository.Insert(Spacebuilder.Bar.BarRating)">
+            <summary>
+            评分
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingRepository.Gets(System.Int64,System.Int32)">
+            <summary>
+            获取主题帖的评分记录分页集合
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <param name="pageIndex">页码</param>
+            <returns>评分列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingRepository.GetThreadIdsByUser(System.Int64,System.Int32)">
+            <summary>
+            根据用户获取所有评过分的帖子列表
+            </summary>
+            <param name="userId"></param>
+            <param name="beforeDays">最近多少天内</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingRepository.GetUserTodayRatingSum(System.Int64)">
+            <summary>
+            获取用户今天评过的分数
+            </summary>
+            <param name="userId">用户id</param>
+            <returns>今天评分的总和</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingRepository.GetCacheKey_UserTodayRatingSum(System.Int64)">
+            <summary>
+            获取用户今天评分的cachekey
+            </summary>
+            <returns>用户今天评分的cachekey</returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSectionRepository">
+             <summary>
+            帖吧Repository
+             </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.IBarSectionRepository">
+            <summary>
+            帖吧仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.UpdateManagerIds(System.Int64,System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            更新吧管理员列表
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <param name="managerIds">吧管理员用户Id集合</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.GetSectionManagerIds(System.Int64)">
+            <summary>
+            获取帖吧的管理员用户Id列表
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <returns>吧管理员用户Id列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.GetByOwnerId(System.String,System.Int64)">
+            <summary>
+            依据OwnerId获取单个帖吧（用于OwnerId与帖吧一对一关系）
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <returns>帖吧</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.GetsByUserId(System.Int64)">
+            <summary>
+            获取用户申请过的帖吧列表（仅适用于租户类型Id为帖吧应用的情况）
+            </summary>
+            <param name="userId">创建者Id</param>
+            <returns>帖吧列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.GetTops(System.String,System.Int32,System.Nullable{System.Int64},Spacebuilder.Bar.SortBy_BarSection)">
+            <summary>
+            获取帖吧的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="sortBy">帖吧排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.Gets(System.String,System.String,System.Nullable{System.Int64},Spacebuilder.Bar.SortBy_BarSection,System.Int32)">
+            <summary>
+            获取帖吧列表
+            </summary>
+            <remarks>在频道帖吧分类页使用</remarks>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="nameKeyword"></param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="sortBy">帖吧排序依据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖吧列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.Gets(System.String,Spacebuilder.Bar.BarSectionQuery,System.Int32,System.Int32)">
+            <summary>
+            帖吧管理时查询帖吧分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="query">帖吧查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖吧分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.DeleteManager(System.Int64,System.Int64)">
+            <summary>
+            删除帖吧管理员
+            </summary>
+            <param name="sectionId"></param>
+            <param name="userId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.GetManageableDatas(System.String)">
+            <summary>
+            获取帖吧管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.GetStatisticDatas(System.String)">
+            <summary>
+            获取帖吧统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarSectionRepository.GetTopTagsForBar(System.Int32,System.Nullable{Tunynet.Common.SortBy_Tag})">
+            <summary>
+            获取前N个贴吧标签ID（TagInOwner类型）
+            </summary>
+            <param name="topNumber"></param>
+            <param name="sortBy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.Insert(Spacebuilder.Bar.BarSection)">
+            <summary>
+            创建帖吧
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.Delete(Spacebuilder.Bar.BarSection)">
+            <summary>
+            删除帖吧
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.DeleteManager(System.Int64,System.Int64)">
+            <summary>
+            删除帖吧管理员
+            </summary>
+            <param name="sectionId"></param>
+            <param name="userId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.UpdateManagerIds(System.Int64,System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            更新吧管理员列表
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <param name="managerIds">吧管理员用户Id集合</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetSectionManagerIds(System.Int64)">
+            <summary>
+            获取帖吧的管理员用户Id列表
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <returns>吧管理员用户Id列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetByOwnerId(System.String,System.Int64)">
+            <summary>
+            依据OwnerId获取单个帖吧（用于OwnerId与帖吧一对一关系）
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <returns>帖吧</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetsByUserId(System.Int64)">
+            <summary>
+            获取用户申请过的帖吧列表（仅适用于租户类型Id为帖吧应用的情况）
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="userId">创建者Id</param>
+            <returns>帖吧列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetTops(System.String,System.Int32,System.Nullable{System.Int64},Spacebuilder.Bar.SortBy_BarSection)">
+            <summary>
+            获取帖吧的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="sortBy">帖吧排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.Gets(System.String,System.String,System.Nullable{System.Int64},Spacebuilder.Bar.SortBy_BarSection,System.Int32)">
+            <summary>
+            获取帖吧列表
+            </summary>
+            <remarks>在频道帖吧分类页使用</remarks>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="nameKeyword"></param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="sortBy">帖吧排序依据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖吧列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetSql_SectionsByCategoryId(System.String,System.String,System.Nullable{System.Int64},Spacebuilder.Bar.SortBy_BarSection)">
+            <summary>
+            获取类别下帖吧列表的SQL块
+            </summary>
+            <param name="tenantTypeId"></param>
+            <param name="nameKeyword"></param>
+            <param name="categoryId"></param>
+            <param name="sortBy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.Gets(System.String,Spacebuilder.Bar.BarSectionQuery,System.Int32,System.Int32)">
+            <summary>
+            帖吧管理时查询帖吧分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="query">帖吧查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖吧分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetManageableDatas(System.String)">
+            <summary>
+            获取帖吧管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetTopTagsForBar(System.Int32,System.Nullable{Tunynet.Common.SortBy_Tag})">
+            <summary>
+            获取前N个贴吧标签ID（TagInOwner类型）
+            </summary>
+            <param name="topNumber"></param>
+            <param name="sortBy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetStatisticDatas(System.String)">
+            <summary>
+            获取帖吧统计数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetCacheKey_BarSection(System.Int64,System.String)">
+            <summary>
+            获取帖吧缓存Key
+            </summary>
+            <param name="ownerId"></param>
+            <param name="tenantTypeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionRepository.GetCacheKey_SectionManagerIds(System.Int64)">
+            <summary>
+            帖吧管理员缓存
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarThreadRepository">
+            <summary>
+            帖子仓储
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.IBarThreadRepository">
+            <summary>
+            帖子仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.MoveThread(System.Int64,System.Int64)">
+            <summary>
+            移动帖子
+            </summary>
+            <param name="threadId">要移动帖子的ThreadId</param>
+            <param name="moveToSectionId">转移到帖吧的SectionId</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.DeleteUser(System.Int64,Spacebuilder.Common.User,System.Boolean)">
+            <summary>
+            删除用户记录（删除用户时使用）
+            </summary>
+            <param name="userId">被删除用户</param>
+            <param name="takeOver">接管用户</param>
+            <param name="takeOverAll">是否接管被删除用户的所有内容</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetAllThreadsOfSection(System.Int64)">
+            <summary>
+            获取某个帖吧下的所有帖子（用于删除帖子）
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetAllThreadsOfUser(System.Int64)">
+            <summary>
+            获取某个用户的所有帖子（用于删除用户）
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetBody(System.Int64)">
+            <summary>
+            获取BarThread内容
+            </summary>
+            <param name="threadId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetResolvedBody(System.Int64)">
+            <summary>
+            获取解析过正文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetUserThreads(System.String,System.Int64,System.Boolean,System.Boolean,System.Int32,System.Nullable{System.Int64})">
+            <summary>
+            获取用户的主题帖分页集合
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="isPosted">是否是取我回复过的</param>
+            <param name="pageIndex">页码</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetTops(System.String,System.Int32,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread)">
+            <summary>
+            获取主题帖的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="sortBy">主题帖排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetTopsThreadOfGroup(System.String,System.Int32,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread)">
+            <summary>
+            获取群组贴吧的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="sortBy">主题帖排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.Gets(System.String,System.String,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread,System.Int32)">
+            <summary>
+            根据标签名获取主题帖排行分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="categoryId">主题帖分类Id</param>
+            <param name="isEssential">是否为精华帖</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageIndex">页码</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.Gets(System.Int64,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread,System.Int32)">
+            <summary>
+            根据帖吧获取主题帖分页集合
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="isEssential">是否为精华帖</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageIndex">页码</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.Gets(System.String,Spacebuilder.Bar.BarThreadQuery,System.Int32,System.Int32)">
+            <summary>
+            帖子管理时查询帖子分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="query">帖子查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖子分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.ExpireStickyThreads">
+            <summary>
+            更新置顶到期的帖子
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetManageableDatas(System.String)">
+            <summary>
+            获取帖子管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.IBarThreadRepository.GetStatisticDatas(System.String)">
+            <summary>
+            获取帖子统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.#ctor">
+            <summary>
+            构造器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.#ctor(Tunynet.Common.PubliclyAuditStatus)">
+            <summary>
+            构造器
+            </summary>
+            <param name="publiclyAuditStatus"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.Update(Spacebuilder.Bar.BarThread)">
+            <summary>
+            更新帖子
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.MoveThread(System.Int64,System.Int64)">
+            <summary>
+            移动帖子
+            </summary>
+            <param name="threadId"></param>
+            <param name="moveToSectionId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.ExpireStickyThreads">
+            <summary>
+            更新置顶到期的帖子
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.DeleteUser(System.Int64,Spacebuilder.Common.User,System.Boolean)">
+            <summary>
+            删除用户记录（删除用户时使用）
+            </summary>
+            <param name="userId">被删除用户</param>
+            <param name="takeOver">接管用户</param>
+            <param name="takeOverAll">是否接管被删除用户的所有内容</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.Delete(Spacebuilder.Bar.BarThread)">
+            <summary>
+            删除帖子
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetPrevThreadId(Spacebuilder.Bar.BarThread)">
+            <summary>
+            获取上一篇
+            </summary>
+            <param name="barThread"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetNextThreadId(Spacebuilder.Bar.BarThread)">
+            <summary>
+            获取下一篇
+            </summary>
+            <param name="barThread"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetAllThreadsOfSection(System.Int64)">
+            <summary>
+            获取某个帖吧下的所有帖子（用于删除帖子）
+            </summary>
+            <param name="sectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetAllThreadsOfUser(System.Int64)">
+            <summary>
+            获取某个用户的所有帖子（用于删除用户）
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetResolvedBody(System.Int64)">
+            <summary>
+            获取解析的正文
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetBody(System.Int64)">
+            <summary>
+            获取BarThread内容
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetUserThreads(System.String,System.Int64,System.Boolean,System.Boolean,System.Int32,System.Nullable{System.Int64})">
+            <summary>
+            获取用户的主题帖分页集合
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="isPosted">是否是取我回复过的</param>
+            <param name="pageIndex">页码</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetTops(System.String,System.Int32,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread)">
+            <summary>
+            获取主题帖的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="sortBy">主题帖排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetTopsThreadOfGroup(System.String,System.Int32,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread)">
+            <summary>
+            获取群组贴吧的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="sortBy">主题帖排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.Gets(System.String,System.String,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread,System.Int32)">
+            <summary>
+            根据标签名获取主题帖排行分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="tageName">标签名</param>
+            <param name="isEssential">是否为精华帖</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageIndex">页码</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.Gets(System.Int64,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread,System.Int32)">
+            <summary>
+            根据帖吧获取主题帖分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="sectionId">帖吧Id</param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="isEssential">是否为精华帖</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageIndex">页码</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.Gets(System.String,Spacebuilder.Bar.BarThreadQuery,System.Int32,System.Int32)">
+            <summary>
+            帖子管理时查询帖子分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="query">帖子查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖子分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetManageableDatas(System.String)">
+            <summary>
+            获取帖子管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetStatisticDatas(System.String)">
+            <summary>
+            获取帖子统计数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Spacebuilder.Bar.BarThreadRepository.publiclyAuditStatus">
+            <summary>
+            帖吧应用可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadRepository.GetCacheKeyOfResolvedBody(System.Int64)">
+            <summary>
+            获取解析正文缓存Key
+            </summary>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Bar.BarThreadRepository.PubliclyAuditStatus">
+            <summary>
+            帖吧应用可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarPostService">
+            <summary>
+            回帖业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.#ctor(Spacebuilder.Bar.IBarPostRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="barPostRepository"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.Create(Spacebuilder.Bar.BarPost)">
+            <summary>
+            创建回复贴
+            </summary>
+            <param name="post">回复贴</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.Update(Spacebuilder.Bar.BarPost,System.Int64)">
+            <summary>
+            更新回复贴
+            </summary>
+            <param name="post">回复贴</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.UpdateAuditStatus(System.Int64,System.Boolean)">
+            <summary>
+            更新审核状态
+            </summary>
+            <param name="postId">待被更新的回帖Id</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.BatchUpdateAuditStatus(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            批量更新审核状态
+            </summary>
+            <param name="postIds">待被更新的回复贴Id集合</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.Delete(System.Int64)">
+            <summary>
+            删除回复贴
+            </summary>
+            <param name="postId">回复贴Id</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.DeletesByThreadId(System.Int64)">
+            <summary>
+            删除帖子下的所有回帖
+            </summary>
+            <param name="threadId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.DeletesByUserId(System.Int64)">
+            <summary>
+            删除某个用户的所有回帖
+            </summary>
+            <param name="userId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.IsPosted(System.Int64,System.Int64,System.Int32)">
+            <summary>
+            判断用户某一段时间内是否对某个帖子回过帖
+            </summary>
+            <param name="userId"></param>
+            <param name="threadId"></param>
+            <param name="beforeDays"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.Get(System.Int64)">
+            <summary>
+            获取单个回复贴实体
+            </summary>
+            <param name="postId">回复贴Id</param>
+            <returns>回复贴</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.GetNewestPost(System.Int64)">
+            <summary>
+            获取主题帖最新的一条回复
+            </summary>
+            <param name="threadId"></param>
+            <returns>回复贴（若没有，则返回null）</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.GetMyPosts(System.Int64,System.String,System.Int32)">
+            <summary>
+            获取我的回复贴分页集合
+            </summary>
+            <param name="userId">回复贴作者Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="pageIndex">页码</param>
+            <returns>回复贴列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.Gets(System.Int64,System.Boolean,Spacebuilder.Bar.SortBy_BarPost,System.Int32)">
+            <summary>
+            获取主题帖的回帖排行分页集合
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <param name="onlyStarter">仅看楼主</param>
+            <param name="sortBy">回帖排序依据（默认为按创建时间正序排序）</param>
+            <param name="pageIndex">页码</param>
+            <returns>回复贴列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.GetChildren(System.Int64,Spacebuilder.Bar.SortBy_BarPost,System.Int32)">
+            <summary>
+            获取子级回帖列表
+            </summary>
+            <param name="parentId">父回帖Id</param>
+            <param name="pageIndex">当前页码</param>
+            <param name="sortBy">排序字段</param> 
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.Gets(System.String,Spacebuilder.Bar.BarPostQuery,System.Int32,System.Int32)">
+            <summary>
+            获取回帖的管理列表
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="query">帖子查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖子分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.GetBarPosts(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            根据回帖Id集合组装回帖实体集合
+            </summary>
+            <param name="postIds">回帖Id集合</param>
+            <returns>回帖实体集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.GetPageIndexForPostInThread(System.Int64,System.Int64)">
+            <summary>
+            获取帖子所在的页数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.GetPageIndexForChildrenPost(System.Int64,System.Int64)">
+            <summary>
+            获取二级回复在二级回复列表的页码数
+            </summary>
+            <param name="parentId">父回帖的id</param>
+            <param name="postId">子回复的id</param>
+            <returns>二级回复在二级回复列表中的页码数</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarPostService.GetManageableDatas(System.String)">
+            <summary>
+            获取统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarRatingService">
+            <summary>
+            评分业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingService.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingService.#ctor(Spacebuilder.Bar.IBarRatingRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="barRatingRepository"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingService.Create(Spacebuilder.Bar.BarRating)">
+            <summary>
+            创建评分
+            </summary>
+            <param name="rating">评分</param>
+            <returns>true-评分成功，false-评分失败（可能今日评分已超过限额）</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingService.Get(System.Int64)">
+            <summary>
+            获取单个评分实体
+            </summary>
+            <param name="ratingId">评分Id</param>
+            <returns>评分</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingService.IsRated(System.Int64,System.Int64,System.Int32)">
+            <summary>
+            判断用户某一段时间内是否对某个帖子评过分
+            </summary>
+            <param name="userId"></param>
+            <param name="threadId"></param>
+            <param name="beforeDays">最近多少天内</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingService.Gets(System.Int64,System.Int32)">
+            <summary>
+            获取主题帖的评分记录分页集合
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <param name="pageIndex">页码</param>
+            <returns>评分列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarRatingService.GetUserTodayRatingSum(System.Int64)">
+            <summary>
+            获取我今天评分的集合
+            </summary>
+            <returns>我今天评分的集合</returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarSectionService">
+            <summary>
+            帖吧业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.#ctor(Spacebuilder.Bar.IBarSectionRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="barSectionRepository"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.Create(Spacebuilder.Bar.BarSection,System.Int64,System.Collections.Generic.IEnumerable{System.Int64},System.IO.Stream)">
+            <summary>
+            创建帖吧
+            </summary>
+            <param name="section">帖吧</param>
+            <param name="userId">当前操作人</param>
+            <param name="managerIds">管理员用户Id</param>
+            <param name="logoFile">帖吧标识图</param>
+            <returns>是否创建成功</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.Update(Spacebuilder.Bar.BarSection,System.Int64,System.Collections.Generic.IEnumerable{System.Int64},System.IO.Stream)">
+            <summary>
+            更新帖吧
+            </summary>
+            <param name="section">帖吧</param>
+            <param name="userId">当前操作人</param>
+            <param name="managerIds">管理员用户Id</param>
+            <param name="sectionedFile">帖吧标识图</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.UpdateAuditStatus(System.Int64,System.Boolean)">
+            <summary>
+            更新帖吧的审核状态
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.BatchUpdateAuditStatus(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            批量更新审核状态
+            </summary>
+            <param name="sectionIds">待被更新的帖吧Id集合</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.Delete(System.Int64)">
+            <summary>
+            删除帖吧
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.DeleteLogo(System.Int64)">
+            <summary>
+            删除Logo
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.DeleteManager(System.Int64,System.Int64)">
+            <summary>
+            删除帖吧管理员
+            </summary>
+            <param name="sectionId"></param>
+            <param name="userId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.DeletesByUserId(System.Int64)">
+            <summary>
+            删除某个用户的所有申请过的帖吧
+            </summary>
+            <param name="userId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.Get(System.Int64)">
+            <summary>
+            获取单个帖吧实体
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <returns>帖吧</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.IsSectionOwner(System.Int64,System.Int64)">
+            <summary>
+            是否为吧主
+            </summary>
+            <param name="userId">被验证用户Id</param>
+            <param name="sectionId">帖吧Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.IsSectionManager(System.Int64,System.Int64)">
+            <summary>
+            是否为吧管理员
+            </summary>
+            <param name="userId">被验证用户Id</param>
+            <param name="sectionId">帖吧Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.GetSectionManagers(System.Int64)">
+            <summary>
+            获取帖吧的管理员列表
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <returns>帖吧</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.GetByOwnerId(System.String,System.Int64)">
+            <summary>
+            依据OwnerId获取单个帖吧（用于OwnerId与帖吧一对一关系）
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="ownerId">拥有者Id</param>
+            <returns>帖吧</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.GetsByUserId(System.Int64)">
+            <summary>
+            获取用户申请过的帖吧列表（仅适用于用户创建独立帖吧的情况）
+            </summary>
+            <param name="userId">创建者Id</param>
+            <returns>帖吧列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.GetTops(System.Int32,System.Nullable{System.Int64},Spacebuilder.Bar.SortBy_BarSection)">
+            <summary>
+            获取帖吧的排行数据（仅显示审核通过的帖吧）
+            </summary>
+            <param name="topNumber">前多少条</param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="sortBy">帖吧排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.Gets(System.String,System.Nullable{System.Int64},Spacebuilder.Bar.SortBy_BarSection,System.Int32)">
+            <summary>
+            获取帖吧列表
+            </summary>
+            <remarks>在频道帖吧分类页使用</remarks>
+            <param name="nameKeyword"></param>
+            <param name="sortBy">帖吧排序依据</param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖吧列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.Gets(System.String,Spacebuilder.Bar.BarSectionQuery,System.Int32,System.Int32)">
+            <summary>
+            帖吧管理时查询帖吧分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="query">帖吧查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖吧分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.GetBarsections(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            根据帖吧Id集合组装帖吧实体集合
+            </summary>
+            <param name="sectionIds">帖吧Id集合</param>
+            <returns>帖吧实体集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.GetManageableDatas(System.String)">
+            <summary>
+            获取帖吧管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.GetStatisticDatas(System.String)">
+            <summary>
+            获取帖吧统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarSectionService.GetTopTagsForBar(System.Int32,System.Nullable{Tunynet.Common.SortBy_Tag})">
+            <summary>
+            获取前N个贴吧标签ID（TagInOwner类型）
+            </summary>
+            <param name="topNumber">前N个ID数量</param>
+            <param name="sortBy">排序依据字段</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Bar.BarThreadService">
+            <summary>
+            主题帖业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.#ctor(Spacebuilder.Bar.IBarThreadRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="barThreadRepository"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.Create(Spacebuilder.Bar.BarThread)">
+            <summary>
+            创建主题帖
+            </summary>
+            <param name="thread">主题帖</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.Update(Spacebuilder.Bar.BarThread,System.Int64)">
+            <summary>
+            更新主题帖
+            </summary>
+            <param name="thread">主题帖</param>
+            <param name="userId">当前操作人</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.MoveThread(System.Int64,System.Int64)">
+            <summary>
+            移动帖子
+            </summary>
+            <param name="threadId">要移动帖子的ThreadId</param>
+            <param name="moveToSectionId">转移到帖吧的SectionId</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.SetEssential(System.Int64,System.Boolean)">
+            <summary>
+            设置精华
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <param name="isEssential">是否设为精华</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.SetSticky(System.Int64,System.Boolean,System.Nullable{System.DateTime})">
+            <summary>
+            设置置顶
+            </summary>
+            <param name="threadId">待操作的主题帖Id</param>
+            <param name="isSticky">待更新至的置顶状态</param>
+            <param name="stickyDate">设为置顶时，需设置置顶时间；取消置顶时，不需要设置此参数</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.UpdateAuditStatus(System.Int64,System.Boolean)">
+            <summary>
+            更新审核状态
+            </summary>
+            <param name="threadId">待被更新的主题帖Id</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.ExpireStickyThreads">
+            <summary>
+            使置顶到期的的帖子恢复至未置顶状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.BatchUpdateAuditStatus(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            批量更新审核状态
+            </summary>
+            <param name="threadIds">待被更新的主题帖Id集合</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.BatchSetEssential(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            批量设置精华
+            </summary>
+            <param name="threadIds">待被更新的主题帖Id集合</param>
+            <param name="isEssential">是否设为精华</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.BatchSetSticky(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean,System.DateTime)">
+            <summary>
+            批量设置置顶
+            </summary>
+            <param name="threadIds">待被更新的主题帖Id集合</param>
+            <param name="isSticky">是否置顶</param>
+            <param name="stickyDate">置顶时间</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.Delete(System.Int64)">
+            <summary>
+            删除主题帖
+            </summary>
+            <param name="threadId">主题帖Id</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.DeletesBySectionId(System.Int64)">
+            <summary>
+            删除帖吧下的所有帖子
+            </summary>
+            <param name="sectionId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.DeletesByUserId(System.Int64)">
+            <summary>
+            删除用户下的所有帖子
+            </summary>
+            <param name="sectionId"></param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户记录（删除用户时使用）
+            </summary>
+            <param name="userId">被删除用户</param>
+            <param name="takeOverUserName">接管用户名</param>
+            <param name="takeOverAll">是否接管被删除用户的所有内容</param>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.Get(System.Int64)">
+            <summary>
+            获取单个主题帖实体
+            </summary>
+            <param name="threadId">主题帖Id</param>
+            <returns>主题帖</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.GetUserThreads(System.String,System.Int64,System.Boolean,System.Boolean,System.Int32,System.Nullable{System.Int64})">
+            <summary>
+            获取用户的主题帖分页集合
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="isPosted">是否是取我回复过的</param>
+            <param name="pageIndex">页码</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.GetTops(System.String,System.Int32,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread)">
+            <summary>
+            获取主题帖的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="isEssential">是否为精华帖</param>
+            <param name="sortBy">主题帖排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.GetTopsThreadOfGroup(System.String,System.Int32,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread)">
+            <summary>
+            获取群组贴吧的排行数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="sortBy">主题帖排序依据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.Gets(System.String,System.String,System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread,System.Int32)">
+            <summary>
+            根据标签名获取主题帖排行分页集合
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <param name="tageName">标签名</param>
+            <param name="isEssential">是否为精华帖</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageIndex">页码</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.Gets(System.Int64,System.Nullable{System.Int64},System.Nullable{System.Boolean},Spacebuilder.Bar.SortBy_BarThread,System.Int32)">
+            <summary>
+            根据帖吧获取主题帖分页集合
+            </summary>
+            <param name="sectionId">帖吧Id</param>
+            <param name="categoryId">帖吧分类Id</param>
+            <param name="isEssential">是否为精华帖</param>
+            <param name="sortBy">帖子排序依据</param>
+            <param name="pageIndex">页码</param>
+            <returns>主题帖列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.Gets(System.String,Spacebuilder.Bar.BarThreadQuery,System.Int32,System.Int32)">
+            <summary>
+            帖子管理时查询帖子分页集合
+            </summary>
+            <param name="query">帖子查询条件</param>
+            <param name="pageSize">每页多少条数据</param>
+            <param name="pageIndex">页码</param>
+            <returns>帖子分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.GetBarThreads(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            根据主题帖Id集合组装主题帖实体集合
+            </summary>
+            <param name="threadIds">主题帖Id集合</param>
+            <returns>主题帖实体集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.GetManageableDatas(System.String)">
+            <summary>
+            获取帖子管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Bar.BarThreadService.GetStatisticDatas(System.String)">
+            <summary>
+            获取帖子统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

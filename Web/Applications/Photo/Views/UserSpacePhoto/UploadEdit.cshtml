@@ -1,0 +1,132 @@
+﻿@model List<Photo>
+@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    string spaceKey = Url.SpaceKey();
+    string photoIds = TempData.Get<string>("photoIds", null);
+    long albumId = TempData.Get<long>("albumId", 0);
+    long coverId = ViewData.Get<long>("CoverId", 0);
+    string errorMessage = TempData.Get<string>("errorMessage", "null");
+    long photoCount = TempData.Get<long>("photoCount", 0);
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.AjaxAction("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+@Html.PointMessage()
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-photo-upload">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <form id="completeUploadForm" method="post" action="@SiteUrls.Instance().CompleteUpload(spaceKey)">
+        <div class="spb-photo-edit">
+            <div class="tn-main-heading tn-border-gray tn-border-bottom">
+                <h2>
+                    完善照片描述</h2>
+            </div>
+            @if (errorMessage != "success")
+            {
+                <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+                    <div class="tn-box-content tn-widget-content tn-corner-all">
+                        <div class="tn-main-heading tn-border-gray tn-border-bottom">
+                            <div class="tn-option">
+                            </div>
+                            <h2>
+                            </h2>
+                        </div>
+                        <div class="tn-cue-highlight tn-corner-all tn-message-box">
+                            <span class="tn-helper-left"><span class="tn-icon tn-icon-exclamation"></span></span>
+                            <div class="tn-helper-flowfix">
+                                <strong>由于 @errorMessage , 本次您上传了 @photoCount 张照片。</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="tn-cue-success tn-corner-all tn-message-box">
+                    <span class="tn-helper-left"><span class="tn-icon tn-icon-accept-circle"></span>
+                    </span>
+                    <div class="tn-helper-flowfix">
+                        <strong>本次您已经成功上传了 @photoCount 张照片。</strong>
+                    </div>
+                    <div class="tn-helper-flowfix">
+                    </div>
+                </div> 
+            }
+            <div class="tn-list-header tn-bg-gray">
+                <span class="spb-unified-tag">统一标签：</span>
+                @Html.TagSelector("commonTag", TenantTypeIds.Instance().Photo(), null, UserIdToUserNameDictionary.GetUserId(spaceKey))
+            </div>
+            <ul class="spb-photo-edit-list tn-helper-clearfix">
+                @foreach (var photo in Model)
+                {
+                    <li class="spb-photo-edit-list-item tn-helper-clearfix"><span class="spb-photo-edit-pic">
+                        <span class="tn-set" id="@photo.PhotoId" url="@SiteUrls.Instance()._SetAlbumCover(spaceKey, photo.PhotoId)">
+                            <a title="@if (photo.PhotoId == coverId)
+                                      {<text>取消封面</text>}
+                                      else
+                                      {<text>设为封面</text>}" class="tn-button tn-corner-all @if (photo.PhotoId != coverId)
+                                                                                          {<text>tn-button-secondary</text>} tn-button-icon-only tnui-albumCover @if (photo.PhotoId == coverId)
+                                                                                                                                                                 {<text>tn-button-primary tnui-coverOn</text>}">
+                                <span class="tn-icon tn-smallicon-album"></span><span class="tn-button-text">设为封面</span>
+                            </a></span>
+                        <img class="tnui-image-detail" width="160" height="160" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())"/>
+                    </span>
+                        <textarea id="photoDesctitions@(photo.PhotoId)" name="photoDesctitions" cols="" rows="" maxLength="200" class="tn-textarea tn-input-long tn-border-gray tnui-photoDesctitions"></textarea>
+                        @Html.TagSelector("photoTags" + photo.PhotoId, TenantTypeIds.Instance().Photo(), photo.PhotoId, UserIdToUserNameDictionary.GetUserId(spaceKey))
+                        <input type="hidden" name="photoIds" value="@photo.PhotoId" />
+                    </li>   
+                }
+            </ul>
+            @Html.LinkButton("完成并查看", "###", HighlightStyles.Primary, ButtonSizes.Large, htmlAttributes: new { id = "completeUpload" })
+            @Html.LinkButton("继续上传", "###", HighlightStyles.Secondary, ButtonSizes.Large, htmlAttributes: new { @class = "normalUpload" })
+        </div>
+        <input id="photoIds" type="hidden" name="normalphotoIds" value="@photoIds" />
+        </form>
+    </div>
+</div>
+@Html.ScriptBlock(@<script>
+    $(function () {
+        $(".tnui-photoDesctitions").watermark("添加描述");
+
+        $("#completeUpload").click(function () {
+            $("#completeUploadForm").submit();
+        })
+
+        $(document).keyup(function (e) {
+            if (e.keyCode == 13) {
+                $("#completeUploadForm").submit();
+            }
+        })
+
+        $(".tn-set").click(function () {
+            $this = $(this);
+            var url;
+            if ($this.children().hasClass("tnui-coverOn")) { url = $this.attr("url") + "&isCover=false"; } else { url = $this.attr("url") + "&isCover=true"; }
+            $.post(url, function () {
+                $(".tnui-albumCover").removeClass("tn-button-primary").addClass("tn-button-secondary");
+                if ($this.children().hasClass("tnui-coverOn")) {
+                    $(".tnui-albumCover").removeClass("tnui-coverOn").attr("title", "设为封面");
+                    $this.children().removeClass("tn-button-primary").addClass("tn-button-secondary");
+                }
+                else {
+                    $(".tnui-albumCover").removeClass("tnui-coverOn").attr("title", "设为封面");
+                    $this.children().addClass("tnui-coverOn").attr("title", "取消封面");
+                    $this.children().removeClass("tn-button-secondary").addClass("tn-button-primary");
+                }
+            });
+        })
+
+        $(".normalUpload").click(function () {
+            if ($("#photoFile").val() == "") {
+                art.dialog.tips('请选择图片！', 1.5, 0)
+            }
+            else {
+                var photoIds = $("#photoIds").val();
+                var url = '@(SiteUrls.Instance().UploadNormal(albumId, spaceKey))';
+                window.location.href = url + "&photoIds=" + photoIds;
+            }
+        })
+
+    })
+</script>)

@@ -1,0 +1,51 @@
+﻿@model AskQuestion
+@{
+    int followerCount = ViewData.Get<int>("followerCount", 0);
+    IEnumerable<User> followUsers = ViewData.Get<IEnumerable<User>>("followers", null);
+    DateTime lastActionDate = Model.LastModified;
+    if (Model.LastAnswerDate.HasValue)
+    {
+        lastActionDate = Model.LastAnswerDate.Value > Model.LastModified ? Model.LastAnswerDate.Value : Model.LastModified;
+    }
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-state">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        <h3 class="tn-helper-reset">问题状态</h3>
+    </div>
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        <div class="tn-info-part">
+            <dl>
+                <dt>最近活动：</dt>
+                <dd>
+                    @lastActionDate.ToFriendlyDate(true)</dd>
+            </dl>
+            <dl>
+                <dt>浏览次数：</dt>
+                <dd>
+                    @Model.HitTimes</dd>
+            </dl>
+            @if (Model.DateCreated != Model.LastModified)
+            {
+                <dl>
+                    <dd>
+                        由<span class="tn-user-name">@Model.LastModifier</span>最后编辑于<span class="tn-date">@Model.LastModified.ToFriendlyDate(true)</span></dd>
+                </dl>
+            }
+            <dl>
+                <dd>
+                    <a class="tn-count" href="@SiteUrls.Instance().AskQuestionFollowers(Model.QuestionId)">@followerCount</a>人关注此问题</dd>
+            </dl>
+            <ul class="tn-list tn-helper-clearfix">
+                @if (followUsers != null && followUsers.Count()>0)
+                {
+                    foreach (var user in followUsers.Take(28))
+                    {
+                        <li>
+                            @Html.ShowUserAvatar(user, SiteUrls.Instance().AskUser(user.UserName), AvatarSizeType.Micro, HyperLinkTarget._self)
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

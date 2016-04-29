@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AskQuestion>
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-related">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        <h3 class="tn-helper-reset">相关问题</h3>
+    </div>
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        @if (Model != null && Model.Count() > 0)
+        {
+        <ul class="tn-list">
+        @{int i = 0;}
+            @foreach (var askQuestion in Model)
+            {
+                i++;
+                if (i>10)
+                {
+                    break;
+                }
+              <li class="tn-img-sprite tn-list-bullet"><a title="@askQuestion.Subject" href="@SiteUrls.Instance().AskQuestionDetail(askQuestion.QuestionId)">@Tunynet.Utilities.StringUtility.Trim(askQuestion.Subject,15)</a>@*<em class="tn-text-note tn-date">@askQuestion.LastModified.ToFriendlyDate(false)</em>*@</li>
+            }
+        </ul>
+        }
+        else
+        { 
+        <div class="tn-no-data">
+         无相关问题
+        </div>
+        }
+    </div>
+</div>

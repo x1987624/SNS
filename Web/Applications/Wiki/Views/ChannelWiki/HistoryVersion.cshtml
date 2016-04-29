@@ -1,0 +1,187 @@
+﻿@model PagingDataSet<WikiPageVersion>
+@{             
+    Layout = "app-1col";
+    Html.Style("~/Applications/Wiki/Styles/styles.css");
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+    var wikiPage = ViewData.Get<WikiPage>("WikiPage", WikiPage.New());
+    Html.ViewContext.RouteData.Values["CurrentNavigationId"] = 10101602;
+    string[] re = new string[] { };
+
+    bool IsSp = ViewData.Get<bool>("IsSpeech", false);
+    
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-bar-manage hr-history-box">
+
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+
+
+
+        <div class="tn-main-heading tn-border-gray tn-border-bottom">
+             <h2>“@Html.Link(wikiPage.Title, SiteUrls.Instance().PageDetail(wikiPage.PageId), "点击查看历史版本")” 的历史版本</h2>
+        </div>
+        <div class="tn-manage-lists">
+            @if (Model != null && Model.TotalRecords > 0)
+            {
+                using (Html.BeginForm("ShowPageVersionDifferent", "ChannelWiki", FormMethod.Post))
+                {
+                    <input type="hidden" value="@IsSp.ToString()" name="IsSpeech" />
+                <input type="hidden" id="saveNums" name="saveNums" />
+                <table class="tn-table-grid">
+                    <tbody>
+                        <tr class="tn-table-grid-header ">
+                            @*haiersns-2-liucg-20130716-增加版本比较*@
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                @*@Html.LinkButton("版本比较", SiteUrls.Instance().ShowPageVersionDifferent(), htmlAttributes: new { id = "Compare" })*@
+                                @Html.Button("版本比较", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { id = "Compare" })
+                            </th>
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">更新时间
+                            </th>
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">版本
+                            </th>
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">编辑人
+                            </th>
+                            <th class="tn-border-gray tn-border-bottom tn-text-note">修改原因
+                            </th>
+                            @if (DIContainer.Resolve<Authorizer>().Page_Manage(wikiPage))
+                            {
+                                <th class="tn-border-gray tn-border-bottom tn-text-note">操作
+                                </th>
+                            }
+
+                        </tr>
+                        @foreach (var version in Model)
+                        {
+                            <tr class="tn-table-grid-row">
+                                <td class="tn-border-gray tn-border-bottom tn-width-auto tn-border-dashed">
+                                    @{int nums = ((Model.PageIndex - 1) * Model.PageSize) + (Model.Select(n => n.VersionId).ToList().IndexOf(version.VersionId)) + 1;
+                                      int _nums = (int)Model.TotalRecords - nums + 1;
+                                    }
+                                    @Html.SipmleCheckBox("VersionId", version.VersionId, htmlAttributes: new { @class = "Compare-checkbox", id = "Compare-checkbox" + version.VersionId, num = _nums })
+                                    <label for="Compare-checkbox@(version.VersionId)">版本: </label>
+                                    <span>@Html.Raw(_nums)</span>
+
+                                </td>
+                                <td class="tn-border-gray tn-border-bottom tn-width-datetime tn-nowrap tn-border-dashed">
+                                    @version.DateCreated.ToFriendlyDate()
+                                </td>
+                                <td class="tn-border-gray tn-border-bottom tn-width-action1 tn-nowrap tn-border-dashed">
+                                    @Html.Link("查看", SiteUrls.Instance().PageDetail(version.PageId, version.VersionId), "点击查看历史版本", htmlAttributes: new { target = "_blank" })
+                                </td>
+                                <td class="tn-border-gray tn-border-bottom tn-width-user-name tn-border-dashed">
+                                    @if (version.User != null)
+                                    {                    
+                                        @Html.Link(version.User.DisplayName, SiteUrls.Instance().SpaceHome(version.UserId), version.User.DisplayName, null, HyperLinkTarget._blank)
+                                    }
+                                    else
+                                    {
+                                        @:贡献者已被删除
+                                    }
+                                </td>
+                                <td class="tn-border-gray tn-border-bottom tn-width-auto tn-border-dashed">
+                                    @Html.Raw(version.Reason);
+                                </td>
+                                @if (DIContainer.Resolve<Authorizer>().Page_Manage(wikiPage))
+                                {
+                                    <td class="tn-border-gray tn-border-bottom tn-width-auto tn-border-dashed">
+                                        @Html.Link("回滚到此版本", SiteUrls.Instance().RollbackPageVersion(version.VersionId, _nums), null, null)
+                                    </td>
+                                }
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                }
+                <div class="tn-pagination">
+                    @Html.PagingButton(Model, PaginationMode.NumericNextPrevious, 7)
+                    @Html.PagingResults(Model)
+                </div>
+            }
+            else
+            {
+                <div class="tn-no-data">
+                    暂无历史版本
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@Html.ScriptBlock(@<script type="text/javascript">
+    //haiersns-2-liucg-20130716 
+    $(document).ready(function () {
+        $(".Compare-checkbox").change(function (e) {
+            if (e.target.nodeName == 'INPUT') {
+                var checkbox = $(this).parent().children();
+                if ($(this).attr("checked")) {
+                    arrayObj.push($(this).val());
+                    checkbox.attr("checked")
+                }
+                else {
+                    arrayObj.splice(arrayObj.indexOf($(this).val()), 1);
+                    checkbox.removeAttr("checked");
+                }
+                if (arrayObj.length > 2) {
+                    var removeid = arrayObj[0].toString();
+                    $("input[value='" + removeid + "']").removeAttr("checked");
+                    arrayObj.splice(0, 1);
+                }
+            }
+        });
+        $("tr[class*='row']").click(function (e) {
+            if (e.target.nodeName == 'TD') {
+                var checkbox = $(this).children().children();
+                if (checkbox.attr("checked")) {
+                    arrayObj.splice(arrayObj.indexOf(checkbox.val()), 1);
+                    checkbox.removeAttr("checked");
+                    //e.target.parent().removeClass("tn-bg-gray");
+                }
+                else {
+                    arrayObj.push(checkbox.val());
+                    checkbox.attr("checked", "checked");
+                    //$(this).addClass("tn-bg-gray");
+                }
+                if (arrayObj.length > 2) {
+                    var removeid = arrayObj[0].toString();
+                    $("input[value='" + removeid + "']").removeAttr("checked");
+                    arrayObj.splice(0, 1);
+                }
+            }
+        });
+
+
+        $("#Compare").click(function (e) {
+            if (!$("input[name='VersionId']:checked").length || $("input[name='VersionId']:checked").length != 2) {
+                alert("请选择两个词条版本进行操作！");
+                return false;
+            }
+            else {
+                $("#saveNums").val("");
+                $("input[name='VersionId']:checked").each(function () {
+                    $("#saveNums").val($("#saveNums").val() + $(this).attr("num") + ',');
+                });
+            }
+        });
+
+        //给当前行添加样式
+        $(".tn-table-grid-row").hover(
+            function () {
+                $(this).addClass("tn-bg-gray");
+            },
+            function () {
+                $(this).removeClass("tn-bg-gray");
+            }
+        );
+    });
+    var arrayObj = new Array();
+    //处理火狐下浏览器刷新后复选框仍然选中
+    removeChecked();
+    function removeChecked() {
+        $(".Compare-checkbox").each(function () {
+            if ($(this).attr("checked")) {
+                $(this).removeAttr("checked");
+            }
+        });
+    }
+</script>)

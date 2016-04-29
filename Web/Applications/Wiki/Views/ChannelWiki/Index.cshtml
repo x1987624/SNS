@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "app-list-2cols";
+    IUser user = UserContext.CurrentUser;
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+}
+
+
+<div class="tn-box tn-widget tn-widget-content tn-corner-all">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div id="mainBodyIndex">
+            @Html.Action("_WikiSlide", "ChannelWiki", new { area = "Wiki", recommendTypeId = "10150106", topNumber = 6 })
+            @Html.Action("_WikiInIndex", "ChannelWiki", new { area = "Wiki" })
+        </div>
+    </div>
+</div>
+
+@section Aside{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">词条统计</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-all">
+            @*<div class="tn-actions tn-helper-align-center">
+                <a href="@SiteUrls.Instance().PageEdit(null)" class="tn-button tn-corner-all tn-button-default tn-button-text-icon-primary"><span class="tn-icon tn-smallicon-add"></span><span class="tn-button-text">创建词条</span></a>
+            </div>*@
+            @Html.Action("_WikiTitle", "ChannelWiki", new { area = "Wiki" })
+        </div>
+    </div>
+    @Html.Action("_WikiClassify", "ChannelWiki", new { area = "Wiki" })
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">热门百科标签</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            @Html.AjaxAction("_TagCloud", "Channel", new { tenantTypeId = TenantTypeIds.Instance().WikiPage(), Area = "Common" })
+        </div>
+    </div>
+}
+
+
+
+

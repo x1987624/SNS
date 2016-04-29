@@ -1,0 +1,20 @@
+﻿@{
+    Photo photo = ViewData.Get<Photo>("photo",null);
+    IUser currentUser = ViewData.Get<IUser>("currentUser",null);
+}
+ <ul class="tn-actions tn-widget-content tn-border-gray tn-corner-all tn-helper-clearfix tn-state-hidden">
+
+<li><a  class="tn-icon tn-icon-share" href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享#" + photo.User != null ? ("@" + photo.User.NickName) : "" + " 的照片\"" + photo.Description + "\"不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P240()))" title="分享"  plugin="dialog">
+</a></li>
+<li><a class="tn-icon tn-icon-bubble" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" title="评论" plugin="dialog">
+</a></li>
+@if (currentUser != null)
+{
+    if (currentUser.UserId != photo.UserId)
+    {
+    <li>
+        @Html.SupportOppose(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)
+    </li>
+    }
+}
+</ul>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WikiPage>
+@{
+    ViewBag.Title = "_HotWikiPage";
+    int i = 0;
+}
+
+<div class="tn-box tn-widget tn-widget-content tn-corner-all hr-hot-entry">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+      <h3 class="tn-helper-reset">热门词条</h3>
+    </div>
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        <ul class="tn-list">
+            @foreach(WikiPage wikiPage in Model)
+            {
+                i++;
+            <li class="tn-list-item tn-helper-clearfix tn-border-bottom tn-border-dashed tn-border-gray">
+              @if(wikiPage.FeaturedImageAttachmentId>0)
+              {
+              <div class="tn-list-item-area-right"> 
+                  <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)"> 
+                      <img src="@SiteUrls.Instance().ImageUrl(wikiPage.FeaturedImage,TenantTypeIds.Instance().WikiPage(),ImageSizeTypeKeys.Instance().Small())">
+                  </a> 
+              </div>
+              }
+              <div class="tn-list-item-area-main">
+                <div class="tn-list-item-row tn-list-item-heading">
+                  <h5 class="tn-helper-reset"> <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)" title="@wikiPage.Title">@StringUtility.Trim(wikiPage.Title,32)</a> </h5>
+                </div>
+                <div class="tn-list-item-row tn-list-item-summary">
+                  <p>@HtmlUtility.TrimHtml(wikiPage.Body,75)</p>
+                </div>
+                  @if (wikiPage.SiteCategory!=null)
+                  {
+                <div class="tn-list-item-row"> 类别：<a href="@SiteUrls.Instance().Pages(wikiPage.SiteCategory.CategoryId)" class="tn-user-name">@wikiPage.SiteCategory.CategoryName</a></div>
+                  }
+              </div>
+            </li>
+                if (i >= 4)
+                { break; }
+                   
+            }            
+        </ul>
+    </div>
+</div>

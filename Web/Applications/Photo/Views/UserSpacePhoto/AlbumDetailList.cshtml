@@ -1,0 +1,192 @@
+﻿@model PagingDataSet<Photo>
+@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+
+    Album album = ViewData.Get<Album>("album", null);
+    long albumId = album.AlbumId;
+    var cover = album.Cover;
+    Authorizer authorizer = DIContainer.Resolve<Authorizer>();
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.Action("_MyOtherAlbums", new { spaceKey = Url.SpaceKey(), albumId = albumId })
+    @Html.Action("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+@Html.PointMessage()
+@if (authorizer.IsAdministrator(PhotoConfig.Instance().ApplicationId) && (int)album.AuditStatus < (int)(new AuditService().GetPubliclyAuditStatus(PhotoConfig.Instance().ApplicationId)))
+{
+    <div class="tn-cue-highlight tn-corner-all tn-message-box" id="prompt">
+        <a href="#" class="tn-icon tn-smallicon-cross tn-helper-right" id="hidespan"></a>
+        <span class="tn-helper-left"><span class="tn-icon tn-icon-exclamation"></span></span>
+        <div class="tn-helper-flowfix">
+            <strong>提示：</strong>当前相册尚未通过审核，你可以<a href="@SiteUrls.Instance()._UpdateAlbumAuditStatu(album.AlbumId, true)" id = "audit-success">通过审核</a>
+            @if (album.AuditStatus == AuditStatus.Pending)
+            {
+                @:或者
+                <a href="@SiteUrls.Instance()._UpdateAlbumAuditStatu(album.AlbumId, false)" id = "audit-fail">不通过审核</a>
+            }
+        </div>
+    </div>
+    @Html.ScriptBlock(@<script type="text/javascript">
+        $(function () {
+            $("#hidespan").click(function (e) {
+                e.preventDefault();
+                $("#prompt").hide();
+            });
+
+            //通过审核
+            $("a[id^='audit-']").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "Post",
+                    url: $(this).attr("href"),
+                    success: function (data) {
+                        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                            $("#prompt").hide();
+                        });
+                    }
+                });
+            });
+        });
+    </script>)
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-album-detail">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-album-detail-wrap">
+            <div class="tn-main-heading tn-border-gray tn-border-bottom tn-helper-clearfix">
+                <h2>
+                    @album.AlbumName</h2>
+                <ul class="tn-feedback">
+                    <li><a class="tn-icon tn-icon-share" title="分享" href="@SiteUrls.Instance()._ShareToMicroblog("#相册分享#" + "@" + album.User.NickName + " 的相册\"" + album.AlbumName + "\" " + SiteUrls.FullUrl(SiteUrls.Instance().AlbumDetailList(album.User.UserName, album.AlbumId)) + " 很不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(cover == null ? string.Empty : cover.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200()))" plugin="dialog">
+                    </a></li>
+                    @if (album.PrivacyStatus == PrivacyStatus.Public && authorizer.RecommendItem_Manage(TenantTypeIds.Instance().Album()))
+                    {
+                        <li><a title="推荐" class="tn-icon tn-icon-flag" href="@SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Album(), albumId, album.AlbumName, userId: album.UserId)" plugin="dialog">
+                        </a></li>
+                    }
+                </ul>
+            </div>
+            <div class="tn-list-header">
+                <div class="tn-list-header-row tn-helper-clearfix tn-border-gray tn-border-bottom">
+                    @if (authorizer.Album_Edit(album))
+                    { 
+                        <div class="tn-option">
+                            <a href="@SiteUrls.Instance().PhotoManage(Url.SpaceKey(), album.AlbumId)" class="tn-button tn-corner-all tn-button-text-only tn-button-default">
+                                <span class="tn-button-text">照片管理</span></a>
+                        </div>
+                    }
+                    <div class="tn-filter">
+                        查看： <a id="album-List" class="tn-action tn-action-text-icon tn-selected" href="@SiteUrls.Instance().AlbumDetailList(Url.SpaceKey(), album.AlbumId)">
+                            <span class="tn-icon tn-icon-browse-medium"></span><span class="tn-action-text">列表模式</span>
+                        </a><a id="album-View" class="tn-action tn-action-text-icon"  href="@SiteUrls.Instance().AlbumDetailView(Url.SpaceKey(), album.AlbumId)">
+                            <span class="tn-icon tn-icon-browse-detail"></span><span class="tn-action-text">阅读模式</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @if (Model == null || Model.Count == 0)
+            {
+                <div class="tn-no-data">
+                    暂无照片！</div>
+            }
+            else
+            { 
+                <div class="spb-photo-list">
+                    <ul class="tn-photo-list tn-widget tn-helper-clearfix">
+                        @foreach (var photo in Model)
+                        { 
+                            <li class="tn-photo-item tn-hover">
+                                <div class="tn-photo-wrap tn-widget-content tn-border-gray">
+                                    <a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)">
+                                        <img src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" class="tnui-image-detail" width="100" height="100"/><span></span></a>
+                                </div>
+                                @*<div class="tn-collect tn-state-hidden">
+                        <a href="#" class="tn-button tn-corner-all tn-button-secondary tn-button-icon-only" title="采集" original-title="采集">
+                            <span class="tn-icon tn-icon-pin"></span>
+                            <span class="tn-button-text">采集</span>
+                        </a>
+                    </div>*@
+                                @if (authorizer.Photo_Edit(photo))
+                                { 
+                                    <div class="tn-edit">
+                                        <span class="tn-set @if (album.CoverId != photo.PhotoId)
+                                                            { <text>tn-state-hidden</text>}"><a @if (album.CoverId != photo.PhotoId)
+                                                                                                {<text>title="设为封面"</text>}
+                                                                                                else
+                                                                                                {<text>title="取消封面"</text>} href="@SiteUrls.Instance()._SetAlbumCover(Url.SpaceKey(), photo.PhotoId)" id="setCover-@photo.PhotoId" class="tn-button tn-corner-all @if (album.CoverId != photo.PhotoId)
+                                                                                                                                                                                                                                                                  { <text>tn-button-secondary</text>}
+                                                                                                                                                                                                                                                                  else
+                                                                                                                                                                                                                                                                  {<text>tn-button-primary</text>} tn-button-icon-only">
+                                                                <span class="tn-icon tn-smallicon-album"></span><span class="tn-button-text">设为封面</span>
+                                                            </a></span><span class="tn-manage tn-state-hidden"><a title="编辑" href="@SiteUrls.Instance()._EditPhoto(Url.SpaceKey(), photo.PhotoId)" id="edit-photo-@photo.PhotoId" plugin="dialog" class="tn-button tn-corner-all tn-button-secondary tn-button-icon-only">
+                                                                <span class="tn-icon tn-smallicon-write"></span><span class="tn-button-text">编辑</span></a>
+                                                                <a title="删除" href="@SiteUrls.Instance()._DeletePhoto(Url.SpaceKey(), photo.PhotoId)" id="delete-photo-@photo.PhotoId" class="tn-button tn-corner-all tn-button-secondary tn-button-icon-only">
+                                                                    <span class="tn-icon tn-smallicon-cross"></span><span class="tn-button-text">删除</span></a>
+                                                            </span>
+                                    </div>
+                                }
+                                <div class="tn-date tn-state-hidden">
+                                    <em>@photo.DateCreated.ToFriendlyDate(false)</em>
+                                </div>
+                                <ul class="tn-feedback tn-helper-clearfix">
+                                    <li><a title="分享" href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享#" + photo.User != null ? ("@" + photo.User.NickName) : "" + " 的照片\"" + photo.Description + "\"不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" plugin="dialog" class="tn-icon tn-icon-share">
+                                    </a></li>
+                                    <li><a title="评论" plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" target="_blank" class="tn-icon tn-icon-bubble">
+                                    </a><em class="tn-count tn-text-note">@photo.CommentCount</em></li>
+                                    <li>
+                                        @if (!((UserContext.CurrentUser == null ? 0 : UserContext.CurrentUser.UserId) == photo.UserId))
+                                        {                           
+                                            @Html.SupportOppose(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)                            
+                                        }
+                                    </li>
+                                </ul>
+                                <p class="tn-descrip" id ="photo-description-@photo.PhotoId" title="@Formatter.FormatMultiLinePlainTextForEdit(photo.Description, false)">
+                                    @Formatter.FormatMultiLinePlainTextForEdit(photo.Description, false)</p>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="tn-pagination">
+                    @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(document).ready(function () {
+        $(".tn-edit a[id^='setCover-']").click(function (e) {
+            if ($(this).parent(".tn-set").hasClass("tn-state-hidden")) {
+                $(this).attr("title", "取消封面");
+                $.post($(this).attr("href"), function (data) {
+                    //art.dialog.tips(data.MessageContent, 1.5, data.MessageType);                    
+                });
+                $("span.tn-set").addClass("tn-state-hidden").children(".tn-button").removeClass("tn-button-primary").addClass("tn-button-secondary");
+                $(this).parent(".tn-set").removeClass("tn-state-hidden").children(".tn-button").removeClass("tn-button-secondary").addClass("tn-button-primary");
+            }
+            else {
+                $(this).attr("title", "设置封面");
+                $.post($(this).attr("href") + "&isCover=false", function (data) {
+                    //art.dialog.tips(data.MessageContent, 1.5, data.MessageType);                    
+                });
+                $(this).parent(".tn-set").addClass("tn-state-hidden").children(".tn-button").addClass("tn-button-secondary").removeClass("tn-button-primary");
+            }
+            return false;
+        });
+
+        //删除照片
+        $(".tn-edit a[id^='delete-photo-']").click(function (e) {
+            e.preventDefault();
+            $this = $(this);
+            art.dialog.confirm('您确定要删除该照片吗？', function () {
+                $.post($this.attr("href"), function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true); });
+                });
+            });
+        });
+
+        var url = '@(SiteUrls.Instance().Upload(Url.SpaceKey()))';
+        $("a[href='" + url + "']").attr('href', url + "?albumId=@albumId");
+    });
+</script>)

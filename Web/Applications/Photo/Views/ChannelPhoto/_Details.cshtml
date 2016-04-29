@@ -1,0 +1,207 @@
+﻿@model Photo
+@{
+    Album album = ViewData.Get<Album>("album", null);
+    IEnumerable<Photo> photos = ViewData.Get<IEnumerable<Photo>>("photos", null);
+    List<object> photoJsons = new List<object>();
+    foreach (Photo photo in photos)
+    {
+        photoJsons.Add(new
+        {
+            photoId = photo.PhotoId.ToString(),
+            photoUrl = SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().Original()),
+            dateCreated = photo.DateCreated.ToFriendlyDate(),
+            isEssential = photo.IsEssential,
+            isCover = album.CoverId == photo.PhotoId,
+            smallPhotoUrl = SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200()),
+            bigPhotoUrl = SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P800())
+        });
+    }
+    string json = Json.Encode(photoJsons);
+    bool isIE6 = Request.Browser.Browser == "IE" && Request.Browser.MajorVersion == 6;
+    Authorizer authorizer = DIContainer.Resolve<Authorizer>();
+}
+@Html.Style("~/Bundle/Styles/ImageCrop")
+@Html.Script("~/Bundle/Scripts/photoViewer")
+@Html.Script("~/Applications/Photo/Scripts/jquery.spb.photo.js")
+
+<div id="photo-viewer-@Model.PhotoId" class="tn-photo-viewer" data-photos="@json" photolabelslink="@SiteUrls.Instance().GetLabelsOfPhoto()">
+    <div class="tn-viewer-inner">
+        <div class="tn-head">
+            <a id="closeViewer" class="tn-icon tn-icon-cross" href="javascript:;" dialogoperation="close">关闭</a>
+        </div>
+        <div style="height: 462px;" class="tn-body">
+            <a class="tn-page-prev" href="javascript:;"><span class="tn-icon-big tn-bigicon-slide-prev">上一张</span></a><a class="tn-page-next" href="javascript:;"><span class="tn-icon-big tn-bigicon-slide-next">下一张</span></a>
+            <div class="tn-photo-wrapper">
+                <div style="height: 460px" class="tn-photo-inner">
+                    <div style="display: block" class="tn-photo-side">
+                        <div style="display: block" class="tn-photo-side">
+                            <div class="tn-photo-side-inner" id="DetailPhotoSide" link="@SiteUrls.Instance()._DetailPhotoSide()">
+                            </div>
+                        </div>
+                    </div>
+                    <a class="tn-side-switch" href="javascript:;"><span class="tn-icon tn-smallicon-triangle-right"></span></a>
+                    <div class="tn-photo-main">
+                        <div style="height: 440px;" class="tn-photo-container">
+                            <i class="tn-ie-center"></i>
+                            <img id="photoImage-@(Model.PhotoId)" />
+                        </div>
+                        <div class="tn-viewer-actions">
+                            @if (!isIE6)
+                            {
+                            
+                                <a class="tn-icon tn-icon-rotate-left" title="向左翻转" href="javascript:;">向左翻转</a><a
+                                    class="tn-icon tn-icon-rotate-right" title="向右翻转" href="javascript:;">向右翻转</a>
+                            }
+                            <a class="tn-icon tn-icon-enlarge" title="查看大图" href="javascript:;" target="_blank">查看大图</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tn-foot">
+            <div class="tn-photo-bar">
+                <div class="tn-photo-detail" style="width: 270px" id="footPhotoDetail">
+                    <div class="tn-photo-actions">
+                        <a id="playPhoto" class="tn-button tn-corner-all tn-button-default tn-button-icon-only"
+                            href="javascript:;"><span class="tn-icon tn-icon-play"></span><span class="tn-button-text">播放</span></a>
+                        @if (authorizer.Photo_Edit(Model))
+                        {
+                            <a id="EditPhoto" class="tn-button tn-corner-all tn-button-default tn-button-icon-only"
+                                href="#"><span class="tn-icon tn-icon-set"></span><span class="tn-button-text">操作</span></a>
+                            <div class="tn-photo-set"  id="PhotoOperating" style="display: none;" link="@SiteUrls.Instance()._GetOnePhoto()">
+                            </div>
+                        }
+                    </div>
+                    <div class="tn-photo-data">
+                        <dl id="footPhotoDetail-from">
+                            <dt>来自相册：</dt>
+                            <dd>
+                                <a href="@SiteUrls.Instance().AlbumDetailList(Model.User.UserName, Model.AlbumId)">@Model.Album.AlbumName</a></dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="tn-photo-thumb">
+                    <div class="tn-photo-nav">
+                        <div class="tn-thumb-list">
+                            <ul>
+                            </ul>
+                        </div>
+                        <a class="tn-page-prev" href="javascript:;"><span class="tn-icon tn-icon-slide-prev">向前</span></a><a class="tn-page-next" href="javascript:;"><span class="tn-icon tn-icon-slide-next">向后</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="labelphoto-select" style="display: none;" class="tn-photo-note">
+    <div class="tn-photo-note-editor tn-widget-content">
+        @using (Html.BeginAjaxForm("CreatPhotoLabel", "ChannelPhoto", FormMethod.Post, new AjaxFormOptions().SetOnSuccessCallBack("SuccessCallBack")))
+        {
+            @Html.UserSelector("userId")
+            <div class="tn-confirm">
+                @Html.Button("圈人", ButtonTypes.Submit, HighlightStyles.Primary)
+                @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { id = "cancelButton" })
+            </div>
+            <input type="hidden" name="height" id="height" value="0" />
+            <input type="hidden" name="width" id="width" value="0" />
+            <input type="hidden" name="left" id="left" value="0" />
+            <input type="hidden" name="top" id="top" value="0" />
+            <input type="hidden" name="photoId" id="photoId" value="0" />    
+        }
+    </div>
+</div>
+<div id="FootPhotoDetailModel-Actions" style="display: none;">
+    @if (authorizer.Album_Edit(Model.Album))
+    {
+        <div class="tn-bubble tn-bubble-arrow-bottom">
+            <div class="tn-bubble-arrow">
+                <b class="tn-arrow-b1"></b><b class="tn-arrow-b2"></b>
+            </div>
+            <div class="tn-bubble-content">
+                <ul>
+                    <li><a plugin="dialog" id="dialogRecommend" href="@(SiteUrls.Instance()._MovePhoto(Model.User.UserName, 0, "PhotoDetailPhotoInfoMovePhotoSCallBack") + "&photoIds={0}")">移动到相册</a></li>
+                    <li><a id="ajaxJsonMessageData-SetAlbumCover" href="@(SiteUrls.Instance()._DetailSetAlbumCover() + "?photoId={0}&isCover={1}")">{2}</a></li>
+                    <li><a id="ajaxJson-Del" href="@(SiteUrls.Instance()._DeletePhotoInDetail() + "?photoId={0}")">删除</a></li>
+                    @if (authorizer.IsAdministrator(PhotoConfig.Instance().ApplicationId))
+                    {
+                        <li><a id="ajaxJsonMessageData-SetPhotoEssential" href="@(SiteUrls.Instance()._SetPhotoEssential() + "?photoId={0}&isEssential={3}")">{4}</a></li>
+                        <li><a plugin="dialog" id="dialogRecommend" href="@(SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Photo(), 0, Model.Description, needRefresh: false, userId: Model.UserId) + "&itemId={0}")">推荐</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+<div id="FootPhotoDetailModel-DateCreat" style="display: none;">
+    <dl>
+        <dt>上传日期：</dt>
+        <dd>{0}
+        </dd>
+    </dl>
+</div>
+<div id="photoLabelModel" style="display: none;">
+    <div id="{0}" style="display: block;" class="tn-photo-note-wrap">
+        <div style="width: {1}px; height: {2}px;" class="tn-photo-note-circle">
+        </div>
+        <div style="margin-left: -31px;" class="tn-photo-note-name">
+            <div class="tn-widget tn-bubble tn-bubble-arrow-top">
+                <div class="tn-bubble-arrow">
+                    <b class="tn-arrow-b1 tn-widget-content"></b><b class="tn-arrow-b2 tn-widget-bubble"></b>
+                </div>
+                <div class="tn-bubble-content tn-widget-content tn-corner-all">
+                    {3}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script language="javascript" type="text/javascript">
+                       //圈人成功之后的回调函数
+                       function SuccessCallBack(data) {
+                           if (data.MessageType == -1) {
+                               art.dialog.tips(data.MessageContent, 1.5, data.MessageType);
+                           } else {
+                               $.get("@SiteUrls.Instance().GetPhotoLabel()", { "labelId": data.id },
+            function (data) {
+                var _this = window._this;
+                if (!_this) {
+                    alert("脚本错误");
+                } else {
+                    _this.exitLabelPhoto();
+                    _this.img.removeData(_this.photos[_this.index].photoId);
+                    _this.addRingFrame();
+                    _this.addRingFrame();
+                }
+            });
+                           }
+                       }
+
+                       //编辑照片描述成功的回调函数
+                       function editPhotoDescriptionSuccessCallBack(data) {
+                           if (data.MessageType == 1) {
+                               $(".tn-photo-description>span:first").html(data.MessageContent);
+                               $(".tn-photo-description:first").toggle();
+                               $(".tn-photo-description:first").next(".tn-editor").toggle();
+                           } else {
+                               art.dialog.tips(data.MessageContent, 1.5, data.MessageType);
+                           }
+                       }
+
+                       //照片详细显示页面，移动照片成功之后的回调函数
+                       function PhotoDetailPhotoInfoMovePhotoSCallBack(data) {
+                           art.dialog.tips(data.MessageContent, 1.5, data.MessageType);
+                       }
+
+                       $(document).ready(function () {
+                           //alert($(window).height()+"--"+$(document).height()+"--"+$(document.body).height()+"--"+$(document.body).outerHeight(true));
+                           //alert($(window).height()); //浏览器当前窗口可视区域高度 
+
+                           //alert($(document).height()); //浏览器当前窗口文档的高度 
+
+                           //alert($(document.body).height());//浏览器当前窗口文档body的高度 
+
+                           //alert($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin 
+
+                           $.PhotoViewer(@(Model.PhotoId));
+                       });
+</script>)

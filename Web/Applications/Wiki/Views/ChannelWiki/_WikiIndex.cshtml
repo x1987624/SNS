@@ -1,0 +1,40 @@
+﻿@model PagingDataSet<WikiPage>
+<div id="Wiki-Index" class="tn-tabs-panel">
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all hr-home-cms">
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <ul class="tn-list">
+                @foreach (var item in Model)
+                {   
+                    <li class="tn-list-item tn-helper-clearfix">
+                        @if (!string.IsNullOrEmpty(item.FeaturedImage))
+                        {
+                            <div class="tn-list-item-area-left">
+                                <a href="@SiteUrls.Instance().PageDetail(item.PageId)">
+                                    <img src="@SiteUrls.Instance().ImageUrl(item.FeaturedImage, TenantTypeIds.Instance().WikiPage(), ImageSizeTypeKeys.Instance().Medium())">
+                                </a>
+                            </div>}
+                        <div class="tn-list-item-area-main">
+                            <div class="tn-list-item-row tn-list-item-heading">
+                                <h5 class="tn-helper-reset"><a href="@SiteUrls.Instance().PageDetail(item.PageId)" title="@item.Title">@HtmlUtility.TrimHtml(item.Title, 30)</a> </h5>
+                            </div>
+
+                            <div class="tn-list-item-row tn-list-item-summary">
+                                <p>@HtmlUtility.TrimHtml(item.ResolvedBody, 150)</p>
+                                <div class="tn-list-item-row tn-text-note tn-list-item-note">
+                                    更新时间：@item.LastModified.ToLocalTime().ToString("yyyy-MM-dd hh:mm:ss")<cite>|</cite>
+                                    发布时间：@item.DateCreated.ToLocalTime().ToString("yyyy-MM-dd hh:mm:ss")<cite>|</cite>
+                                    发布者：<a href ="@SiteUrls.Instance().SpaceHome(item.UserId)">@item.Author</a><cite>|</cite>
+                                    <em class=" tn-text-note">[<a class="tn-secondary-text" href="@SiteUrls.Instance().PageDetail(item.PageId)"><strong>@item.HitTimes</strong></a>人浏览]</em>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>
+    <div class="tn-pagination">
+        @Html.AjaxPagingButton(Model, "Wiki-Index", PaginationMode.NumericNextPrevious)
+    </div>
+</div>

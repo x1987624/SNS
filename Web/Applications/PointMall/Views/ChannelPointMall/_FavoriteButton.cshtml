@@ -1,0 +1,27 @@
+﻿@if (UserContext.CurrentUser != null)
+{
+    bool isFavorited = ViewData.Get<bool>("isFavorited", false);
+    long giftId = ViewData.Get<long>("giftId", 0);
+    if (isFavorited)
+    {
+        <a id="favorite-@giftId" objectId="@giftId" href="@SiteUrls.Instance()._Favorite(giftId)"  class="tn-action tn-action-text-icon" style="display:none">
+            <span class="tn-icon tn-icon-favorite"></span>
+            <span class="tn-action-text">收藏</span>
+        </a>
+        <a id="favorite-cancel-@giftId" objectId="@giftId" href="@SiteUrls.Instance()._FavoriteCancel(giftId)" class="tn-action tn-action-text-icon">
+            <span class="tn-icon tn-icon-favorite"></span>
+            <span class="tn-action-text">取消收藏</span>
+        </a>
+    }
+    else
+    {
+        <a id="favorite-@giftId" objectId="@giftId" href="@SiteUrls.Instance()._Favorite(giftId)" class="tn-action tn-action-text-icon">
+            <span class="tn-icon tn-icon-favorite"></span>
+            <span class="tn-action-text">收藏</span>
+        </a>
+        <a id="favorite-cancel-@giftId" objectId="@giftId" href="@SiteUrls.Instance()._FavoriteCancel(giftId)" class="tn-action tn-action-text-icon" style="display:none">
+            <span class="tn-icon tn-icon-favorite"></span>
+            <span class="tn-action-text">取消收藏</span>
+        </a>
+    }
+}

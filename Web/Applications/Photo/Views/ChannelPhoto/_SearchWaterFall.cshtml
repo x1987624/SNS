@@ -1,0 +1,62 @@
+﻿@model PagingDataSet<Photo>
+@{
+    string keyword = Request.QueryString.Get("keyword", string.Empty);
+    long userId = Request.QueryString.Get("userId", 0);
+    IUser currentUser = UserContext.CurrentUser;
+    bool isCurrentUser = true;
+}
+@if (Model.Count() > 0)
+{
+    foreach (var photo in Model)
+    {
+        if (currentUser != null)
+        {
+            isCurrentUser = userId == currentUser.UserId ? true : photo.AuditStatus == AuditStatus.Success;
+        }
+        if (photo.Album != null)
+        {
+            if (DIContainer.Resolve<Authorizer>().Photo_Search(photo.Album) && isCurrentUser)
+            {
+            <div class="spb-photo-unit masonry-brick tnui-photo-waterfallforsearch">
+                <div class="spb-photo-unit-inner">
+                    <div class="spb-photo-area">
+                        <a class="tn-img" plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)">
+                            <img alt="@photo.Description" class="tnui-image-detail" src="@(SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P160()))" width="160" />
+                        </a>
+                    </div>
+                    <div class="spb-photo-zoom" style="display: none;">
+                        <div class="tn-inner tn-widget-content tn-border-gray" id="ButtonView-@photo.PhotoId" data-photoId="@photo.PhotoId" data-url="@SiteUrls.Instance()._ButtonViewForSearch()">
+                            <div class="tn-loupe">
+                                <a class="tn-img" plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)">
+                                    <img alt="@photo.Description" class="tnui-image-detail" src="@(SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" width="320"/>
+                                </a>
+                            </div>
+                            <div class="tn-tags">
+                                @foreach (var tag in photo.Tags)
+                                {
+
+                                    if (tag != null)
+                                    {
+                                    <span><a href="@SiteUrls.Instance().TagNew(tag.TagName)" title="@tag.TagName">@Html.Raw(SearchEngine.Highlight(keyword, StringUtility.Trim(tag.TagName,5), 100))</a></span>
+                                    }
+                                }
+                            </div>
+                            <div class="tn-descrip" id="photo-description-@photo.PhotoId" title="@photo.Description">
+                                <p>@Html.Raw(SearchEngine.Highlight(keyword, StringUtility.Trim(photo.Description, 30), 100))</p>
+                            </div>
+                            <div class="tn-info tn-helper-clearfix">
+                                <a class="tn-user-name" href="@SiteUrls.Instance().Ta(photo.User.UserName)" target="_blank">@Html.Raw(SearchEngine.Highlight(keyword, photo.Author, 100))</a> 
+                                <em class="tn-count tn-text-note">@photo.DateCreated.ToFriendlyDate(true)</em>
+                            </div>
+                            <div class="tn-actions tn-border-gray tn-border-top tn-helper-clearfix">
+                                <ul id="PhotoSearchButtonView-@photo.PhotoId"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              
+            }
+        }
+    }
+}

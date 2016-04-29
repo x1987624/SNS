@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Tag>
+@if (Model != null && Model.Count() > 0)
+{   
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all spb-hot-topic">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom ">
+            <h3 class="tn-helper-reset">热门标签</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom ">
+            <ul class="tn-list">
+                @foreach (Tag tag in Model)
+                {
+                    <li><a href="@SiteUrls.Instance().AskTagDetail(tag.TagName)" outerclass = "tn-tag-card" plugin="tipsyHoverCard" data-url="@SiteUrls.Instance()._AskTagContents(tag.TagName)" target="_blank">@tag.DisplayName</a> <span class="tn-text-note">(@tag.ItemCount)</span> </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

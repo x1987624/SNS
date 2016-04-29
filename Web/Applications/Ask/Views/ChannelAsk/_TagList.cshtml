@@ -1,0 +1,32 @@
+﻿@model PagingDataSet<Tag>
+@{
+    TagGroup tagGroup = ViewData.Get<TagGroup>("tagGroup", null);
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <div id="tag-page-list" pageindex="@(Model.PageIndex)" pagecount="@(Model.PageCount)" class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-tags-sort">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <div class="tn-nums">
+                @if (Model.PageCount != 1)
+                { 
+                    <span class="tn-border-gray"><a id="prev" class="tn-icon tn-smallicon-slide-prev tnui-page" href="@SiteUrls.Instance()._AskTagList(tagGroup.GroupId)" title="上一页"></a></span>
+                    <span class="tn-border-gray"><a id="next" class="tn-icon tn-smallicon-slide-next tnui-page" href="@SiteUrls.Instance()._AskTagList(tagGroup.GroupId)" title="下一页"></a></span>
+                }
+            </div>
+            <h3 id="@tagGroup.GroupId" class="tn-helper-reset">
+                @tagGroup.GroupName
+            </h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <div class="spb-ask-tags-sort-box">
+                <p class="tn-tags-cloud">
+                    @foreach (Tag tag in Model)
+                    { 
+                        <span class="tn-bg-light tn-border-light"><a href="@SiteUrls.Instance().AskTagDetail(tag.TagName)" outerclass = "tn-tag-card" plugin="tipsyHoverCard" data-url="@SiteUrls.Instance()._AskTagContents(tag.TagName)" target="_blank">@StringUtility.Trim(tag.DisplayName,5)</a></span>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+}
+

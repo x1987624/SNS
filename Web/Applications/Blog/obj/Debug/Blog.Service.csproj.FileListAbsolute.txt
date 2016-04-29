@@ -1,0 +1,6 @@
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Debug\Spacebuilder.Blog.Service.XML
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Debug\Spacebuilder.Blog.Service.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Debug\Spacebuilder.Blog.Service.pdb
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Blog\obj\Debug\Blog.Service.csprojResolveAssemblyReference.cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Blog\obj\Debug\Spacebuilder.Blog.Service.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Blog\obj\Debug\Spacebuilder.Blog.Service.pdb

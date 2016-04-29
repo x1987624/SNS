@@ -1,0 +1,113 @@
+/* 
+Offical Style for Spacebuilder
+(c) Tunynet Inc.
+*/
+
+.hr-entry-list .tn-breadcrumb{ padding:0; font-size:14px; font-weight:bold; line-height:20px; padding:10px; margin-bottom:15px; border-radius:3px; overflow:hidden;}
+.hr-entry-list .tn-breadcrumb h2{ float:left; vertical-align:middle; margin:0;}
+.hr-entry-list .tn-breadcrumb a{ margin-left:5px;}
+/*.hr-entry-list .tn-list li{ padding-left:10px;}
+.hr-entry-list .tn-list li h5{ font-size:20px; margin-bottom:10px;}
+.hr-entry-list .tn-list .tn-list-item-summary span.tn-text-note{ padding-left:10px;}*/
+
+/**My Wiki*/
+.hr-entry-list .tn-profile .tn-avatar { float: left; }
+.hr-entry-list .tn-profile .tn-title .tn-option { float: right; }
+.hr-entry-list .tn-profile .tn-user-name { font-size: 18px; line-height: 24px; margin-right: 10px; }
+.hr-entry-list .tn-profile { margin-bottom: 10px; }
+.hr-entry-list .tn-profile .tn-info { margin-left: 60px; }
+.hr-entry-list .tn-profile .tn-title { padding-bottom: 10px; }
+.hr-entry-list .tn-introduction { padding: 8px 0; line-height: 20px;}
+.hr-entry-list .tn-introduction .tn-txt { display: inline; }
+
+
+.hr-entry-detailed .tn-title{ padding-bottom:10px; margin-bottom:15px;}
+.hr-entry-detailed .tn-title h1{ margin:0;}
+.hr-entry-detailed .tn-context p{ padding-bottom:15px;}
+
+
+.hr-entry-form{ padding:20px 10px 10px; margin:0 auto;}
+.hr-entry-form .tn-form-label{ width:200px;}
+.hr-entry-form .tn-form-row-button{ margin-top:30px;}
+.hr-edit-body .hr-edit .tn-message-box p{ padding-bottom:10px;}
+.hr-edit-body .hr-edit h1{ font-size:28px;}
+.hr-edit-body .tn-edit-box{ margin-bottom:25px;}
+
+.hr-history-box .tn-main-heading{ margin:0; padding-bottom:15px;}
+.hr-history-box .tn-table-grid{border:1px solid #ddd;}
+.hr-history-box .tn-table-grid-header { border-left:1px solid #ddd;border-right:1px solid #ddd;}
+.hr-history-box .tn-manage-lists th{ background:#f8f8f8; padding:10px 0 10px 20px;}
+.hr-history-box .tn-manage-lists td{ padding:15px 10px 15px 20px; }
+.hr-history-box .tn-manage-lists .tn-table-grid{ margin-top:0;}
+
+.hr-create-specific .tn-left{ float:left; width:60%;}
+.hr-create-specific .tn-left .tn-form-row{ padding:10px 0; border:1px solid #eee;}
+.hr-create-specific .tn-left .tn-form-row-button{ border:none;}
+.hr-create-specific .tn-left .tn-expand-control{ vertical-align:top; overflow:hidden; *display:inline;}
+.hr-create-specific .tn-left .tn-explain{ padding-top:5px;}
+.hr-create-specific .tn-right{ float:right;width:35%; line-height:24px;}
+
+.hr-create-specific .tnc-titleimg-pic{ overflow:hidden; display:inline; *vertical-align:top;}
+
+
+.hr-version-compare .hr-version-box{ margin:20px 0 40px;}
+.hr-version-compare .hr-list-compare{ float:left; border-radius:3px;}
+.hr-version-compare .hr-list-compare .hr-test{float:left; overflow:hidden; padding:5px; padding-top:20px; text-align:center;  }
+.hr-version-compare .hr-list-compare .hr-list-one{ }
+.hr-version-compare .hr-list-compare .hr-list-two{ }
+.hr-version-compare .hr-list-compare .hr-list-vs{ float:left; line-height:130px; width:100px; font-size:24px;text-align:center; }
+.hr-version-compare .hr-list-compare .tn-name{ font-size:36px; color:#333;line-height:35px; width:300px; height:90px; display:inline-block;font-family:"Microsoft YaHei"; border-bottom:1px dashed #ddd; margin-bottom:5px;}
+.hr-version-compare .hr-list-compare .hr-list-one .tn-name{ line-height:60px;}
+.hr-version-compare .hr-list-compare .tn-note{ font-size:24px;}
+.hr-version-compare .hr-list-action{ float:right; width:150px; text-align:center;}
+.hr-version-compare p{ padding: 5px; margin-bottom: 5px; }
+.hr-version-compare .tn-title{ text-align:left;}
+.hr-version-compare .tn-add{ background:#e3fae0; color:#3e6739; border-radius:3px;}
+.hr-version-compare .tn-delete{ background: #ffebec; text-decoration: line-through; color:#b12f36;  border-radius:3px;}
+.hr-version-compare .tn-mod{ background:#FFE1AC;  border-radius:3px;}
+
+.hr-compare-text{ border:1px solid #ddd; padding:20px; border-radius:3px;}
+.hr-compare-text h4{ font-size:16px;}
+.hr-compare-text .tn-content-heading{ padding-top:30px;}
+
+/* 2013-09-06 Alik Modify
+----------------------------------*/
+
+.spb-wiki-page .spb-popularity-users .tn-avatar-list { margin-left: 0px;  *display: inline; zoom:1; width:250px; }
+.spb-wiki-page .spb-popularity-users .tn-avatar-list .tn-avatar-item { margin: 0 4px 10px 0px; }
+
+/* 2013-09-06 Alik Modify End
+----------------------------------*/
+
+.spb-wiki-page .tnc-main > .tn-box .tn-list .tn-list-item:first-child { padding-top: 20px; }
+
+/* Wiki Speech Module */
+.hr-speech-mod .hr-speech-mod-hd { margin-bottom: 20px; }
+.hr-speech-mod .hr-speech-mod-hd .tn-pic { padding: 1px; width: 160px; height: 160px; overflow: hidden; float: left; margin-right: 20px; }
+.hr-speech-mod .hr-speech-mod-hd .tn-detail { overflow: hidden; zoom:1; }
+.hr-speech-mod .hr-speech-mod-hd .tn-detail .tn-title { margin-bottom: 10px; }
+.hr-speech-mod .hr-speech-mod-hd .tn-detail .tn-title .tn-actions { float: right; }
+.hr-speech-mod .hr-speech-mod-hd .tn-detail .tn-title strong { font-size: 18px; font-weight: normal; color: #000; }
+.hr-speech-mod .hr-speech-mod-hd .tn-detail .tn-summay { font-size: 14px; line-height: 25px; margin-bottom: 10px; }
+.hr-speech-mod .hr-speech-mod-hd .tn-detail .tn-info dl { line-height: 25px; }
+.hr-speech-mod .hr-speech-mod-hd .tn-detail .tn-info dt { display: inline; }
+.hr-speech-mod .hr-speech-mod-hd .tn-detail .tn-info dd { display: inline; margin-right: 20px; }
+
+.hr-speech-mod .hr-speech-mod-list .tn-search-box { float: right; }
+.hr-speech-mod .hr-speech-mod-list .tn-breadcrumb { padding: 0; }
+
+.hr-speech-mod-i-pub { margin-bottom: 10px; }
+.hr-speech-mod-i-pub .tn-button { display: block; text-align: center; }
+.hr-speech-mod-i-pub .tn-button .tn-button-text { font-size: 18px; }
+.hr-speech-mod-category .tn-list .tn-actions { float: right; }
+.hr-speech-mod-category .tn-list li:hover { background-color: #ddd; }
+
+.hr-speech-mod-detail .tn-breadcrumb { padding: 0; }
+.hr-speech-mod-detail .tn-breadcrumb h2 { display: inline; margin: 0; }
+.hr-speech-mod .hr-speech-mod-list .tn-breadcrumb h2 { margin: 0; display: inline; }
+
+.hr-apply-speech .tn-breadcrumb { padding: 0; }
+.hr-apply-speech .tn-breadcrumb h2 { display: inline; margin: 0; }
+
+.hr-speech-mod-user-count .tn-box-content { padding: 0; }
+.hr-speech-mod-user-count .tn-info-part { padding: 0; }

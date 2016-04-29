@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Tag>
+@if (Model != null && Model.Count() > 0)
+{
+    string ta = ViewData.Get<string>("ta", "我");
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        <h3 class="tn-helper-reset">@(ta)关注的标签</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        @foreach (var tag in Model) { 
+            <div class="tn-list-item-row tn-tags">
+            <span><a href="@SiteUrls.Instance().AskTagDetail(tag.TagName)" outerclass = "tn-tag-card" plugin="tipsyHoverCard" data-url="@SiteUrls.Instance()._AskTagContents(tag.TagName)" target = "_blank">@tag.TagName</a></span>
+            </div>
+        }
+        </div>
+    </div>
+}

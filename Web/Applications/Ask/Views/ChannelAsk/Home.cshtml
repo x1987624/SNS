@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "app-home-3cols";
+    Html.Style("~/Applications/Ask/Styles/app.css");
+
+    var interestedQuestions = ViewData.Get<IEnumerable<AskQuestion>>("interestedQuestions", null);
+    var unresolvedQuestions = ViewData.Get<IEnumerable<AskQuestion>>("unresolvedQuestions", null);
+    var essentialQuestions = ViewData.Get<IEnumerable<AskQuestion>>("essentialQuestions", null);
+}
+@section Aside{
+    @Html.Action("_TagGroups", "ChannelAsk", new { topNum = 4 })
+    @Html.Action("_HighRewardQuestions", "ChannelAsk", new { topNum = 10 })
+    @Html.AdvertisingPosition("10101300001")
+}
+@section AsideSecond{
+    @Html.Action("_ContributionUserRank", "ChannelAsk", new { topNum = 10 })
+    @Html.Action("_AnswerUserRank", "ChannelAsk", new { topNum = 10 })
+}
+@Html.AdvertisingPosition("10101300002")
+@if (interestedQuestions != null && interestedQuestions.Count() > 0)
+{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-interest">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <span class="tn-icon tn-icon-favorite"></span>
+            <h3 class="tn-helper-reset">感兴趣的问题</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <div class="spb-ask-interest-wrap">
+                <ul class="tn-list">
+                    @foreach (var question in interestedQuestions)
+                    {
+                        <li class="tn-img-sprite tn-list-bullet"><em class="tn-count tn-text-note">@question.AnswerCount 回答 / @question.VoteCount 人投票</em> <a class="tn-title" href="@SiteUrls.Instance().AskQuestionDetail(question.QuestionId)" target="_blank" title="@question.Subject">@StringUtility.Trim(question.Subject, 20)</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+@if (unresolvedQuestions != null && unresolvedQuestions.Count() > 0)
+{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-being">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <div class="tn-option">
+                <a href="@SiteUrls.Instance().AskQuestions("Unresolved")">更多</a>
+            </div>
+            <span class="tn-icon tn-icon-question"></span>
+            <h3 class="tn-helper-reset">待解决的问题</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <div class="spb-ask-show-list">
+                <ul class="tn-list">
+                    @foreach (var question in unresolvedQuestions)
+                    {
+                        <li class="tn-img-sprite tn-list-bullet">
+                            <a class="tn-user-name tn-secondary-text" href="@SiteUrls.Instance().AskUser(UserIdToUserNameDictionary.GetUserName(question.UserId))" title="@question.Author" target="_blank">@StringUtility.Trim(question.Author, 8)</a><a class="tn-title" href="@SiteUrls.Instance().AskQuestionDetail(question.QuestionId)" title="@question.Subject" target="_blank">@StringUtility.Trim(question.Subject, 20)</a><em class="tn-count tn-text-note">(@question.AnswerCount 回答)</em>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+@if (essentialQuestions != null && essentialQuestions.Count() > 0)
+{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all spb-ask-fine">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <div class="tn-option"><a href="@SiteUrls.Instance().AskQuestions("Essential")">更多</a></div>
+            <span title="精华" class="tn-icon-colorful tn-icon-colorful-fine"></span>
+            <h3 class="tn-helper-reset">精华问题</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <div class="spb-ask-show-list">
+                <ul class="tn-list">
+                    @foreach (var question in essentialQuestions)
+                    {
+                        <li class="tn-img-sprite tn-list-bullet">
+                            <a class="tn-user-name tn-secondary-text" href="@SiteUrls.Instance().AskUser(UserIdToUserNameDictionary.GetUserName(question.UserId))" title="@question.Author"  target="_blank">@StringUtility.Trim(question.Author, 8)</a><a class="tn-title" href="@SiteUrls.Instance().AskQuestionDetail(question.QuestionId)" title="@question.Subject" target="_blank">@StringUtility.Trim(question.Subject, 20)</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}

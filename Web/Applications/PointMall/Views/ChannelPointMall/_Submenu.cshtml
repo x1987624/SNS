@@ -1,0 +1,20 @@
+﻿@{
+     IUser user = UserContext.CurrentUser;     
+}
+<h2 class="tn-pagename">
+    <a href="@SiteUrls.Instance().Home()" ><span class="tn-icon-special tn-special-icon-pointmall"></span>积分商城</a>
+ </h2>
+ @if (user != null)
+ {
+     <div class="tn-shortcut">
+        @Html.Button("我的商品", ButtonTypes.Link, HighlightStyles.Lite, ButtonSizes.Default, url: SiteUrls.Instance().PointMallHome(user.UserName), htmlAttributes: new { target="_blank"})
+        @Html.Button("我的积分", ButtonTypes.Link, HighlightStyles.Lite, ButtonSizes.Default, url: SiteUrls.Instance().ListPointRecords(user.UserName), htmlAttributes: new { target = "_blank" })
+     </div>
+ }
+ else
+ {
+     <div class="tn-shortcut">
+        @Html.Button("我的商品", ButtonTypes.Link, HighlightStyles.Lite, ButtonSizes.Default, url: SiteUrls.Instance().Login(true, SiteUrls.LoginModal._LoginInModal), htmlAttributes: new { plugin = "dialog" })
+        @Html.Button("我的积分", ButtonTypes.Link, HighlightStyles.Lite, ButtonSizes.Default, url: SiteUrls.Instance().Login(true, SiteUrls.LoginModal._LoginInModal), htmlAttributes: new { plugin="dialog"})
+     </div>
+ }

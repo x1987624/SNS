@@ -1,0 +1,124 @@
+﻿@model Dictionary<string, string>
+@{
+    ViewBag.Title = "_ShowContentItemUrl";
+}
+
+<div style="padding: 10px;">
+    <div class="tn-list-header">
+        <div class="tn-toolbar-area" style="padding: 0px;">
+            @*@Html.LinkButton("发送邮件", SiteUrls.Instance().SendMessage(), iconType: IconTypes.Forwardc, htmlAttributes: new { id = "sendMessage" })<text id="message"></text>*@
+        </div>
+    </div>
+    <form id="form-contentitem" method="post" action="#" novalidate="novalidate">
+        <table class="tn-table-grid">
+            <tbody>
+                <tr class="tn-table-grid-header">
+
+                    <th class="tn-border-gray tn-border-bottom tn-text-note tn-width-auto">标题</th>
+                    <th class="tn-border-gray tn-border-bottom tn-text-note tn-width-auto">操作</th>
+                    <th class="tn-border-gray tn-border-bottom tn-text-note tn-width-auto">链接</th>
+                    <th class="tn-border-gray tn-border-bottom tn-text-note tn-width-auto">操作</th>
+                </tr>
+                @foreach (var item in Model.Keys)
+                {
+        
+                    <tr id="contentitem" class="tn-table-grid-row">
+                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                            <input type="text" name="titles" value="@item" style="width:200px"/>
+                        </td>
+                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                            <a name="copy" href="Javascript:;" class="tn-button-text">复制</a>
+                        </td>
+                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                            <input style="width:300px" name="urls" type="text" value="@SiteUrls.FullUrl(Model[item])"/>
+                        </td>
+                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                            <a name="copyUrl" href="Javascript:;" class="tn-button-text">复制</a>
+                        </td>
+                        <td class="tn-border-bottom tn-border-gray tn-width-icon1">
+                            @Html.Link("上移", "javascript:;", "上移", new { @class = "tn-icon tn-smallicon-upload", id = "display-order-" + "up" })
+                        </td>
+                        <td class="tn-border-bottom tn-border-gray tn-width-icon1">
+                            @Html.Link("下移", "javascript:;  ", "下移", new { @class = "tn-icon tn-smallicon-download", id = "display-order-" + "down" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("a[name='copy']").click(function () {
+            var stext = $(this).parent().parent().children(":eq(0)").children().val();
+            copy(stext);
+        });
+        $("a[name='copyUrl']").click(function () {
+            var stext = $(this).parent().parent().children(":eq(2)").children().val();
+            copy(stext);
+        });
+
+        @*$("#sendMessage").click(function (e) {
+            e.preventDefault();
+
+            $.post('@( SiteUrls.Instance().SendMessage())', $("#form-contentitem").serialize(), function (data) {
+                $("#message").html(data.messageContent);
+                if (data.messageContent.indexOf("发送成功") < 0) {
+                    $("#message").attr("style", "color:red");
+                }
+                //alert(data.messageContent);
+            });
+
+        });*@
+    });
+    function copy(data) {
+        if (document.all) {
+            window.clipboardData.setData("text", data);
+            alert("复制到剪贴板成功！")
+        } else {
+            alert("对不起您的浏览器暂时不支持复制功能，请到IE浏览器下操作，或者手动复制。");
+        }
+    };
+</script>)
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(document).ready(function () {
+        $("a.tn-smallicon-upload").first().hide();
+        $("a.tn-smallicon-download").last().hide();
+
+        $(".tn-smallicon-upload").click(function (e) {
+            e.preventDefault();
+            $this = $(this);
+            var tr = $(this).parents("tr:first");
+            var id = tr.data("id");
+            var referenceId = tr.prev().data("id");
+
+
+            var trBefore = tr.prev();
+            tr.insertBefore(trBefore);
+            $("a.tn-smallicon-upload,a.tn-smallicon-download").show();
+            $("a.tn-smallicon-upload").first().hide();
+            $("a.tn-smallicon-download").last().hide();
+
+        });
+
+
+        $("a.tn-smallicon-download").click(function (e) {
+            e.preventDefault();
+
+            $this = $(this);
+            var tr = $(this).parents("tr:first");
+            var id = tr.data("id");
+            var referenceId = tr.next().data("id");
+
+
+            var trAfter = tr.next();
+            tr.insertAfter(trAfter);
+            $("a.tn-smallicon-upload,a.tn-smallicon-download").show();
+            $("a.tn-smallicon-upload").first().hide();
+            $("a.tn-smallicon-download").last().hide();
+
+        });
+        ;
+    });
+</script>)

@@ -1,0 +1,1353 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.Blog</name>
+    </assembly>
+    <members>
+        <member name="M:Spacebuilder.Blog.BlogApplication.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户在应用中的数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="takeOverUserName">用于接管删除用户时不能删除的内容(例如：用户创建的群组)</param>
+            <param name="isTakeOver">是否接管被删除用户可被接管的内容</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogConfig.Instance">
+            <summary>
+            获取BlogConfig实例
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogConfig.Initialize(Autofac.ContainerBuilder)">
+            <summary>
+            应用初始化
+            </summary>
+            <param name="containerBuilder">容器构建器</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogConfig.Load">
+            <summary>
+            应用加载
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogConfig.ApplicationId">
+            <summary>
+            ApplicationId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogConfig.ApplicationKey">
+            <summary>
+            ApplicationKey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogConfig.ApplicationType">
+            <summary>
+            获取BlogApplication实例
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogApplicationStatisticDataGetter">
+            <summary>
+            日志应用数据Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogApplicationStatisticDataGetter.GetManageableDatas(System.String)">
+            <summary>
+            获取管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>管理数据列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogApplicationStatisticDataGetter.GetStatisticDatas(System.String)">
+            <summary>
+            获取统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>统计数据列表</returns>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogCommentUrlGetter">
+            <summary>
+            日志Url获取
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogCommentUrlGetter.GetCommentDetailUrl(System.Int64,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            获取评论详细显示url
+            </summary>
+            <remarks>如果无评论详细显示页面，则定位到评论列表的精确位置（需要考虑分页及性能，仅在真正需要浏览时才进行必要的计算）</remarks>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="id">评论Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogCommentUrlGetter.GetCommentedObjectName(System.Int64,System.String)">
+            <summary>
+            获取被评论对象名称
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogCommentUrlGetter.GetCommentedObject(System.Int64)">
+            <summary>
+            获取被评论对象(部分)
+            </summary>
+            <param name="commentedObjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogCommentUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogOwnerDataGetter.GetDataUrl(System.String,System.Nullable{System.Int64})">
+            <summary>
+            获取链接地址
+            </summary>
+            <param name="spaceKey">用户名</param>
+            <param name="ownerId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogOwnerDataGetter.DataKey">
+            <summary>
+            datakey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogOwnerDataGetter.DataName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogOwnerDataGetter.ApplicationId">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogTagUrlGetter">
+            <summary>
+            日志标签云Url获取
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogTagUrlGetter.GetUrl(System.String,System.Int64)">
+            <summary>
+            获取链接
+            </summary>
+            <param name="tagName">标签名称</param>
+            <returns>点击标签的链接</returns>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogRecommendUrlGetter">
+            <summary>
+            日志推荐Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogRecommendUrlGetter.RecommendItemDetail(System.Int64)">
+            <summary>
+            详细页面地址
+            </summary>
+            <param name="itemId">推荐内容Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogRecommendUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogAtUserAssociatedUrlGetter">
+            <summary>
+            At用户关联项Url获取
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogAtUserAssociatedUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogActivityController._CreateBlogThread(System.Int64)">
+            <summary>
+            创建日志的动态内容块
+            </summary>
+            <param name="ActivityId">动态id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogActivityController._CreateBlogComment(System.Int64)">
+            <summary>
+            创建日志的评论的动态块
+            </summary>
+            <param name="ActivityId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Blog.Controllers.BlogController">
+            <summary>
+            日志控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Edit(System.String,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            写日志/编辑日志（页面）  
+            </summary>
+            <param name="threadId">日志id，非空时为编辑操作</param>
+            <param name="ownerId">所属id，非空时代表群组的日志</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Edit(System.String,Spacebuilder.Blog.BlogThreadEditModel)">
+            <summary>
+            写日志/编辑日志（保存表单）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Reproduce(System.String,System.Int64)">
+            <summary>
+            转载日志（页面）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Reproduce(System.String,Spacebuilder.Blog.BlogThreadEditModel)">
+            <summary>
+            转载日志（保存表单）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Delete(System.String,System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除日志
+            </summary>
+            <param name="threadIds">日志id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._BlogSetSticky(System.String,System.Int64,System.Boolean)">
+            <summary>
+            置顶/取消置顶
+            </summary>
+            <param name="isSticky">置顶为true；取消置顶为false</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Home(System.String)">
+            <summary>
+            用户空间日志首页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Blog(System.String,System.Int32)">
+            <summary>
+            我的日志/Ta的日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Detail(System.String,System.Int64)">
+            <summary>
+            日志详细页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Related(System.String,System.Int64)">
+            <summary>
+            相关日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Subscribed(System.String,System.Int32)">
+            <summary>
+            关注的日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.List(System.String,Spacebuilder.Blog.Controllers.ListType,System.String,System.Int32,System.Int32,System.Int64,System.Int32)">
+            <summary>
+            日志列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Panel(System.String,System.String)">
+            <summary>
+            用户空间日志左侧控制面板
+            </summary>
+            <param name="menu">菜单项标识</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Categories(System.String)">
+            <summary>
+            用户空间日志左侧日志分类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Tags(System.String,System.Int32)">
+            <summary>
+            用户空间日志左侧标签云
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Archives(System.String)">
+            <summary>
+            用户空间日志左侧存档列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Newest(System.String,System.Int32)">
+            <summary>
+            侧边栏最新日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Rss(System.String)">
+            <summary>
+            Rss订阅（启用输出缓存）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Manage(System.String,System.Int32)">
+            <summary>
+            管理日志（主人）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController.Draft(System.String)">
+            <summary>
+            草稿箱（主人）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._SetCategories(System.String,System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            设置分类（页面）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._SetCategories(System.String,System.Collections.Generic.IEnumerable{System.Int64},System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            设置分类（表单提交）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._SetTags(System.String,System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            设置标签（页面）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._SetTags(System.String,System.Collections.Generic.IEnumerable{System.Int64},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            设置标签（表单提交）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._SubscribeButton(System.String,System.Int64,System.Boolean)">
+            <summary>
+            关注日志按钮
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._Subscribe(System.String,System.Int64)">
+            <summary>
+            关注日志操作
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.BlogController._SubscribeCancel(System.String,System.Int64)">
+            <summary>
+            取消关注日志操作
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.Controllers.ListType">
+            <summary>
+            日志列表类型
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.Controllers.ListType.Tag">
+            <summary>
+            根据标签
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.Controllers.ListType.Archive">
+            <summary>
+            根据存档
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.Controllers.ListType.Category">
+            <summary>
+            根据分类
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.Controllers.ControlPanelBlogController">
+            <summary>
+            后台日志管理控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ControlPanelBlogController.ManageBlogs(System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int64},System.String,System.Nullable{System.Boolean},System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            日志管理
+            </summary>
+            <param name="auditStatus">审批状态</param>
+            <param name="categoryId">日志类别id</param>
+            <param name="subjectKeywords">标题关键字</param>
+            <param name="isEssential">是否加精</param>
+            <param name="userId">作者id</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ControlPanelBlogController._UpdateAuditStatus(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            更新审核状态
+            </summary>
+            <param name="threadIds">日志id</param>
+            <param name="isApprove">审核状态，true为通过审核，false为不通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ControlPanelBlogController._UpdateAuditStatu(System.Int64,System.Boolean)">
+            <summary>
+            更新审核状态
+            </summary>
+            <param name="threadIds">日志id</param>
+            <param name="isApprove">审核状态，true为通过审核，false为不通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ControlPanelBlogController._Delete(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除日志
+            </summary>
+            <param name="threadIds">日志id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ControlPanelBlogController._SetEssential(System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            批量设置/取消精华
+            </summary>
+            <param name="threadIds">日志id列表</param>
+            <param name="isEssential">是否精华，true为加精，false为取消精华</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ControlPanelBlogController._SetCategory(System.String)">
+            <summary>
+            设置日志分类（页面）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ControlPanelBlogController._SetCategory(System.String,System.Int64)">
+            <summary>
+            设置日志分类（表单提交）
+            </summary>
+            <param name="threadIds">日志id列表</param>
+            <param name="categoryId">分类id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ControlPanelBlogController._ManageBlogRightMenu">
+            <summary>
+            日志后台管理右侧统计
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.Controllers.ChannelBlogController">
+            <summary>
+            日志频道控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController.Home(System.Int32)">
+            <summary>
+            日志频道首页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController.ListByCategory(System.Int64,System.Int32)">
+            <summary>
+            日志分类列表页
+            </summary>
+            <param name="categoryId">分类id</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController.ListByRank(System.String,System.Int32)">
+            <summary>
+            日志排行页
+            </summary>
+            <param name="rank">区分最新日志，热门日志，热评日志，精华日志</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController.ListByTag(System.String,System.Int32)">
+            <summary>
+            标签显示日志列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController._RecommendUser(System.Int32)">
+            <summary>
+            推荐用户列表
+            </summary>        
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController._UserRank(System.Int32)">
+            <summary>
+            用户排行列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController._HotComment(System.Int32)">
+            <summary>
+            热评日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController._Recommend(System.Int32,System.String)">
+            <summary>
+            推荐日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController.Search(Spacebuilder.Blog.BlogFullTextQuery)">
+            <summary>
+            日志搜索
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController._GlobalSearch(Spacebuilder.Blog.BlogFullTextQuery,System.Int32)">
+            <summary>
+            日志全局搜索
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController._QuickSearch(Spacebuilder.Blog.BlogFullTextQuery,System.Int32)">
+            <summary>
+            日志快捷搜索
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.Controllers.ChannelBlogController.SearchAutoComplete(System.String,System.Int32)">
+            <summary>
+            日志搜索自动完成
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.EventModules.BlogOperationLogEventModule">
+            <summary>
+            处理日志操作日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogOperationLogEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogOperationLogEventModule.BlogOperationLogEventModule_After(Spacebuilder.Blog.BlogThread,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            日志操作日志事件处理
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.EventModules.BlogIndexEventModule">
+            <summary>
+            处理日志索引的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogIndexEventModule.AddCategoriesToBlog_BatchAfter(System.Collections.Generic.IEnumerable{System.String},Tunynet.Common.TagEventArgs)">
+            <summary>
+            为日志添加分类时触发
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogIndexEventModule.DeleteUpdateCategories_Before(Tunynet.Common.Category,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            删除和更新分类时触发
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogIndexEventModule.AddTagsToBlog_BatchAfter(System.Collections.Generic.IEnumerable{System.String},Tunynet.Common.TagEventArgs)">
+            <summary>
+            为日志添加标签时触发
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogIndexEventModule.DeleteUpdateTags_Before(Tunynet.Common.Tag,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            删除和更新标签时触发
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogIndexEventModule.BlogThread_After(Spacebuilder.Blog.BlogThread,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            日志增量索引
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.EventModules.BlogThreadEventModule">
+            <summary>
+            处理日志动态、积分的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogThreadEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogThreadEventModule.BlogThreadActivityModule_After(Spacebuilder.Blog.BlogThread,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            动态处理程序
+            </summary>
+            <param name="blogThread"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogThreadEventModule.BlogCommentActivityEventModule_After(Tunynet.Common.Comment,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            评论日志动态处理程序
+            </summary>
+            <param name="comment"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogThreadEventModule.BlogThreadPointModule_After(Spacebuilder.Blog.BlogThread,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            审核状态发生变化时处理积分
+            </summary>
+            <param name="blogThread">日志</param>
+            <param name="eventArgs">事件</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogThreadEventModule.BlogThreadPointModuleForManagerOperation_After(Spacebuilder.Blog.BlogThread,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            处理加精操作加积分
+            </summary>
+            <param name="blogThread">日志</param>
+            <param name="eventArgs">事件</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.EventModules.BlogThreadEventModule.BlogThreadAcitivityPrivicyChangeEventModule_After(Spacebuilder.Blog.BlogThread,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            隐私状态发生变化时，同时更新动态的私有状态
+            </summary>
+            <param name="blogThread">日志</param>
+            <param name="eventArgs">事件</param>
+        </member>
+        <member name="T:Spacebuilder.Blog.ActivityItemKeysExtension">
+            <summary>
+            日志动态项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.ActivityItemKeysExtension.CreateBlogThread(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            发布日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.ActivityItemKeysExtension.CreateBlogComment(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            日志评论
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.ActivityOwnerTypesExtension.Blog(Tunynet.Common.ActivityOwnerTypes)">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.AuthorizerExtension">
+            <summary>
+            日志权限验证
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogThread_Create(Spacebuilder.Common.Authorizer,System.String)">
+            <summary>
+            撰写日志/转载日志
+            空间主人撰写空间用户的日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogThread_Create(Spacebuilder.Common.Authorizer,System.String,System.String@)">
+            <summary>
+            撰写日志/转载日志
+            空间主人撰写空间用户的日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogThread_Create(Spacebuilder.Common.Authorizer,Tunynet.Common.IUser,System.String@)">
+            <summary>
+            撰写日志/转载日志(暂时用于移动端)
+            空间主人撰写空间用户的日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogThread_Edit(Spacebuilder.Common.Authorizer,Spacebuilder.Blog.BlogThread)">
+            <summary>
+            编辑日志
+            空间主人或管理员可以编辑空间用户的日志（置顶也使用该规则）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogThread_Delete(Spacebuilder.Common.Authorizer,Spacebuilder.Blog.BlogThread)">
+            <summary>
+            删除日志
+            空间主人或管理员可以删除空间用户的日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogThread_View(Spacebuilder.Common.Authorizer,Spacebuilder.Blog.BlogThread)">
+            <summary>
+            查看日志
+            仅自己可见的只能是日志作者或管理员可以查看
+            部分可见的只能是日志作者、指定可见的用户或管理员可以查看
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogThread_Manage(Spacebuilder.Common.Authorizer)">
+            <summary>
+            管理日志
+            管理员可以管理所有日志，精华、管理员推荐也使用该规则
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogThread_Follow(Spacebuilder.Common.Authorizer)">
+            <summary>
+            关注日志
+            必须是登录用户
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.AuthorizerExtension.BlogComment_Create(Spacebuilder.Common.Authorizer,Spacebuilder.Blog.BlogThread)">
+            <summary>
+            评论日志
+            1.锁定的日志不允许评论；
+            2.对于匿名用户，根据站点匿名用户；
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogActivityReceiverGetter">
+            <summary>
+            日志动态接收人获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogActivityReceiverGetter.Tunynet#Common#IActivityReceiverGetter#GetReceiverUserIds(Tunynet.Common.ActivityService,Tunynet.Common.Activity)">
+            <summary>
+            获取接收人UserId集合
+            </summary>
+            <param name="activityService">动态业务逻辑类</param>
+            <param name="ownerId">动态拥有者Id</param>
+            <param name="userId">动态发布者Id</param>
+            <param name="activityItemKey">动态项目标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogActivityReceiverGetter.IsReceiveActivity(Tunynet.Common.ActivityService,System.Int64,Tunynet.Common.Activity)">
+            <summary>
+            检查用户是否接收动态
+            </summary>
+            <param name="activityService"></param>
+            <param name="userId">UserId</param>
+            <param name="activity">动态</param>
+            <returns>接收动态返回true，否则返回false</returns>
+        </member>
+        <member name="T:Spacebuilder.Blog.NoticeTemplateNamesExtension">
+            <summary>
+            扩展NoticeTemplateNames
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.NoticeTemplateNamesExtension.NewBlogComment(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            日志有新评论
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.PermissionItemKeysExtension">
+            <summary>
+            权限项标识扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.PermissionItemKeysExtension.Blog_Create(Tunynet.Common.PermissionItemKeys)">
+            <summary>
+            创建Blog的权限项标识
+            </summary>
+            <param name="pik"><see cref="T:Tunynet.Common.PermissionItemKeys"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Blog.PointItemKeysExtension">
+            <summary>
+            积分项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.PointItemKeysExtension.Blog_CreateThread(Tunynet.Common.PointItemKeys)">
+            <summary>
+            创建微博
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.PointItemKeysExtension.Blog_DeleteThread(Tunynet.Common.PointItemKeys)">
+            <summary>
+            删除微博
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Common.SiteUrlsExtension">
+            <summary>
+            日志链接管理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogHome(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            用户空间日志首页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.Blog(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            我的日志/他的日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogSubscribed(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            关注的日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogList(Spacebuilder.Common.SiteUrls,System.String,Spacebuilder.Blog.Controllers.ListType,System.String,System.Int32,System.Int32,System.Int64)">
+            <summary>
+            日志列表：存档、标签、分类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogEdit(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            发布/编辑日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogReproduce(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            转载日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogDelete(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64})">
+            <summary>
+            批量/单个删除日志
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadIds">日志ID</param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogSetSticky(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.Boolean)">
+            <summary>
+            置顶/取消置顶
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="spaceKey"></param>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogSetCategories(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64})">
+            <summary>
+            设置分类
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadIds">日志id</param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogSetTags(Spacebuilder.Common.SiteUrls,System.String,System.Nullable{System.Int64})">
+            <summary>
+            设置标签
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadIds">日志id</param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogDetail(Spacebuilder.Common.SiteUrls,System.String,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            日志详情页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogManage(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            日志管理（主人）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogDraft(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            日志草稿箱
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogRss(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            Rss订阅
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogSubscribe(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            关注日志
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogSubscribeCancel(Spacebuilder.Common.SiteUrls,System.String,System.Int64)">
+            <summary>
+            取消关注日志
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="spaceKey"></param>
+            <param name="threadId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogCategories(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            日志分类内容块
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogTags(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            日志标签内容块
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="spaceKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogGlobalSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            日志全局搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogQuickSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            日志快捷搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogPageSearch(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            日志搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogSearchAutoComplete(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            日志搜索自动完成
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogChannelHome(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            日志频道首页
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogListByRank(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            日志排行页
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogListByTag(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            日志标签下的日志
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="tagName">标签名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogListByCategory(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            日志分类列表
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="categoryId">不同分类的id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.BlogControlPanelManage(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus})">
+            <summary>
+            日志后台管理
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogControlPanelUpdateAuditStatus(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            批量更新日志的审核状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApprove">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogControlPanelUpdateAuditStatu(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean)">
+            <summary>
+            单个更新日志的审核状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogControlPanelDelete(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            批量/单个删除日志
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadIds">日志ID</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogControlPanelSetEssential(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64},System.Nullable{System.Boolean})">
+            <summary>
+            批量/单个设置精华（后台）
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isEssential">是否精华</param>
+            <returns>批量设置精华</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._BlogControlPanelSetCategory(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            批量/单个设置分类
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="threadIds">日志id</param>
+        </member>
+        <member name="T:Spacebuilder.Blog.RecommendItemExtensionByBlog">
+            <summary>
+            推荐项类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.RecommendItemExtensionByBlog.GetBlogThread(Tunynet.Common.RecommendItem)">
+            <summary>
+            创建的群组数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.Resources.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.Resources.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.Resources.Resource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.Resources.Resource.ApplicationName_Blog">
+            <summary>
+              查找类似 日志 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.Resources.Resource.CountObject_Blog">
+            <summary>
+              查找类似 日志 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.Resources.Resource.Description_ModeratedUser_CreateBlogThreadDenied">
+            <summary>
+              查找类似 您现在处于管制状态，不能发日志 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.Resources.Resource.Reproduced_Subject_Prefix">
+            <summary>
+              查找类似 [转] 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogFullTextQuery">
+            <summary>
+            日志全文检索条件
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogFullTextQuery.allId">
+            <summary>
+            范围
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogFullTextQuery.pageIndex">
+            <summary>
+            当前显示页面页码
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogFullTextQuery.PageSize">
+            <summary>
+            每页显示记录数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogFullTextQuery.Keywords">
+            <summary>
+            关键字集合
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogFullTextQuery.IsRelationBlog">
+            <summary>
+            是否查相关标签
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogFullTextQuery.CurrentThreadId">
+            <summary>
+            当前日志ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogFullTextQuery.Keyword">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogFullTextQuery.Range">
+            <summary>
+            筛选
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogFullTextQuery.BlogRange">
+            <summary>
+            我的日志、某人的日志、站点分类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogFullTextQuery.SiteCategoryId">
+            <summary>
+            站点分类ID
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogRange.MYBlOG">
+            <summary>
+            我的日志
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogRange.SOMEONEBLOG">
+            <summary>
+            某人的日志
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogRange.SITECATEGORY">
+            <summary>
+            站点分类
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogSearchRange.ALL">
+            <summary>
+            全部
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogSearchRange.SUBJECT">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogSearchRange.BODY">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogSearchRange.AUTHOR">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogSearchRange.TAG">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Blog.BlogSearchRange.OWNERCATEGORYNAME">
+            <summary>
+            用户分类名
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogSearcher">
+            <summary>
+            日志搜索器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.#ctor(System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">Searcher名称</param>
+            <param name="indexPath">索引文件所在路径（支持"~/"及unc路径）</param>
+            <param name="asQuickSearch">是否作为快捷搜索</param>
+            <param name="displayOrder">显示顺序</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.GlobalSearchActionUrl(System.String)">
+            <summary>
+            处理全局搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.QuickSearchActionUrl(System.String)">
+            <summary>
+            处理快捷搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.PageSearchActionUrl(System.String)">
+            <summary>
+            处理当前应用搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.RebuildIndex">
+            <summary>
+            重建索引
+            </summary>  
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.Insert(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            添加索引
+            </summary>
+            <param name="blogThread">待添加的日志</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.Insert(System.Collections.Generic.IEnumerable{Spacebuilder.Blog.BlogThread})">
+            <summary>
+            添加索引
+            </summary>
+            <param name="blogThreads">待添加的日志</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.Delete(System.Int64)">
+            <summary>
+            删除索引
+            </summary>
+            <param name="blogThreadId">待删除的日志Id</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.Delete(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除索引
+            </summary>
+            <param name="blogThreadIds">待删除的日志Id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.Update(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            更新索引
+            </summary>
+            <param name="blogThread">待更新的日志</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.Update(System.Collections.Generic.IEnumerable{Spacebuilder.Blog.BlogThread})">
+            <summary>
+            更新索引
+            </summary>
+            <param name="blogThreads">待更新的日志集合</param>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.Search(Spacebuilder.Blog.BlogFullTextQuery)">
+            <summary>
+            日志分页搜索
+            </summary>
+            <param name="blogQuery">搜索条件</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.AutoCompleteSearch(System.String,System.Int32)">
+            <summary>
+            获取匹配的前几条日志热词
+            </summary>
+            <param name="keyword">要匹配的关键字</param>
+            <param name="topNumber">前N条</param>
+            <returns>符合搜索条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogSearcher.BuildLuceneSearchBuilder(Spacebuilder.Blog.BlogFullTextQuery)">
+            <summary>
+            根据帖吧搜索查询条件构建Lucene查询条件
+            </summary>
+            <param name="Query"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSearcher.AsQuickSearch">
+            <summary>
+            是否作为快捷搜索
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSearcher.SearchEngine">
+            <summary>
+            关联的搜索引擎实例
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSearcher.Code">
+            <summary>
+            搜索器的唯一标识
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSearcher.IsDisplay">
+            <summary>
+            是否前台显示
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSearcher.DisplayOrder">
+            <summary>
+            显示顺序
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSearcher.IndexPath">
+            <summary>
+            Lucene索引路径（完整物理路径，支持unc）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSearcher.IsBaseOnLucene">
+            <summary>
+            是否基于Lucene实现
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogSearcher.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogIndexDocument">
+            <summary>
+            日志索引文档
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogIndexDocument.Convert(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            BlogThread转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="blogThread">日志实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogIndexDocument.Convert(System.Collections.Generic.IEnumerable{Spacebuilder.Blog.BlogThread})">
+            <summary>
+            BlogThread批量转换成<see cref="T:Lucene.Net.Documents.Document"/>
+            </summary>
+            <param name="blogThreads">日志实体</param>
+            <returns>Lucene.Net.Documents.Document</returns>
+        </member>
+        <member name="T:Spacebuilder.Blog.UrlRoutingRegistration">
+            <summary>
+            日志路由设置
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogThreadEditModel">
+            <summary>
+            编辑日志的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadEditModel.AsBlogThread">
+            <summary>
+            转换成BlogThread类型
+            </summary>
+            <returns>日志实体</returns>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.ThreadId">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.Subject">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.Body">
+            <summary>
+            正文
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.IsSticky">
+            <summary>
+            是否置顶
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.IsLocked">
+            <summary>
+            是否禁止评论
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.IsDraft">
+            <summary>
+            是否草稿
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.Keywords">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.Summary">
+            <summary>
+            摘要
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.OwnerId">
+            <summary>
+            所有者id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.OwnerCategoryIds">
+            <summary>
+            用户日志分类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.SiteCategoryId">
+            <summary>
+            站点日志分类
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.TagNames">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.PrivacyStatus">
+             <summary>
+            隐私状态
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.PrivacyStatus1">
+            <summary>
+            隐私设置用户列表
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.PrivacyStatus2">
+            <summary>
+            隐私设置分组列表
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Blog.BlogThreadEditModel.FeaturedImageAttachmentId">
+            <summary>
+            标题图对应的附件Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Blog.BlogThreadExtensions">
+            <summary>
+            日志实体的扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Blog.BlogThreadExtensions.AsEditModel(Spacebuilder.Blog.BlogThread)">
+            <summary>
+            将数据库中的信息转换成EditModel实体
+            </summary>
+            <param name="blogThread">日志实体</param>
+            <returns>编辑日志的EditModel</returns>
+        </member>
+    </members>
+</doc>

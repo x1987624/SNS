@@ -1,0 +1,159 @@
+﻿@model WikiPage
+@{
+    Layout = "app-detail-2cols";
+    Html.Script("~/Scripts/tunynet/jquery.spb.SelectContent.js");
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+    ViewBag.Title = "PageDetail";
+    WikiPageVersion currentVersion = ViewData.Get<WikiPageVersion>("LastestVersion", WikiPageVersion.New());
+    bool IsCanEdit = !Model.IsLocked;
+    IUser user = UserContext.CurrentUser;
+    Authorizer authorizer = DIContainer.Resolve<Authorizer>();
+    if (user != null && (Model.OwnerId == user.UserId || authorizer.IsAdministrator(ApplicationIds.Instance().Wiki())))
+    {
+        IsCanEdit = true;
+    }
+}
+
+@section Aside{
+    @Html.Action("_SideNavigation", "ChannelWiki")
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">词条统计</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            <ul class="tn-list">
+                <li>创建者：@Model.Author</li>
+                <li>编辑次数：<a href="@SiteUrls.Instance().HistoryVersion(Model.PageId)">@Model.EditionCount 次</a></li>
+                <li>帮助人数：@Model.HitTimes 次</li>
+                <li>最近更新：@Model.LastModified.ToUserDateString(true)</li>
+            </ul>
+        </div>
+    </div>
+    @Html.Action("_GetPageEditor", "ChannelWiki", new { area = "Wiki",pageId=Model.PageId })
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">热门词条</h3>
+        </div>
+        <div class="tn-box-content tn-widget-content tn-corner-bottom">
+            @{
+                IEnumerable<WikiPage> hotPages = ViewData.Get<IEnumerable<WikiPage>>("hotPages", null);
+            }
+            @if (hotPages != null)
+            {
+                int count = 1;
+                <ul class="tn-list hr-list-hot">
+                    @foreach (WikiPage page in hotPages)
+                    {
+                        <li>
+                            <span>@count</span>
+                            <a href="@SiteUrls.Instance().PageDetail(page.PageId)" title="@page.Title">
+                                @Tunynet.Utilities.StringUtility.Trim(page.Title, 15)
+                            </a>
+                        </li>
+                        count++;
+                    }
+                </ul>
+                
+            }
+        </div>
+    </div>
+
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all hr-entry-detailed">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="tn-main-heading tn-border-gray tn-border-bottom">
+            <div class="tn-option">
+                @if (IsCanEdit)
+                { 
+                    @Html.LinkButton("编辑词条", SiteUrls.Instance().PageEdit(Model.PageId), HighlightStyles.Primary, ButtonSizes.Default, htmlAttributes: new { target = "_self" })
+                }
+
+            </div>
+            <h2>@Model.Title  @if (Model.IsLocked){<span class="tn-icon tn-icon-top  tn-icon-inline tn-icon-lock" title="锁定的词条"></span>}</h2>
+        </div>
+        <div class="hr-fontsize-b tn-context">
+            @if (Model.AuditStatus != AuditStatus.Success)
+            {
+                <div class="tn-cue-highlight tn-corner-all tn-message-box">
+                    <a href="#" class="tn-icon tn-smallicon-cross tn-helper-right"></a><span class="tn-helper-left"><span class="tn-icon tn-icon-exclamation"></span></span>
+                    <div class="tn-helper-flowfix">
+                        <strong>注意：</strong>管理员审核中。
+                    </div>
+                </div>
+            }
+            <div class="case">
+                @Html.DisplayHtmlEditorContent(TenantTypeIds.Instance().WikiPage(), currentVersion.ResolvedBody, 720)
+            </div>
+                @Html.Action("_ListAttachement", "Channel", new { area = "common", teantTypeId = TenantTypeIds.Instance().WikiPage(), threadId = currentVersion.PageId })
+        </div>
+        <div class="tn-info-part tn-sort-vest">
+            <dl>
+                <dt>分类：</dt>
+                <dd>
+                    @if (Model.SiteCategory != null)
+                    {
+                        <a href="@SiteUrls.Instance().Pages(Model.SiteCategory.CategoryId)">@Model.SiteCategory.CategoryName</a>
+                    }
+                </dd>
+            </dl>
+            <dl>
+                <dt>标签：</dt>
+                <dd>
+                    @if (Model.TagNames != null)
+                    {
+                        foreach (string tagName in Model.TagNames.Distinct())
+                        {
+                        <a href="@SiteUrls.Instance().WikiTagDetail(tagName)"><span>@tagName</span></a>
+                        }
+                    }
+                </dd>
+            </dl>
+        </div>
+
+    </div>
+</div>
+<a name="comment"></a>
+@Html.Action("_Comment", "Channel", new { area = "Common", commentedObjectId = Model.PageId, toUserId = Model.UserId, ownerId = Model.OwnerId, tenantTypeId = TenantTypeIds.Instance().WikiPage(), enableComment = !Model.IsLocked, subject = Model.Title })
+
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("div.case").mouseup(function (e) {
+            var selection = getuserSelection();
+            var stext = "";
+            if (navigator.userAgent.indexOf("MSIE 7.0") > 0 || navigator.userAgent.indexOf("MSIE 8.0") > 0) {
+                stext = selection.text;
+            }
+            else {
+                stext = selection.toString();
+            }
+
+            var e = e || window.event;
+            if (stext != "") {
+                var left = e.pageX;
+                var top = e.pageY;
+                SelectInfo.selectText = stext;
+                if (SelectInfo.selectText.length < 65) {
+                    SelectInfo.askHref = "@(CachedUrlHelper.Action("EditQuestion", "ChannelAsk", "Ask"))?id=@(Model.PageId)&tid=@(TenantTypeIds.Instance().WikiPage())&subject=" + encodeURIComponent(SelectInfo.selectText) + "";
+                    SelectInfo.wikiHref = "@(CachedUrlHelper.Action("EditPage", "ChannelWiki", "Wiki"))?id=@(Model.PageId)&tid=@(TenantTypeIds.Instance().WikiPage())&subject=" + encodeURIComponent(SelectInfo.selectText) + "";
+                }
+
+                showMenu(stext, left, top);
+            }
+        });
+
+        //菜单里的评论按钮
+        $("#comment").live('click', function () {
+
+            var commentValue = SelectInfo.selectText.replace(/[\r\n]/g, "");
+            var selectTextLength = commentValue.length;
+            $("#selectTextInput").val(SelectInfo.selectText);
+            if (selectTextLength > 55)
+                commentValue = commentValue.substr(0, 47) + "......" + commentValue.substring(selectTextLength - 5, selectTextLength);
+            $("#Body-comment-@(Model.PageId)").focus().val("");
+            $("#Body-comment-@(Model.PageId)").focus().val("#" + commentValue + "#\r\n");
+        });
+
+    });
+
+</script>)

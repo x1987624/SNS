@@ -1,0 +1,264 @@
+﻿@model PagingDataSet<Photo>
+@{
+    Layout = "_Search";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    Html.Script("~/Applications/Photo/Scripts/jquery.spb.photo.waterfallforsearch.js");
+    Html.Script("~/Scripts/jquery/masonry/jquery.masonry.js");
+    Html.Script("~/Scripts/jquery/masonry/jquery.infinitescroll.js");
+
+    ViewData["searcherCode"] = PhotoSearcher.CODE;
+
+    string keyword = ViewData.Get<string>("keyword", string.Empty);
+    var filter = ViewData.Get<int>("filter", 0);
+    var userId = ViewData.Get<long>("userId", 0);
+
+    var rangeNum = Request.QueryString.Get<long>("rangeNum", 0);
+
+    int minus = ViewData.Get<int>("minus", 0);
+    var username = "";
+    if (userId != 0)
+    {
+        var userService = DIContainer.Resolve<IUserService>();
+        var user = userService.GetUser(userId);
+        if (user != null)
+        {
+            username = user.DisplayName;
+        }
+    }
+    var currentUser = UserContext.CurrentUser;
+    if (currentUser != null && currentUser.UserId != userId)
+    {
+        if (userId != 0)
+        {
+            rangeNum = 2;
+        }
+    }
+    if (currentUser == null)
+    {
+        rangeNum = 2;
+    }
+
+}
+@section SearchForm{
+    @using (Html.BeginForm("Search", "ChannelPhoto", FormMethod.Get, new { id = "searchForm" }))
+    {
+        @Html.TextBox("keyword", keyword, new { maxlength = "32", @class = "tn-textbox" })
+
+        @Html.Hidden("userId", userId)
+        @Html.Hidden("rangeNum", Request.QueryString.Get<int>("rangeNum", 0))
+        @Html.Hidden("filter", filter)
+        <a id="button-search" href="#" class="tn-button tn-button-text-only tn-button-large tn-button-primary"><span class="tn-button-text">搜索</span></a>
+    }
+}
+@section Aside{
+    <div class="tn-box tn-widget tn-widget-content tn-corner-all">
+        <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+            <h3 class="tn-helper-reset">热门标签</h3>
+        </div>
+        @Html.Action("_TagCloud", "Channel", new { tenantTypeId = TenantTypeIds.Instance().Photo(), Area = "Common" })
+    </div>
+    @Html.AjaxAction("_SearchHistories", "Channel", new { searcherCode = PhotoSearcher.CODE, Area = "Common" })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all tnc-search-results">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-photo-search-results">
+            <div class="tn-list-header tn-bg-gray tn-border-gray tn-border-bottom">
+                <div class="tn-list-header-row tn-helper-clearfix tn-bg-gray">
+                    <span class="tn-count">共有 <strong>@(Model.TotalRecords - minus)</strong>个搜索结果（用时 @Model.QueryDuration 秒）</span>
+                    <span id="user-id" class="tn-filter">
+                        @if (currentUser != null || userId != 0)
+                        {
+                            <em>范围：</em>
+                            <a data-num="0" id="all" data-all="0" href="#">全部</a>
+                        }
+                        @if (currentUser != null)
+                        {  
+                            <a data-num="1" id="myalbum"  data-myalbum="@currentUser.UserId" href="#">我的相册</a>
+                        }
+                        @if (currentUser != null)
+                        {
+                            if (userId != 0 && currentUser.UserId != userId)
+                            {
+                            <a data-num="2" id="otheralbum"  data-otheralbum="@userId" href="#">@(username)的相册</a>
+                            }
+                        }
+                        else if (currentUser == null && !string.IsNullOrEmpty(username))
+                        {
+                            <a data-num="2" id="otheralbum"  data-otheralbum="@userId" href="#">@(username)的相册</a>
+                        }
+
+                    </span>
+                    <span id="search-filter" class="tn-keywords"><em>筛选：</em>
+                        <a data-search-filter="0" href="#">全部</a>
+                        <a data-search-filter="1" href="#">描述</a>
+                        <a data-search-filter="2" href="#">标签</a>
+                        <a data-search-filter="3" href="#">作者</a>
+                    </span>
+                </div>
+            </div>
+
+            <div id="searchWaterFalls" class="spb-thumbnail-falls masonry">
+            </div>
+
+            <nav id="page-nav">
+                <a href="@SiteUrls.Instance()._SearchWaterFall(keyword, userId, filter)&pageIndex=2"></a>
+            </nav>
+        </div>
+    </div>
+</div>
+<script id="template-auto-complete" type="text/x-jquery-tmpl">
+    <li><a>{{html tagNameWithHighlight}}</a></li>
+</script>
+@Html.ScriptBlock(@<script type="text/javascript">
+                       $(function () {
+                           var PhotoSearcher = function () {
+                               this.init();
+                           };
+                           PhotoSearcher.fn = PhotoSearcher.prototype = {
+                               init: function () {
+                                   var self = this;
+                                   var cache = {};
+
+                                   this.resetForm = false;  //是否清除搜索过滤条件
+
+                                   this.searchForm = $('#searchForm');
+                                   this.keyword = $('#keyword', this.searchForm);
+                                   this.userId = $('#userId', this.searchForm);
+                                   this.rangeNum = $('#rangeNum', this.searchForm);
+                                   this.filter = $('#filter', this.searchForm);
+                                   this.ifMustKeyword = false;
+
+                                   //关键字输入框水印
+                                   this.keyword.watermark("请输入关键字");
+
+                                   //注册表单提交事件
+                                   this.searchForm.submit(function (e) {
+                                       if ($.trim(self.keyword.val()) == "" && self.ifMustKeyword == true) {
+                                           e.preventDefault();
+                                           alert("请输入关键字！");
+                                           this.keyword.focus();
+                                       }
+
+                                       if (self.resetForm) {
+                                           self.clearForm();
+                                       }
+                                   });
+
+                                   //注册自动完成响应事件
+                                   this.keyword.bind("input.autocomplete", function () {
+                                       $(this).trigger('keydown.autocomplete');
+                                   });
+                                   this.keyword.autocomplete({
+                                       minLength: 1,
+                                       source: function (request, response) {
+                                           //缓存搜索结果
+                                           var term = request.term.toLowerCase(),
+                                               element = this.element,
+                                               cache = this.element.data('autocompleteCache') || {},
+                                               foundInCache = false;
+
+                                           $.each(cache, function (key, data) {
+                                               if (term === key && data.length > 0) {
+                                                   response(data);
+                                                   foundInCache = true;
+                                                   return;
+                                               }
+                                           });
+
+                                           if (foundInCache) return;
+                                           var keyword = encodeURIComponent(self.keyword.val());
+                                           $.getJSON('@SiteUrls.Instance().PhotoSearchAutoComplete()?keyword=' + keyword + '&topNumber=10', function (data) {
+                                               cache[term] = data;
+                                               element.data('autocompleteCache', cache);
+
+                                               response(data);
+                                           });
+                                       },
+                                       search: function (event, ui) {
+                                       },
+                                       open: function (event, ui) {
+                                       },
+                                       focus: function (event, ui) {
+                                           self.keyword.val(ui.item.tagName);
+                                           return false;
+                                       },
+                                       select: function (event, ui) {
+                                           self.keyword.val(ui.item.tagName);
+                                           self.searchForm.submit();
+                                       }
+                                   }).data("autocomplete")._renderItem = function (ul, item) {
+                                       return $('#template-auto-complete').tmpl(item).data("item.autocomplete", item).appendTo(ul);
+                                   };
+
+                                   //注册搜索按钮点击事件
+                                   $('#button-search').click(function (e) {
+                                       e.preventDefault();
+                                       self.searchForm.submit();
+                                   });
+
+                                   //注册清除搜索历史事件
+                                   $('#clear-histories').click(function (e) {
+                                       e.preventDefault();
+                                       self.getSearchHistories(true);
+                                   });
+
+
+
+                                   //注册点击搜索范围事件
+                                   $("#all", "#user-id").click(function (e) {
+                                       e.preventDefault();
+                                       self.userId.val($("#all").data('all'));
+                                       self.rangeNum.val($(this).data('num'));
+                                       self.resetForm = false;
+                                       self.ifMustKeyword = true;
+                                       self.searchForm.submit();
+                                   });
+                                   $("#myalbum", "#user-id").click(function (e) {
+                                       e.preventDefault();
+                                       self.ifMustKeyword = false;
+                                       self.userId.val($("#myalbum").data('myalbum'));
+                                       self.rangeNum.val($(this).data('num'));
+                                       self.resetForm = false;
+                                       self.searchForm.submit();
+                                   });
+                                   $("#otheralbum", "#user-id").click(function (e) {
+                                       e.preventDefault();
+                                       self.ifMustKeyword = false;
+                                       self.userId.val($("#otheralbum").data('otheralbum'));
+                                       self.rangeNum.val($(this).data('num'));
+                                       self.resetForm = false;
+                                       self.searchForm.submit();
+                                   });
+
+                                   //注册点击搜索筛选事件
+                                   $("#search-filter a").click(function (e) {
+                                       e.preventDefault();
+                                       //设置相应隐藏域的值
+                                       self.filter.val($(this).data('searchFilter'));
+                                       self.resetForm = false;
+                                       self.ifMustKeyword = true;
+                                       self.searchForm.submit();
+                                   })
+
+
+
+                                   //初始化搜索表单中的过滤条件状态
+                                   self.initSearchForm();
+
+                               },
+
+
+                               /*
+                               * 初始化搜索表单中的过滤条件状态
+                               */
+                               initSearchForm: function () {
+                                   //设置搜索范围
+                                   $('#user-id a[data-num="' +@(rangeNum) +'"]').addClass('tn-selected');
+
+                $('#search-filter a[data-search-filter="' +@(filter) +'"]').addClass('tn-selected');
+            }
+                           };
+
+                           PhotoSearcher = new PhotoSearcher();
+                       });
+</script>)

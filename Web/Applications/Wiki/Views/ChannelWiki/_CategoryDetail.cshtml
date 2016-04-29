@@ -1,0 +1,33 @@
+﻿@model PagingDataSet<WikiPage>
+
+@{
+    ViewBag.Title = "_CategoryDetail";
+    long categoryId = 0;
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <div id="contentItemsContainer" class="spb-story-list">
+        <ul class="tn-list">
+            @foreach (WikiPage WikiItem in Model)
+            {
+                <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom hr-single-list-item" createtime="@WikiItem.DateCreated.ToShortDateString()" name="0">
+                    <span class="tn-icon tn-icon-wiki"></span>
+                    <div class="tn-title"><a href="@SiteUrls.Instance().PageDetail(WikiItem.PageId)" target="_blank">@HtmlUtility.TrimHtml(WikiItem.Title, 20)</a></div>
+                    <em class="tn-date tn-text-note">@WikiItem.DateCreated.ToFriendlyDate()</em>
+                    <span class="tn-user-name"><a href="@SiteUrls.Instance().WikiUser(WikiItem.Author)" target="_blank">@WikiItem.Author</a></span>
+                </li>
+                categoryId = WikiItem.SiteCategory.CategoryId;
+            }
+        </ul>
+        @if (Model.PageCount > Model.PageIndex)
+        {
+            <div class="tn-load-more tn-bg-gray tn-corner-all" plugin="GetMore" data-pagecount="3"><a href="@Html.Raw(SiteUrls.Instance()._CategoryDetail(categoryId, Model.PageSize, Model.PageIndex + 1))">下一页</a></div>
+        }
+    </div>
+}
+else
+{ 
+    <div class="tn-no-data">
+        暂无内容
+    </div>
+}

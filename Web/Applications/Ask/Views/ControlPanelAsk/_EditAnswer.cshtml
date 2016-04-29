@@ -1,0 +1,34 @@
+﻿@model AskAnswerEditModel
+@using (Html.BeginAjaxForm("_EditAnswer", "ControlPanelAsk", FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "OnEditAnswerSuccess" }))
+{
+    <div class="tnc-dailog-pd">
+        <div class="tn-form">
+            <div class="tn-form-row">
+                <input type="hidden" name="answerId" value="@Model.AnswerId" />
+                @Html.HtmlEditorFor(n => n.Body, new HtmlEditorOptions(HtmlEditorMode.Simple)
+                                                .MergeHtmlAttribute("style", "height:260px;")
+                                                .AddPhotoButton(TenantTypeIds.Instance().AskAnswer(), Model.AnswerId)
+                                                .AddFileButton(TenantTypeIds.Instance().AskAnswer(), Model.AnswerId)
+                                                )
+                @Html.ValidationMessageFor(n=>n.Body)
+            </div>
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-bg-gray tn-border-gray tn-border-top">
+        @Html.Button("提交", ButtonTypes.Submit, HighlightStyles.Primary)
+        @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close" })
+    </div>
+}
+<script type="text/dialog">
+    this.title("编辑回答");
+    this.size(550,350)
+</script>
+
+@Html.ScriptBlock(@<script>
+    //编辑回答回调函数
+    function OnEditAnswerSuccess(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+            window.location.reload();        
+        });
+    }
+</script>)

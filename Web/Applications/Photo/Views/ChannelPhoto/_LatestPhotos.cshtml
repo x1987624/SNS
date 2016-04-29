@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Photo>
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-new-photo">
+  <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+    <h3 class="tn-helper-reset"> 最新照片</h3>
+  </div>
+  <div class="tn-box-content tn-widget-content tn-corner-bottom"> @if (Model != null && Model.Count() > 0)
+    {
+    <ul class="tn-thumbs tn-helper-clearfix">
+      @foreach (Photo photo in Model)
+      {
+      <li class="tn-thumb">
+        <div class="tn-thumb-wrap"><a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" title="@photo.Description"><img width="100" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath,TenantTypeIds.Instance().Photo(),ImageSizeTypeKeys.Instance().P200())" alt="@photo.Description"/></a></div>
+      </li>
+      }
+    </ul>
+    }
+    else
+    {
+    <div class="tn-no-data"> 还没有照片!</div>
+    }
+  </div>
+</div>

@@ -1,0 +1,87 @@
+﻿@model AskQuestion
+@{
+    bool isShow = ViewData.Get<bool>("isShow",false);
+    var currentUser = UserContext.CurrentUser;
+}
+@if (Model != null)
+{ 
+    <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed">
+        <div class="tn-list-item-area-left">
+            <div class="tn-count-box">
+                <div class="tn-count tn-widget-content tn-corner-top">
+                    <em class="tn-nums">@Model.AnswerCount</em><span class="tn-label tn-text-note">回答</span>
+                </div>
+                <div class="tn-count tn-widget-content tn-corner-bottom tn-border-rbl">
+                    <em class="tn-nums">@Model.HitTimes</em><span class="tn-label tn-text-note">浏览</span>
+                </div>
+            </div>
+        </div>
+        <div class="tn-list-item-area-main">
+            @if (isShow)
+            { 
+                <div class="tn-helper-right">
+                    @if (currentUser != null && currentUser.UserId != Model.UserId)
+                    { 
+                        @Html.Action("_SubscribeQuestionButton", "ChannelAsk", new { userId = UserContext.CurrentUser.UserId, questionId = Model.QuestionId })
+                    }
+                </div>
+            }
+            <div class="tn-list-item-row tn-list-item-heading">
+                <h5 class="tn-helper-reset">
+                    <a href="@SiteUrls.Instance().AskQuestionDetail(Model.QuestionId)" title="@Model.Subject" target="_blank">@Tunynet.Utilities.StringUtility.Trim(Model.Subject,50)</a>
+                    @if (Model.IsEssential)
+                    {
+                        <span title="精华" class="tn-icon-colorful tn-icon-colorful-fine tn-icon-inline"></span>
+                    }
+                </h5>
+            </div>
+
+            <div class="tn-list-item-row tn-list-item-summary">
+                <p>
+                    @HtmlUtility.TrimHtml(Model.GetResolvedBody(),80)
+                </p>
+            </div>
+            @if (Model.AnswerCount > 0)
+            { 
+            <div class="tn-list-item-row tn-list-info">
+                <span class="tn-last">
+                    最后回答：
+                    <a class="tn-user-name" href="@SiteUrls.Instance().AskUser(UserIdToUserNameDictionary.GetUserName(Model.LastAnswerUserId))" target="_blank">
+                       @Model.LastAnswerAuthor
+                    </a>
+		    @if(Model.LastAnswerDate.HasValue)
+		    {
+                    <em class="tn-date tn-text-note">
+                       @Model.LastAnswerDate.Value.ToFriendlyDate()
+                    </em>
+		    }
+                </span>
+            </div>
+            }
+            <span class="tn-explain-icon">
+                <span class="tn-icon tn-icon-coins" title="悬赏值"></span>
+                <span class="tn-icon-text">
+                    @Model.Reward
+                </span>
+            </span>
+            <a class="tn-user-name" href="@SiteUrls.Instance().AskUser(UserIdToUserNameDictionary.GetUserName(Model.UserId))" target="_blank">
+                @Model.Author
+            </a>
+            <em class="tn-date tn-text-note">
+                @Model.DateCreated.ToFriendlyDate()
+            </em>
+            @{
+                IEnumerable<Tag> tags =Model.Tags;            
+                if (tags != null && tags.Count() > 0)
+                { 
+                    <div class="tn-list-item-row tn-tags">
+                        @foreach (Tag tag in tags)
+                        { 
+                            <span class="tn-expand"><a href="@SiteUrls.Instance().AskTagDetail(tag.TagName)" outerclass = "tn-tag-card" plugin="tipsyHoverCard" data-url="@SiteUrls.Instance()._AskTagContents(tag.TagName)"  target="_blank">@tag.TagName</a></span>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </li>
+}

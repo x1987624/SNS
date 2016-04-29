@@ -1,0 +1,179 @@
+﻿@model PointGift
+@{
+    Layout = "app-detail-2cols";
+    Html.Style("~/Applications/PointMall/Styles/app.css");
+    Html.Style("~/Applications/PointMall/Styles/jquery.jqzoom.css");
+    Html.Script("~/Scripts/jquery/jqzoom/jquery.jqzoom-core.js");
+    Html.Script("~/Applications/PointMall/Scripts/jquery.spb.pointGift.js");
+
+    long giftId = ViewData.Get<long>("giftId", 0);
+
+    bool isFavorited = ViewData.Get<bool>("isFavorited", false);
+
+    IEnumerable<int> imageIds = null;
+    if (!string.IsNullOrEmpty(Model.FeaturedImageIds))
+    {
+        string[] featuredImageIds = Model.FeaturedImageIds.Split(',');
+        imageIds = featuredImageIds.Select(n => int.Parse(n));
+    }
+    else
+    {
+        imageIds = new List<int>() { 0 };
+    }
+    IUser currentUser = UserContext.CurrentUser;
+    var tradePointCategory = new PointService().GetPointCategory("TradePoints");
+
+    long successCommentsCount = ViewData.Get<long>("successCommentsCount", 0);
+    long pendingCommentsCount = ViewData.Get<long>("pendingCommentsCount", 0);
+}
+@section ContentHeader{
+    @Html.Partial("_Submenu")
+}
+@section Aside{
+    @Html.Action("_RecommendGiftsSide", "ChannelPointMall", new { Area = "PointMall" })
+    @Html.Action("_LastViewedGifts", "ChannelPointMall", new { Area = "PointMall" })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-gift-show">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-gift-details tn-helper-clearfix">
+            <div class="spb-gift-box" id="big">
+                <p class="tn-bigphoto-wrap tn-bg-light tn-border-light" id="">
+                    <a href="@SiteUrls.Instance().ImageUrl(Model.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Big(), false)" class="jqzoom" rel='gal1' title="@Model.Description">
+                        <img id="Phone" src="@SiteUrls.Instance().ImageUrl(Model.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Medium(), false)" width="320" title="@Model.Name" alt="@Model.Name" />
+                    </a>
+                </p>
+                <ul class="tn-photo-list tn-widget tn-helper-clearfix" id="thumblist">
+                    @foreach (int item in imageIds)
+                    {
+                        <li class="tn-photo-item tnui-gift-selected">
+                            <p class="tn-photo-wrap tn-widget-content tn-border-gray">
+                                @{
+                        var a = SiteUrls.Instance().ImageUrl(item, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Big(), false);
+                                }
+                                <a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '@SiteUrls.Instance().ImageUrl(item, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Medium(), false)',largeimage: '@a'}">
+                                    <img src="@SiteUrls.Instance().ImageUrl(item, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Small(), false)" alt="@Model.Name"  width="60" />
+                                </a>
+                            </p>
+                        </li>
+@*                        <img alt="" src="@SiteUrls.Instance().ImageUrl(item,TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Big())" style="display:none" />
+*@                    }
+                </ul>
+            </div>
+            <div class="tn-info-part tn-helper-flowfix">
+                <div class=" tn-border-bottom tn-border-gray">
+                    <h1>@StringUtility.Trim(Model.Name, 55)</h1>
+                </div>
+                <div class="spb-gift-contant">
+                    <dl>
+                        <dt>所需@(tradePointCategory.CategoryName)：</dt>
+                        <dd style="color: #F00">@Model.Price</dd>
+                    </dl>
+                    <p>
+                        @if (Model.IsEnabled)
+                        {
+                            <a plugin="dialog" class="tn-button tn-corner-all tn-button-text-only tn-button-large tn-button-primary" href="@SiteUrls.Instance()._CreateRecord(Model.GiftId)">
+                                <span class="tn-button-text">立即兑换</span> </a>
+                        }
+                        else
+                        {
+                            <button class="tn-button tn-corner-all tn-button-text-only tn-button-large tn-button-disabled"
+                                type="submit">
+                                <span class="tn-button-text">该商品已经下架</span></button>
+                        }
+                        @if (Model.IsEnabled)
+                        {
+                            if (currentUser != null && currentUser.UserId != Model.UserId)
+                            {
+                            @Html.Action("_FavoriteButton", "ChannelPointMall", new { Area = "PointMall", userId = currentUser.UserId, giftId = Model.GiftId })
+                            }
+                            string content = string.Format("#商品分享#  \"{0}\" {1} 很不错 推荐给大家看看", Model.Name, SiteUrls.FullUrl(SiteUrls.Instance().GiftDetail(giftId)));
+                            <a plugin="dialog" class="tn-action tn-action-text-icon" href="@SiteUrls.Instance()._ShareToMicroblog(content, SiteUrls.Instance().ImageUrl(Model.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Medium()))">
+                                <span class="tn-icon tn-icon-share"></span><span class="tn-action-text">分享到微博</span>
+                            </a>
+                        }
+                    </p>
+                    <p>
+                        已有 @Model.ExchangeNumber 人参与兑换
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="spb-giftshow-details">
+            <div class="tn-border-bottom tn-border-gray">
+                <h3>商品描述</h3>
+            </div>
+            <p class="tn-text">@Html.DisplayHtmlEditorContent(TenantTypeIds.Instance().PointGift(), Model.Description, 700)</p>
+        </div>
+    </div>
+</div>
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-gift-records">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        @Html.Tabs(new TabControl()
+                  .SetIsSimple(true)
+                  .AddTabItem(new TabItem("成功兑换(" + successCommentsCount + ")") { Url = SiteUrls.Instance()._GiftComments(Model.GiftId, ApproveStatus.Approved), Selected = true })
+                  .AddTabItem(new TabItem("等待批准(" + pendingCommentsCount + ")") { Url = SiteUrls.Instance()._GiftComments(Model.GiftId, ApproveStatus.Pending), Selected = false })
+            )
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+
+
+                       $(document).ready(function () {
+                           $("#thumblist li:first").addClass("zoomThumbActive");
+
+                           // var $this;
+                           // //当Div有鼠标放上时候 绑定定时器
+                           // $("#Phone").mousemove(function () {
+                           //     setTimeout(function(){
+                           //      $this= $(".jqzoom").jqzoom(
+                           //             {
+                           //                 zoomType: 'standard',
+                           //                 lens: true,
+                           //                 zoomWidth: 355,
+                           //                 zoomHeight: 320,
+                           //                 title: false,
+                           //                 showEffect: 'fadein'
+                           //             })
+                           //     }, 1000);
+                           // });
+
+
+                           ////鼠标移走本DIV的时候 解绑定时器
+                           // $("#Phone").mouseout(function () {
+                           //     $(".jqzoom").unbind();
+                           // });
+
+//                           var $Phone = $("#Phone");//div
+//                           var $Zoom = $(".jqzoom");//zoom 插件
+
+//                           $Phone.mousemove(function () {
+//                               $Zoom.jqzoom({
+//                                   zoomType: 'standard',
+//                                   lens: true,
+//                                   zoomWidth: 355,
+//                                   zoomHeight: 320,
+//                                   title: false,
+//                                   showEffect: 'fadein'
+//                               }).delay(0).queue(function () { $Zoom.hide().dequeue(); }).delay(200)
+//.show(1);
+
+//                           });
+
+                           $(".jqzoom").jqzoom(
+                                        {
+                                            zoomType: 'standard',
+                                            lens: true,
+                                            zoomWidth: 355,
+                                            zoomHeight: 320,
+                                            title: false,
+                                            showEffect: 'fadein'
+                                        });
+                           //放大镜小图 点击加选中样式
+                           $(".tnui-gift-selected:first").addClass("tn-selected");
+                           $(".tnui-gift-selected a").click(function () {
+                               $(".tnui-gift-selected").removeClass("tn-selected");
+                               $(this).closest("li").addClass("tn-selected");
+                           });
+
+                       });
+</script>)

@@ -1,0 +1,54 @@
+﻿@model PhotoEditModel
+@{
+    long photoId = Model.PhotoId;
+    IEnumerable<string> tags = ViewData.Get<IEnumerable<string>>("tags", null);
+    string callback = Request.QueryString.Get<string>("callBack", "OnSuccessCallBack"); 
+}
+@using (Html.BeginAjaxForm("_EditPhoto", "UserSpacePhoto", FormMethod.Post, new AjaxFormOptions { OnErrorCallBack = "OnErrorCallBack", OnSuccessCallBack = callback }))
+{
+    @Html.HiddenFor(n => n.PhotoId)
+    <div class="tnc-dailog-pd">
+        <div class="tn-form-box">
+            <table>
+                <tbody>                    
+                    <tr>
+                        <th>
+                            照片描述：
+                        </th>
+                        <td>
+                            @Html.TextAreaFor(n => n.Description, new RouteValueDictionary { { "class", "tn-textbox tn-input-long tn-border-gray" } })
+                            @Html.ValidationMessageFor(n => n.Description)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            照片标签：
+                        </th>
+                        <td>
+                            @Html.TagSelector("RelatedTags",tags,TenantTypeIds.Instance().User(),Model.OwnerId)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tnc-artdilog-btn tn-bg-gray tn-border-gray tn-border-top">
+        @Html.Button("提交", ButtonTypes.Submit, HighlightStyles.Primary)
+        @Html.Button("取消", ButtonTypes.Button, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close" })
+    </div>
+}
+<script type="text/dialog">
+this.title("编辑照片");
+</script>
+@Html.ScriptBlock(@<script language="javascript" type="text/javascript">
+    function OnSuccessCallBack(data) {
+        art.dialog.tips("编辑照片成功！", 1.5, 1, function () {
+            $("#photo-description-" + '@photoId').html(data.description);
+        });        
+    }
+    function OnErrorCallBack(data) {
+        alert(data.MessageContent, function () {
+            window.location.reload();
+        })
+    }
+</script>)

@@ -1,0 +1,49 @@
+﻿@model Comment
+@{
+    IUser user = ViewData.Get<IUser>("user", null);
+    AskAnswer answer = ViewData.Get<AskAnswer>("answer", null);
+    AskQuestion question = answer.Question;
+    string url = SiteUrls.Instance().AskQuestionDetail(answer.QuestionId);
+    Activity activity = ViewData.Get<Activity>("activity", null);
+}
+<li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom spb-blog-item">
+    <div class="tn-list-item-area-left">
+        @{
+            HyperLinkTarget hyperLinkTarget;
+            if (UserContext.CurrentUser != null && user.UserId == UserContext.CurrentUser.UserId)
+            {
+                hyperLinkTarget = HyperLinkTarget._self;
+            }
+            else
+            {
+                hyperLinkTarget = HyperLinkTarget._blank;
+            }
+        }
+        @Html.ShowUserAvatar(user, SiteUrls.Instance().SpaceHome(user.UserId), AvatarSizeType.Small, hyperLinkTarget)
+    </div>
+    <div class="tn-list-item-area-main">
+        @Html.ActivityOperation(activity.ActivityId)
+        <div class="tnc-dynamic-title">
+            <a target="_blank" href="@url" class="tn-title">@question.Subject</a>
+        </div>
+        <div class="tnc-dynamic-box">
+            <a title="@user.DisplayName" @(user == UserContext.CurrentUser ? "target=_self" : "target=_blank") href="@SiteUrls.Instance().SpaceHome(user.UserId)" class="tn-author">@user.DisplayName</a>
+            @Html.IdentificationType(user.UserId)
+            对回答发表评论
+           
+            <em class="tn-date tn-text-note">@activity.DateCreated.ToFriendlyDate()</em>
+            <em class="tn-text-note">@(question.AnswerCount)个回答</em>
+        </div>
+        <p class="tnc-dynamic-box">
+            @Tunynet.Utilities.HtmlUtility.TrimHtml(Model.Body, 88)
+        </p>
+        <div class="tn-widget tn-bubble tn-bubble-arrow-top tnc-dynamic-quote">
+            <div class="tn-bubble-arrow"><b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble"></b></div>
+            <div class="tn-bubble-content tn-border-gray tn-corner-all">
+                <p class="tnc-dynamic-box">
+                    @Tunynet.Utilities.HtmlUtility.TrimHtml(answer.GetResolvedBody(), 88)
+                </p>
+            </div>
+        </div>
+    </div>
+</li>

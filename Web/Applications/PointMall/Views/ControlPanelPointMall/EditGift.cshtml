@@ -1,0 +1,119 @@
+﻿@model PointGiftEditModel
+@{
+    Layout = "_ControlPanel";
+
+    string title = Model.GiftId > 0 ? "编辑商品" : "添加商品";
+    string buttonText = Model.GiftId > 0 ? "保存" : "添加";
+}
+
+<div class="tn-block">
+    <div class="tnc-main">
+        @Html.Partial("_ManageRightMenu")
+        <div class="tnc-ctn-center tnc-ctnborder">
+            <h1>
+                <span>@title</span></h1>
+            <div class="tnc-ctnright-list">
+                <div class="tnc-content-manage">
+                    @using (Html.BeginAjaxForm("EditGift", "ControlPanelPointMall", FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "success"}))
+                    {
+                        <table class="tn-table-grid tn-form-box tn-table-grid-td">
+                            <tbody>
+                                @Html.HiddenFor(n => n.GiftId)  
+                                <tr class="tn-table-grid-row">
+                                    <th>
+                                        @Html.FormLabelFor(model => model.Name)
+                                    </th>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.Name, InputWidthTypes.Long)
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </td>
+                                </tr>
+                                <tr class="tn-table-grid-row">
+                                    <th>
+                                        @Html.FormLabelFor(model => model.Description)
+                                    </th>
+                                    <td>
+                                        @Html.UEditorFor(model => model.Description, TenantTypeIds.Instance().PointGift(), Model.GiftId, new Dictionary<string, object> { {"style","width:1000px"}})
+                                        @Html.ValidationMessageFor(model => model.Description)
+                                    </td>
+                                </tr>
+                                <tr class="tn-table-grid-row">
+                                    <th>
+                                        @Html.FormLabelFor(model => model.Price)
+                                    </th>
+                                    <td>
+                                        @Html.TextBoxFor(model => model.Price,new{ @class="tn-textbox tn-border-gray  tn-input-medium"})
+                                        @Html.ValidationMessageFor(model => model.Price)
+                                    </td>
+                                </tr>
+                                <tr class="tn-table-grid-row">
+                                    <th>
+                                        @Html.FormLabelFor(model => model.CategoryId)
+                                    </th>
+                                    <td>
+                                        @Html.CategoryDropDownListFor("CategoryId", Model.CategoryId, TenantTypeIds.Instance().PointGift(), 0, 0, 2)
+                                        @Html.ValidationMessageFor(model => model.CategoryId)
+                                    </td>
+                                </tr>
+                                <tr class="tn-table-grid-row">
+                                    <th>
+                                    @Html.FormLabelFor(model => model.IsEnabled)
+                                    </th>
+                                    <td class="tn-table-grid-td">
+                                        是 @Html.RadioButtonFor(model => model.IsEnabled, "true", new { @class = "radio-isEnabled", @checked = "true" })
+                                        否 @Html.RadioButtonFor(model => model.IsEnabled, "false", new { @class = "radio-isEnabled" })
+                                    </td>
+                                </tr>
+                                <tr class="tn-table-grid-row">
+                                    <th>                                
+                                        @Html.FormLabelFor(model => model.FeaturedImage)
+                                    </th>
+                                    <td>
+                                        @Html.SetTitleImageFor(n => n.FeaturedImageIds, TenantTypeIds.Instance().PointGift(), Model.GiftId)
+                                    </td>
+                                </tr>
+                                <tr class="tn-table-grid-row">
+								    <th></th>
+                                    <td>
+                                        @Html.Button(buttonText, ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { @class = "tn-button-text", id = "add-gift" })
+                                        @Html.Button("取消", ButtonTypes.Cancel, HighlightStyles.Secondary, htmlAttributes: new { @class = "tn-button-text", id = "cancel" })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    function success(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+            window.location.href = '@SiteUrls.Instance().ManagePointGifts()';
+        });
+    }
+
+    $(document).ready(function () {
+        $("#cancel").click(function (e) {
+            e.preventDefault();
+            window.location.href = "@SiteUrls.Instance().ManagePointGifts()";
+        });
+
+        $("#add-gift").click(function (e) {
+            e.preventDefault();
+            var confirmString = "你没有为上架的商品上传标题图，确定要创建该商品吗？";
+            if ('@Model.GiftId' > 0) {
+                confirmString = "你没有为上架的商品上传标题图，确定要保存对该商品的修改吗？";
+            }
+            if ($("#FeaturedImageIds").val() == "" && $(".radio-isEnabled:checked").val().toLocaleLowerCase() == 'true') {
+                art.dialog.confirm(confirmString, function () {
+                    $("#add-gift").parents("form").submit();
+                });
+            }
+            else {
+                $("#add-gift").parents("form").submit();
+            }
+        });
+    });
+</script>)

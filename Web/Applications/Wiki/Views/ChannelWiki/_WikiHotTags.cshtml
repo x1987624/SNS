@@ -1,0 +1,9 @@
+﻿<div class="tn-box tn-widget tn-widget-content tn-corner-all">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        <h3 class="tn-helper-reset">百科标签</h3>
+    </div>
+
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        @Html.AjaxAction("_TagCloud", "Channel", new { tenantTypeId = TenantTypeIds.Instance().WikiPage(), Area = "Common" })
+    </div>
+</div>

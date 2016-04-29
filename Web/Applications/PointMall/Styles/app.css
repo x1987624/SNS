@@ -1,0 +1,69 @@
+/* 
+Offical Style for Spacebuilder
+(c) Tunynet Inc.
+*/
+
+/* Channel page
+----------------------------------*/
+.spb-gift-details .spb-gift-box{ float: left;margin-right: 20px;text-align: center; width:342px;}
+.spb-gift-details .tn-info-part{ padding-top:0;}
+.spb-gift-details .tn-info-part h1{ margin-top:0; word-wrap:break-word; }
+.spb-gift-details .tn-bigphoto-wrap{ word-wrap:break-word; padding:10px; height:320px;}
+.spb-gift-details .tn-bigphoto-wrap span{ display:inline-block; width:1px; height:100%; vertical-align:middle; visibility:hidden;}
+.spb-gift-details .tn-bigphoto-wrap img { vertical-align:middle;}
+.spb-gift-details .tn-photo-list{  margin-left:-10px;}
+.spb-gift-details .tn-photo-list .tn-photo-item{ width:60px; padding:10px 0 0 10px; _padding:10px 0 0 8px;}
+.spb-gift-details .tn-photo-list .tn-photo-item .tn-photo-wrap{ height:60px; padding:0; width:60px;}
+.spb-gift-details .tn-photo-list .tn-photo-item .tn-photo-wrap a{ height:60px;}
+.spb-gift-details .tn-photo-list .tn-selected p{ border:3px solid #0065A2;}
+.spb-gift-details .spb-gift-contant{ padding:10px 0 0 0;}
+.spb-gift-details .spb-gift-contant dl,
+.spb-gift-details .spb-gift-contant p{ padding-bottom:10px;}
+.spb-gift-show .spb-giftshow-details{ padding-top:20px;}
+.spb-gift-show .spb-giftshow-details .tn-text{ line-height:20px; padding-top:10px;}
+.spb-gift-records .tn-comments .tn-comment-info{ overflow:visible;}
+.spb-gift-records .tn-comments .tn-comment-avatar{ position:relative; z-index:99999;}
+.spb-gift-records .tn-name{ margin-top:5px; overflow:hidden; width:50px; white-space:nowrap;}
+.spb-gift-records .tn-bubble-arrow-left .tn-arrow-b1{ left:37px;}
+.spb-gift-records .tn-bubble-arrow-left .tn-arrow-b2{ left:38px;}
+.spb-gift-records .spb-gift-records-text{ margin-bottom:5px; padding-bottom:5px;}
+.spb-gift-records .tn-comment-feed{ padding-top:0;}
+.spb-gift-records .tn-comment-feed span{ padding-right:20px;}
+.tn-explain-icon .tn-icon-colorful{margin-top: -8px;position: absolute;top: 50%;}
+.spb-recommend-commodity .tn-list .tn-list-item,
+.spb-browse-commodity .tn-list .tn-list-item,
+.spb-hot-commodity .tn-list .tn-list-item{ padding-top:0;}
+.spb-gift-home{overflow:hidden; clear:both; }
+
+/* Photo Slider */
+.spb-gift-slider-rec { height: 235px; width: 688px; float: left; }
+.spb-gift-slider-rec .spb-slider-nav { right: 5px; bottom: 4px; }
+.spb-gift-slider-rec .spb-slider-nav-clip { margin: 0; }
+.spb-gift-slider-rec .spb-slider-panel { height: 235px; width: 688px; }
+.spb-gift-slider-rec .spb-slider-panel .spb-slider-panel-textbox { width: 688px; height: 24px;  bottom: 0; _bottom: -1px; left: 0; right: 0; }
+.spb-gift-slider-rec .spb-slider-panel .spb-slider-panel-text { width: 688px; height: 24px; }
+.spb-gift-slider-rec .spb-slider-panel .spb-slider-panel-text p { padding: 0 200px 0 10px; line-height: 24px; text-align: left; }
+.spb-gift-slider-rec .spb-slider-panel .spb-slider-panel-overlay { width: 688px; height: 24px; }
+
+.spb-ass-commodity{ padding-top:0px;}
+.spb-ass-commodity .tn-photo-list{width:800px;}
+.spb-ass-commodity .tn-photo-item{ padding:0 32px 25px 0px;}
+.spb-ass-commodity .tn-photo-item p{ text-align:left;}
+.tn-grid-1-3 .tnc-main{ padding-left:15px;}
+.tn-commodity .tn-avatar{ width:100px; height:100px;}
+
+.tn-box.spb-gift-ranking .tn-box-content{ padding-top:0px; }
+.spb-gift-ranking .spb-gift-list .tn-directory-item{ padding:5px 15px 5px 0;}
+.spb-gift-ranking .tn-directory-path p{ padding:5px 10px;}
+.spb-gift-ranking .tn-directory-level{ padding:0 10px 10px;}
+.spb-gift-ranking .tn-directory h5{ display:block;}
+.spb-gift-ranking .tn-directory-search{ padding:0px 0 10px 10px ;}
+.spb-gift-ranking .tn-search-box .tn-input-medium{ width:285px;}
+
+.tn-box.spb-gift-photo .tn-box-content{ padding-top:0;}
+.spb-gift-photo .tn-photo-list{ width:800px;}
+.spb-gift-photo .tn-photo-item{ width:150px; padding:0 30px 15px 0;}
+.spb-gift-photo .tn-photo-item p{ text-align:left;}
+.spb-gift-photo .tn-photo-item .tn-photo-wrap{ height:140px;}
+.spb-gift-photo .tn-photo-item .tn-photo-wrap a{ height:140px; overflow:hidden;}
+.tn-directory-center{ padding:3px 5px; }

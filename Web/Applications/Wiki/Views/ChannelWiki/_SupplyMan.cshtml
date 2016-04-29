@@ -1,0 +1,30 @@
+﻿@model List<IUser>
+@{
+    Layout = null;
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-popularity-users"
+    id="popularUsersDiv">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        @*<div class="tn-option">
+            @Html.Link("更多", SiteUrls.Instance().FindUserRanking(SortBy_User.HitTimes), "更多")
+        </div>*@
+        <h3 class="tn-helper-reset">模块贡献者</h3>
+        @*<div class="spb-rec-btn" style="float: right">
+            <a href="@SiteUrls.Instance()._ManageRecommendItems(RecommentTypeIds.Instance().HotUser())" class="tn-button tn-corner-all tn-button-default tn-button-icon-only" title="推荐管理" plugin="dialog">
+                <span class="tn-icon tn-icon tn-icon-set"></span><span class="tn-button-text">推荐管理</span>
+            </a>
+        </div>*@
+    </div>
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        <ul class="tn-avatar-list tnc-person-flow tn-helper-clearfix">
+            @foreach (var user in Model)
+            {
+                <li class="tn-avatar-item">
+                    <a href="@SiteUrls.Instance().SpaceHome(user.UserId)" target="_blank">
+                        @Html.ShowUserAvatar(user.UserId, AvatarSizeType.Small, false, navigateTarget: HyperLinkTarget._blank, isShowUserCard: true)</a>
+                    <a  class="tn-user-name" href="@SiteUrls.Instance().SpaceHome(user.UserId)" title="@user.DisplayName" target="_blank">@user.DisplayName</a>
+                </li> 
+            }
+        </ul>
+    </div>
+</div>

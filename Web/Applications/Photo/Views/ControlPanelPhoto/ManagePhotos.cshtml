@@ -1,0 +1,324 @@
+﻿@model PagingDataSet<Photo>
+@{
+    Html.Style("~/Applications/Photo/Styles/app.css");
+
+    Html.Script("~/Bundle/Scripts/FancyBox");
+    Html.Style("~/Bundle/Styles/FancyBox");
+
+    Layout = "_ControlPanel";
+    string descriptionKeyword = Request.QueryString.Get("descriptionKeyword");
+    AuditStatus? auditStatus = Request.QueryString.Get<AuditStatus?>("auditStatus", null);
+    SelectList isEssential = ViewData.Get<SelectList>("isEssential", null);
+    long? userId = ViewData.Get<long?>("userId", null);
+}
+
+<div class="tn-block">
+    <div class="tnc-main">
+        @Html.Partial("_ManageRightMenu")
+        <div class="tnc-ctn-center">
+            <h1>
+                <span>照片管理</span></h1>
+            <div class="tnc-ctnright-list">
+                <div class="tn-manager-search tn-helper-clearfix">
+                    <div class="tnc-search-adminform">
+                        @using (Html.BeginForm("ManagePhotos", "ControlPanelPhoto", FormMethod.Get))
+                        {
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    名称关键字：</label>
+                                @Html.TextBox("descriptionKeyword", descriptionKeyword, new { @class = "tn-textbox tn-input-medium tn-border-gray" })
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    作者：</label>
+                                @Html.UserSelector("userId", userId)
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    审核状态：</label>
+                                @(Html.EnumDropDownList<AuditStatus?>("auditStatus", auditStatus, "全部", new { @class = "tn-dropdownlist" }))
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                    是否加精：</label>
+                                @Html.DropDownList("isEssential", isEssential, "不限", new { @class = "tn-dropdownlist" })
+                            </div>
+                            <div class="tn-form-row">
+                                <label class="tn-form-label">
+                                </label>
+                                @Html.Button("搜索", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { @class = "tn-button-text", id = "searchPhotos" })
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="tnc-content-manage">
+                    <div class="tn-list-header">
+                        <div class="tn-toolbar-area">
+                            @Html.LinkButton("通过审核", SiteUrls.Instance()._PhotoControlPanelUpdateAuditStatus(true), iconType: IconTypes.SmallAccept, htmlAttributes: new { id = "audit-success" })
+                            @Html.LinkButton("不通过审核", SiteUrls.Instance()._PhotoControlPanelUpdateAuditStatus(false), iconType: IconTypes.SmallStop, htmlAttributes: new { id = "audit-fail" })
+                            @Html.LinkButton("加精", SiteUrls.Instance()._PhotoControlPanelSetEssential(true), iconType: IconTypes.SmallElite, htmlAttributes: new { id = "set-essential-true" })
+                            @Html.LinkButton("取消精华", SiteUrls.Instance()._PhotoControlPanelSetEssential(false), iconType: IconTypes.SmallStop, htmlAttributes: new { id = "set-essential-false" })
+                            @Html.LinkButton("贴标签", "#", iconType: IconTypes.SmallAdd, htmlAttributes: new { id = "set-tags" })
+                            @Html.LinkButton("删除", SiteUrls.Instance()._PhotoControlPanelDeletePhoto(null), iconType: IconTypes.SmallCross, htmlAttributes: new { id = "delete-photos" })
+                        </div>
+                    </div>
+                    @if (Model == null || Model.Count == 0)
+                    { 
+                        <div class="tn-no-data">
+                            没有查询到数据！</div>
+                    }
+                    else
+                    {
+                        <form action="#" method="post" id="Form-Photo">
+                        <table class="tn-table-grid">
+                            <tbody>
+                                <tr class="tn-table-grid-header">
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        <input type="checkbox" class="tn-checkbox" id="select-all" name="checkbox" />
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        照片描述
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        所属相册
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        标签
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        状态
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        作者
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        创建时间
+                                    </th>
+                                    <th class="tn-border-gray tn-border-bottom tn-text-note">
+                                        操作
+                                    </th>
+                                </tr>
+                                @foreach (Photo photo in Model)
+                                {
+                                    <tr class="tn-table-grid-row">
+                                        <td class="tn-border-gray tn-border-bottom tn-width-check">
+                                            <input type="checkbox" name="photoIds" value="@photo.PhotoId" class="tnui-photo-id" />
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-avatar">
+                                            <a rel="fancybox" href="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().Original())">
+                                                <img src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" alt="@photo.Description" title="@photo.Description" style="width:50px;height:50px" />
+                                            </a>
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-auto">
+                                            <a href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" plugin="dialog" title="@photo.Description">@HtmlUtility.TrimHtml(photo.Description, 6)</a>
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-user-name  tn-nowrap">
+                                            <a href="@SiteUrls.Instance().AlbumDetailList(photo.User.UserName, photo.AlbumId)" target="_blank" title="@photo.Album.AlbumName">@HtmlUtility.TrimHtml(photo.Album.AlbumName, 12)</a>
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-tags">
+                                            @{
+                                    IEnumerable<Tag> tags = photo.Tags;
+                                    if (tags != null && tags.Count() > 0)
+                                    {                                                                                                                            
+                                                <span @(tags.Count() > 2 ? "menu=#more-tag-" + photo.PhotoId : "")>
+                                                    @for (int i = 0; i < Math.Min(tags.Count(), 2); i++)
+                                                    {
+                                                        <a href="@SiteUrls.Instance().TagNew(tags.ElementAt(i).TagName)" target="_blank" title="@tags.ElementAt(i).TagName">@HtmlUtility.TrimHtml(tags.ElementAt(i).TagName, 8)</a>
+                                                    }
+                                                </span>
+                                                    if (tags.Count() > 2)
+                                                    {                                            
+                                                <div class="tn-widget tn-bubble tn-bubble-arrow-top" id="more-tag-@photo.PhotoId" style="display:none">
+                                                    <div class="tn-bubble-arrow">
+                                                        <b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble"></b>
+                                                    </div>
+                                                    <div class="tn-bubble-content tn-widget-content tn-border-gray tn-corner-all">
+                                                        @for (int i = 2; i < tags.Count(); i++)
+                                                        {
+                                                            <a href="@SiteUrls.Instance().TagNew(tags.ElementAt(i).TagName)" target="_blank" title="@tags.ElementAt(i).TagName">@HtmlUtility.TrimHtml(tags.ElementAt(i).TagName, 8)</a>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                    }
+                                    }
+                                            }
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-avatar tn-nowrap">
+                                            @Html.AuditStatusIcon(photo.AuditStatus)
+                                            @Html.PrivacyStatusIcon(photo.PrivacyStatus)
+                                            @if (photo.IsEssential)
+                                            {
+                                                <span title="精华" class="tn-icon-colorful tn-icon-colorful-fine tn-icon-inline"></span>
+                                            }
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-user-name">
+                                            <a href="@SiteUrls.Instance().SpaceHome(UserIdToUserNameDictionary.GetUserName(photo.UserId))" target="_blank" >@photo.Author</a>
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-datetime tn-nowrap">
+                                            @photo.DateCreated.ToUserDateString(true)
+                                        </td>
+                                        <td class="tn-border-gray tn-border-bottom tn-width-action2 tn-nowrap">
+                                            <a href="@SiteUrls.Instance()._EditPhoto(photo.User.UserName, photo.PhotoId, "EditPhotoCallBack")" plugin="dialog">编辑</a> <span class="tn-action tn-action-text-icon-right tn-action-has-drop-menu tn-border-trl" menu="#moreOptions@(photo.PhotoId)"><span class="tn-icon tn-smallicon-triangle-down"></span><a href="javascript:;" class="tn-action-text">更多</a> </span>
+                                            <div id="moreOptions@(photo.PhotoId)" class="tn-more-options tn-widget-content tn-border-gray" style="display:none">
+                                                <ul class="tn-more-list">
+                                                    @{
+                                            if (photo.PrivacyStatus == PrivacyStatus.Public)
+                                            {
+                                                        <li>@Html.Link("推荐", SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.Description,userId:photo.UserId), "推荐", new { @class = "tn-item-link tnui-set-category", plugin = "dialog" })</li>
+                                            }
+                                                    }
+                                                    <li>@Html.Link("删除", SiteUrls.Instance()._PhotoControlPanelDeletePhoto(photo.PhotoId), "删除", new { @class = "tn-item-link tnui-delete-photoid" })</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        </form>
+                        <div class="tn-pagination">
+                            @Html.PageSizeDropdownList("PageSize")
+                            @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                            @Html.PagingResults(Model)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    function EditPhotoCallBack(data) {
+        art.dialog.tips("编辑照片成功！", 1.5, 1, function () { window.location.reload(true); });
+    }
+    $(function () {
+        //处理火狐下浏览器刷新后复选框仍然选中
+        removeChecked();
+        function removeChecked() {
+            $(".tnui-photo-id").each(function () {
+                if ($(this).attr("checked")) {
+                    $(this).removeAttr("checked");
+                }
+            });
+            $("#select-all").removeAttr("checked");
+        }
+
+        // 全选 全不选
+        $("#select-all").click(function () {
+            //设置下面复选框的状态
+            if ($(this).attr("checked")) {
+                $(".tnui-photo-id").each(function () {
+                    $(this).attr("checked", true);
+                });
+            } else {
+                $(".tnui-photo-id").each(function () {
+                    $(this).removeAttr("checked");
+                });
+            }
+        });
+
+        //单个删除
+        $('.tnui-delete-photoid').click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            art.dialog.confirm('您确认要删除吗？', function () {
+                $.post(url, function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                        window.location.reload(true);
+                    });
+                });
+            });
+        });
+
+        //点批量删除
+        $("#delete-photos").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='photoIds']:checked").length) {
+                alert("请至少选择一条照片进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            art.dialog.confirm('您确认要删除吗？', function () {
+                $.post(url, $("form#Form-Photo").serialize(), function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                        window.location.reload(true);
+                    });
+                });
+                removeChecked();
+            });
+        });
+
+        //点批量通过/不通过审核
+        $("a[id^='audit-']").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='photoIds']:checked").length) {
+                alert("请至少选择一条照片进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            $.post(url, $("form#Form-Photo").serialize(), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload(true);
+                });
+                removeChecked();
+            });
+        });
+
+        //点批量加精/取消精华
+        $("a[id^='set-essential-']").click(function (e) {
+            e.preventDefault();
+
+            if (!$("input[name='photoIds']:checked").length) {
+                alert("请至少选择一条照片进行操作！");
+                return false;
+            }
+
+            var url = $(this).attr("href");
+            $.post(url, $("form#Form-Photo").serialize(), function (data) {
+                art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () {
+                    window.location.reload(true);
+                });
+                removeChecked();
+            });
+        });
+
+        //贴标签
+        $("#set-tags").click(function (e) {
+            e.preventDefault();
+            var photoIds = getCheckedIds();
+            if (!photoIds) {
+                $(this).removeAttr("plugin");
+                alert("请至少选择一条照片进行操作！");
+                return false;
+            }
+            else {
+                $(this).attr("href", "@SiteUrls.Instance()._SetTags()" + "?photoIds=" + photoIds);
+                $(this).attr("plugin", "dialog");
+            }
+        });
+
+        //图片展示盒子
+        $("a[rel='fancybox']").fancybox({
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'speedIn': 600,
+            'speedOut': 200
+        });
+
+        function getCheckedIds() {
+            var photoIds = "";
+            $(".tnui-photo-id").each(function () {
+                if ($(this).attr("checked")) {
+                    photoIds += $(this).val() + ",";
+                }
+            });
+            return photoIds;
+        }
+    });
+</script>)

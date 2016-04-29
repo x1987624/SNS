@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Tag>
+<div class="spb-photo-hot-tags tn-helper-clearfix">
+    <div class="tn-title">
+        <span class="tn-icon tn-icon-label"></span><strong>热门标签</strong></div>
+    <p class="tn-tags">
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (Tag tag in Model.Take(8))
+            {
+                if (tag != null)
+                {
+                <span><a href="@SiteUrls.Instance().TagNew(tag.TagName)" title="@tag.TagName">@StringUtility.Trim(tag.TagName, 15)</a></span>
+                }
+            }
+        }
+        @if (Model.Count() == 8)
+        { 
+            <span class="tn-more"><a href="@SiteUrls.Instance().Tags()">...</a></span>
+        }
+    </p>
+</div>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    Html.Script("~/Scripts/jquery/masonry/jquery.masonry.js");
+    Html.Script("~/Scripts/jquery/masonry/jquery.infinitescroll.js");
+    Html.Script("~/Applications/Photo/Scripts/jquery.spb.photo.waterfall.js");
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.Action("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-photo-flow">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-photo-flow-wrap">
+            <div id="spbThumbnailFalls" class="spb-thumbnail-falls masonry"></div>
+            <nav id="page-nav">
+                <a href='@SiteUrls.Instance()._NewWaterFall(Url.SpaceKey())'></a>
+            </nav>
+        </div>
+    </div>
+</div>

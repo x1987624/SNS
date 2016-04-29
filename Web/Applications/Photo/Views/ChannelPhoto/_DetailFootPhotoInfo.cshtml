@@ -1,0 +1,45 @@
+﻿@model Photo
+<div class="tn-photo-actions">
+    <a id="playPhoto" class="tn-button tn-corner-all tn-button-default tn-button-icon-only"
+        href="#"><span class="tn-icon tn-icon-play"></span><span class="tn-button-text">播放</span></a>
+    @if (new Authorizer().Album_Edit(Model.Album))
+    {
+        <a id="EditPhoto" class="tn-button tn-corner-all tn-button-default tn-button-icon-only"
+            href="#"><span class="tn-icon tn-icon-set"></span><span class="tn-button-text">操作</span></a>
+        <div class="tn-photo-set" id="PhotoOperating" style="display: none;">
+            <div class="tn-bubble tn-bubble-arrow-bottom">
+                <div class="tn-bubble-arrow">
+                    <b class="tn-arrow-b1"></b><b class="tn-arrow-b2"></b>
+                </div>
+                <div class="tn-bubble-content">
+                    <ul>
+                        <li><a plugin="dialog" id="dialogRecommend" href="@SiteUrls.Instance()._MovePhoto(Model.User.UserName, Model.PhotoId, "PhotoDetailPhotoInfoMovePhotoSCallBack")">
+                            移动到相册</a></li>
+                        <li><a id="ajaxJsonMessageData-SetAlbumCover" href="@SiteUrls.Instance()._SetAlbumCover(Model.User.UserName, Model.PhotoId)">
+                            设为封面</a></li>
+                        <li><a id="ajaxJson-Del" href="@SiteUrls.Instance()._DeletePhotoInDetail(Model.PhotoId)">
+                            删除</a></li>
+                        @if (new Authorizer().IsAdministrator(PhotoConfig.Instance().ApplicationId))
+                        {
+                            <li><a id="ajaxJsonMessageData-SetPhotoEssential" href="@SiteUrls.Instance()._SetPhotoEssential(Model.PhotoId, !Model.IsEssential)">
+                                @(Model.IsEssential ? "取消精华" : "精华")</a></li>
+                            <li><a plugin="dialog" id="dialogRecommend" href="@SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Photo(), Model.PhotoId, Model.Description, needRefresh: false, userId: Model.UserId)">
+                                推荐</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="tn-photo-data">
+    <dl>
+        <dt>来自相册：</dt>
+        <dd>
+            <a href="@SiteUrls.Instance().AlbumDetailList(Model.User.UserName, Model.AlbumId)">@Model.Album.AlbumName</a></dd>
+    </dl>
+    <dl>
+        <dt>上传日期：</dt>
+        <dd>@Model.DateCreated.ToFriendlyDate()</dd>
+    </dl>
+</div>

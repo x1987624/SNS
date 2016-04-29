@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Photo>
+@{
+    var photoSearcherUrl = ViewData.Get<string>("photoSearcherUrl", null);
+    string keyword = Request.QueryString.Get<string>("keyword", string.Empty);
+    long total = ViewData.Get<long>("total",0);
+}
+@if (Model.Count() > 0)
+{
+    <input type="hidden" class="app-count" />
+    <div class="tn-section tn-border-gray tn-border-bottom">
+        <div class="tn-title tn-border-bottom tn-border-gray tnui-option" data-appname="Photo" data-search-url="@photoSearcherUrl">
+            <a href="@photoSearcherUrl">搜“<span class="tn-text-bright">@keyword</span>”相关照片（@total）</a>
+        </div>
+        <ul class="tn-list">
+            @foreach (var photo in Model)
+            {
+                string photoUrl = SiteUrls.Instance().PhotoDetail(photo.PhotoId);
+                if (DIContainer.Resolve<Authorizer>().Photo_Search(photo.Album))
+                {
+                <li class="tn-list-item tn-helper-clearfix tnui-option" data-search-keyword="@photo.Description">
+                    <div class="tn-list-item-area-left"><a class="tn-img"  href="@photoUrl" plugin="dialog"><img width="50" height="50" class="tnui-image-detail" src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" alt="@photo.Description"/></a></div>
+                    <div class="tn-list-item-area-main">
+                        <div class="tn-list-item-row">@Html.Raw(SearchEngine.Highlight(keyword, HtmlUtility.TrimHtml(photo.Description, 25), 100))</div>
+                    </div>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+}

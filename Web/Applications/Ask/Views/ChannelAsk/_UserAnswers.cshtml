@@ -1,0 +1,32 @@
+﻿@model  PagingDataSet<AskAnswer>
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var answer in Model)
+    {        
+    <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed">
+        <div class="tn-list-item-area-left">
+            <div class="tn-list-figure tn-widget">
+                <div class="tn-list-figure-count tn-widget-content tn-corner-all tn-bg-light" title="赞同数">@answer.SupportCount</div>
+            </div>
+        </div>
+        <div class="tn-list-item-area-main">
+            <div class="tn-list-item-row tn-list-item-heading">
+                @{ var url = "?pageIndex=" + answer.GetPageIndex(7) + "&answerId=" + answer.AnswerId;}
+                @if (answer.Question != null)
+                { 
+                    <h5 class="tn-helper-reset">
+                        <a href="@SiteUrls.Instance().AskQuestionDetail(answer.QuestionId)@url">@answer.Question.Subject</a>
+                    </h5>
+                }
+            </div>
+            <div class="tn-list-item-row tn-list-item-summary">
+                <p>
+                    @HtmlUtility.TrimHtml(answer.Body, 75)</p>
+            </div>
+            <div class="tn-list-item-row">
+                <em class="tn-date tn-text-note">@answer.DateCreated.ToFriendlyDate()</em></div>
+        </div>
+    </li>
+    }
+}
+@Html.Hidden("pageCount", Model.PageCount)

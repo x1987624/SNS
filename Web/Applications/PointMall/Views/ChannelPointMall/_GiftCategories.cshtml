@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Category>
+<div class="tn-box tn-widget tn-widget-content tn-corner-all">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        <h3 class="tn-helper-reset">
+            所有商品类别</h3>
+    </div>
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        <div class="tn-directory">
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    IEnumerable<Category> childrenCategories = item.Children;
+                <h5 class="tn-directory-path">
+                    <a href="@SiteUrls.Instance().Rank(categoryId:item.CategoryId)" title="@item.CategoryName">@StringUtility.Trim(item.CategoryName, 12)</a>
+                </h5>
+                    if (item.ChildCount > 4)
+                    {
+                    <span class="tn-expand"><a href="#" class="tn-icon tn-smallicon-slide-next" menu="#hide-@(item.CategoryId)" data_menu_position="right"></a></span>
+                    <div class="tn-directory-more" id="hide-@(item.CategoryId)" style="display:none">
+                        <div class="tn-widget tn-bubble tn-bubble-arrow-left">
+                           <div class="tn-bubble-arrow">
+                                <b class="tn-arrow-b1 tn-border-gray"></b><b class="tn-arrow-b2 tn-widget-bubble"></b>
+                            </div>
+                            <div class="tn-bubble-content tn-widget-content tn-border-gray tn-corner-all">
+                                <div class="tn-directory-level">
+                                    @foreach (var children in childrenCategories)
+                                    {
+                                        <span class="tn-directory-item"><a href="@SiteUrls.Instance().Rank(categoryId:children.CategoryId)" title="@children.CategoryName">@children.CategoryName</a></span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                <div class="tn-directory-level tn-border-bottom tn-border-gray">
+                    @foreach (var children in childrenCategories.Take(4))
+                    { 
+                        <span class="tn-directory-item"><a href="@SiteUrls.Instance().Rank(categoryId:children.CategoryId)" title="@children.CategoryName">@StringUtility.Trim(children.CategoryName,15)</a></span>
+                    }
+                </div>
+                }
+            }
+            else
+            {
+                <div class="tn-no-data">
+                    搜索不到数据!</div> 
+            }
+            
+        </div>
+    </div>
+</div>

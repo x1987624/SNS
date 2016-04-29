@@ -1,0 +1,61 @@
+﻿@model AskAnswer
+@{
+    IUser user = ViewData.Get<IUser>("user",null);
+    AskQuestion question = Model.Question;
+    string url = SiteUrls.Instance().AskQuestionDetail(Model.QuestionId);
+    Activity activity = ViewData.Get<Activity>("activity", null);
+}
+<li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom spb-blog-item">
+    <div class="tn-list-item-area-left">
+        @{
+            HyperLinkTarget hyperLinkTarget;
+            if (UserContext.CurrentUser != null && user.UserId == UserContext.CurrentUser.UserId)
+            {
+                hyperLinkTarget = HyperLinkTarget._self;
+            }
+            else
+            {
+                hyperLinkTarget = HyperLinkTarget._blank;
+            }
+            }
+        @Html.ShowUserAvatar(user, SiteUrls.Instance().SpaceHome(user.UserId), AvatarSizeType.Small, hyperLinkTarget)
+    </div>
+    <div class="tn-list-item-area-main">
+        @Html.ActivityOperation(activity.ActivityId)
+        <div class="tnc-dynamic-title">
+            <a target="_blank" href="@url" class="tn-title">@question.Subject</a>
+        </div>
+        <div class="tnc-dynamic-box">
+            <a title="@user.DisplayName" @(user == UserContext.CurrentUser ? "target=_self" : "target=_blank") href="@SiteUrls.Instance().SpaceHome(user.UserId)" class="tn-author">@user.DisplayName</a>
+            @Html.IdentificationType(user.UserId)
+            赞成以下回答
+            <em class="tn-date tn-text-note">@activity.DateCreated.ToFriendlyDate()</em>
+            <em class="tn-text-note">@(question.AnswerCount)个回答</em>
+        </div>
+        <p class="tnc-dynamic-box">
+        @Tunynet.Utilities.HtmlUtility.TrimHtml(Model.GetResolvedBody(), 88)
+        </p>
+        @{
+            IEnumerable<Attachment> attachments = ViewData.Get<IEnumerable<Attachment>>("attachments", null);
+        }
+        @if (attachments != null && attachments.Count() > 0)
+        {
+            attachments = attachments.Take(7);
+            <div class="tnc-dynamic-imgbox">
+            <a href="@SiteUrls.Instance().AskQuestionDetail(Model.QuestionId)" class="tnc-imgbox-bigshow" target="_blank">
+                <img alt="@attachments.ElementAt(0).FriendlyFileName" src="@SiteUrls.Instance().ImageUrl(attachments.ElementAt(0), attachments.ElementAt(0).TenantTypeId, ImageSizeTypeKeys.Instance().Medium())"/></a>
+                <div class="tnc-imgbox_preview">
+                    @for (int i = 1; i < attachments.Count(); i++)
+                    {
+                        <a href="@url" target="_blank">
+                            <img style="width:60px;height:45px" src="@SiteUrls.Instance().ImageUrl(attachments.ElementAt(i), attachments.ElementAt(i).TenantTypeId, ImageSizeTypeKeys.Instance().Small())"/></a>
+                        if (i == attachments.Count() - 1)
+                        {
+                        <a href="@url" class="tnc-imgbox-float tn-bg-light" target="_blank">共 @attachments.Count() 张</a>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</li>

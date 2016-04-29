@@ -1,0 +1,9 @@
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Bar.dll.config
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Bar.XML
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Bar.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Bar.pdb
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Bar\obj\Debug\Bar.csprojResolveAssemblyReference.cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.Resources.Resource.resources
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Bar\obj\Debug\Bar.csproj.GenerateResource.Cache
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.dll
+D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.pdb

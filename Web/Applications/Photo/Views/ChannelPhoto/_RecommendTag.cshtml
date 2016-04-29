@@ -1,0 +1,56 @@
+﻿@model Tag
+@{
+    Authorizer authorizer = DIContainer.Resolve<Authorizer>();
+}
+@if (Model != null)
+{
+    if (Model.IsFeatured && !string.IsNullOrEmpty(Model.FeaturedImage))
+    {
+    <div class="spb-tag-descrip spb-tag-has-figure">
+        <div class="tn-figure">
+            <img src="@SiteUrls.Instance().LogoUrl(Model.FeaturedImage, TenantTypeIds.Instance().Tag(), ImageSizeTypeKeys.Instance().Original())"  alt="@Model.FeaturedImage" />
+        </div>
+        <div class="tn-mark" style="height: 95px;"></div>
+        <div class="tn-info">
+            <div class="tn-title tn-helper-clearfix">
+
+                <h5>@(Model.TagName)</h5>
+                @if (authorizer.Tag_Edit(Model))
+                {
+                    <span class="tnc-rec-btn"><a class="tn-button tn-corner-all tn-button-default tn-button-icon-only" title="编辑" href="@SiteUrls.Instance()._EditTag(Model.TagId)" plugin = "dialog">@Html.Icon(IconTypes.Write)<span class="tn-button-text">编辑</span></a></span>
+                }
+
+                @if (authorizer.Photo_Manage())
+                {
+                    <span class="tnc-rec-btn"><a class="tn-button tn-corner-all tn-button-default tn-button-icon-only" title="推荐" href="@SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Photo(), Model.TagId, Model.TagName, new PhotoSettings().RecommendTagTypeId, userId: Model.OwnerId)" plugin = "dialog"><span class="tn-icon tn-icon-flag"></span><span class="tn-button-text">推荐</span></a></span>
+                }
+            </div>
+            <div class="tn-descrip">
+                <p>@Html.Raw(Model.Description)</p>
+            </div>
+        </div>
+    </div>
+    }
+    else
+    { 
+    <div class="spb-tag-descrip">
+        <div class="tn-info">
+            <div class="tn-title">
+
+                <h5>@(Model.TagName)</h5>
+                @if (authorizer.Tag_Edit(Model))
+                {
+                    <span class="tnc-rec-btn"><a class="tn-button tn-corner-all tn-button-default tn-button-icon-only" title="编辑" href="@SiteUrls.Instance()._EditTag(Model.TagId)" plugin = "dialog">@Html.Icon(IconTypes.Write)<span class="tn-button-text">编辑</span></a></span>
+                }
+                @if (authorizer.Photo_Manage())
+                {
+                    <span class="tnc-rec-btn"><a class="tn-button tn-corner-all tn-button-default tn-button-icon-only" title="推荐" href="@SiteUrls.Instance()._RecommendItem(TenantTypeIds.Instance().Photo(), Model.TagId, Model.TagName, new PhotoSettings().RecommendTagTypeId, userId: Model.OwnerId)" plugin = "dialog"><span class="tn-icon tn-icon-flag"></span><span class="tn-button-text">推荐</span></a></span> 
+                }
+            </div>
+            <div class="tn-descrip">
+                <p>@Html.Raw(Model.Description)</p>
+            </div>
+        </div>
+    </div>
+    }
+}

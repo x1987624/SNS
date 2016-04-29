@@ -1,0 +1,89 @@
+﻿@model PagingDataSet<WikiPage>
+@{
+    Html.Style("~/Applications/Wiki/Styles/app.css");
+    ViewBag.Title = "Pages";
+    Layout = "app-list-2cols";
+    List<Category> allParentCategories = ViewData.Get<List<Category>>("allParentCategories", new List<Category>());
+    Category categoryTop = ViewData.Get<Category>("category", null);
+    int i = 0;
+    IUser user = UserContext.CurrentUser;
+}
+
+@section Aside{
+    @Html.Action("_SideNavigation", "ChannelWiki")
+    @Html.Action("_ChildCategory", "ChannelWiki", new { categoryId = categoryTop.CategoryId, sameLevel = true })
+    @Html.Action("_ChildCategory", "ChannelWiki", new { categoryId = categoryTop.CategoryId })
+    @Html.Action("_HotPages", "ChannelWiki", new { categoryId = categoryTop.CategoryId })
+}
+
+<div class="tn-box tn-widget tn-widget-content tn-corner-all hr-entry-list">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="tn-breadcrumb tn-bg-gray tn-border-gray">
+            @foreach (Category category in allParentCategories)
+            {
+                if (i == 0)
+                {
+                <h2 class="tn-breadcrumb-item">
+                    <a href="@SiteUrls.Instance().Pages(category.CategoryId)">@category.CategoryName</a>
+                </h2>
+                }
+                else
+                {
+                <span class="tn-breadcrumb-item tn-selected"><a href="@SiteUrls.Instance().Pages(category.CategoryId)">@category.CategoryName</a></span>
+                }
+                i += 1;
+                <span class="tn-seperator">&gt;</span>
+            }
+            @if (allParentCategories == null || allParentCategories.Count <= 0)
+            {
+                <h2>@categoryTop.CategoryName</h2>
+            }
+            else
+            { 
+                <span class="tn-breadcrumb-item tn-selected">@categoryTop.CategoryName</span>
+            }
+        </div>
+        <ul class="tn-list">
+            @foreach (WikiPage wikiPage in Model)
+            {
+                <li class="tn-list-item tn-helper-clearfix tn-border-gray tn-border-bottom tn-border-dashed ">
+                    <div class="tn-list-item-area-main hr-fontsize-b">
+                        <div class="tn-list-item-row tn-list-item-heading">
+                            <h5 class="tn-helper-reset">
+                                <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)" title="@wikiPage.Title">@HtmlUtility.TrimHtml(wikiPage.Title, 20)</a>
+
+                            </h5>
+                        </div>
+                        <div class="tn-list-item-row tn-list-item-summary">
+                            @if (wikiPage.FeaturedImageAttachmentId > 0)
+                            {
+                                <div class="tn-list-item-area-left">
+                                    <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)">
+                                        <img src="@SiteUrls.Instance().ImageUrl(wikiPage.FeaturedImage, TenantTypeIds.Instance().WikiPage(), ImageSizeTypeKeys.Instance().Small())" />
+                                    </a>
+                                </div>
+                            }
+                            <p>
+                                @HtmlUtility.TrimHtml(wikiPage.Body, 300)
+                            </p>
+
+                        </div>
+                        <div class="tn-list-item-row">
+                            <em class="tn-date tn-text-note">更新时间：@wikiPage.LastModified.ToUserDateString()</em>
+                            <span class="tn-action tn-view-count">
+                                <a href="@SiteUrls.Instance().PageDetail(wikiPage.PageId)" class="tn-action-text">查看全文(@wikiPage.HitTimes)</a>
+                            </span>
+                            <span class="tn-action tn-comment-count">
+                                <a href="@SiteUrls.Instance().PageEdit(wikiPage.PageId)" class="tn-action-text">编辑(@wikiPage.EditionCount)</a>
+                            </span>
+
+                        </div>
+                    </div>
+                </li>   
+            }
+        </ul>
+        <div class="tn-pagination tn-helper-align-center">
+            @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+        </div>
+    </div>
+</div>

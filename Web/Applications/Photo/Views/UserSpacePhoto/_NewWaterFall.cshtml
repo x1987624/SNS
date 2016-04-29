@@ -1,0 +1,56 @@
+﻿@model PagingDataSet<Photo>
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var photo in Model)
+    {
+        if (photo != null && photo.Album != null)
+        {
+            if (DIContainer.Resolve<Authorizer>().Album_View(photo.Album))
+            {
+                if (photo.User == null || photo.Author == null || photo.DateCreated == null || photo.PhotoId < 0 || photo.RelativePath == null)
+                {
+                    continue;
+                }
+    <div class="spb-photo-unit masonry-brick tnui-photo-waterfall">
+        <div class="spb-photo-unit-inner">
+            <div class="spb-photo-area">
+                <a class="tn-img" plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)">
+                    <img width="160" alt="@photo.Description" class="tnui-image-detail" src="@(SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P240()))" /></a>
+            </div>
+            <div class="spb-photo-zoom" style="display: none;">
+                <div class="tn-inner tn-widget-content tn-border-gray">
+                    <div class="tn-loupe">
+                        <a class="tn-img" plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)">
+                            <img alt="@photo.Description" class="tnui-image-detail" src="@(SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" width="320"/></a>
+                    </div>
+                    <div class="tn-descrip" id="photo-description-@photo.PhotoId" title="@photo.Description">
+                        <p>@photo.Description</p>
+                    </div>
+                    <div class="tn-info tn-helper-clearfix">
+                        <a class="tn-user-name" href="@SiteUrls.Instance().Ta(photo.User.UserName)">@photo.Author</a><em
+                            class="tn-count tn-text-note">@photo.DateCreated.ToFriendlyDate(true)</em>
+                    </div>
+                    <div class="tn-actions tn-border-gray tn-border-top tn-helper-clearfix">
+                        <ul class="tn-feedback">
+                            <li><a class="tn-icon tn-icon-share"  href="@SiteUrls.Instance()._ShareToMicroblog("#图片分享#" + photo.User != null ? ("@" + photo.User.NickName) : "" + " 的照片\"" + photo.Description + "\"不错，推荐给大家看看", SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P320()))" plugin="dialog" title="分享"></a></li>
+                            <li><a class="tn-icon tn-icon-bubble" plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" title="评论"></a></li>
+                            <li>
+                                @Html.SupportOppose(TenantTypeIds.Instance().Photo(), photo.PhotoId, photo.UserId, AttitudeMode.Unidirection, AttitudeStyle.Like)
+                            </li>
+                        </ul>
+                        @if (DIContainer.Resolve<Authorizer>().Photo_Edit(photo))
+                        {
+                            <ul class="tn-edit">
+                                <li><a class="tn-icon tn-smallicon-cross" id="delete-waterfall-photo-@photo.PhotoId" href="@SiteUrls.Instance()._DeletePhoto(Url.SpaceKey(), photo.PhotoId)" title="删除"></a></li>
+                                <li><a class="tn-icon tn-smallicon-write" href="@SiteUrls.Instance()._EditPhoto(Url.SpaceKey(), photo.PhotoId)" plugin="dialog" title="编辑"></a></li>
+                            </ul>   
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            }
+        }
+    }
+}

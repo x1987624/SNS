@@ -1,0 +1,3140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Spacebuilder.Ask</name>
+    </assembly>
+    <members>
+        <member name="M:Spacebuilder.Ask.AskApplication.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户在应用中的数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="takeOverUserName">用于接管删除用户时不能删除的内容(例如：用户创建的群组)</param>
+            <param name="isTakeOver">是否接管被删除用户可被接管的内容</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskConfig.Instance">
+            <summary>
+            获取AskConfig实例
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskConfig.Initialize(Autofac.ContainerBuilder)">
+            <summary>
+            应用初始化
+            </summary>
+            <param name="containerBuilder">容器构建器</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskConfig.Load">
+            <summary>
+            应用加载
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskConfig.ApplicationId">
+            <summary>
+            ApplicationId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskConfig.ApplicationKey">
+            <summary>
+            ApplicationKey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskConfig.AskQuestion">
+            <summary>
+            问题使用关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskConfig.AskAnswer">
+            <summary>
+            回答使用关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskConfig.ApplicationType">
+            <summary>
+            获取AskApplication实例
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskAnswerOwnerDataGetter">
+            <summary>
+            用户回答内容数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerOwnerDataGetter.GetDataUrl(System.String,System.Nullable{System.Int64})">
+            <summary>
+            获取链接地址
+            </summary>
+            <param name="spaceKey">用户名</param>
+            <param name="ownerId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswerOwnerDataGetter.DataKey">
+            <summary>
+            datakey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswerOwnerDataGetter.DataName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswerOwnerDataGetter.ApplicationId">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnwserCommentUrlGetter.GetCommentedObjectName(System.Int64,System.String)">
+            <summary>
+            获取被评论对象名称
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnwserCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnwserCommentUrlGetter.GetCommentedObject(System.Int64)">
+            <summary>
+            获取被评论对象(部分)
+            </summary>
+            <param name="commentedObjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnwserCommentUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskQuestionApplicationStatisticDataGetter">
+            <summary>
+            问题应用数据Url获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionApplicationStatisticDataGetter.GetManageableDatas(System.String)">
+            <summary>
+            获取问题管理数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>管理数据列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionApplicationStatisticDataGetter.GetStatisticDatas(System.String)">
+            <summary>
+            获取问题统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns>统计数据列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskCommentUrlGetter.GetCommentedObjectName(System.Int64,System.String)">
+            <summary>
+            获取被评论对象名称
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskCommentUrlGetter.GetCommentedObjectUrl(System.Int64,System.Nullable{System.Int64},System.String)">
+            <summary>
+            获取被评论对象url
+            </summary>
+            <param name="commentedObjectId">被评论对象Id</param>
+            <param name="userId">被评论对象作者Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskCommentUrlGetter.GetCommentedObject(System.Int64)">
+            <summary>
+            获取被评论对象(部分)
+            </summary>
+            <param name="commentedObjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskCommentUrlGetter.TenantTypeId">
+            <summary>
+            租户类型Id
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskOwnerDataGetter.GetDataUrl(System.String,System.Nullable{System.Int64})">
+            <summary>
+            获取链接地址
+            </summary>
+            <param name="spaceKey">用户名</param>
+            <param name="ownerId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskOwnerDataGetter.DataKey">
+            <summary>
+            datakey
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskOwnerDataGetter.DataName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskOwnerDataGetter.ApplicationId">
+            <summary>
+            应用Id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskSettings">
+            <summary>
+            问答设置
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSettings.MaxReward">
+            <summary>
+            问题的最大悬赏分值
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskTagUrlGetter">
+            <summary>
+            问答标签云Url获取
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskTagUrlGetter.GetUrl(System.String,System.Int64)">
+            <summary>
+            获取链接
+            </summary>
+            <param name="tagName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.Controllers.AskActivityController">
+            <summary>
+            问答动态控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.AskActivityController._CreateAskQuestion(System.Int64)">
+            <summary>
+            发布问题的动态
+            </summary>
+            <param name="ActivityId"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.AskActivityController._CreateAskAnswer(System.Int64)">
+            <summary>
+            回答问题的动态
+            </summary>
+            <param name="ActivityId"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.AskActivityController._SupportAskAnswer(System.Int64)">
+            <summary>
+            赞成回答的动态
+            </summary>
+            <param name="ActivityId"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.AskActivityController._CommentAskQuestion(System.Int64)">
+            <summary>
+            评论问题的动态
+            </summary>
+            <param name="ActivityId"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.AskActivityController._CommentAskAnswer(System.Int64)">
+            <summary>
+            评论回答的动态
+            </summary>
+            <param name="ActivityId"></param>
+        </member>
+        <member name="T:Spacebuilder.Ask.Controllers.ChannelAskController">
+            <summary>
+            问答控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._QuestionStatus(System.Int64)">
+            <summary>
+            侧边栏-问题状态页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._RelevantQuestions(System.Int64)">
+            <summary>
+            侧边栏-相关问题页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SimilarQuestions(System.String)">
+            <summary>
+            侧边栏-相似问题页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._RelatedTags(System.Int64)">
+            <summary>
+            侧边栏-相关标签
+            </summary>
+            <param name="tagId">标签ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._TagFollowersSide(System.Int64,System.Int32)">
+            <summary>
+            侧边栏-关注标签的用户
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.Home">
+            <summary>
+            问答首页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.QuestionDetail(System.Int64)">
+            <summary>
+            问题详情页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.TagDetail(System.String)">
+            <summary>
+            问题标签详情页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._AnswerList(System.Int64,Spacebuilder.Ask.SortBy_AskAnswer,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            某个问题的回答列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.AskUser(System.String)">
+            <summary>
+            他的问答/我的问答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._UserAnswers(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            他的回答/我的回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._UserQuestions(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            他的问题/我的问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._UserFollowedQuestions(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            他关注的问题/我关注的问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._UserFollowedTags(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            他关注的标签/我关注的标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.EditQuestion(System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            发布问题/编辑问题(页面)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.EditQuestion(Spacebuilder.Ask.AskQuestionEditModel)">
+            <summary>
+            发布问题/编辑问题(提交表单)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SubscribeQuestionButton(System.Int64)">
+            <summary>
+            关注问题按钮
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SubscribeQuestion(System.Int64)">
+            <summary>
+            关注问题操作
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SubscribeQuestionCancel(System.Int64)">
+            <summary>
+            取消关注问题操作
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SetEssential(System.Int64,System.Boolean)">
+            <summary>
+            批量设置/取消精华
+            </summary>
+            <param name="questionId">问题Id</param>
+            <param name="isEssential">是否精华，true为加精，false为取消精华</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._Cancel(System.Int64)">
+            <summary>
+            取消问题
+            </summary>
+            <param name="questionId">问题Id</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._DeleteAnswer(System.Int64)">
+            <summary>
+            删除回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SetBestAnswer(System.Int64)">
+            <summary>
+            采纳为满意回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._AnswerEdit(System.Int64)">
+            <summary>
+            我来回答局部页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._AnswerEdit(Spacebuilder.Ask.AskAnswerEditModel)">
+            <summary>
+            发布回答/编辑回答(提交表单)
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SubscribeTagButton(System.Int64)">
+            <summary>
+            关注标签按钮
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SubscribeTag(System.Int64)">
+            <summary>
+            关注标签操作
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SubscribeTagCancel(System.Int64)">
+            <summary>
+            取消关注标签操作
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._UserFollowedTagsSide(System.Int64,System.Int32,System.String)">
+            <summary>
+            侧边栏-他关注的标签/我关注的标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._UserAchievement(System.Int64,System.String)">
+            <summary>
+            侧边栏-他的成就/我的成就
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._AskUserSettings(System.Int64)">
+            <summary>
+            我的设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._AskUserSettings(System.Int64,System.Boolean)">
+            <summary>
+            我的设置提交
+            </summary>
+            <param name="accept">是否允许向他提问</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._AskTa(System.Int64)">
+            <summary>
+            向他提问
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._AskTa(Spacebuilder.Ask.AskQuestionEditModel)">
+            <summary>
+            //向他提问
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._SaveUserDescription(System.Int64,System.String)">
+            <summary>
+            保存用户简介
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.Search(Spacebuilder.Ask.AskFullTextQuery)">
+            <summary>
+            问答搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._GlobalSearch(Spacebuilder.Ask.AskFullTextQuery,System.Int32)">
+            <summary>
+            问答全局搜索
+            </summary>
+            <param name="query"></param>
+            <param name="topNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._QuickSearch(Spacebuilder.Ask.AskFullTextQuery,System.Int32)">
+            <summary>
+            问答快捷搜索
+            </summary>
+            <param name="query"></param>
+            <param name="topNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.SearchAutoComplete(System.String,System.Int32)">
+            <summary>
+            问答搜索自动完成
+            </summary>
+            <param name="keyword"></param>
+            <param name="topNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._TagGroups(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            侧边栏问题标签分组
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._HighRewardQuestions(System.Int32)">
+            <summary>
+            侧边栏高分悬赏
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._AnswerUserRank(System.Int32)">
+            <summary>
+            侧边栏用户回答排行（根据回答数倒排序）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._ContributionUserRank(System.Int32)">
+            <summary>
+            侧边栏用户贡献排行（根据威望排序）
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.Questions(System.String,System.String)">
+            <summary>
+            问题列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._TagContents(System.String)">
+            <summary>
+            标签浮动内容块
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._LatestQuestions(System.Int32,System.Int32,System.String)">
+            <summary>
+            最新问题列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._UnresolvedQuestions(System.Int32,System.Int32,System.String)">
+            <summary>
+            待解决问题列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._ResolvedQuestions(System.Int32,System.Int32,System.String)">
+            <summary>
+            已解决问题列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._NoAnswerQuestions(System.Int32,System.Int32,System.String)">
+            <summary>
+            零回答问题列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._EssentialQuestions(System.Int32,System.Int32,System.String)">
+            <summary>
+            精华问题列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._HighRewardsQuestions(System.Int32,System.Int32,System.String)">
+            <summary>
+            高分悬赏
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.QuestionFollowers(System.Int64)">
+            <summary>
+            关注问题的用户
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._QuestionFollowers(System.Int64,System.Int32)">
+            <summary>
+            关注问题的用户列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._TagFollowers(System.Int64,System.Int32)">
+            <summary>
+            关注标签的用户列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.Tags">
+            <summary>
+            问题标签聚合页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._TagList(System.Int64,System.Int32)">
+            <summary>
+            局部页-问题标签聚合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController._HotTags(System.Int32)">
+            <summary>
+            侧边栏热门标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.TagFollowers(System.Int64,System.Int32)">
+            <summary>
+            关注标签的用户
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.Rank(System.Int32)">
+            <summary>
+            用户排行榜
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ChannelAskController.GetRewardList(System.Int32)">
+            <summary>
+            获取悬赏下拉框对象
+            </summary>
+            <param name="defaultReward">默认的悬赏值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.Controllers.ControlPanelAskController">
+            <summary>
+            问答管理控制器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController.ManageQuestions(System.Nullable{Tunynet.Common.AuditStatus},System.String,System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Int64},System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            管理问题
+            </summary>
+            <param name="auditStatus">审批状态</param>
+            <param name="subjectKeyword">标题关键字</param>
+            <param name="tagKeyword">标签关键字</param>
+            <param name="userId">作者id</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <param name="questionStatus">问题状态</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController._DeleteQuestion(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除问题
+            </summary>
+            <param name="questionIds">问题id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController._SetEssential(System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            批量设置/取消精华
+            </summary>
+            <param name="questionId">问题id列表</param>
+            <param name="isEssential">是否精华，true为加精，false为取消精华</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController._ApproveQuestion(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            更新问题审核状态
+            </summary>
+            <param name="questionIds">问题id</param>
+            <param name="isApprove">审核状态，true为通过审核，false为不通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController._ApproveQuestione(System.Int64,System.Boolean)">
+            <summary>
+            更新问题审核状态
+            </summary>
+            <param name="questionIds">问题id</param>
+            <param name="isApprove">审核状态，true为通过审核，false为不通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController.ManageAnswers(System.Nullable{Tunynet.Common.AuditStatus},System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            回答管理
+            </summary>
+            <param name="auditStatus">审核状态</param>
+            <param name="subjectKeyword">标题关键字</param>
+            <param name="userId">作者ID</param>
+            <param name="pageSize">每页数量</param>
+            <param name="pageIndex">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController._DeleteAnswer(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除回答
+            </summary>
+            <param name="answerIds">回答id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController._ApproveAnswer(System.Collections.Generic.IEnumerable{System.Int64},System.Boolean)">
+            <summary>
+            更新回答审核状态
+            </summary>
+            <param name="answerIds">回答id</param>
+            <param name="isApprove">审核状态，true为通过审核，false为不通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController._EditAnswer(System.Int64)">
+            <summary>
+            编辑回答
+            </summary>
+            <param name="answerId">回答id</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.Controllers.ControlPanelAskController._EditAnswer(Spacebuilder.Ask.AskAnswerEditModel)">
+            <summary>
+            编辑回答
+            </summary>
+            <param name="model">编辑回答的EditModel</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.EventModules.AskIndexEventModule">
+            <summary>
+            处理问答全文检索索引的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskIndexEventModule.RegisterEventHandler">
+            <summary>
+            注册EventHandler
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskIndexEventModule.AskQuestion_After(Spacebuilder.Ask.AskQuestion,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            问题增量索引
+            </summary>
+            <param name="question"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskIndexEventModule.AddTagsToQuestion_BatchAfter(System.Collections.Generic.IEnumerable{System.String},Tunynet.Common.TagEventArgs)">
+            <summary>
+            为问答添加标签时触发
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskIndexEventModule.AskAnswer_After(Spacebuilder.Ask.AskAnswer,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            回答增量索引
+            </summary>
+            <param name="answer"></param>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="T:Spacebuilder.Ask.EventModules.AskEventModule">
+            <summary>
+            处理问答动态、积分、通知的EventMoudle
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskEventModule.AskAnswerSupportEventModule_After(System.Int64,Tunynet.Common.SupportOpposeEventArgs)">
+            <summary>
+            回答被赞同的相关事件处理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskEventModule.CommentEventModule_After(Tunynet.Common.Comment,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            评论的相关事件处理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskEventModule.AskQuestionAuditEventModule_After(Spacebuilder.Ask.AskQuestion,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            问题审核状态变更事件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskEventModule.AskQuestionEventModule_After(Spacebuilder.Ask.AskQuestion,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            问题增删改等触发的事件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskEventModule.AskAnswerAuditEventModule_After(Spacebuilder.Ask.AskAnswer,Tunynet.Common.AuditEventArgs)">
+            <summary>
+            回答审核状态变更事件
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskEventModule.AskAnswerEventModule_After(Spacebuilder.Ask.AskAnswer,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            回答增删改等触发的事件
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.EventModules.AskOperationLogEventModule">
+            <summary>
+            处理问答操作日志
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskOperationLogEventModule.Tunynet#Events#IEventMoudle#RegisterEventHandler">
+            <summary>
+            注册事件处理程序
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskOperationLogEventModule.AskQuestionOperationLogEventModule_After(Spacebuilder.Ask.AskQuestion,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            问题操作日志事件处理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.EventModules.AskOperationLogEventModule.AskAnswerOperationLogEventModule_After(Spacebuilder.Ask.AskAnswer,Tunynet.Events.CommonEventArgs)">
+            <summary>
+            回答操作日志事件处理
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.ActivityItemKeysExtension">
+            <summary>
+            问答动态项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.ActivityItemKeysExtension.CreateAskQuestion(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            发布问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.ActivityItemKeysExtension.CreateAskAnswer(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            发布回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.ActivityItemKeysExtension.CommentAskQuestion(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            评论问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.ActivityItemKeysExtension.CommentAskAnswer(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            评论回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.ActivityItemKeysExtension.SupportAskAnswer(Tunynet.Common.ActivityItemKeys)">
+            <summary>
+            赞同回答
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.ActivityOwnerTypesExtension">
+            <summary>
+            动态所有者类型扩展
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.ActivityOwnerTypesExtension.AskQuestion(Tunynet.Common.ActivityOwnerTypes)">
+            <summary>
+            问答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.ActivityOwnerTypesExtension.AskTag(Tunynet.Common.ActivityOwnerTypes)">
+            <summary>
+            问答(标签)
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AuditItemKeysExtension">
+            <summary>
+            问答审核项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuditItemKeysExtension.Ask_Question(Tunynet.Common.AuditItemKeys)">
+            <summary>
+            问题审核项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuditItemKeysExtension.Ask_Answer(Tunynet.Common.AuditItemKeys)">
+            <summary>
+            回答审核项
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AuthorizerExtension">
+            <summary>
+            问答权限验证
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Question_Create(Spacebuilder.Common.Authorizer)">
+            <summary>
+            创建问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Question_Create(Spacebuilder.Common.Authorizer,System.String@)">
+            <summary>
+            创建问题
+            </summary>
+            <remarks>
+            登录用户可以创建问题
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Question_Edit(Spacebuilder.Common.Authorizer,Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            编辑问题/取消问题
+            </summary>
+            <remarks>
+            1.如果问题未解决（答案被采纳前），提问者及管理员都可以对问题进行编辑，如果修改悬赏分值仅允许追加悬赏分值
+            2.如果问题已解决（答案被采纳后），则仅允许管理员对问题进行编辑，不允许修改悬赏分值
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Question_Delete(Spacebuilder.Common.Authorizer,Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            删除问题
+            </summary>
+            <remarks>
+            管理员可以删除问题
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Question_SetEssential(Spacebuilder.Common.Authorizer)">
+            <summary>
+            将问题设置为精华或取消精华
+            </summary>
+            <remarks>
+            管理员可以对问题设为精华或取消精华
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Answer_Create(Spacebuilder.Common.Authorizer,Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            创建问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Answer_Create(Spacebuilder.Common.Authorizer,Spacebuilder.Ask.AskQuestion,System.String@)">
+            <summary>
+            创建回答
+            </summary>
+            <remarks>
+            1.登录用户可以回答问题
+            2.问题提问者不得回答自己的问题
+            3.每个回答者针对每个问题只能回答一次
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Answer_Edit(Spacebuilder.Common.Authorizer,Spacebuilder.Ask.AskQuestion,Spacebuilder.Ask.AskAnswer)">
+            <summary>
+            编辑回答
+            </summary>
+            <remarks>
+            1.如果问题已解决（答案被采纳后），不允许回答者编辑，其余情况允许回答者编辑
+            2.管理员可以编辑所有的回答
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Answer_Delete(Spacebuilder.Common.Authorizer)">
+            <summary>
+            删除回答
+            </summary>
+            <remarks>
+            管理员可以删除所有回答
+            </remarks>
+        </member>
+        <member name="M:Spacebuilder.Ask.AuthorizerExtension.Ask_UserSetting(Spacebuilder.Common.Authorizer,System.Int64)">
+            <summary>
+            管理员或用户可以修改自己的设置
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.NoticeTemplateNamesExtension">
+            <summary>
+            扩展NoticeTemplateNames
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.NoticeTemplateNamesExtension.NewAnswer(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            问题有新回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.NoticeTemplateNamesExtension.NewAskComment(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            问题有新评论
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.NoticeTemplateNamesExtension.SetBestAnswer(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            采纳满意回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.NoticeTemplateNamesExtension.AskUser(Tunynet.Common.NoticeTemplateNames)">
+            <summary>
+            向他提问（定向提问）
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.PermissionItemKeysExtension">
+            <summary>
+            权限项标识扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.PermissionItemKeysExtension.Ask_Create(Tunynet.Common.PermissionItemKeys)">
+            <summary>
+            创建问题的权限项标识
+            </summary>
+            <param name="pik"><see cref="T:Tunynet.Common.PermissionItemKeys"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.PermissionItemKeysExtension.Ask_CreateAnswer(Tunynet.Common.PermissionItemKeys)">
+            <summary>
+            回答问题的权限项标识
+            </summary>
+            <param name="pik"><see cref="T:Tunynet.Common.PermissionItemKeys"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.PointItemKeysExtension">
+            <summary>
+            积分项
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.PointItemKeysExtension.Ask_CreateAnswer(Tunynet.Common.PointItemKeys)">
+            <summary>
+            回答问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.PointItemKeysExtension.Ask_DeleteAnswer(Tunynet.Common.PointItemKeys)">
+            <summary>
+            删除回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.PointItemKeysExtension.Ask_AcceptedAnswer(Tunynet.Common.PointItemKeys)">
+            <summary>
+            采纳回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.PointItemKeysExtension.Ask_AnswerWereAccepted(Tunynet.Common.PointItemKeys)">
+            <summary>
+            回答被采纳
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.PointItemKeysExtension.Ask_CreateQuestion(Tunynet.Common.PointItemKeys)">
+            <summary>
+            创建问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.PointItemKeysExtension.Ask_DeleteQuestion(Tunynet.Common.PointItemKeys)">
+            <summary>
+            删除问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.PointItemKeysExtension.Ask_BeSupported(Tunynet.Common.PointItemKeys)">
+            <summary>
+            被顶/赞同
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.PointItemKeysExtension.Ask_BeOpposed(Tunynet.Common.PointItemKeys)">
+            <summary>
+            被踩/反对
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.SubscribeTagActivityReceiverGetter">
+            <summary>
+            关注问题标签动态接收人获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.SubscribeTagActivityReceiverGetter.Tunynet#Common#IActivityReceiverGetter#GetReceiverUserIds(Tunynet.Common.ActivityService,Tunynet.Common.Activity)">
+            <summary>
+            获取接收人UserId集合
+            </summary>
+            <param name="activityService">动态业务逻辑类</param>
+            <param name="activity">动态对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.SubscribeTagActivityReceiverGetter.IsReceiveActivity(Tunynet.Common.ActivityService,System.Int64,Tunynet.Common.Activity)">
+            <summary>
+            检查用户是否接收动态
+            </summary>
+            <param name="activityService"></param>
+            <param name="userId">UserId</param>
+            <param name="activity">动态</param>
+            <returns>接收动态返回true，否则返回false</returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.CountTypesExtension">
+            <summary>
+            问答计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.CountTypesExtension.QuestionFollowerCount(Tunynet.Common.CountTypes)">
+            <summary>
+            被关注次数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Common.SiteUrlsExtension">
+            <summary>
+            问答链接管理
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskQuestions(Spacebuilder.Common.SiteUrls,System.String,System.String)">
+            <summary>
+            问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskTagContents(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            标签浮动内容块
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskQuestionEdit(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            发布/编辑问答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskSubscribeQuestionCancel(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            取消关注问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskSubscribeQuestion(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            关注问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskSubscribeTagCancel(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            取消关注标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskSubscribeTag(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            关注标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskSetEssential(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean)">
+            <summary>
+            设置精华/取消精华
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskCancel(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            取消
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskQuestionControlPanelManage(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus})">
+            <summary>
+            问题后台管理
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskDeleteAnswer(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            删除回答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskSetBestAnswer(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            采纳为满意答案
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskControlPanelSetEssential(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            批量/单个设置精华
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isEssential">是否精华</param>
+            <returns>批量设置精华</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskDeleteQuestion(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            批量/单个删除问题
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="questionsIds">问题ID列表</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._ApproveQuestion(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            更新问题的审核状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApprove">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._ApproveQuestion(Spacebuilder.Common.SiteUrls,System.Int64,System.Boolean)">
+            <summary>
+            更新问题的审核状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApprove">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._DeleteAnswer(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            批量/单个删除回答
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="answerIds">回答ID列表</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._EditAnswer(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            编辑回答
+            </summary>
+            <param name="answerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._ApproveAnswer(Spacebuilder.Common.SiteUrls,System.Boolean)">
+            <summary>
+            更新回答的审核状态
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="isApprove">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskAnswerControlPanelManage(Spacebuilder.Common.SiteUrls,System.Nullable{Tunynet.Common.AuditStatus})">
+            <summary>
+            回答后台管理
+            </summary>
+            <param name="siteUrls"></param>
+            <param name="auditStatus">审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskHome(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            主页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskUnresolvedQuestions(Spacebuilder.Common.SiteUrls,System.String,System.Int32)">
+            <summary>
+            待解决问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskEssentialQuestions(Spacebuilder.Common.SiteUrls,System.String,System.Int32)">
+            <summary>
+            精华问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskHighRewardQuestions(Spacebuilder.Common.SiteUrls,System.String,System.Int32)">
+            <summary>
+            高分悬赏
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskTags(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            标签分组
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskTagList(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            标签分组下标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskTagDetail(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            标签详细
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskTagFollowers(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            关注标签的用户全局页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskLatestQuestions(Spacebuilder.Common.SiteUrls,System.String,System.Int32)">
+            <summary>
+            最新问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskNoAnswerQuestions(Spacebuilder.Common.SiteUrls,System.String,System.Int32)">
+            <summary>
+            零回答问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskResolvedQuestions(Spacebuilder.Common.SiteUrls,System.String,System.Int32)">
+            <summary>
+            已解决的问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskQuestionFollowers(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            关注问题的用户
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskQuestionFollowers(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            关注问题的用户列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskTagFollowers(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            关注问题的用户列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskRank(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            排行
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskQuestionDetail(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            问题详细显示页
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskAnswerList(Spacebuilder.Common.SiteUrls,System.Int64,System.Nullable{Spacebuilder.Ask.SortBy_AskAnswer},System.Int64)">
+            <summary>
+            问题的回答列表
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskUser(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            我的问答
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskUserSettings(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            我的设置
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskTa(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            他的提问
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskUserAnswers(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            我的回答
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskUserQuestions(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            我的问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskUserFollowedQuestions(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            用户关注的问题
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskUserFollowedTags(Spacebuilder.Common.SiteUrls,System.Int64,System.Int32)">
+            <summary>
+            用户关注的标签
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskSaveUserDescription(Spacebuilder.Common.SiteUrls,System.Int64)">
+            <summary>
+            保存简介
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskEditAskAnswerControlPanel(Spacebuilder.Common.SiteUrls,System.Nullable{System.Int64})">
+            <summary>
+            编辑回答
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskSimilarQuestions(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            相似问题
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskGlobalSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            问答全局搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension._AskQuickSearch(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            问答快捷搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskPageSearch(Spacebuilder.Common.SiteUrls,System.String)">
+            <summary>
+            问答搜索
+            </summary>
+            <param name="siteUrls"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Common.SiteUrlsExtension.AskSearchAutoComplete(Spacebuilder.Common.SiteUrls)">
+            <summary>
+            问答搜索自动完成
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.TenantTypeIdsExtension">
+            <summary>
+            问答定义的租户类型
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.TenantTypeIdsExtension.Ask(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            问答应用
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.TenantTypeIdsExtension.AskQuestion(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            问题
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.TenantTypeIdsExtension.AskAnswer(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            回答
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.TenantTypeIdsExtension.AskTag(Tunynet.Common.TenantTypeIds)">
+            <summary>
+            关注问题标签（订阅服务）
+            </summary>
+            <param name="TenantTypeIds">被扩展对象</param>
+        </member>
+        <member name="T:Spacebuilder.Ask.OwnerDataKeysExtension">
+            <summary>
+            用户计数类型扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.OwnerDataKeysExtension.QuestionCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            提问数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.OwnerDataKeysExtension.AnswerCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            回答数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.OwnerDataKeysExtension.AnswerAcceptCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            回答被采纳数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.OwnerDataKeysExtension.AnswerSupportCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            回答被赞同数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.OwnerDataKeysExtension.AnswerOpposeCount(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            回答被反对数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.OwnerDataKeysExtension.AcceptQuestion(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            是否接受定向提问
+            </summary>
+            <param name="ownerDataKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.OwnerDataKeysExtension.UserDescription(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            用户在用户在问答中的简介
+            </summary>
+            <param name="ownerDataKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.OwnerDataKeysExtension.UserAskReputation(Tunynet.Common.OwnerDataKeys)">
+            <summary>
+            用户问答威望
+            </summary>
+            <param name="ownerDataKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.SubscribeQuestionActivityReceiverGetter">
+            <summary>
+            关注问题动态接收人获取器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.SubscribeQuestionActivityReceiverGetter.Tunynet#Common#IActivityReceiverGetter#GetReceiverUserIds(Tunynet.Common.ActivityService,Tunynet.Common.Activity)">
+            <summary>
+            获取接收人UserId集合
+            </summary>
+            <param name="activityService">动态业务逻辑类</param>
+            <param name="activity">动态对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.SubscribeQuestionActivityReceiverGetter.IsReceiveActivity(Tunynet.Common.ActivityService,System.Int64,Tunynet.Common.Activity)">
+            <summary>
+            检查用户是否接收动态
+            </summary>
+            <param name="activityService"></param>
+            <param name="userId">UserId</param>
+            <param name="activity">动态</param>
+            <returns>接收动态返回true，否则返回false</returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskAnswer">
+            <summary>
+            回答的实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswer.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswer.GetResolvedBody">
+            <summary>
+            获取AskAnswer的解析过的内容
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswer.GetPageIndex(System.Int64)">
+            <summary>
+            获取当前回答的页码
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.AnswerId">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.QuestionId">
+            <summary>
+            问题id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.UserId">
+            <summary>
+            回答者用户Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.Author">
+            <summary>
+            回答者DisplayName
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.Body">
+            <summary>
+            补充说明
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.IsBest">
+            <summary>
+            是否最佳回答
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.IP">
+             <summary>
+            发布人IP
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.LastModified">
+            <summary>
+            最后更新日期
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.SupportCount">
+            <summary>
+            获取该问题的支持票数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.Question">
+            <summary>
+            获取该回答的问题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.User">
+            <summary>
+            获取当前回答用户
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.VoteUsers">
+            <summary>
+            获取该问题的支持者
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.CommentCount">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.AuditItemKey">
+            <summary>
+            审核项Key 
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswer.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskAnswerExtensions">
+            <summary>
+            问题实体的扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerExtensions.AsEditModel(Spacebuilder.Ask.AskAnswer)">
+            <summary>
+            将数据库中的信息转换成EditModel实体
+            </summary>
+            <param name="askAnswer">回答实体</param>
+            <returns>编辑回答的EditModel</returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.SortBy_AskQuestion">
+            <summary>
+            问题排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.SortBy_AskQuestion.DateCreated_Desc">
+            <summary>
+            发布时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.SortBy_AskQuestion.AnswerCount">
+            <summary>
+            回答数
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.SortBy_AskQuestion.StageHitTimes">
+            <summary>
+            阶段浏览数
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.SortBy_AskQuestion.Reward">
+            <summary>
+            悬赏分值
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.SortBy_AskAnswer">
+            <summary>
+            回答排序依据
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.SortBy_AskAnswer.DateCreated_Desc">
+            <summary>
+            发布时间倒序
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.SortBy_AskAnswer.SupportCount">
+            <summary>
+            赞同数
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.QuestionStatus">
+            <summary>
+            问题状态
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.QuestionStatus.Unresolved">
+            <summary>
+            未解决
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.QuestionStatus.Resolved">
+            <summary>
+            已解决
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.QuestionStatus.Canceled">
+            <summary>
+            已取消
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskQuestion">
+            <summary>
+            问题实体
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestion.New">
+            <summary>
+            新建实体时使用
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestion.GetResolvedBody">
+            <summary>
+            获取AskQuestion的解析过的内容
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.QuestionId">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.TenantTypeId">
+            <summary>
+            租户类型id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.OwnerId">
+            <summary>
+            所有者id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.Author">
+            <summary>
+            提问者DisplayName
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.Subject">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.Body">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.Reward">
+            <summary>
+            悬赏积分
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.AnswerCount">
+            <summary>
+            回答数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.LastAnswerUserId">
+            <summary>
+            最后回答用户Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.LastAnswerAuthor">
+            <summary>
+            最后回答用户DisplayName
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.LastAnswerDate">
+            <summary>
+            最后回答时间
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.Status">
+            <summary>
+            状态（待解决、已解决、取消）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.IsEssential">
+            <summary>
+            是否精华
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.IP">
+             <summary>
+            发布人IP
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.DateCreated">
+             <summary>
+            创建时间
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.LastModified">
+            <summary>
+            最后更新日期
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.LastModifiedUserId">
+            <summary>
+            最后更新者用户Id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.LastModifier">
+            <summary>
+            最后更新者的DisplayName
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.AddedReward">
+            <summary>
+            增加的悬赏积分
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.AskUserId">
+            <summary>
+            定向提问用户ID列表
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.VoteCount">
+            <summary>
+            获取该问题的支持票数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.HitTimes">
+            <summary>
+            浏览数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.CommentCount">
+            <summary>
+            评论数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.User">
+            <summary>
+            获取当前回答用户
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.ResolvedSubject">
+            <summary>
+            根据是否已解决返回带前缀的标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.AuditItemKey">
+            <summary>
+            审核项Key 
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestion.AuditStatus">
+            <summary>
+            审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Question.AskQuistionEntityQuery.TagsKeywords">
+             <summary>
+            标签关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Question.AskQuistionEntityQuery.UserId">
+            <summary>
+            作者ID
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Question.AskQuistionEntityQuery.AuditStatus">
+            <summary>
+            审核状态
+             </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Question.AskQuistionEntityQuery.TitleKeywords">
+            <summary>
+            标题关键字
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.HtmlHelperQuestionStatusIconExtensions">
+            <summary>
+            输出问题状态图标的方法
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.HtmlHelperQuestionStatusIconExtensions.QuestionStatusIcon(System.Web.Mvc.HtmlHelper,Spacebuilder.Ask.QuestionStatus)">
+            <summary>
+            输出问题状态图标的方法
+            </summary>
+            <param name="htmlHelper"></param>
+            <param name="questionStatus">问题状态</param>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskAnswerRepository">
+            <summary>
+            问答应用的回答仓储实现
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.IAskAnswerRepository">
+            <summary>
+            问答应用的回答仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskAnswerRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            指定用户接管当前用户的回答
+            </summary>
+            <param name="userId">当前用户id</param>
+            <param name="takeOverUser">指定用户</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskAnswerRepository.GetUserAnswers(System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取用户的回答列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="userId">回答的作者用户id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskAnswerRepository.GetAnswersByQuestionId(System.Int64,Spacebuilder.Ask.SortBy_AskAnswer,System.Int32,System.Int32)">
+            <summary>
+            根据问题id获取回答实体列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="questionId">问题id</param>
+            <param name="sortBy">排序条件</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskAnswerRepository.GetAnswersForAdmin(System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int64},System.String,System.Int32,System.Int32)">
+            <summary>
+            管理员获取回答分页集合
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="auditStatus">审核状态</param>
+            <param name="userId">用户id</param>
+            <param name="keyword">查询关键字</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskAnswerRepository.GetUserAnswerByQuestionId(System.Int64,System.Int64)">
+            <summary>
+            根据用户id和问题id获取回答实体
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="questionId">问题id</param>
+            <returns>问题实体</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskAnswerRepository.GetManageableData">
+            <summary>
+            获取回答管理数据
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <returns>回答管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskAnswerRepository.GetApplicationStatisticData">
+            <summary>
+            获取回答应用统计数据
+            </summary>
+            <returns>回答统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskAnswerRepository.GetAnswerCountOfTag(System.String)">
+            <summary>
+            统计某个标签的回答数
+            </summary>
+            <param name="tagName">标签名</param>
+            <returns>回答数</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.#ctor">
+            <summary>
+            构造器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.#ctor(Tunynet.Common.PubliclyAuditStatus)">
+            <summary>
+            构造器
+            </summary>
+            <param name="publiclyAuditStatus"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.Update(Spacebuilder.Ask.AskAnswer)">
+            <summary>
+            更新回答
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            指定用户接管当前用户的回答
+            </summary>
+            <param name="userId">当前用户id</param>
+            <param name="takeOverUser">指定用户</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetUserAnswers(System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取用户的回答列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="userId">回答的作者用户id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetAnswersByQuestionId(System.Int64,Spacebuilder.Ask.SortBy_AskAnswer,System.Int32,System.Int32)">
+            <summary>
+            根据问题id获取回答实体列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="questionId">问题id</param>
+            <param name="sortBy">排序条件</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetAnswersForAdmin(System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int64},System.String,System.Int32,System.Int32)">
+            <summary>
+            管理员获取回答分页集合
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="auditStatus">审核状态</param>
+            <param name="userId">用户id</param>
+            <param name="keyword">查询关键字</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetUserAnswerByQuestionId(System.Int64,System.Int64)">
+            <summary>
+            根据用户id和问题id获取回答实体
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="questionId">问题id</param>
+            <returns>问题实体</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetManageableData">
+            <summary>
+            获取回答管理数据
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <returns>回答管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetApplicationStatisticData">
+            <summary>
+            获取回答应用统计数据
+            </summary>
+            <returns>回答统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetResolvedBody(System.Int64)">
+            <summary>
+            获取解析的正文
+            </summary>
+            <param name="threadId">回答id</param>
+            <returns>解析后的回答正文</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetCacheKeyOfResolvedBody(System.Int64)">
+            <summary>
+            获取解析正文缓存Key
+            </summary>
+            <param name="threadId">回答id</param>
+            <returns>正文缓存key</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetBody(System.Int64)">
+            <summary>
+            获取回答内容
+            </summary>
+            <param name="threadId">回答id</param>
+            <returns>回答正文内容</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetAnswerCountOfTag(System.String)">
+            <summary>
+            统计某个标签的回答数
+            </summary>
+            <param name="tagName">标签名</param>
+            <returns>回答数</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerRepository.GetPageIndexOfCurrentAnswer(Spacebuilder.Ask.AskAnswer,System.Int64)">
+            <summary>
+            获取某个回答所在的页码
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskAnswerRepository.publiclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswerRepository.PubliclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskQuestionRepository">
+            <summary>
+            问答应用的问题仓储实现
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.IAskQuestionRepository">
+            <summary>
+            问答应用的问题仓储接口
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.SetEssential(Spacebuilder.Ask.AskQuestion,System.Boolean)">
+            <summary>
+            设置/取消精华问题（管理员操作）
+            </summary>
+            <param name="question">问题实体</param>
+            <param name="isEssential">设置/取消精华</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            指定用户接管当前用户的问题
+            </summary>
+            <param name="userId">当前用户id</param>
+            <param name="takeOverUser">指定用户</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetTopInterestedQuestions(System.String,System.Int64,System.Int32)">
+            <summary>
+            获取感兴趣的问题
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="userId">用户id</param>
+            <param name="topNumber">查询条数</param>
+            <returns>问题列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetTopQuestions(System.String,System.Int32,System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Boolean},Spacebuilder.Ask.SortBy_AskQuestion)">
+            <summary>
+            根据不同条件获取前n条的问题列表（用于前台）
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="status">问题状态</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序条件</param>
+            <returns>问题列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetQuestions(System.String,System.String,System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Boolean},Spacebuilder.Ask.SortBy_AskQuestion,System.Int32,System.Int32)">
+            <summary>
+            根据不同条件分页获取问题列表（用于前台）
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="tagName">标签</param>
+            <param name="status">问题状态</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序条件</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetOwnerQuestions(System.String,System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取拥有者的问题列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="ownerId">所有者id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetUserQuestions(System.String,System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取用户的问题列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="userId">问题的作者用户id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetNoAnswerQuestions(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            获取零回答的问题（用于前台）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="tagName">标签</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetQuestionsForAdmin(System.String,System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Int64},System.Nullable{System.Int64},System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            管理员获取问题分页集合
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="questionStatus">问题状态</param>
+            <param name="ownerId">所属id</param>
+            <param name="userId">用户id</param>
+            <param name="keyword">查询关键字</param>
+            <param name="tagName">标签</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetManageableData(System.String)">
+            <summary>
+            获取问题管理数据
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>问题管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetApplicationStatisticData(System.String)">
+            <summary>
+            获取问题应用统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>问题统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.IAskQuestionRepository.GetAnswersAttitudesCount(System.Int64,System.String)">
+            <summary>
+            通过问题Id获取该问题下所有回答的顶踩数
+            </summary>
+            <param name="questionId">问题Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.#ctor">
+            <summary>
+            构造器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.#ctor(Tunynet.Common.PubliclyAuditStatus)">
+            <summary>
+            构造器
+            </summary>
+            <param name="publiclyAuditStatus"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.Update(Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            更新问题
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.SetEssential(Spacebuilder.Ask.AskQuestion,System.Boolean)">
+            <summary>
+            设置/取消精华问题（管理员操作）
+            </summary>
+            <param name="question">问题实体</param>
+            <param name="isEssential">设置/取消精华</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.TakeOver(System.Int64,Spacebuilder.Common.User)">
+            <summary>
+            指定用户接管当前用户的问题
+            </summary>
+            <param name="userId">当前用户id</param>
+            <param name="takeOverUser">指定用户</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetTopInterestedQuestions(System.String,System.Int64,System.Int32)">
+            <summary>
+            获取感兴趣的问题
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="userId">用户id</param>
+            <param name="topNumber">查询条数</param>
+            <returns>问题列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.BuildSqlForGetTopInterestedQuestions(System.String,PetaPoco.Sql@,PetaPoco.Sql@,PetaPoco.Sql@)">
+            <summary>
+            构建用于GetTopInterestedQuestions方法的Sql
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="sql"></param>
+            <param name="whereSql"></param>
+            <param name="orderSql"></param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetTopQuestions(System.String,System.Int32,System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Boolean},Spacebuilder.Ask.SortBy_AskQuestion)">
+            <summary>
+            根据不同条件获取前n条的问题列表（用于前台）
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="status">问题状态</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序条件</param>
+            <returns>问题列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetQuestions(System.String,System.String,System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Boolean},Spacebuilder.Ask.SortBy_AskQuestion,System.Int32,System.Int32)">
+            <summary>
+            根据不同条件分页获取问题列表（用于前台）
+            </summary>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="tagName">标签</param>
+            <param name="status">问题状态</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序条件</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetOwnerQuestions(System.String,System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取拥有者的问题列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="ownerId">所有者id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetUserQuestions(System.String,System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取用户的问题列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="userId">问题的作者用户id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetNoAnswerQuestions(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            获取零回答的问题（用于前台）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="tagName">标签</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetQuestionsForAdmin(System.String,System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Int64},System.Nullable{System.Int64},System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            管理员获取问题分页集合
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="questionStatus">问题状态</param>
+            <param name="ownerId">所属id</param>
+            <param name="userId">用户id</param>
+            <param name="keyword">查询关键字</param>
+            <param name="tagName">标签</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetManageableData(System.String)">
+            <summary>
+            获取问题管理数据
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>问题管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetApplicationStatisticData(System.String)">
+            <summary>
+            获取问题应用统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>问题统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetResolvedBody(System.Int64)">
+            <summary>
+            获取解析的正文
+            </summary>
+            <param name="threadId">问题id</param>
+            <returns>解析后的问题正文</returns>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskQuestionRepository.publiclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetCacheKeyOfResolvedBody(System.Int64)">
+            <summary>
+            获取解析正文缓存Key
+            </summary>
+            <param name="threadId">问题id</param>
+            <returns>正文缓存key</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetBody(System.Int64)">
+            <summary>
+            获取问题内容
+            </summary>
+            <param name="threadId">问题id</param>
+            <returns>问题正文内容</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionRepository.GetAnswersAttitudesCount(System.Int64,System.String)">
+            <summary>
+            通过问题Id获取该问题下所有回答的顶踩数
+            </summary>
+            <param name="questionId">问题Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionRepository.PubliclyAuditStatus">
+            <summary>
+            可对外显示的审核状态
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.Resources.Resource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.ApplicationName_Ask">
+            <summary>
+              查找类似 问答 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.Description_ModeratedUser_CreateAnswerDenied">
+            <summary>
+              查找类似 您现在处于管制状态，不能问答 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.Description_ModeratedUser_CreateQuestionDenied">
+            <summary>
+              查找类似 您现在处于管制状态，不能提问 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.PointRecord_Pattern_AcceptedAnswer">
+            <summary>
+              查找类似 采纳回答：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.PointRecord_Pattern_AnswerWereAccepted">
+            <summary>
+              查找类似 回答被采纳：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.PointRecord_Pattern_QuestionReward">
+            <summary>
+              查找类似 问题悬赏：{0} 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.Resources.Resource.Resolved_Subject_Prefix">
+            <summary>
+              查找类似 已解决 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskFullTextQuery">
+            <summary>
+            问答全文检索
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskFullTextQuery.pageIndex">
+            <summary>
+            当前显示页面页码
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskFullTextQuery.PageSize">
+            <summary>
+            每页显示记录数
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskFullTextQuery.Keyword">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskFullTextQuery.Keywords">
+            <summary>
+            关键字集合
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskFullTextQuery.IsAlike">
+            <summary>
+            是否相似问题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskFullTextQuery.IsRelation">
+            <summary>
+            是否查相关问答
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskFullTextQuery.sortBy">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskFullTextQuery.Range">
+            <summary>
+            筛选
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskSearchRange.ALL">
+            <summary>
+            全部
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskSearchRange.SUBJECT">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskSearchRange.AUTHOR">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskSearchRange.TAG">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskSearchRange.ANSWER">
+            <summary>
+            回答
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskIndexDocument">
+            <summary>
+            问答索引文档
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskIndexDocument.Convert(Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            AskQuestion转换成Document
+            </summary>
+            <param name="question">问题对象</param>
+            <returns>问题对应的document对象</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskIndexDocument.Convert(System.Collections.Generic.IEnumerable{Spacebuilder.Ask.AskQuestion})">
+            <summary>
+            从Question到Document的批量转换
+            </summary>
+            <param name="questions">问题集合</param>
+            <returns>Document集合</returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskSearcher">
+            <summary>
+            问答搜索器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.#ctor(System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">Searcher名称</param>
+            <param name="indexPath">索引文件所在路径（支持"~/"及unc路径）</param>
+            <param name="asQuickSearch">是否作为快捷搜索</param>
+            <param name="displayOrder">显示顺序</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.GlobalSearchActionUrl(System.String)">
+            <summary>
+            处理全局搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns>全局搜索URL</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.QuickSearchActionUrl(System.String)">
+            <summary>
+            处理快捷搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns>快捷搜索URL</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.PageSearchActionUrl(System.String)">
+            <summary>
+            处理当前应用搜索的URL
+            </summary>
+            <param name="keyword">搜索关键词</param>
+            <returns>URL</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.RebuildIndex">
+            <summary>
+            重建索引
+            </summary>  
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.Insert(Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            添加索引
+            </summary>
+            <param name="question">待添加的问答</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.Insert(System.Collections.Generic.IEnumerable{Spacebuilder.Ask.AskQuestion})">
+            <summary>
+            添加索引
+            </summary>
+            <param name="askQuestions">待添加的问答</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.Delete(System.Int64)">
+            <summary>
+            删除索引
+            </summary>
+            <param name="questionId">待删除的问题Id</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.Delete(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            删除索引
+            </summary>
+            <param name="questionIds">待删除的问答Id列表</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.Update(Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            更新索引
+            </summary>
+            <param name="question">待更新的问答</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.Update(System.Collections.Generic.IEnumerable{Spacebuilder.Ask.AskQuestion})">
+            <summary>
+            更新索引
+            </summary>
+            <param name="questions">待更新的日志集合</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.Search(Spacebuilder.Ask.AskFullTextQuery)">
+            <summary>
+            问答分页搜索
+            </summary>
+            <param name="askQuery">搜索条件</param>
+            <returns>符合条件的分页集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.AutoCompleteSearch(System.String,System.Int32)">
+            <summary>
+            获取匹配的前topNumber条问题热词
+            </summary>
+            <param name="keyword">关键字</param>
+            <param name="topNumber">前N条</param>
+            <returns>符合条件的集合</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskSearcher.BuilderLuceneSearchBuilder(Spacebuilder.Ask.AskFullTextQuery)">
+            <summary>
+            构建lucene查询条件
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.AsQuickSearch">
+            <summary>
+            是否作为快捷搜索
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.WaterMark">
+            <summary>
+            搜索器水印
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.SearchEngine">
+            <summary>
+            关联的搜索引擎实例
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.Code">
+            <summary>
+            搜索器的唯一标识
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.IsDisplay">
+            <summary>
+            是否前台显示
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.DisplayOrder">
+            <summary>
+            显示顺序
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.IndexPath">
+            <summary>
+            Lucene索引路径（完整物理路径，支持unc）
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.IsBaseOnLucene">
+            <summary>
+            是否基于Lucene实现
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskSearcher.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskBodyProcessor">
+            <summary>
+            问答正文解析器
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskBodyProcessor.AtUserTagGenerate(System.String,System.String)">
+            <summary>
+            生成at用户标签
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="displayName">显示名</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskBodyProcessor.AddBBTag(System.String,Tunynet.Common.Attachment)">
+            <summary>
+            添加BBTag实体
+            </summary>
+            <param name="htmlTemplate">html模板</param>
+            <param name="attachment">带替换附件</param>
+            <returns>BBTag实体</returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskService">
+            <summary>
+            问答业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.#ctor(Spacebuilder.Ask.IAskAnswerRepository,Spacebuilder.Ask.IAskQuestionRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="askAnswerRepository">问答仓储实现</param>
+            <param name="askQuestionRepository">问答仓储实现</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.CreateQuestion(Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            发布问题
+            </summary>
+            <remarks>
+            1.用户提问时，悬赏的积分会被冻结，需要先扣除相应的用户积分；同时发布问题会产生新积分
+            2.注意在EventModule中处理动态、积分、通知、自动关注（提问者自动关注该问题）；
+            3.使用AuditService.ChangeAuditStatusForCreate设置审核状态；
+            4.注意调用AttachmentService转换临时附件；
+            5.需要触发的事件:1)Create的OnBefore、OnAfter；2)审核状态变更；
+            </remarks>
+            <param name="question">问题实体</param>
+            <returns>是否创建成功</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.UpdateQuestion(Spacebuilder.Ask.AskQuestion,System.Boolean)">
+            <summary>
+            编辑问题
+            </summary>
+            <remarks>
+            1.使用AuditService.ChangeAuditStatusForUpdate设置审核状态；
+            2.Repository更新时不处理：IsEssential
+            3.需要触发的事件:Update的OnBefore、OnAfter；
+            </remarks>
+            <param name="question">问题实体</param>
+            <param name="changeAuditStatusForUpdate">是否更新审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.CancelQuestion(Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            取消问题
+            </summary>
+            <param name="question">问题实体</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.DeleteQuestion(Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            删除问题
+            </summary>
+            <remarks>
+            1.只有管理员可删除问题，已解决问题的积分不返还，未解决的问题应该解除冻结积分，通过EventModule处理；
+            2.注意需要删除动态，通过EventModule处理；
+            3.注意需要扣除发布问题时增加的积分，通过EventModule处理；
+            4.注意需要删除所有用户对该问题的关注，通过EventModule处理；
+            5.注意删除与标签的关联，其它数据的删除由各模块自动处理
+            6.需要触发的事件:1)Delete的OnBefore、OnAfter；2)审核状态变更
+            </remarks>
+            <param name="question">问题实体</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.SetEssential(Spacebuilder.Ask.AskQuestion,System.Boolean)">
+            <summary>
+            设置/取消精华问题（管理员操作）
+            </summary>
+            <remarks>
+            1.精华状态未变化不用进行任何操作
+            2.在EventModule里处理积分
+            3.需要触发的事件：加精或取消精华SetEssential的OnAfter
+            </remarks>
+            <param name="question">问题实体</param>
+            <param name="isEssential">是否精华</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.CreateAnswer(Spacebuilder.Ask.AskAnswer)">
+            <summary>
+            发布回答
+            </summary>
+            <remarks>
+            1.每个回答者针对每个问题只能回答一次，创建回答前需做重复检查
+            2.注意维护相关问题的回答数，AnswerCount++
+            3.注意需要在EventModule中处理动态、积分、通知、自动关注（回答者自动关注该问题）
+            4.注意使用AuditService.ChangeAuditStatusForCreate设置审核状态；
+            5.注意调用AttachmentService转换临时附件；
+            6.需要触发的事件:1)Create的OnBefore、OnAfter；2)审核状态变更；
+            </remarks>
+            <param name="answer">回答实体</param>
+            <returns>是否创建成功</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.UpdateAnswer(Spacebuilder.Ask.AskAnswer,System.Boolean)">
+            <summary>
+            编辑回答
+            </summary>
+            <remarks>
+            1.使用AuditService.ChangeAuditStatusForUpdate设置审核状态；
+            2.需要触发的事件:Update的OnBefore、OnAfter；
+            </remarks>
+            <param name="answer">回答实体</param>
+            <param name="changeAuditStatusForUpdate">是否更新审核状态</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.DeleteAnswer(Spacebuilder.Ask.AskAnswer)">
+            <summary>
+            删除回答
+            </summary>
+            <remarks>
+            1.管理员删除被采纳的回答时，需要将问题状态变更为“待解决”
+            2.注意维护相关问题的回答数，调用UpdateAskQuestion，AnswerCount--
+            3.注意需要删除动态，通过EventModule处理；
+            4.注意需要扣除增加的积分，通过EventModule处理；
+            5.注意需要删除回答者对问题的关注，通过EventModule处理；
+            6.需要触发的事件:1)Delete的OnBefore、OnAfter；2)审核状态变更
+            </remarks>
+            <param name="answer">回答实体</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.SetBestAnswer(Spacebuilder.Ask.AskQuestion,Spacebuilder.Ask.AskAnswer)">
+            <summary>
+            采纳满意回答
+            </summary>
+            <remarks>
+            1.如果问题有悬赏则悬赏分值转移到回答者的帐户（如有交易税，需要扣除），通过EventModule实现
+            2.除了悬赏分的交易，回答被采纳，回答者还会获得新产生的积分，通过EventModule实现
+            3.注意需要发送通知给问题的关注者，通过EventModule实现
+            4.需要触发的事件:SetBestAnswer的OnAfter
+            </remarks>
+            <param name="question">问题实体</param>
+            <param name="answer">回答实体</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.DeleteUser(System.Int64,System.String,System.Boolean)">
+            <summary>
+            删除用户时处理其问答数据
+            </summary>
+            <remarks>
+            1.如果需要接管，直接执行Repository的方法更新数据库记录
+            2.如果不需要接管，调用DeleteAskQuestion、DeleteAskAnswer循环删除该用户下的所有问题和回答
+            </remarks>
+            <param name="userId">原用户id</param>
+            <param name="takeOverUserName">指定接管用户的用户名</param>
+            <param name="isTakeOver">是否接管</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.SetAcceptQuestion(System.Int64,System.Boolean)">
+            <summary>
+            设置用户是否接受定向提问
+            </summary>
+            <remarks>
+            使用拥有者数据（OwnerData）存储
+            </remarks>
+            <param name="userId">用户id</param>
+            <param name="accept">接受定向提问</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.IsAcceptQuestion(System.Int64)">
+            <summary>
+            获取用户是否接受定向提问
+            </summary>
+            <param name="userId">用户id</param>
+            <returns>是否接受定向提问</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.SetUserDescription(System.Int64,System.String)">
+            <summary>
+            设置用户在用户在问答中的简介
+            </summary>
+            <remarks>
+            使用用户数据（OwnerData）存储
+            </remarks>
+            <param name="userId">用户id</param>
+            <param name="description">用户在问答中的简介</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetUserDescription(System.Int64)">
+            <summary>
+            获取用户在用户在问答中的简介
+            </summary>
+            <param name="userId">用户id</param>
+            <returns>用户在问答中的简介</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.ApproveQuestion(System.Int64,System.Boolean)">
+            <summary>
+            管理员审核问题
+            </summary>
+            <remarks>
+            1.审核状态未变化不用进行任何操作；
+            2.审核状态的变化影响动态的生成与删除、积分的变化
+            3.需要触发的事件：1) 批准或不批准；2) 审核状态变更；
+            </remarks>
+            <param name="questiongId">问题id</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.ApproveAnswer(System.Int64,System.Boolean)">
+            <summary>
+            管理员审核回答
+            </summary>
+            <remarks>
+            1.审核状态未变化不用进行任何操作；
+            2.审核状态的变化影响动态的生成与删除、积分的变化
+            3.需要触发的事件：1) 批准或不批准；2) 审核状态变更；
+            </remarks>
+            <param name="answerId">问题id</param>
+            <param name="isApproved">是否通过审核</param>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetTopInterestedQuestions(System.String,System.Int64,System.Int32)">
+            <summary>
+            获取感兴趣的问题
+            </summary>
+            <remarks>
+            1.数据来源：1)关注的标签下问题；2)关注用户提出的问题；
+            2.获取时优先获取待解决问题（时间倒序），其次是热门问题（关注数倒序）；
+            3.缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="userId">用户id</param>
+            <param name="topNumber">查询条数</param>
+            <returns>问题列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetTopQuestions(System.String,System.Int32,System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Boolean},Spacebuilder.Ask.SortBy_AskQuestion)">
+            <summary>
+            根据不同条件获取前n条的问题列表（用于前台）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="topNumber">前多少条</param>
+            <param name="status">问题状态</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序条件</param>
+            <returns>问题列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetQuestions(System.String,System.String,System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Boolean},Spacebuilder.Ask.SortBy_AskQuestion,System.Int32,System.Int32)">
+            <summary>
+            根据不同条件分页获取问题列表（用于前台）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="tagName">标签</param>
+            <param name="status">问题状态</param>
+            <param name="isEssential">是否精华</param>
+            <param name="sortBy">排序条件</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetQuestions(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            根据问题id列表批量获取问题实体
+            </summary>
+            <param name="questionIds">问题id列表</param>
+            <returns>问题实体列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetOwnerQuestions(System.String,System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取拥有者的问题列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="ownerId">所有者id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetUserQuestions(System.String,System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取用户的问题列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="userId">问题的作者用户id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetUserAnswers(System.Int64,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            分页获取用户的回答列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="userId">回答的作者用户id</param>
+            <param name="ignoreAudit">是否忽略审核状态（作者或管理员查看时忽略审核状态）</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetNoAnswerQuestions(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            获取零回答的问题（用于前台）
+            </summary>
+            <remarks>
+            缓存周期：常用对象集合，不用维护即时性
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="tagName">标签</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetQuestion(System.Int64)">
+            <summary>
+            根据id获取问题实体
+            </summary>
+            <param name="questionId">问题id</param>
+            <returns>问题实体</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetAnswer(System.Int64)">
+            <summary>
+            根据id获取答案实体
+            </summary>
+            <param name="answerId">问题id</param>
+            <returns>问题实体</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetUserAnswerByQuestionId(System.Int64,System.Int64)">
+            <summary>
+            根据用户id和问题id获取回答实体
+            </summary>
+            <param name="userId">用户id</param>
+            <param name="questionId">问题id</param>
+            <returns>问题实体</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetAnswersByQuestionId(System.Int64,Spacebuilder.Ask.SortBy_AskAnswer,System.Int32,System.Int32)">
+            <summary>
+            根据问题id获取回答实体列表
+            </summary>
+            <remarks>
+            缓存周期：对象集合
+            </remarks>
+            <param name="questionId">问题id</param>
+            <param name="sortBy">排序条件</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetQuestionsForAdmin(System.String,System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{Spacebuilder.Ask.QuestionStatus},System.Nullable{System.Int64},System.Nullable{System.Int64},System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            管理员获取问题分页集合
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型id</param>
+            <param name="auditStatus">审核状态</param>
+            <param name="questionStatus">问题状态</param>
+            <param name="ownerId">所属id</param>
+            <param name="userId">用户id</param>
+            <param name="keyword">查询关键字</param>
+            <param name="tagName">标签</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>问题分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetAnswersForAdmin(System.Nullable{Tunynet.Common.AuditStatus},System.Nullable{System.Int64},System.String,System.Int32,System.Int32)">
+            <summary>
+            管理员获取回答分页集合
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="auditStatus">审核状态</param>
+            <param name="userId">用户id</param>
+            <param name="keyword">查询关键字</param>
+            <param name="pageSize">分页大小</param>
+            <param name="pageIndex">页码</param>
+            <returns>回答分页列表</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetQuestionManageableData(System.String)">
+            <summary>
+            获取问题管理数据
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>问题管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetAnswerManageableData">
+            <summary>
+            获取回答管理数据
+            </summary>
+            <remarks>
+            无需缓存
+            </remarks>
+            <returns>回答管理数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetQuestionApplicationStatisticData(System.String)">
+            <summary>
+            获取问题应用统计数据
+            </summary>
+            <param name="tenantTypeId">租户类型Id（可以获取该应用下针对某种租户类型的统计计数，默认不进行筛选）</param>
+            <returns>问题统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetAnswerApplicationStatisticData">
+            <summary>
+            获取回答应用统计数据
+            </summary>
+            <returns>回答统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetUserStatisticData(System.Int64)">
+            <summary>
+            获取问答用户统计数据
+            </summary>
+            <remarks>
+            需统计：问题数、回答数、回答被采纳数、赞同数
+            无需缓存
+            </remarks>
+            <param name="userId">用户id</param>
+            <returns>用户统计数据</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetAnswerCountOfTag(System.String)">
+            <summary>
+            统计某个标签的回答数
+            </summary>
+            <param name="tagName">标签名</param>
+            <returns>回答数</returns>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskService.GetAnswersAttitudesCount(System.Int64,System.String)">
+            <summary>
+            通过问题Id获取该问题下所有回答的顶踩数
+            </summary>
+            <param name="questionId">问题Id</param>
+            <param name="tenantTypeId">租户类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Spacebuilder.Ask.UrlRoutingRegistration">
+            <summary>
+            问答路由设置
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskAnswerEditModel">
+            <summary>
+            编辑回答的EditModel
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskAnswerEditModel.AsAskAnswer">
+            <summary>
+            转换成AskAnswer类型
+            </summary>
+            <returns>回答实体</returns>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswerEditModel.AnswerId">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswerEditModel.QuestionId">
+            <summary>
+            QuestionId
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskAnswerEditModel.Body">
+            <summary>
+            正文
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskQuestionEditModel">
+            <summary>
+            编辑问题的EditModel
+            </summary>
+        </member>
+        <member name="F:Spacebuilder.Ask.AskQuestionEditModel.reward">
+            <summary>
+            悬赏分值
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionEditModel.AsAskQuestion">
+            <summary>
+            转换成AskQuestion类型
+            </summary>
+            <returns>问题实体</returns>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionEditModel.QuestionId">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionEditModel.AskUserId">
+            <summary>
+            定向提问用户ID
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionEditModel.QuestionStatus">
+            <summary>
+            问题状态
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionEditModel.Subject">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionEditModel.Body">
+            <summary>
+            正文
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionEditModel.TagNames">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionEditModel.UserId">
+            <summary>
+            问题作者用户id
+            </summary>
+        </member>
+        <member name="P:Spacebuilder.Ask.AskQuestionEditModel.OwnerId">
+            <summary>
+            所有者id
+            </summary>
+        </member>
+        <member name="T:Spacebuilder.Ask.AskQuestionExtensions">
+            <summary>
+            问题实体的扩展类
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Ask.AskQuestionExtensions.AsEditModel(Spacebuilder.Ask.AskQuestion)">
+            <summary>
+            将数据库中的信息转换成EditModel实体
+            </summary>
+            <param name="askQuestion">问题实体</param>
+            <returns>编辑问题的EditModel</returns>
+        </member>
+    </members>
+</doc>

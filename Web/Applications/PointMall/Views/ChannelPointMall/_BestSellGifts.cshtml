@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PointGift>
+
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-hot-commodity">
+    <div class="tn-box-header tn-widget-header tn-corner-top tn-border-bottom">
+        
+        <div class="tn-option">
+            <a href="@SiteUrls.Instance().Rank()" >更多</a>
+        </div>
+        <h3 class="tn-helper-reset">
+            热卖商品
+        </h3>
+    </div>
+    @if (Model != null && Model.Count() > 0)
+    {
+    <div class="tn-box-content tn-widget-content tn-corner-bottom">
+        <ul class="tn-list tn-trisect tn-helper-clearfix tn-commodity">
+            @foreach (var pointGift in Model)
+            {     
+            <li class="tn-list-item tn-helper-clearfix">
+                <div class="tn-list-item-area-left">
+                    <div class="tn-avatar">
+                        <a target="_blank" title="@pointGift.Name" href="@SiteUrls.Instance().GiftDetail(pointGift.GiftId)">
+                            <img alt="@pointGift.Name" src="@SiteUrls.Instance().ImageUrl(pointGift.FeaturedImage, TenantTypeIds.Instance().PointGift(), ImageSizeTypeKeys.Instance().Small())"  width="100"/>
+                        </a>
+                    </div>    
+                </div>
+                <div class="tn-list-item-area-main">
+                    <div class="tn-list-item-row tn-list-item-heading">
+                        <p class="tn-helper-reset">
+                            <a target="_blank" title="@pointGift.Name" href="@SiteUrls.Instance().GiftDetail(pointGift.GiftId)">@StringUtility.Trim(pointGift.Name,8)</a>
+                        </p>
+                    </div>
+                    <div class="tn-list-item-row tn-list-item-summary">
+                        <p class="tn-text-note">
+                            <span class="tn-explain-icon"><span class="tn-icon-colorful tn-icon-colorful-coins">
+                            </span><span class="tn-icon-text">@pointGift.Price</span></span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            }
+        </ul>
+    </div>
+    }
+    else
+    {
+        <div class="tn-no-data">
+            还没有热卖商品</div> 
+    }
+    
+</div>

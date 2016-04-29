@@ -1,0 +1,232 @@
+﻿@model PagingDataSet<Photo>
+@{
+    Layout = "app-list-2cols";
+    Html.Style("~/Applications/Photo/Styles/app.css");
+    Album album = ViewData.Get<Album>("album", null);
+    long albumId = album.AlbumId;
+}
+@section aside{
+    @Html.Partial("_Search")
+    @Html.AjaxAction("_Tags", new { spaceKey = Url.SpaceKey() })
+}
+<div class="tn-box tn-widget tn-widget-content tn-corner-all spb-photo-manage">
+    <div class="tn-box-content tn-widget-content tn-corner-all">
+        <div class="spb-photo-manage-wrap">
+            <div class="tn-main-heading tn-border-gray tn-border-bottom">
+                <div class="tn-option">
+                    <a class="tn-action" href="@SiteUrls.Instance().AlbumDetailList(Url.SpaceKey(),albumId)"><span class="tn-action-text">返回照片列表</span></a></div>
+                <h2>
+                    @album.AlbumName</h2>
+            </div>
+            <div class="tn-list-header">
+                <div class="tn-toolbar-area tn-helper-clearfix tn-border-gray tn-border-bottom">
+                    <label class="tn-check-all">
+                        <input type="checkbox" class="tn-checkbox" id="select-all"/>
+                        全选</label>
+                    <span class="tn-count">已选0张</span> 
+                    <a class="tn-button tn-corner-all tn-button-default tn-button-text-icon-primary" id="batch-delete-photos" href="@SiteUrls.Instance()._DeletePhoto(Url.SpaceKey())">
+                        <span class="tn-icon tn-smallicon-cross"></span><span class="tn-button-text">批量删除</span>
+                    </a>
+                    <a class="tn-button tn-corner-all tn-button-default tn-button-text-icon-primary" id="batch-move-photos" href="@SiteUrls.Instance()._MovePhoto(Url.SpaceKey())">
+                        <span class="tn-icon tn-smallicon-move"></span><span class="tn-button-text">批量移动</span>
+                    </a>
+                    <a class="tn-button tn-corner-all tn-button-default tn-button-text-icon-primary" id="batch-set-tags"  href="@SiteUrls.Instance()._SetPhotoTag(Url.SpaceKey())">
+                        <span class="tn-icon tn-smallicon-label"></span><span class="tn-button-text">批量贴标签</span>
+                    </a>
+                </div>
+            </div>
+            @if (Model == null || Model.Count() == 0)
+            {
+                <div class="tn-no-data">该相册下无照片！</div>
+            }
+            else
+            { 
+                <div class="spb-photo-list">
+                <ul class="tn-photo-list tn-widget tn-helper-clearfix">
+                    @foreach (var photo in Model)
+                    { 
+                        <li class="tn-photo-item tn-hover tnui-photo-id" data-photo-id="@photo.PhotoId">
+                            <div class="tn-photo-wrap tn-widget-content tn-border-gray">
+                                <a title="点击选择" id="photo-@photo.PhotoId" data-photo-id="@photo.PhotoId" href="###">
+                                    <img src="@SiteUrls.Instance().ImageUrl(photo.RelativePath, TenantTypeIds.Instance().Photo(), ImageSizeTypeKeys.Instance().P200())" width="100" height="100" class="tnui-image-detail"><span></span>
+                                </a>
+                            </div>
+                            <div class="tn-jump tn-state-hidden">
+                                <a plugin="dialog" href="@SiteUrls.Instance().PhotoDetail(photo.PhotoId)" title="查看" class="tn-button tn-corner-all tn-button-secondary tn-button-icon-only" original-title="查看">
+                                    <span class="tn-icon tn-icon-jump"></span><span class="tn-button-text">查看</span>
+                                </a>
+                            </div>
+                            @if (DIContainer.Resolve<Authorizer>().Photo_Edit(photo))
+                            { 
+                            <div class="tn-edit">
+                                <span class="tn-set  @if(album.CoverId!=photo.PhotoId){ <text> tn-state-hidden</text>}">
+                                <a @if(album.CoverId!=photo.PhotoId){<text>title="设为封面"</text>}else{<text>title="取消封面"</text>} href="@SiteUrls.Instance()._SetAlbumCover(Url.SpaceKey(), photo.PhotoId)" id="setCover-@photo.PhotoId" class="tn-button tn-corner-all 
+                                @if (album.CoverId != photo.PhotoId){ <text>tn-button-secondary</text>} else {<text>tn-button-primary</text>} tn-button-icon-only">
+                                    <span class="tn-icon tn-smallicon-album"></span><span class="tn-button-text">设为封面</span>
+                                </a>
+                                </span>
+                                <span class="tn-manage tn-state-hidden">
+                                    <a title="编辑" href="@SiteUrls.Instance()._EditPhoto(Url.SpaceKey(), photo.PhotoId)" plugin="dialog" class="tn-button tn-corner-all tn-button-secondary tn-button-icon-only">
+                                        <span class="tn-icon tn-smallicon-write"></span><span class="tn-button-text">编辑</span>
+                                    </a>
+                                    <a title="删除" href="@SiteUrls.Instance()._DeletePhoto(Url.SpaceKey(), photo.PhotoId)" id="delete-photo-@photo.PhotoId" class="tn-button tn-corner-all tn-button-secondary tn-button-icon-only">
+                                    <span class="tn-icon tn-smallicon-cross"></span><span class="tn-button-text">删除</span>
+                                    </a>
+                                </span>
+                            </div>
+                            }
+                            <div class="tn-checkbox-area tn-state-hidden">
+                                <a href="###" title="选择" id="select-photo-@photo.PhotoId" data-photo-id="@photo.PhotoId" class="tn-button tn-corner-all tn-button-secondary tn-button-icon-only">
+                                    <span class="tn-icon tn-smallicon-accept"></span><span class="tn-button-text">选择</span>
+                                </a>
+                            </div>
+                            <p class="tn-descrip" id ="photo-description-@photo.PhotoId" title="@photo.Description">@photo.Description</p>
+                        </li>                 
+                    }
+                </ul>
+                <div class="tn-pagination">
+                    @Html.PagingButton(Model, PaginationMode.NumericNextPrevious)
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+@Html.ScriptBlock(@<script type="text/javascript">
+    $(function () {
+        //设置标题图     
+        $("a[id^='setCover-']").click(function (e) {
+            if ($(this).parent(".tn-set").hasClass("tn-state-hidden")) {
+                $(this).attr("title","取消封面");
+                $.post($(this).attr("href"), function (data) {
+                    //art.dialog.tips(data.MessageContent, 1.5, data.MessageType);                    
+                });
+                $("span.tn-set").addClass("tn-state-hidden").children(".tn-button").removeClass("tn-button-primary").addClass("tn-button-secondary");
+                $(this).parent(".tn-set").removeClass("tn-state-hidden").children(".tn-button").removeClass("tn-button-secondary").addClass("tn-button-primary");
+            }
+            else {
+                $(this).attr("title", "设置封面");
+                $.post($(this).attr("href") + "&isCover=false", function (data) {
+                    //art.dialog.tips(data.MessageContent, 1.5, data.MessageType);                    
+                });
+                $(this).parent(".tn-set").addClass("tn-state-hidden").children(".tn-button").addClass("tn-button-secondary").removeClass("tn-button-primary");
+            }
+            return false;
+        });
+
+        //单个删除照片
+        $("a[id^='delete-photo-']").click(function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            art.dialog.confirm('您确认要删除吗？', function () {
+                $.post($this.attr("href"), function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true) });
+                });
+            });
+        });
+
+        //处理点击选择按钮的情况
+        $("a[id^='select-photo-']").click(function () {
+            var photoId = $(this).data("photoId");
+            $("#photo-" + photoId).click();
+        });
+
+        var count = 0;
+        //点击照片
+        $("a[id^='photo-']").click(function () {
+            if ($(this).parent(".tn-photo-wrap").hasClass("tn-border-deep")) {
+                count--;
+                $(this).attr("title", "点击选择");
+                var photoId = $(this).data("photoId");
+                $("#select-photo-" + photoId).attr("title", "选择");
+                $("div.tn-toolbar-area").children("span.tn-count").html("已选" + count + "张");
+                $(this).parent(".tn-photo-wrap").addClass("tn-border-gray").removeClass("tn-border-deep").parent(".tn-photo-item").removeClass("tn-selected").children(".tn-checkbox-area").addClass("tn-state-hidden").children(".tn-button").addClass("tn-button-secondary").removeClass("tn-button-primary");
+            }
+            else {
+                count++;
+                $(this).attr("title", "点击取消选择");
+                var photoId = $(this).data("photoId");
+                $("#select-photo-" + photoId).attr("title", "取消选择");
+                $("div.tn-toolbar-area").children("span.tn-count").html("已选" + count + "张");
+                $(this).parent(".tn-photo-wrap").removeClass("tn-border-gray").addClass("tn-border-deep").parent(".tn-photo-item").addClass("tn-selected").children(".tn-checkbox-area").removeClass("tn-state-hidden").children(".tn-button").removeClass("tn-button-secondary").addClass("tn-button-primary");
+            }
+        });
+
+        //全选
+        $("#select-all").click(function () {
+            if ($(this).attr("checked")) {
+                count = 0;
+                $("div.tn-photo-wrap a[id^='photo-']").each(function () {
+                    count++;
+                    $(this).parent(".tn-photo-wrap").removeClass("tn-border-gray").addClass("tn-border-deep").parent(".tn-photo-item").addClass("tn-selected").children(".tn-checkbox-area").removeClass("tn-state-hidden").children(".tn-button").removeClass("tn-button-secondary").addClass("tn-button-primary");
+                });
+                $("div.tn-toolbar-area").children("span.tn-count").html("已选" + count + "张");
+            }
+            else {
+                $("div.tn-photo-wrap a[id^='photo-']").each(function () {
+                    $(this).parent(".tn-photo-wrap").addClass("tn-border-gray").removeClass("tn-border-deep").parent(".tn-photo-item").removeClass("tn-selected").children(".tn-checkbox-area").addClass("tn-state-hidden").children(".tn-button").addClass("tn-button-secondary").removeClass("tn-button-primary");
+                });
+                $("div.tn-toolbar-area").children("span.tn-count").html("已选0张");
+                count = 0;
+            }
+        });
+
+        //组合所有选中的复选框的只，以,分隔
+        function getCheckedPhotoIds() {
+            var photoIds = "";
+            $("li.tnui-photo-id").each(function () {
+                if ($(this).hasClass("tn-selected")) {
+                    photoIds += $(this).data("photoId") + ",";
+                }
+            });
+            return photoIds;
+
+        }
+        //批量删除
+        $("#batch-delete-photos").click(function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var photoIds = getCheckedPhotoIds();
+            if (!photoIds) {
+                alert("请至少选择一张照片！");
+                return;
+            }
+            art.dialog.confirm('您确认要删除吗？', function () {
+                $.post($this.attr("href"), { photoIds: photoIds }, function (data) {
+                    art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(true); });
+                });
+            });
+        });
+
+        //批量移动
+        $("#batch-move-photos").click(function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var photoIds = getCheckedPhotoIds();
+            if (!photoIds) {
+                $this.removeAttr("plugin");
+                alert("请至少选择一张照片！");
+                return;
+            }
+            else {
+                $this.attr("href", '@SiteUrls.Instance()._MovePhoto(Url.SpaceKey())' + "?photoIds=" + photoIds);
+                $this.attr("plugin", "dialog");
+            }
+        });
+
+        //批量设置标签
+        $("#batch-set-tags").click(function (e) {
+            e.preventDefault();
+            var photoIds = getCheckedPhotoIds();
+            if (!photoIds) {
+                $(this).removeAttr("plugin");
+                alert("请至少选择一张照片！");
+                return;
+            } else {
+                $(this).attr("href", '@SiteUrls.Instance()._SetPhotoTag(Url.SpaceKey())' + "?photoIds=" + photoIds);
+                $(this).attr("plugin", "dialog");
+            }
+        });
+
+    });
+</script>)

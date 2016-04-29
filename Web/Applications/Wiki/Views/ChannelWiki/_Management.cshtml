@@ -1,0 +1,39 @@
+﻿@model long?
+<div class="tn-tabs">
+    <ul class="tn-tabs-nav tn-border-gray tn-border-bottom tn-helper-clearfix">
+        <li class="tn-widget-content tn-border-gray tn-border-trl tn-tabs-selected"><a id="Unresolved" class="tnui-tab" href="@Url.Action("_ManageVersions", "ChannelWiki", new { area = "Wiki", categoryId = Model })">模块编辑记录</a></li>
+        <li class="tn-widget-content tn-border-gray tn-border-trl "><a id="Latest" class="tnui-tab" href="@Url.Action("_Wikimodule", "ChannelWiki", new { area = "Wiki", categoryId = Model })">模块</a></li>
+        
+    </ul>
+   <div id="Wiki-module" class="tn-tabs-panel"></div> 
+</div>
+
+@Html.ScriptBlock(@<script>
+    $(function () {
+        var url = "@Html.Raw(Url.Action("_ManageVersions", "ChannelWiki", new { area = "Wiki", categoryId = Model }))";
+        //加载页面列表
+        function loadData() {
+            $.get(url, function (data) {
+                $('#Wiki-module').replaceWith(data);
+            });
+        }
+
+        //页面加载时加载“最新问题”的第一页
+        loadData();
+
+        //切换标签页
+        $(".tnui-tab").click(function (e) {
+            e.preventDefault();
+            $(this).parent("li").addClass("tn-tabs-selected");
+            $(this).parent("li").siblings().removeClass("tn-tabs-selected");
+            var _url = $(this).attr("href");
+            if (url == _url) {
+                return false;
+            }
+
+            url = _url;
+            loadData();
+        });
+    });
+
+</script>)

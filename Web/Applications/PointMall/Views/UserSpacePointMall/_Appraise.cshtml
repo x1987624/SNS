@@ -1,0 +1,28 @@
+﻿@model PointGiftExchangeRecord
+@using (Html.BeginAjaxForm("_Appraise", "UserSpacePointMall", null, FormMethod.Post, new AjaxFormOptions { OnSuccessCallBack = "OnSuccessCallBack", OnErrorCallBack = "OnErrorCallBack" }))
+{
+    @Html.Hidden("recordId",Model.RecordId)
+    <div class="tn-form tn-label-right tnc-dailog-pd">
+        <div class="tn-form-row">
+            @Html.TextAreaFor(n => n.Appraise, new { @class = "tn-textarea tn-input-long tn-border-gray", name = "appraise" })
+        </div>
+        <div class="tn-form-row">
+            @Html.Button("确定", ButtonTypes.Submit, HighlightStyles.Primary, htmlAttributes: new { id = "submit" })
+            @Html.Button("取消", ButtonTypes.Cancel, HighlightStyles.Secondary, htmlAttributes: new { dialogOperation = "close", id = "cancel" })
+        </div>
+    </div>
+}
+<script type="text/dialog">
+    this.title("商品评价");
+</script>
+@Html.ScriptBlock(@<script type="text/javascript" language="javascript">
+    //提交成功返回函数
+    function OnSuccessCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType, function () { window.location.reload(); });
+    }
+
+    //提交错误返回函数
+    function OnErrorCallBack(data) {
+        art.dialog.tips(data.MessageContent, 1.5, data.MessageType);
+    }
+</script>)

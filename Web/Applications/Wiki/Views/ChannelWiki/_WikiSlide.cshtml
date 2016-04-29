@@ -1,0 +1,64 @@
+﻿@model IEnumerable<RecommendItem>
+@{
+    string recommendTypeId = ViewData.Get<string>("recommendTypeId", string.Empty);
+}
+@if (Model != null && Model.Count() > 0)
+{ 
+    <!DOCTYPE html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="~/Styles/Style1.css" rel="stylesheet" />
+            @Scripts.Render("~/Bundle/Scripts/jQuery")
+        <script type="text/javascript">
+
+            //auto=361;
+            var auto = {};
+            $(function () {
+                $('#slides1').bxSlider({
+                    prev_image: 'images/btn_arrow_left.jpg',
+                    next_image: 'images/btn_arrow_right.jpg',
+                    wrapper_class: 'slides1_wrap',
+                    auto: true,
+                    margin: 70
+                });
+            });
+
+        </script>
+    </head>
+
+    <body>
+        <div id="content" class="hr-wiki-slide">
+            <div id="content_inner">
+                <ul id="slides1">
+                    @foreach (var item in Model)
+                    {
+                        WikiPage currentPage = new WikiService().Get(item.ItemId);
+                        {
+                            if (currentPage != null)
+                            {
+                        <li>
+                            <div class="hr-slide-img">
+                                <a href="@SiteUrls.Instance().PageDetail(item.ItemId)">
+                                    <img src="@SiteUrls.Instance().ImageUrl(item.FeaturedImage, TenantTypeIds.Instance().WikiPage(), ImageSizeTypeKeys.Instance().Big())" alt="Pic Mgmt" /></a><span></span>
+                            </div>
+                            <div class="content">
+                                <h4><a href="@SiteUrls.Instance().PageDetail(item.ItemId)" title="@item.ItemName">@HtmlUtility.TrimHtml(item.ItemName, 16)</a></h4>
+                                <p>@HtmlUtility.TrimHtml(currentPage.Body, 175)</p>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+            @if (DIContainer.Resolve<Authorizer>().RecommendItem_Manage(TenantTypeIds.Instance().WikiPage()))
+            {
+                <div class="spb-rec-btn"><a href="@SiteUrls.Instance()._ManageRecommendItems(recommendTypeId)" class="tn-button tn-corner-all tn-button-default tn-button-icon-only" title="推荐管理" plugin="dialog"><span class="tn-icon tn-icon tn-icon-set"></span><span class="tn-button-text">推荐管理</span></a></div>
+            }
+        </div>
+        @Scripts.Render("~/Bundle/Scripts/Site")
+        @Html.RenderScripts()
+        @Html.RenderScriptBlocks()
+    </body>
+}
