@@ -25,6 +25,35 @@
             </summary>
             <param name="filterContext"></param>
         </member>
+        <member name="T:Spacebuilder.Common.HomeController">
+            <summary>
+            Class HomeController.
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.Common.HomeController.Index">
+            <summary>
+            首页.
+            </summary>
+            <author version="">肖晏</author>
+            <modifier version=""></modifier>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.HomeController._Header">
+            <summary>
+            底部.
+            </summary>
+            <author version=""></author>
+            <modifier version=""></modifier>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.HomeController._Footer">
+            <summary>
+            底部.
+            </summary>
+            <author version=""></author>
+            <modifier version=""></modifier>
+            <returns>ActionResult.</returns>
+        </member>
         <member name="T:Spacebuilder.Common.TenantTypeIdsExtensions">
             <summary>
             邮件Service的扩展类
@@ -121,6 +150,50 @@
             <summary>
             Smtp设置在SPB4.0中的继承类
             </summary>
+        </member>
+        <member name="T:Spacebuilder.UI.HomeThemeResolver">
+            <summary>
+            Class HomeThemeResolver.
+            </summary>
+        </member>
+        <member name="M:Spacebuilder.UI.HomeThemeResolver.GetRequestTheme(System.Web.Routing.RequestContext)">
+            <summary>
+            获取请求页面使用的皮肤
+            </summary>
+            <param name="controllerContext"><see cref="T:System.Web.Routing.RequestContext"/></param>
+            <author version=""></author>
+            <modifier version=""></modifier>
+            <returns>ThemeAppearance.</returns>
+        </member>
+        <member name="M:Spacebuilder.UI.HomeThemeResolver.IncludeStyle(System.Web.Routing.RequestContext)">
+            <summary>
+            加载皮肤的css
+            </summary>
+            <param name="controllerContext"><see cref="T:System.Web.Routing.RequestContext"/></param>
+            <author version=""></author>
+            <modifier version=""></modifier>
+        </member>
+        <member name="M:Spacebuilder.UI.HomeThemeResolver.Validate(System.Int64)">
+            <summary>
+            验证当前用户是否修改皮肤的权限
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.UI.HomeThemeResolver.GetThemeAppearance(System.Int64)">
+            <summary>
+            获取拥有者当前选中的皮肤
+            </summary>
+            <param name="ownerId">拥有者Id（如：用户Id、群组Id）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spacebuilder.UI.HomeThemeResolver.ChangeThemeAppearance(System.Int64,System.Boolean,System.String)">
+            <summary>
+            更新皮肤
+            </summary>
+            <param name="ownerId">拥有者Id（如：用户Id、群组Id）</param>
+            <param name="isUseCustomStyle">是否使用自定义皮肤</param>
+            <param name="themeAppearance">themeKey与appearanceKey用逗号关联</param>
         </member>
         <member name="T:Spacebuilder.Common.BannedUserEditModel">
             <summary>

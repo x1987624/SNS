@@ -331,6 +331,7 @@ namespace Spacebuilder.Environments
             ThemeService.RegisterThemeResolver("Channel", new ChannelThemeResolver());
             ThemeService.RegisterThemeResolver("UserSpace", new UserSpaceThemeResolver());
             ThemeService.RegisterThemeResolver("ControlPanel", new ControlPanelThemeResolver());
+            ThemeService.RegisterThemeResolver("Home", new HomeThemeResolver());
 
             //初始化敏感词过滤
             SensitiveWordService service = DIContainer.Resolve<SensitiveWordService>();

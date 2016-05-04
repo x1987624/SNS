@@ -7,3 +7,12 @@ D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Photo\obj\Debug\Photo.csproj
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Photo\obj\Debug\Spacebuilder.Photo.dll
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Photo\obj\Debug\Spacebuilder.Photo.pdb
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Photo\obj\Debug\Photo.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Web\bin\Spacebuilder.Photo.dll.config
+D:\GitHub\SNS\Web\bin\Spacebuilder.Photo.XML
+D:\GitHub\SNS\Web\bin\Spacebuilder.Photo.dll
+D:\GitHub\SNS\Web\bin\Spacebuilder.Photo.pdb
+D:\GitHub\SNS\Web\Applications\Photo\obj\Debug\Photo.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Web\Applications\Photo\obj\Debug\Spacebuilder.Photo.Resources.Resource.resources
+D:\GitHub\SNS\Web\Applications\Photo\obj\Debug\Photo.csproj.GenerateResource.Cache
+D:\GitHub\SNS\Web\Applications\Photo\obj\Debug\Spacebuilder.Photo.dll
+D:\GitHub\SNS\Web\Applications\Photo\obj\Debug\Spacebuilder.Photo.pdb

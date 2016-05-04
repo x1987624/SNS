@@ -7,3 +7,12 @@ D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Spacebuilder.A
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Ask.csproj.GenerateResource.Cache
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Spacebuilder.Ask.dll
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Ask\obj\Debug\Spacebuilder.Ask.pdb
+D:\GitHub\SNS\Web\bin\Spacebuilder.Ask.dll.config
+D:\GitHub\SNS\Web\bin\Spacebuilder.Ask.XML
+D:\GitHub\SNS\Web\bin\Spacebuilder.Ask.dll
+D:\GitHub\SNS\Web\bin\Spacebuilder.Ask.pdb
+D:\GitHub\SNS\Web\Applications\Ask\obj\Debug\Ask.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Web\Applications\Ask\obj\Debug\Spacebuilder.Ask.Resources.Resource.resources
+D:\GitHub\SNS\Web\Applications\Ask\obj\Debug\Ask.csproj.GenerateResource.Cache
+D:\GitHub\SNS\Web\Applications\Ask\obj\Debug\Spacebuilder.Ask.dll
+D:\GitHub\SNS\Web\Applications\Ask\obj\Debug\Spacebuilder.Ask.pdb

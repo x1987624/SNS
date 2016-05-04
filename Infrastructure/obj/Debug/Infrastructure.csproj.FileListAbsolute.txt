@@ -17,3 +17,9 @@ D:\近乎_V4.2.0.0_深度源码版\Web\bin\Tunynet.Infrastructure.XML
 D:\近乎_V4.2.0.0_深度源码版\Web\bin\Tunynet.Infrastructure.dll
 D:\近乎_V4.2.0.0_深度源码版\Web\bin\Tunynet.Infrastructure.pdb
 D:\近乎_V4.2.0.0_深度源码版\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Web\bin\Tunynet.Infrastructure.XML
+D:\GitHub\SNS\Web\bin\Tunynet.Infrastructure.dll
+D:\GitHub\SNS\Web\bin\Tunynet.Infrastructure.pdb
+D:\GitHub\SNS\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Infrastructure\obj\Debug\Tunynet.Infrastructure.dll
+D:\GitHub\SNS\Infrastructure\obj\Debug\Tunynet.Infrastructure.pdb

@@ -190,10 +190,12 @@
     <Compile Include="Controllers\Filters\HttpCompressAttribute.cs" />
     <Compile Include="Controllers\Filters\SecurityFilter.cs" />
     <Compile Include="Controllers\Filters\PauseSiteCheckAttribute.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Email\EmailExtensions.cs" />
     <Compile Include="Email\EmailServiceExtensions.cs" />
     <Compile Include="Email\EmailSettingsManager.cs" />
     <Compile Include="Email\SmtpSettingsChild.cs" />
+    <Compile Include="UI\HomeThemeResolver.cs" />
     <Compile Include="ViewModels\BannedUserEditModel.cs" />
     <Compile Include="EventModules\SupportOpposeEventModule.cs" />
     <Compile Include="Extensions\ApplicationIds.cs" />

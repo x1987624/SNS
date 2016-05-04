@@ -7,3 +7,12 @@ D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Blog\obj\Debug\Spacebuilder.
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Blog\obj\Debug\Blog.csproj.GenerateResource.Cache
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Blog\obj\Debug\Spacebuilder.Blog.dll
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Blog\obj\Debug\Spacebuilder.Blog.pdb
+D:\GitHub\SNS\Web\bin\Spacebuilder.Blog.dll.config
+D:\GitHub\SNS\Web\bin\Spacebuilder.Blog.XML
+D:\GitHub\SNS\Web\bin\Spacebuilder.Blog.dll
+D:\GitHub\SNS\Web\bin\Spacebuilder.Blog.pdb
+D:\GitHub\SNS\Web\Applications\Blog\obj\Debug\Blog.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Web\Applications\Blog\obj\Debug\Spacebuilder.Blog.Resources.Resource.resources
+D:\GitHub\SNS\Web\Applications\Blog\obj\Debug\Blog.csproj.GenerateResource.Cache
+D:\GitHub\SNS\Web\Applications\Blog\obj\Debug\Spacebuilder.Blog.dll
+D:\GitHub\SNS\Web\Applications\Blog\obj\Debug\Spacebuilder.Blog.pdb

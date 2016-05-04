@@ -7,3 +7,12 @@ D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Microblog\obj\Debug\Spacebui
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Microblog\obj\Debug\Microblog.csproj.GenerateResource.Cache
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.dll
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.pdb
+D:\GitHub\SNS\Web\bin\Spacebuilder.Microblog.dll.config
+D:\GitHub\SNS\Web\bin\Spacebuilder.Microblog.XML
+D:\GitHub\SNS\Web\bin\Spacebuilder.Microblog.dll
+D:\GitHub\SNS\Web\bin\Spacebuilder.Microblog.pdb
+D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Microblog.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Resources.Resource.resources
+D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Microblog.csproj.GenerateResource.Cache
+D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.dll
+D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.pdb

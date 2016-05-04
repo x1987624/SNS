@@ -36,5 +36,10 @@ namespace Tunynet.Common
         /// </summary>
         public const string ControlPanel = "ControlPanel";
 
+        /// <summary>
+        /// 首页
+        /// </summary>
+        public const string Home = "Home";
+
     }
 }

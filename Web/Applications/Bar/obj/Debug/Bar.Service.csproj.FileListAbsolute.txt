@@ -4,3 +4,9 @@ D:\近乎_V4.2.0.0_深度源码版\Web\bin\Spacebuilder.Bar.Service.pdb
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Bar\obj\Debug\Bar.Service.csprojResolveAssemblyReference.cache
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.Service.dll
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.Service.pdb
+D:\GitHub\SNS\Web\bin\Spacebuilder.Bar.Service.XML
+D:\GitHub\SNS\Web\bin\Spacebuilder.Bar.Service.dll
+D:\GitHub\SNS\Web\bin\Spacebuilder.Bar.Service.pdb
+D:\GitHub\SNS\Web\Applications\Bar\obj\Debug\Bar.Service.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.Service.dll
+D:\GitHub\SNS\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.Service.pdb

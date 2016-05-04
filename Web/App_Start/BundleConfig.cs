@@ -22,6 +22,14 @@ namespace Spacebuilder.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             //基础样式
+            bundles.Add(new StyleBundle("~/Bundle/Styles/Common")
+                .Include("~/Styles/common.css"));
+
+            //基础样式
+            bundles.Add(new StyleBundle("~/Bundle/Styles/Index")
+                .Include("~/Styles/index.css"));
+
+            //基础样式
             bundles.Add(new StyleBundle("~/Bundle/Styles/Site")
                 .Include("~/Themes/Shared/Styles/tn.core_src.css", new FixCssRewrite())
                 .Include("~/Themes/Shared/Styles/tn.widgets_src.css", new FixCssRewrite())
@@ -47,9 +55,17 @@ namespace Spacebuilder.Web
             bundles.Add(new StyleBundle("~/Bundle/Styles/ImageCrop")
                 .Include("~/Scripts/jquery/Jcrop/jquery.Jcrop.css", new FixCssRewrite()));
 
+            #region js
             //jQuery类库
             bundles.Add(new ScriptBundle("~/Bundle/Scripts/jQuery")
             .Include("~/Scripts/jquery/jquery-1.7.1.js"));
+
+            //公用脚本
+            bundles.Add(new ScriptBundle("~/Bundle/Scripts/Common")
+                .Include("~/Scripts/common.js")
+                //.Include("~/Scripts/common_extra.js")
+                );
+            #endregion
 
             //站点基础脚本
             bundles.Add(new ScriptBundle("~/Bundle/Scripts/Site")
@@ -102,7 +118,7 @@ namespace Spacebuilder.Web
             //多文件上传控件
             bundles.Add(new ScriptBundle("~/Bundle/Scripts/Uploadify")
             .Include("~/Scripts/jquery/uploadify/jquery.uploadify-3.1.js")
-            //.Include("~/Scripts/tunynet/uploadify.js")
+                //.Include("~/Scripts/tunynet/uploadify.js")
             );
 
             //@好友控件

@@ -15549,6 +15549,11 @@
             控制台（后台）
             </summary>
         </member>
+        <member name="F:Tunynet.Common.PresentAreaKeysOfBuiltIn.Home">
+            <summary>
+            首页
+            </summary>
+        </member>
         <member name="T:Tunynet.Common.PresentAreaService">
             <summary>
             呈现区域业务逻辑

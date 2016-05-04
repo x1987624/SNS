@@ -4,3 +4,9 @@ D:\近乎_V4.2.0.0_深度源码版\Web\bin\Debug\Spacebuilder.Microblog.Service.
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Microblog\obj\Debug\Microblog.Service.csprojResolveAssemblyReference.cache
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Service.dll
 D:\近乎_V4.2.0.0_深度源码版\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Service.pdb
+D:\GitHub\SNS\Web\bin\Debug\Spacebuilder.Microblog.Service.XML
+D:\GitHub\SNS\Web\bin\Debug\Spacebuilder.Microblog.Service.dll
+D:\GitHub\SNS\Web\bin\Debug\Spacebuilder.Microblog.Service.pdb
+D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Microblog.Service.csprojResolveAssemblyReference.cache
+D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Service.dll
+D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Service.pdb

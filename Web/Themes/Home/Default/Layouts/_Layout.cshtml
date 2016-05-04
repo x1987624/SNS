@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+@using (Html.BeginHead())
+{
+    @Styles.Render("~/Bundle/Styles/Common")
+    @Html.RenderStyles() 
+    @Scripts.Render("~/Bundle/Scripts/jQuery")
+    @Scripts.Render("~/Bundle/Scripts/Common")
+}
+<body>
+    @Html.Action("_Header")
+    @RenderBody()
+    @Html.Action("_Footer")
+
+    
+    @RenderSection("Scripts", false)
+    @Html.RenderScripts()
+    @Html.RenderScriptBlocks()
+</body>
+</html>

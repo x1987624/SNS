@@ -42,19 +42,33 @@ namespace Spacebuilder.Common
 
             SiteSettings siteSettings = DIContainer.Resolve<ISettingsManager<SiteSettings>>().Get();
 
+            #region Home
+
+            context.MapRoute("Index", "", new { controller = "Home", action = "Index" });
+
+            context.MapRoute("Site_Index", "Index" + extensionForOldIIS, new { controller = "Home", action = "Index" });
+
+            //公共请求
+            context.MapRoute(
+                "Home_Common",
+                "home/{action}" + extensionForOldIIS,
+                new { controller = "Home" });
+
+            #endregion
+
             #region Channel
 
-            context.MapRoute(
-                "Channel_SiteHome", // Route name
-                "", // URL with parameters
-                new { controller = "Channel", action = siteSettings.EnableSimpleHome ? "SimpleHome" : "Home" } // Parameter defaults
-            );
+            //context.MapRoute(
+            //    "Channel_SiteHome", // Route name
+            //    "", // URL with parameters
+            //    new { controller = "Channel", action = siteSettings.EnableSimpleHome ? "SimpleHome" : "Home" } // Parameter defaults
+            //);
 
-            context.MapRoute(
-                "Channel_Home", // Route name
-                "Home" + extensionForOldIIS, // URL with parameters
-                new { controller = "Channel", action = "Home", CurrentNavigationId = "1000001" } // Parameter defaults
-            );
+            //context.MapRoute(
+            //    "Channel_Home", // Route name
+            //    "Home" + extensionForOldIIS, // URL with parameters
+            //    new { controller = "Channel", action = "Home", CurrentNavigationId = "1000001" } // Parameter defaults
+            //);
 
 
             context.MapRoute(
