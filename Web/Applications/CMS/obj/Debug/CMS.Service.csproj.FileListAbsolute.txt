@@ -10,3 +10,9 @@ D:\GitHub\SNS\Web\bin\Spacebuilder.CMS.Service.pdb
 D:\GitHub\SNS\Web\Applications\CMS\obj\Debug\CMS.Service.csprojResolveAssemblyReference.cache
 D:\GitHub\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.Service.dll
 D:\GitHub\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.Service.pdb
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.CMS.Service.XML
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.CMS.Service.dll
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.CMS.Service.pdb
+D:\GitHub\MaCheng\SNS\Web\Applications\CMS\obj\Debug\CMS.Service.csprojResolveAssemblyReference.cache
+D:\GitHub\MaCheng\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.Service.dll
+D:\GitHub\MaCheng\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.Service.pdb

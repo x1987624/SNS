@@ -27,6 +27,56 @@ namespace Spacebuilder.Common
             return View();
         }
 
+
+        /// <summary>
+        /// 模块一幻灯广告.
+        /// </summary>
+        /// <author version="">肖晏</author>
+        /// <modifier version=""></modifier>
+        /// <returns>ActionResult.</returns>
+        public ActionResult _PartialSlideAd()
+        {
+
+            return PartialView();
+        }
+
+        /// <summary>
+        /// 模块一幻灯广告下tab.
+        /// </summary>
+        /// <author version="">肖晏</author>
+        /// <modifier version=""></modifier>
+        /// <returns>ActionResult.</returns>
+        public ActionResult _PartialSubjectTab()
+        {
+            return PartialView();
+        }
+
+        /// <summary>
+        /// 模块一热门新闻.
+        /// </summary>
+        /// <author version="">肖晏</author>
+        /// <modifier version=""></modifier>
+        /// <returns>ActionResult.</returns>
+        public ActionResult _PartialHotNews()
+        {
+            return PartialView();
+        }
+
+        /// <summary>
+        /// 模块一热门新闻下广告.
+        /// </summary>
+        /// <author version="">肖晏</author>
+        /// <modifier version=""></modifier>
+        /// <returns>ActionResult.</returns>
+        public ActionResult _PartialHotNewsUnderAd()
+        {
+            return PartialView();
+        }
+
+        public ActionResult _PartialCommunityActivities(){
+            return PartialView();
+        }
+
         /// <summary>
         /// 底部.
         /// </summary>

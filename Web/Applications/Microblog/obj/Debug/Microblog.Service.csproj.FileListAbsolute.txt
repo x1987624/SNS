@@ -10,3 +10,9 @@ D:\GitHub\SNS\Web\bin\Debug\Spacebuilder.Microblog.Service.pdb
 D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Microblog.Service.csprojResolveAssemblyReference.cache
 D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Service.dll
 D:\GitHub\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Service.pdb
+D:\GitHub\MaCheng\SNS\Web\bin\Debug\Spacebuilder.Microblog.Service.XML
+D:\GitHub\MaCheng\SNS\Web\bin\Debug\Spacebuilder.Microblog.Service.dll
+D:\GitHub\MaCheng\SNS\Web\bin\Debug\Spacebuilder.Microblog.Service.pdb
+D:\GitHub\MaCheng\SNS\Web\Applications\Microblog\obj\Debug\Microblog.Service.csprojResolveAssemblyReference.cache
+D:\GitHub\MaCheng\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Service.dll
+D:\GitHub\MaCheng\SNS\Web\Applications\Microblog\obj\Debug\Spacebuilder.Microblog.Service.pdb

@@ -112,7 +112,7 @@
 }
 
     .yl5361_tab1_r1 .ico1, .yl5361_tab1_r1 .ico2, .yl5361_tab1_r1 .ico3, .yl5361_tab1_r1 .ico4, .yl5361_tab1_r1 .ico5, .yl5361_tab1_r1 .ico6, .yl5361_tab1_r1 .ico7, .yl5361_tab1_r1 .ico8 {
-        background: #FF6661 url(../../template/yl5361_city_d4/yl5361_style/yl5361_ico3.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_ico3.png*/ no-repeat;
+        background: #FF6661 url(images/yl5361_ico3.png)  no-repeat;
         font-size: 14px;
         display: block;
         width: 81px;
@@ -190,7 +190,7 @@
     border-radius: 5px;
     box-shadow: 0 1px 3px #e6e6e6;
     overflow: hidden;
-    background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png*/;
+    background: url(images/yl5361_titlebg.png) ;
 }
 
     .yl5361_tab02 .title {
@@ -318,7 +318,7 @@
 
 .yl5361_title1 .title {
     height: 44px;
-    background: #76C7C0 url(../../template/yl5361_city_d4/yl5361_style/yl5361_ico.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_ico.png*/ no-repeat 10px -89px;
+    background: #76C7C0 url(images/yl5361_ico.png)  no-repeat 10px -89px;
     font-size: 18px;
     font-weight: 400;
     line-height: 44px;
@@ -395,7 +395,7 @@
     color: #FFB250;
     font-weight: 400;
     border-bottom: 3px solid #FFB250;
-    background: #FFF url(../../template/yl5361_city_d4/yl5361_style/yl5361_title2.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_title2.png*/ center bottom no-repeat;
+    background: #FFF url(images/yl5361_title2.png)  center bottom no-repeat;
 }
 
 .yl5361_title3 .title {
@@ -470,7 +470,7 @@
         font-weight: 700;
         color: #58AAA5;
         text-align: center;
-        background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_hot2.jpg) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_hot2.jpg*/ 0 12px no-repeat;
+        background: url(images/yl5361_hot2.jpg)  0 12px no-repeat;
         margin: 6px 0;
         padding: 0 30px;
     }
@@ -519,7 +519,7 @@
     }
 
         .yl5361_topic3 li.on {
-            background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png*/;
+            background: url(images/yl5361_titlebg.png) ;
         }
 
         .yl5361_topic3 li em {
@@ -550,7 +550,7 @@
     float: left;
     width: 149px;
     overflow: hidden;
-    background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png*/;
+    background: url(images/yl5361_titlebg.png) ;
     margin: 5px 0 0 10px;
     padding: 4px;
     transition: all .3s;
@@ -720,7 +720,7 @@
     left: 2px;
     height: 22px;
     width: 22px;
-    background: #FFB250 url(../../template/yl5361_city_d4/yl5361_style/yl5361_Button.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_Button.png*/ no-repeat 0 center;
+    background: #FFB250 url(images/yl5361_Button.png) no-repeat 0 center;
 }
 
 .yl5361_topic_img3 .next {
@@ -745,7 +745,7 @@
         width: 422px;
         border: 1px solid #EBEAEA;
         height: 165px;
-        background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png*/;
+        background: url(images/yl5361_titlebg.png) ;
         margin: 10px 10px 0 0;
     }
 
@@ -768,7 +768,7 @@
         .yl5361_topic_img4 li div {
             float: right;
             width: 182px;
-            background: #fff url(../../template/yl5361_city_d4/yl5361_style/yl5361_topic_img4.jpg) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_topic_img4.jpg*/ left center no-repeat;
+            background: #fff url(images/yl5361_topic_img4.jpg)  left center no-repeat;
             height: 145px;
             padding: 10px 10px 10px 20px;
         }
@@ -805,7 +805,7 @@
         }
 
     .yl5361_topic_img4 span .ll, .yl5361_topic_img4 span .hf, .yl5361_topic_img4 span .rd {
-        background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_ico1.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_ico1.png*/ no-repeat;
+        background: url(images/yl5361_ico1.png) no-repeat;
         color: #FFB250;
         padding-left: 20px;
         margin-right: 5px;
@@ -849,7 +849,7 @@
     .yl5361_topic_img5 li div {
         display: none;
         overflow: hidden;
-        background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png*/;
+        background: url(images/yl5361_titlebg.png) ;
         padding: 10px;
     }
 
@@ -918,7 +918,7 @@
             height: 0;
             line-height: 40px;
             font-size: 16px;
-            background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_hdp.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_hdp.png*/;
+            background: url(images/yl5361_hdp.png) ;
         }
 
         .yl5361_topic_img6 li:hover p {
@@ -1125,7 +1125,7 @@
     padding: 0 10px 0 0;
     border-top: none;
     line-height: 44px;
-    background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png*/;
+    background: url(images/yl5361_titlebg.png);
 }
 
     #yl5361_bm_h .xs2, #yl5361_bm_h h3 {
@@ -1135,7 +1135,7 @@
         float: left;
         padding-right: 20px;
         padding-left: 40px;
-        background: #76C7C0 url(../../template/yl5361_city_d4/yl5361_style/yl5361_ico.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_ico.png*/ no-repeat 10px 10px;
+        background: #76C7C0 url(images/yl5361_ico.png)  no-repeat 10px 10px;
         border-right: 1px solid #EBEAEA;
     }
 
@@ -1171,7 +1171,7 @@
 
 .yl5361_title01 .titletext {
     padding-left: 30px;
-    background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_ico.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_ico.png*/ no-repeat;
+    background: url(images/yl5361_ico.png) ;
     background-position: 0 -89px;
 }
 
@@ -1209,7 +1209,7 @@
         -webkit-border-radius: 4px;
         border-radius: 4px;
         border: 1px solid #EBEAEA;
-        background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_titlebg.png*/;
+        background: url(images/yl5361_titlebg.png) ;
         -webkit-box-shadow: rgba(0,0,0,0.109804) 0 2px 0 0;
         -moz-box-shadow: rgba(0,0,0,0.109804) 0 2px 0 0;
         box-shadow: rgba(0,0,0,0.109804) 0 2px 0 0;
@@ -1297,7 +1297,7 @@
         height: 28px;
         width: 100%;
         display: block;
-        background: url(../../template/yl5361_city_d4/yl5361_style/yl5361_hdp.png) /*tpa=http://discuz.uuhey.com/yl5361_city_d4/template/yl5361_city_d4/yl5361_style/yl5361_hdp.png*/;
+        background: url(images/yl5361_hdp.png) ;
     }
 
     .yl5361_topic_img_01 li p {

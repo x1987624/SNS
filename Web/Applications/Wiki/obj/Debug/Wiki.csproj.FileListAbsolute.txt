@@ -16,3 +16,12 @@ D:\GitHub\SNS\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.Resources.Resour
 D:\GitHub\SNS\Web\Applications\Wiki\obj\Debug\Wiki.csproj.GenerateResource.Cache
 D:\GitHub\SNS\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.dll
 D:\GitHub\SNS\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.pdb
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.Wiki.dll.config
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.Wiki.XML
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.Wiki.dll
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.Wiki.pdb
+D:\GitHub\MaCheng\SNS\Web\Applications\Wiki\obj\Debug\Wiki.csprojResolveAssemblyReference.cache
+D:\GitHub\MaCheng\SNS\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.Resources.Resource.resources
+D:\GitHub\MaCheng\SNS\Web\Applications\Wiki\obj\Debug\Wiki.csproj.GenerateResource.Cache
+D:\GitHub\MaCheng\SNS\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.dll
+D:\GitHub\MaCheng\SNS\Web\Applications\Wiki\obj\Debug\Spacebuilder.Wiki.pdb

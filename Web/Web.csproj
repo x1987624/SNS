@@ -257,6 +257,10 @@
     <Content Include="Default.aspx" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\common_extra.js" />
+    <Content Include="Scripts\index\yl5361_nv.js" />
+    <Content Include="Scripts\index\yl5361_pack.js" />
+    <Content Include="Scripts\index\yl5361_png.js" />
+    <Content Include="Scripts\index\yl5361_SuperSlide.js" />
     <Content Include="Scripts\jquery\fancybox\blank.gif" />
     <Content Include="Scripts\jquery\fancybox\fancybox_loading%402x.gif" />
     <Content Include="Scripts\jquery\fancybox\fancybox_loading.gif" />
@@ -288,6 +292,8 @@
     <Content Include="Scripts\jquery\masonry\jquery.infinitescroll.js" />
     <Content Include="Scripts\jquery\scrollTo\jquery.scrollTo-1.4.3.1.js" />
     <Content Include="Scripts\jquery\sliderkit\jquery.easing.1.3.js" />
+    <Content Include="Scripts\seajs\2.2.0\sea-debug.js" />
+    <Content Include="Scripts\seajs\2.2.0\sea.js" />
     <Content Include="Scripts\tinymce\css\content.css" />
     <Content Include="Scripts\tinymce\css\transparent.png" />
     <Content Include="Scripts\tinymce\jquery.tinymce.js" />
@@ -1222,6 +1228,7 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\seajs\2.2.0\package.json" />
     <None Include="Scripts\tinymce\plugins\syntaxhl\README" />
     <Content Include="Scripts\tinymce\tiny_mce_gzip.ashx" />
     <Content Include="Themes\Channel\Default\Views\Channel\PausePage.cshtml" />
@@ -1553,6 +1560,10 @@
     <Content Include="Themes\Home\Default\Views\Home\Index.cshtml" />
     <Content Include="Themes\Home\Default\Views\Home\_Footer.cshtml" />
     <Content Include="Themes\Home\Default\Views\Home\_Header.cshtml" />
+    <Content Include="Themes\Home\Default\Views\Home\_PartialSlideAd.cshtml" />
+    <Content Include="Themes\Home\Default\Views\Home\_PartialSubjectTab.cshtml" />
+    <Content Include="Themes\Home\Default\Views\Home\_PartialHotNews.cshtml" />
+    <Content Include="Themes\Home\Default\Views\Home\_PartialHotNewsUnderAd.cshtml" />
     <None Include="Themes\UserSpace\Default\Views\Follow\ListFollowedUsers.cshtml" />
     <Content Include="Themes\UserSpace\Default\Views\Follow\_BatchFollow.cshtml" />
     <Content Include="Themes\UserSpace\Default\Views\Follow\_SetGroupForUser.cshtml" />

@@ -38,6 +38,38 @@
             <modifier version=""></modifier>
             <returns>ActionResult.</returns>
         </member>
+        <member name="M:Spacebuilder.Common.HomeController._PartialSlideAd">
+            <summary>
+            模块一幻灯广告.
+            </summary>
+            <author version="">肖晏</author>
+            <modifier version=""></modifier>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.HomeController._PartialSubjectTab">
+            <summary>
+            模块一幻灯广告下tab.
+            </summary>
+            <author version="">肖晏</author>
+            <modifier version=""></modifier>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.HomeController._PartialHotNews">
+            <summary>
+            模块一热门新闻.
+            </summary>
+            <author version="">肖晏</author>
+            <modifier version=""></modifier>
+            <returns>ActionResult.</returns>
+        </member>
+        <member name="M:Spacebuilder.Common.HomeController._PartialHotNewsUnderAd">
+            <summary>
+            模块一热门新闻下广告.
+            </summary>
+            <author version="">肖晏</author>
+            <modifier version=""></modifier>
+            <returns>ActionResult.</returns>
+        </member>
         <member name="M:Spacebuilder.Common.HomeController._Header">
             <summary>
             底部.

@@ -16,3 +16,12 @@ D:\GitHub\SNS\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.Resources.Resource
 D:\GitHub\SNS\Web\Applications\Bar\obj\Debug\Bar.csproj.GenerateResource.Cache
 D:\GitHub\SNS\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.dll
 D:\GitHub\SNS\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.pdb
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.Bar.dll.config
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.Bar.XML
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.Bar.dll
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.Bar.pdb
+D:\GitHub\MaCheng\SNS\Web\Applications\Bar\obj\Debug\Bar.csprojResolveAssemblyReference.cache
+D:\GitHub\MaCheng\SNS\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.Resources.Resource.resources
+D:\GitHub\MaCheng\SNS\Web\Applications\Bar\obj\Debug\Bar.csproj.GenerateResource.Cache
+D:\GitHub\MaCheng\SNS\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.dll
+D:\GitHub\MaCheng\SNS\Web\Applications\Bar\obj\Debug\Spacebuilder.Bar.pdb

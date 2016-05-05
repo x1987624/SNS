@@ -16,3 +16,12 @@ D:\GitHub\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.Resources.Resource
 D:\GitHub\SNS\Web\Applications\CMS\obj\Debug\CMS.csproj.GenerateResource.Cache
 D:\GitHub\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.dll
 D:\GitHub\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.pdb
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.CMS.dll.config
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.CMS.xml
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.CMS.dll
+D:\GitHub\MaCheng\SNS\Web\bin\Spacebuilder.CMS.pdb
+D:\GitHub\MaCheng\SNS\Web\Applications\CMS\obj\Debug\CMS.csprojResolveAssemblyReference.cache
+D:\GitHub\MaCheng\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.Resources.Resource.resources
+D:\GitHub\MaCheng\SNS\Web\Applications\CMS\obj\Debug\CMS.csproj.GenerateResource.Cache
+D:\GitHub\MaCheng\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.dll
+D:\GitHub\MaCheng\SNS\Web\Applications\CMS\obj\Debug\Spacebuilder.CMS.pdb

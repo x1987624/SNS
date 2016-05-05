@@ -23,3 +23,9 @@ D:\GitHub\SNS\Web\bin\Tunynet.Infrastructure.pdb
 D:\GitHub\SNS\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
 D:\GitHub\SNS\Infrastructure\obj\Debug\Tunynet.Infrastructure.dll
 D:\GitHub\SNS\Infrastructure\obj\Debug\Tunynet.Infrastructure.pdb
+D:\GitHub\MaCheng\SNS\Web\bin\Tunynet.Infrastructure.XML
+D:\GitHub\MaCheng\SNS\Web\bin\Tunynet.Infrastructure.dll
+D:\GitHub\MaCheng\SNS\Web\bin\Tunynet.Infrastructure.pdb
+D:\GitHub\MaCheng\SNS\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
+D:\GitHub\MaCheng\SNS\Infrastructure\obj\Debug\Tunynet.Infrastructure.dll
+D:\GitHub\MaCheng\SNS\Infrastructure\obj\Debug\Tunynet.Infrastructure.pdb

@@ -2622,7 +2622,7 @@
              <param name="netResource">A <see cref="T:Tunynet.FileStore.NetResource"/> structure that specifies details of the proposed connection, such as information about the network resource, the local device, and the network resource provider.</param>
              <param name="password">The password to use when connecting to the network resource.</param>
              <param name="username">The username to use when connecting to the network resource.</param>
-             <param name="flags">The flags. See http://msdn.microsoft.com/en-us/library/aa385413%28VS.85%29.html for more information.</param>
+             <param name="flags">The flags. See http://msdn.microsoft.com/en-us/library/aa385413%28VS.85%29.aspx for more information.</param>
              <returns></returns>
         </member>
         <member name="M:Tunynet.FileStore.NetworkShareAccesser.WNetCancelConnection2(System.String,System.Int32,System.Boolean)">
@@ -7466,7 +7466,7 @@
             把content中的虚拟路径转化成完整的url
             </summary>
             <remarks>
-            例如： /abc/e.html 转化成 http://www.spacebuilder.cn/abc/e.html
+            例如： /abc/e.aspx 转化成 http://www.spacebuilder.cn/abc/e.aspx
             </remarks>
             <param name="content">content</param>
         </member>
